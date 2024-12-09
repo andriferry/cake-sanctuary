@@ -27,10 +27,5 @@ export default defineNuxtConfig({
         viewer: false,
     },
 
-    modules: [
-        '@vueuse/nuxt',
-        '@nuxtjs/tailwindcss',
-        'shadcn-nuxt',
-        '@nuxtjs/color-mode',
-    ],
+    modules: ['@vueuse/nuxt', '@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxtjs/color-mode', '@nuxtjs/seo', 'nuxt-auth-utils'],
 });
