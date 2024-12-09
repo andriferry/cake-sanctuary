@@ -27,5 +27,17 @@ export default defineNuxtConfig({
         viewer: false,
     },
 
-    modules: ['@vueuse/nuxt', '@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxtjs/color-mode', '@nuxtjs/seo', 'nuxt-auth-utils'],
+    lucide: {
+        namePrefix: 'Icon',
+    },
+
+    modules: [
+        '@vueuse/nuxt',
+        '@nuxtjs/tailwindcss',
+        'shadcn-nuxt',
+        '@nuxtjs/color-mode',
+        '@nuxtjs/seo',
+        'nuxt-auth-utils',
+        'nuxt-lucide-icons',
+    ],
 });
