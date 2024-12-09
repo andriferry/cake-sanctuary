@@ -1,11 +1,9 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
-<div>Index HSere</div>
+    <div>
+        Hello
+    </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

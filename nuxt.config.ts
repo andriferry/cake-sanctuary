@@ -31,6 +31,13 @@ export default defineNuxtConfig({
         namePrefix: 'Icon',
     },
 
+    components: [
+        {
+            path: '~/components/ui',
+            pathPrefix: false,
+        },
+    ],
+
     modules: [
         '@vueuse/nuxt',
         '@nuxtjs/tailwindcss',
