@@ -33,18 +33,19 @@ export default defineNuxtConfig({
 
     components: [
         {
-            path: '~/components/ui',
+            path: '~/components/ui/',
             pathPrefix: false,
         },
     ],
 
     modules: [
-        '@vueuse/nuxt',
-        '@nuxtjs/tailwindcss',
-        'shadcn-nuxt',
-        '@nuxtjs/color-mode',
-        '@nuxtjs/seo',
-        'nuxt-auth-utils',
-        'nuxt-lucide-icons',
+      '@vueuse/nuxt',
+      '@nuxtjs/tailwindcss',
+      'shadcn-nuxt',
+      '@nuxtjs/color-mode',
+      '@nuxtjs/seo',
+      'nuxt-auth-utils',
+      'nuxt-lucide-icons',
+      '@nuxt/icon',
     ],
 });

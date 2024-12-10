@@ -8,9 +8,10 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "addComponent": "npx shadcn-vue@latest add"
+    "component": "npx shadcn-vue@latest add"
   },
   "dependencies": {
+    "@nuxt/icon": "^1.9.1",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/seo": "^2.0.2",
     "@radix-icons/vue": "^1.0.0",
