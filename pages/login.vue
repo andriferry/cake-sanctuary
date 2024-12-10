@@ -1,7 +1,19 @@
 <script setup lang="ts">
+import type { PrivateFormContext } from 'vee-validate';
 definePageMeta({
     layout: 'blank',
 });
+
+const form = ref<PrivateFormContext>();
+
+const userName = ref('');
+const password = ref('');
+
+const onSubmit = async () => {
+    form.value?.validate().then((res) => {
+        console.log(res);
+    });
+};
 </script>
 
 <template>
@@ -17,54 +29,53 @@ definePageMeta({
                                 name="file-icons:cakephp"
                                 class="text-4xl text-primary" />
 
-                            <span class="text-primary">
-                                Cake Sanctuary
-                            </span>
+                            <span class="text-primary"> Cake Sanctuary </span>
                         </CardTitle>
-                        <CardDescription class="text-accent">
-                            Deploy your new project in one-click.
+                        <CardDescription class="text-secondary">
+                            Enter your email below to login to your account
                         </CardDescription>
                     </CardHeader>
+
+                    <CardContent>
+                        <FormObserver ref="form">
+                            <FieldProvider
+                                v-slot="{ errors, field }"
+                                name="username"
+                                v-model="userName"
+                                label="Email"
+                                rules="required|email">
+                                <FormItem>
+                                    <FormControl
+                                        label="Email"
+                                        v-bind="field"
+                                        type="email"
+                                        :errorMessage="errors"
+                                        placeholder="Input your Email" />
+                                    <FormMessage />
+                                </FormItem>
+                            </FieldProvider>
+
+                            <FieldProvider
+                                v-slot="{ errors, field }"
+                                name="password"
+                                v-model="password"
+                                label="Password"
+                                rules="required">
+                                <FormItem>
+                                    <FormControl
+                                        label="Password"
+                                        v-bind="field"
+                                        type="password"
+                                        :errorMessage="errors"
+                                        placeholder="Input your Password" />
+                                    <FormMessage />
+                                </FormItem>
+                            </FieldProvider>
+                        </FormObserver>
+                        <Button @click="onSubmit"> Submit </Button>
+                    </CardContent>
                 </Card>
             </div>
-
-            <!-- <div class="mx-auto px-4 grid container-lg gap-6">
-                <div class="grid gap-2 text-center">
-                    <h1 class="text-3xl font-bold">Login</h1>
-                    <p class="text-balance  text-muted-foreground">
-                        Enter your email below to login to your account
-                    </p>
-                </div>
-                <div class="grid gap-4">
-                    <div class="grid gap-2">
-                        <Label for="email">Email</Label>
-                        <Input
-                            id="email"
-                            type="email"
-                            placeholder="m@example.com"
-                            required />
-                    </div>
-                    <div class="grid gap-2">
-                        <div class="flex items-center">
-                            <Label for="password">Password</Label>
-                            <a
-                                href="/"
-                                class="ml-auto inline-block text-sm underline">
-                                Forgot your password?
-                            </a>
-                        </div>
-                        <Input id="password" type="password" required />
-                    </div>
-                    <Button type="submit" class="w-full"> Login </Button>
-                    <Button variant="outline" class="w-full">
-                        Login with Google
-                    </Button>
-                </div>
-                <div class="mt-4 text-center text-sm">
-                    Don't have an account?
-                    <a href="#" class="underline"> Sign up </a>
-                </div>
-            </div> -->
         </div>
         <div class="hidden bg-muted lg:block">
             <img

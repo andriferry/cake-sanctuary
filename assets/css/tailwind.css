@@ -19,13 +19,13 @@
         --border: 214.3 31.8% 91.4%;
         --input: 214.3 31.8% 91.4%;
 
-        --primary: 330, 81%, 60%;
+        --primary: 330 81% 60%;
         --primary-foreground: 210 40% 98%;
 
-        --secondary: 215, 16%, 47%;
+        --secondary: 215 16% 47%;
         --secondary-foreground: 222.2 47.4% 11.2%;
 
-        --accent: 215, 20%, 65%;
+        --accent: 215 20% 65%;
         --accent-foreground: 222.2 47.4% 11.2%;
 
         --destructive: 0 84.2% 60.2%;
@@ -35,7 +35,7 @@
 
         --radius: 0.5rem;
 
-        --success: 142, 69%, 58%;
+        --success: 142 69% 58%;
     }
 
     .dark {
@@ -54,13 +54,13 @@
         --border: 217.2 32.6% 17.5%;
         --input: 217.2 32.6% 17.5%;
 
-        --primary: 333, 71%, 51%;
+        --primary: 333 71% 51%;
         --primary-foreground: 222.2 47.4% 11.2%;
 
-        --secondary: 215, 16%, 47%;
+        --secondary: 215 16% 47%;
         --secondary-foreground: 210 40% 98%;
 
-        --accent: 215, 16%, 47%;
+        --accent: 215 16% 47%;
         --accent-foreground: 210 40% 98%;
 
         --destructive: 0 62.8% 30.6%;
@@ -68,13 +68,19 @@
 
         --ring: 212.7 26.8% 83.9%;
 
-        --success: 142, 69%, 58%;
+        --success: 142 69% 58%;
     }
 
     html {
         font-family: 'Inter', sans-serif;
     }
 }
+
+@layer components {
+    .slow-transition{
+      @apply transition-colors duration-300 ease-in-out
+    }
+  }
 
 @layer base {
     * {
