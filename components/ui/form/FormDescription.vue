@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { cn } from '@/lib/utils';
-// import type { HTMLAttributes } from 'vue';
 import type { htmlAttributes } from '@/types/index';
 
 interface Props {

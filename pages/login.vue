@@ -19,8 +19,8 @@ const onSubmit = async () => {
 <template>
     <div class="w-full lg:grid lg:min-h-screen lg:grid-cols-2 xl:min-h-screen">
         <div
-            class="flex bg-background flex-col h-screen items-center justify-center">
-            <div class="mx-auto container-lg">
+            class="bg-background flex flex-col h-screen items-center justify-center">
+            <div class="">
                 <Card class="w-full">
                     <CardHeader>
                         <CardTitle
@@ -49,7 +49,7 @@ const onSubmit = async () => {
                                         label="Email"
                                         v-bind="field"
                                         type="email"
-                                        :errorMessage="errors"
+                                        :errorMessage="errors[0]"
                                         placeholder="Input your Email" />
                                     <FormMessage />
                                 </FormItem>
@@ -62,11 +62,15 @@ const onSubmit = async () => {
                                 label="Password"
                                 rules="required">
                                 <FormItem>
+                                    <!-- mdi:eye-off-outline -->
                                     <FormControl
                                         label="Password"
                                         v-bind="field"
+                                        appendIcon="mdi:eye-outline"
+                                        prependIcon="mdi:eye-outline"
                                         type="password"
-                                        :errorMessage="errors"
+                                        hint="Hello"
+                                        :errorMessage="errors[0]"
                                         placeholder="Input your Password" />
                                     <FormMessage />
                                 </FormItem>
