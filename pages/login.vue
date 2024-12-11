@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import type { PrivateFormContext } from 'vee-validate';
+import type { UserValidation } from '@/types/index';
 definePageMeta({
     layout: 'blank',
 });
 
-const form = ref<PrivateFormContext>();
+const form = ref<UserValidation>();
 
 const userName = ref('');
 const password = ref('');
+const seePassword = ref(false);
 
 const onSubmit = async () => {
     form.value?.validate().then((res) => {
@@ -62,16 +63,22 @@ const onSubmit = async () => {
                                 label="Password"
                                 rules="required">
                                 <FormItem>
-                                    <!-- mdi:eye-off-outline -->
                                     <FormControl
                                         label="Password"
                                         v-bind="field"
-                                        appendIcon="mdi:eye-outline"
-                                        prependIcon="mdi:eye-outline"
-                                        type="password"
-                                        hint="Hello"
+                                        :appendIcon="
+                                            seePassword
+                                                ? 'mdi:eye-off-outline'
+                                                : 'mdi:eye-outline'
+                                        "
+                                        :type="
+                                            seePassword ? 'text' : 'password'
+                                        "
                                         :errorMessage="errors[0]"
-                                        placeholder="Input your Password" />
+                                        placeholder="Input your Password"
+                                        @clickAppend="
+                                            seePassword = !seePassword
+                                        " />
                                     <FormMessage />
                                 </FormItem>
                             </FieldProvider>

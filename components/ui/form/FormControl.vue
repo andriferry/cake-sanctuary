@@ -15,10 +15,12 @@ interface Props {
     modelValue?: string | number;
     appendIcon?: string;
     prependIcon?: string;
+    append?: Function;
 }
 
 interface Emits {
     (e: 'update:modelValue', payload: string | number): void;
+    (e: 'clickAppend'): void;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -39,7 +41,6 @@ const inputClass = computed(() => {
         {
             'border-destructive': props.errorMessage,
         },
-
         {
             'pr-10': props.appendIcon,
         },
@@ -74,6 +75,7 @@ const inputClass = computed(() => {
                 <span
                     v-if="appendIcon"
                     role="button"
+                    @click="emits('clickAppend')"
                     class="absolute end-0 inset-y-0 z-10 flex items-center justify-center px-2">
                     <Icon
                         role="button"
@@ -83,10 +85,8 @@ const inputClass = computed(() => {
 
                 <span
                     v-if="prependIcon"
-                    role="button"
                     class="absolute start-0 z-10 inset-y-0 flex items-center justify-center px-2">
                     <Icon
-                        role="button"
                         :name="prependIcon"
                         class="text-lg text-muted-foreground" />
                 </span>
