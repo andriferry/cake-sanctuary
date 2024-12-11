@@ -43,7 +43,7 @@ export default defineNuxtConfig({
       '@nuxtjs/tailwindcss',
       'shadcn-nuxt',
       '@nuxtjs/color-mode',
-      '@nuxtjs/seo',
+    //   '@nuxtjs/seo',
       'nuxt-auth-utils',
       'nuxt-lucide-icons',
       '@nuxt/icon',

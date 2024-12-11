@@ -44,7 +44,7 @@ const onSubmit = async () => {
                                 v-model="userName"
                                 label="Email"
                                 rules="required|email">
-                                <FormItem>
+                                <FormItem class="">
                                     <FormControl
                                         label="Email"
                                         v-bind="field"

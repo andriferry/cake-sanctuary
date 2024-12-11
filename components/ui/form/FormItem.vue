@@ -1,22 +1,15 @@
 <script lang="ts" setup>
-import { cn } from '@/lib/utils'
-import { useId } from 'radix-vue'
-import { type HTMLAttributes, provide } from 'vue'
-//import { FORM_ITEM_INJECTION_KEY } from './injectionKeys'
+import { cn } from '@/lib/utils';
+import type { htmlAttributes } from '@/types/index';
 
-const props = defineProps<{
-  class?: HTMLAttributes['class']
-}>()
-
-const id = useId()
-// provide(FORM_ITEM_INJECTION_KEY, id)
+interface Props {
+    class?: htmlAttributes['class'];
+}
+const props = defineProps<Props>();
 </script>
 
 <template>
-  <div :class="cn('space-y-2', props.class)">
-    <slot />
-  </div>
+    <div :class="cn('space-y-2', props.class)">
+        <slot />
+    </div>
 </template>
-
-
-
