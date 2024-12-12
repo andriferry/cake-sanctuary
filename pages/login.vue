@@ -24,15 +24,8 @@ const onSubmit = async () => {
             <div class="">
                 <Card class="w-full">
                     <CardHeader>
-                        <CardTitle
-                            class="flex text-primary items-center gap-3 text-xl">
-                            <Icon
-                                name="file-icons:cakephp"
-                                class="text-4xl text-primary" />
-
-                            <span class="text-primary"> Cake Sanctuary </span>
-                        </CardTitle>
-                        <CardDescription class="text-secondary">
+                        <Logo />
+                        <CardDescription class="text-secondary mt-3">
                             Enter your email below to login to your account
                         </CardDescription>
                     </CardHeader>

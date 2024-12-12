@@ -29,7 +29,7 @@ const data = {
     user: {
         name: 'shadcn',
         email: 'm@example.com',
-        avatar: '/avatars/shadcn.jpg',
+        avatar: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     },
     teams: [
         {
@@ -211,9 +211,9 @@ function setActiveTeam(team: (typeof data.teams)[number]) {
                                             class="size-4 shrink-0" />
                                     </div>
                                     {{ team.name }}
-                                    <DropdownMenuShortcut
-                                        >⌘{{ index + 1 }}</DropdownMenuShortcut
-                                    >
+                                    <DropdownMenuShortcut>
+                                        ⌘{{ index + 1 }}
+                                    </DropdownMenuShortcut>
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem class="gap-2 p-2">
@@ -338,12 +338,12 @@ function setActiveTeam(team: (typeof data.teams)[number]) {
                                     </Avatar>
                                     <div
                                         class="grid flex-1 text-left text-sm leading-tight">
-                                        <span class="truncate font-semibold">{{
-                                            data.user.name
-                                        }}</span>
-                                        <span class="truncate text-xs">{{
-                                            data.user.email
-                                        }}</span>
+                                        <span class="truncate font-semibold">
+                                            {{ data.user.name }}
+                                        </span>
+                                        <span class="truncate text-xs">
+                                            {{ data.user.email }}
+                                        </span>
                                     </div>
                                     <ChevronsUpDown class="ml-auto size-4" />
                                 </SidebarMenuButton>
@@ -423,13 +423,13 @@ function setActiveTeam(team: (typeof data.teams)[number]) {
                 </div>
             </header>
             <div class="flex flex-1 flex-col gap-4 p-4 pt-0">
-                <div class="grid auto-rows-min gap-4 md:grid-cols-3">
+                <!-- <div class="grid auto-rows-min gap-4 md:grid-cols-3">
                     <div class="aspect-video rounded-xl bg-muted/50" />
                     <div class="aspect-video rounded-xl bg-muted/50" />
                     <div class="aspect-video rounded-xl bg-muted/50" />
-                </div>
+                </div> -->
                 <div
-                    class="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
+                    class="min-h-screen flex-1 rounded-xl bg-muted/50 md:min-h-min" />
 
                 <slot />
             </div>

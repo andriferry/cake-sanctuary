@@ -36,16 +36,41 @@ export default defineNuxtConfig({
             path: '~/components/ui/',
             pathPrefix: false,
         },
+        {
+            path: '~/components/global',
+            global: true,
+        },
+        {
+            path: '~/components/',
+            pathPrefix: false,
+        },
     ],
 
+    // components: {
+    //     dirs: [
+    //         {
+    //             path: '~/components/ui/',
+    //             pathPrefix: false,
+    //         },
+    //         {
+    //             path: '~/components/global',
+    //             global: true,
+    //         },
+    //         {
+    //             path: '~/components',
+    //             pathPrefix: false,
+    //         },
+    //     ],
+    // },
+
     modules: [
-      '@vueuse/nuxt',
-      '@nuxtjs/tailwindcss',
-      'shadcn-nuxt',
-      '@nuxtjs/color-mode',
-    //   '@nuxtjs/seo',
-      'nuxt-auth-utils',
-      'nuxt-lucide-icons',
-      '@nuxt/icon',
+        '@vueuse/nuxt',
+        '@nuxtjs/tailwindcss',
+        'shadcn-nuxt',
+        '@nuxtjs/color-mode',
+        //   '@nuxtjs/seo',
+        'nuxt-auth-utils',
+        'nuxt-lucide-icons',
+        '@nuxt/icon',
     ],
 });
