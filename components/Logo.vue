@@ -18,7 +18,7 @@ const classData = computed(() => {
 
 <template>
     <h3 :class="classData">
-        <Icon name="file-icons:cakephp" class="text-4xl" />
+        <LogoIcon />
 
         <span class="text-primary"> Cake Sanctuary </span>
     </h3>

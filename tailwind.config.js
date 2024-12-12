@@ -49,7 +49,17 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        success: "hslhsl(var(--success))"
+        success: "hslhsl(var(--success))",
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--primary))",
+          'primary-foreground': "hsl(var(--sidebar-primary-foreground))",
+          'sidebar-accent': "hsl(var(--accent))",
+          'sidebar-accent-foreground': "hsl(var(--accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
+        }
       },
       borderRadius: {
         xl: "calc(var(--radius) + 4px)",
