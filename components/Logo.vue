@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils';
 import type { HTMLAttributes } from 'vue';
+const { title } = useRuntimeConfig();
 
 interface Props {
     class?: HTMLAttributes['class'];
@@ -20,6 +21,6 @@ const classData = computed(() => {
     <h3 :class="classData">
         <LogoIcon />
 
-        <span class="text-primary"> Cake Sanctuary </span>
+        <span class="text-primary"> {{ title }} </span>
     </h3>
 </template>

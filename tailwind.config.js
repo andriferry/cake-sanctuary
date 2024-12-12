@@ -50,13 +50,13 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
         success: "hslhsl(var(--success))",
-        sidebar: {
+        sidebar: { /// We need to remove this sidebar color, And also just created a few basic 
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
           primary: "hsl(var(--primary))",
           'primary-foreground': "hsl(var(--sidebar-primary-foreground))",
-          'sidebar-accent': "hsl(var(--accent))",
-          'sidebar-accent-foreground': "hsl(var(--accent-foreground))",
+          'accent': "hsl(var(--accent))",
+          'accent-foreground': "hsl(var(--accent-foreground))",
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         }

@@ -27,6 +27,10 @@ export default defineNuxtConfig({
         viewer: false,
     },
 
+    runtimeConfig: {
+        title: 'Cake Sanctuary'
+    },
+
     lucide: {
         namePrefix: 'Icon',
     },
