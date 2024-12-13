@@ -50,7 +50,7 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
         success: "hslhsl(var(--success))",
-        sidebar: { /// We need to remove this sidebar color, And also just created a few basic 
+        sidebar: { /// We need to remove this sidebar color, And also just created a few basic colors
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
           primary: "hsl(var(--primary))",

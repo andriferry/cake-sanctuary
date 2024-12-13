@@ -28,7 +28,9 @@ export default defineNuxtConfig({
     },
 
     runtimeConfig: {
-        title: 'Cake Sanctuary'
+        public: {
+            title: 'Cake Sanctuary',
+        },
     },
 
     lucide: {
@@ -50,22 +52,15 @@ export default defineNuxtConfig({
         },
     ],
 
-    // components: {
-    //     dirs: [
-    //         {
-    //             path: '~/components/ui/',
-    //             pathPrefix: false,
-    //         },
-    //         {
-    //             path: '~/components/global',
-    //             global: true,
-    //         },
-    //         {
-    //             path: '~/components',
-    //             pathPrefix: false,
-    //         },
-    //     ],
-    // },
+    typescript: {
+        tsConfig: {
+            compilerOptions: {
+                paths: {
+                    '@/lib/utils/*': ['../lib/utils/*'],
+                },
+            },
+        },
+    },
 
     modules: [
         '@vueuse/nuxt',
@@ -77,4 +72,9 @@ export default defineNuxtConfig({
         'nuxt-lucide-icons',
         '@nuxt/icon',
     ],
+    icon: {
+        serverBundle: {
+            collections: ['file-icons', 'tabler'],
+        },
+    },
 });

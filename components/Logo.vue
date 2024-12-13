@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils';
 import type { HTMLAttributes } from 'vue';
-const { title } = useRuntimeConfig();
+const { title } = useAppConfig();
 
 interface Props {
     class?: HTMLAttributes['class'];
