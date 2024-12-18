@@ -1,10 +1,10 @@
 <script setup lang="ts">
-const route = useRoute()
+const route = useRoute();
 </script>
 
 <template>
     <div class="bg-yellow-500">
-        {{route.name}}
+        {{ route.name }}
     </div>
 </template>
 

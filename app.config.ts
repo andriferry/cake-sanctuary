@@ -1,6 +1,6 @@
 export default defineAppConfig({
     title: 'Cake Sanctuary',
-    navigation: [
+    navigations: [
         {
             heading: 'Dashboard',
         },
@@ -8,33 +8,34 @@ export default defineAppConfig({
             title: 'Home',
             to: '/',
             icon: 'tabler:smart-home',
+            // target: "_blank"
         },
         {
             title: 'POS',
-            to: '/',
-            icon: 'tabler:smart-home',
+            to: '/pos',
+            icon: 'tabler:layout-dashboard',
         },
         {
             title: 'Product',
-            to: '/',
+            to: '/product',
             icon: 'tabler:package',
         },
         {
             title: 'Orders',
-            to: '/',
-            icon: 'tabler--notes',
+            to: '/order',
+            icon: 'tabler:notes',
             badge: '2',
             badgeClass: 'bg-primary',
         },
         {
             title: 'Transaction',
-            to: '/',
-            icon: 'tabler--arrows-right-left',
+            to: '/transaction',
+            icon: 'tabler:arrows-right-left',
         },
         {
             title: 'Settings',
-            to: '/',
-            icon: 'tabler--settings',
+            to: '/settings',
+            icon: 'tabler:settings',
         },
     ],
 });
