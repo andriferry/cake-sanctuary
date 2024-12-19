@@ -19,7 +19,7 @@
         --border: 214.3 31.8% 91.4%;
         --input: 214.3 31.8% 91.4%;
 
-        --primary: 330 81% 60%;
+        /* --primary: 330 81% 60%; */
         --primary-foreground: 210 40% 98%;
 
         --secondary: 215 16% 47%;
@@ -94,15 +94,7 @@
     html {
         font-family: 'Inter', sans-serif;
     }
-}
 
-@layer components {
-    .slow-transition {
-        @apply transition-colors duration-300 ease-in-out;
-    }
-}
-
-@layer base {
     * {
         @apply border-border;
         scrollbar-width: thin;
@@ -112,3 +104,20 @@
         @apply bg-background text-foreground;
     }
 }
+
+@layer components {
+    .slow-transition {
+        @apply transition-colors duration-300 ease-in-out;
+    }
+}
+
+/* @layer base {
+    * {
+        @apply border-border;
+        scrollbar-width: thin;
+        scrollbar-color: hsl(var(--border)) transparent;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+} */

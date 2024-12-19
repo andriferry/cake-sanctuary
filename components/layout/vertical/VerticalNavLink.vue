@@ -12,8 +12,8 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-    <SidebarMenuItem>
-        <SidebarMenuButton as-child size="lg">
+    <SidebarMenuItem class="font-medium text-secondary">
+        <SidebarMenuButton :tooltip='props.title' as-child size="lg">
             <NuxtLink
                 v-bind="props"
                 activeClass="bg-primary transition-all duration-300 ease-in-out hover:!bg-primary/90 !text-white hover:!text-white">

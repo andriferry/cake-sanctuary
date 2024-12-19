@@ -25,7 +25,10 @@ export default defineNuxtConfig({
     },
     tailwindcss: {
         viewer: false,
+        configPath: 'tailwind.config',
     },
+
+    css: ['~/assets/css/tailwind.css'],
 
     runtimeConfig: {
         public: {

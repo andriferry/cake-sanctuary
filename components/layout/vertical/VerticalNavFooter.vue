@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { initialName } from '~/utils';
 
-import { ChevronsUpDown } from 'lucide-vue-next';
-
 interface Props {
     user?: {
         name?: string;
@@ -18,7 +16,60 @@ const { user = { name: '', email: '', avatar: '' } } = defineProps<Props>();
     <SidebarFooter>
         <SidebarMenu>
             <SidebarMenuItem>
-                <DropdownMenu>
+                <HoverCard>
+                    <HoverCardTrigger as-child>
+                        <SidebarMenuButton
+                            size="lg"
+                            class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
+                            <Avatar
+                                class="h-8 w-8 text-white bg-primary rounded-lg">
+                                <AvatarImage
+                                    :src="user.avatar"
+                                    :alt="user.name" />
+                                <AvatarFallback class="rounded-lg">
+                                    {{ initialName('andri ferry') }}
+                                </AvatarFallback>
+                            </Avatar>
+                            <div
+                                class="grid flex-1 text-left text-sm leading-tight">
+                                <span class="truncate font-semibold">
+                                    {{ user.name }}
+                                </span>
+                                <span class="truncate text-xs">
+                                    {{ user.email }}
+                                </span>
+                            </div>
+                            <Icon
+                                name="tabler:square-rounded-arrow-up"
+                                class="text-xl text-secondary font-medium" />
+                        </SidebarMenuButton>
+                    </HoverCardTrigger>
+                    <HoverCardContent class="w-[16rem]">
+                        <div class="flex justify-between space-x-4">
+                            <Avatar>
+                                <AvatarImage
+                                    src="https://github.com/vuejs.png" />
+                                <AvatarFallback>VC</AvatarFallback>
+                            </Avatar>
+                            <div class="space-y-1">
+                                <h4 class="text-sm font-semibold">@vuejs</h4>
+                                <p class="text-sm">
+                                    Progressive JavaScript framework for
+                                    building modern web interfaces.
+                                </p>
+                                <div class="flex items-center pt-2">
+                                    <span class="text-xs text-muted-foreground">
+                                        Joined January 2014
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </HoverCardContent>
+                </HoverCard>
+
+
+                
+                <!-- <DropdownMenu>
                     <DropdownMenuTrigger as-child>
                         <SidebarMenuButton
                             size="lg"
@@ -104,7 +155,10 @@ const { user = { name: '', email: '', avatar: '' } } = defineProps<Props>();
                             Log out
                         </DropdownMenuItem>
                     </DropdownMenuContent>
-                </DropdownMenu>
+                </DropdownMenu> -->
+
+
+
             </SidebarMenuItem>
         </SidebarMenu>
     </SidebarFooter>
