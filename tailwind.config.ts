@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss';
 import animate from 'tailwindcss-animate';
 import plugin from 'tailwindcss/plugin';
+import {sidebar} from "./themeconfig"
 
 export default {
     darkMode: 'class',
@@ -105,10 +106,13 @@ export default {
     plugins: [
         animate,
         plugin(function ({ addUtilities, addComponents, e, config }) {
-            addUtilities({
+            addUtilities( {
                 ':root': {
                     '--primary': '330 81% 60%',
-                },
+                    '--sidebar-width': sidebar.SIDEBAR_WIDTH,
+                    '--sidebar-width-icon': sidebar.SIDEBAR_WIDTH_ICON,
+                    '--sidebar-width-mobile': sidebar.SIDEBAR_WIDTH_MOBILE 
+                }, 
             });
         }),
     ],

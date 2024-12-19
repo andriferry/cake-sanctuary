@@ -44,7 +44,8 @@ const { user = { name: '', email: '', avatar: '' } } = defineProps<Props>();
                                 class="text-xl text-secondary font-medium" />
                         </SidebarMenuButton>
                     </HoverCardTrigger>
-                    <HoverCardContent class="w-[16rem]">
+                    <HoverCardContent
+                        class=" w-[calc(var(--sidebar-width-mobile)-1rem)] lg:w-[calc(var(--sidebar-width)-1rem)]">
                         <div class="flex justify-between space-x-4">
                             <Avatar>
                                 <AvatarImage
@@ -67,8 +68,6 @@ const { user = { name: '', email: '', avatar: '' } } = defineProps<Props>();
                     </HoverCardContent>
                 </HoverCard>
 
-
-                
                 <!-- <DropdownMenu>
                     <DropdownMenuTrigger as-child>
                         <SidebarMenuButton
@@ -156,9 +155,6 @@ const { user = { name: '', email: '', avatar: '' } } = defineProps<Props>();
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu> -->
-
-
-
             </SidebarMenuItem>
         </SidebarMenu>
     </SidebarFooter>
