@@ -16,7 +16,7 @@ const { user = { name: '', email: '', avatar: '' } } = defineProps<Props>();
     <SidebarFooter>
         <SidebarMenu>
             <SidebarMenuItem>
-                <HoverCard>
+                <!-- <HoverCard>
                     <HoverCardTrigger as-child>
                         <SidebarMenuButton
                             size="lg"
@@ -45,30 +45,41 @@ const { user = { name: '', email: '', avatar: '' } } = defineProps<Props>();
                         </SidebarMenuButton>
                     </HoverCardTrigger>
                     <HoverCardContent
-                        class=" w-[calc(var(--sidebar-width-mobile)-1rem)] lg:w-[calc(var(--sidebar-width)-1rem)]">
-                        <div class="flex justify-between space-x-4">
-                            <Avatar>
-                                <AvatarImage
-                                    src="https://github.com/vuejs.png" />
-                                <AvatarFallback>VC</AvatarFallback>
-                            </Avatar>
-                            <div class="space-y-1">
-                                <h4 class="text-sm font-semibold">@vuejs</h4>
-                                <p class="text-sm">
-                                    Progressive JavaScript framework for
-                                    building modern web interfaces.
-                                </p>
-                                <div class="flex items-center pt-2">
-                                    <span class="text-xs text-muted-foreground">
-                                        Joined January 2014
+                        class="w-[calc(var(--sidebar-width-mobile)-1rem)] lg:w-[calc(var(--sidebar-width)-1rem)]">
+                        <div
+                            class="grid grid-flow-row auto-rows-max gap-3 divide-y divide-secondary/20">
+                            <div
+                                class="flex items-center gap-2 py-3 text-left text-sm">
+                                <Avatar
+                                    class="h-8 w-8 rounded-lg text-white bg-primary">
+                                    <AvatarImage
+                                        :src="user.avatar"
+                                        :alt="user.name" />
+                                    <AvatarFallback class="rounded-lg">
+                                        {{ initialName('andri ferry') }}
+                                    </AvatarFallback>
+                                </Avatar>
+                                <div
+                                    class="grid flex-1 text-left text-sm leading-tight">
+                                    <span class="truncate font-semibold">
+                                        {{ user.name }}
+                                    </span>
+                                    <span class="truncate text-xs">
+                                        {{ user.email }}
                                     </span>
                                 </div>
                             </div>
+
+                            <div class="py-3">theme here</div>
+
+                            <div class="pt-3">
+                                <Button variant="plain" class="px-0" append-icon="tabler:logout"> Logout </Button>
+                            </div>
                         </div>
                     </HoverCardContent>
-                </HoverCard>
+                </HoverCard> -->
 
-                <!-- <DropdownMenu>
+                <DropdownMenu>
                     <DropdownMenuTrigger as-child>
                         <SidebarMenuButton
                             size="lg"
@@ -91,7 +102,9 @@ const { user = { name: '', email: '', avatar: '' } } = defineProps<Props>();
                                     {{ user.email }}
                                 </span>
                             </div>
-                            <ChevronsUpDown class="ml-auto size-4" />
+                            <Icon
+                                name="tabler:square-rounded-arrow-up"
+                                class="text-xl text-secondary font-medium" />
                         </SidebarMenuButton>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
@@ -123,38 +136,26 @@ const { user = { name: '', email: '', avatar: '' } } = defineProps<Props>();
                             </div>
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
+
                         <DropdownMenuGroup>
-                            <DropdownMenuItem>
-                                <Icon name="tabler:sparkles"></Icon>
-                                Upgrade to Pro
+                            <DropdownMenuItem as-child>
+                                <NuxtLink to="/">
+                                    <Icon
+                                        class="text-lg"
+                                        name="tabler:rosette-discount-check"></Icon>
+                                    Account
+                                </NuxtLink>
                             </DropdownMenuItem>
-                        </DropdownMenuGroup>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuGroup>
-                            <DropdownMenuItem>
+
+                            <DropdownMenuItem class="cursor-pointer">
                                 <Icon
                                     class="text-lg"
-                                    name="tabler:rosette-discount-check"></Icon>
-                                Account
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <Icon
-                                    class="text-lg"
-                                    name="tabler:credit-card"></Icon>
-                                Billing
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <Icon class="text-lg" name="tabler:bell"></Icon>
-                                Notifications
+                                    name="tabler:logout"></Icon>
+                                Log out
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>
-                            <Icon class="text-lg" name="tabler:logout"></Icon>
-                            Log out
-                        </DropdownMenuItem>
                     </DropdownMenuContent>
-                </DropdownMenu> -->
+                </DropdownMenu>
             </SidebarMenuItem>
         </SidebarMenu>
     </SidebarFooter>

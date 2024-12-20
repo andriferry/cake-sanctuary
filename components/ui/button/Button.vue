@@ -8,6 +8,8 @@ interface Props extends PrimitiveProps {
     variant?: ButtonVariants['variant'];
     size?: ButtonVariants['size'];
     class?: HTMLAttributes['class'];
+    prependIcon?: string
+    appendIcon?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -20,6 +22,8 @@ const props = withDefaults(defineProps<Props>(), {
         :as="as"
         :as-child="asChild"
         :class="cn(buttonVariants({ variant, size }), props.class)">
+        <Icon v-if="props.prependIcon" :name="props.prependIcon" class="text-xl" />
         <slot />
+        <Icon v-if="props.appendIcon" :name="props.appendIcon" class="text-xl" />
     </Primitive>
 </template>
