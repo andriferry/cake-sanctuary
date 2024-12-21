@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-    <SidebarMenuItem class="font-medium text-secondary">
+    <SidebarMenuItem>
         <SidebarMenuButton :tooltip='props.title' as-child size="lg">
             <NuxtLink
                 v-bind="props"

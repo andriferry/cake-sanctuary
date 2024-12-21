@@ -1,41 +1,51 @@
 <script setup lang="ts">
-import { cn } from '@/lib/utils'
-import { DotFilledIcon } from '@radix-icons/vue'
+import { cn } from '@/lib/utils';
 import {
-  DropdownMenuItemIndicator,
-  DropdownMenuRadioItem,
-  type DropdownMenuRadioItemEmits,
-  type DropdownMenuRadioItemProps,
-  useForwardPropsEmits,
-} from 'radix-vue'
-import { computed, type HTMLAttributes } from 'vue'
+    DropdownMenuItemIndicator,
+    DropdownMenuRadioItem,
+    type DropdownMenuRadioItemEmits,
+    type DropdownMenuRadioItemProps,
+    useForwardPropsEmits,
+} from 'radix-vue';
+import { computed, type HTMLAttributes } from 'vue';
 
-const props = defineProps<DropdownMenuRadioItemProps & { class?: HTMLAttributes['class'] }>()
+interface Props extends DropdownMenuRadioItemProps {
+    class?: HTMLAttributes['class'];
+    dotIcon?: string;
+}
 
-const emits = defineEmits<DropdownMenuRadioItemEmits>()
+const props = withDefaults(defineProps<Props>(), {
+    dotIcon: 'tabler:circle-dot',
+});
+
+const emits = defineEmits<DropdownMenuRadioItemEmits>();
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+    const { class: _, ...delegated } = props;
 
-  return delegated
-})
+    return delegated;
+});
 
-const forwarded = useForwardPropsEmits(delegatedProps, emits)
+const forwarded = useForwardPropsEmits(delegatedProps, emits);
 </script>
 
 <template>
-  <DropdownMenuRadioItem
-    v-bind="forwarded"
-    :class="cn(
-      'relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
-      props.class,
-    )"
-  >
-    <span class="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
-      <DropdownMenuItemIndicator>
-        <DotFilledIcon class="h-4 w-4 fill-current" />
-      </DropdownMenuItemIndicator>
-    </span>
-    <slot />
-  </DropdownMenuRadioItem>
+    <DropdownMenuRadioItem
+        v-bind="forwarded"
+        :class="
+            cn(
+                'relative flex cursor-pointer select-none items-center rounded-sm py-1.5 pl-8 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+                props.class
+            )
+        ">
+        <span
+            class="absolute start-0 z-10 inset-y-0 flex items-center justify-center px-2">
+            <DropdownMenuItemIndicator class="flex">
+                <Icon
+                    :name="dotIcon"
+                    class="font-medium text-lg text-current" />
+            </DropdownMenuItemIndicator>
+        </span>
+        <slot />
+    </DropdownMenuRadioItem>
 </template>
