@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
                 <div
                     v-if="props.icon"
                     class="flex aspect-square size-8 items-center justify-center rounded-lg">
-                    <Icon :name="props.icon" class="text-xl shrink-0" />
+                    <Icon :name="props.icon" class="shrink-0" />
                 </div>
                 <span>{{ props.title }}</span>
             </NuxtLink>

@@ -7,7 +7,7 @@ export default defineAppConfig({
         },
         {
             title: 'Home',
-            to: '/',
+            to: '/dashboard',
             icon: 'tabler:smart-home',
             // target: "_blank"
         },

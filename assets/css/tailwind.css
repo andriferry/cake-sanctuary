@@ -101,12 +101,16 @@
         scrollbar-color: hsl(var(--border)) transparent;
     }
     body {
-        @apply bg-background text-foreground;
+        @apply bg-background;
     }
 }
 
 @layer components {
     .slow-transition {
         @apply transition-colors duration-300 ease-in-out;
+    }
+
+    .icon {
+        @apply font-medium text-2xl text-inherit
     }
 }

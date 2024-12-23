@@ -18,7 +18,7 @@ const {
         <DropdownMenuTrigger as-child>
             <SidebarMenuButton
                 size="lg"
-                class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
+                class="data-[state=open]:bg-sidebar-accent">
                 <Avatar class="h-8 w-8 text-white bg-primary rounded-lg">
                     <AvatarImage :src="avatar" :alt="name" />
                     <AvatarFallback class="rounded-lg">
@@ -27,7 +27,7 @@ const {
                 </Avatar>
                 <div class="grid flex-1 text-left text-sm leading-tight">
                     <span class="truncate font-semibold">
-                        {{ name }}
+                        {{ name }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam blanditiis ut impedit voluptate dignissimos enim sint, voluptatum maiores ducimus ipsa minus repellat explicabo dolores hic vero cupiditate! Suscipit, hic debitis!
                     </span>
                     <span class="truncate text-xs">
                         {{ email }}
@@ -52,7 +52,7 @@ const {
                             {{ initialName('andri ferry') }}
                         </AvatarFallback>
                     </Avatar>
-                    <div class="grid flex-1 text-left text-sm leading-tight">
+                    <div class="grid flex-1 text-secondary text-left text-sm leading-tight">
                         <span class="truncate font-semibold">
                             {{ name }}
                         </span>

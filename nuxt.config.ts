@@ -76,6 +76,8 @@ export default defineNuxtConfig({
         '@nuxt/icon',
     ],
     icon: {
+        class: 'icon', // default <Icon> class applied
+        mode: 'css', //
         serverBundle: {
             collections: ['file-icons', 'tabler'],
         },
@@ -89,7 +91,6 @@ export default defineNuxtConfig({
         classPrefix: '',
         classSuffix: '',
         storage: 'localStorage', // or 'sessionStorage' or 'cookie'
-        storageKey: 'nuxt-color-mode'
-      }
-    
+        storageKey: 'nuxt-color-mode',
+    },
 });

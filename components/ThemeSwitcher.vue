@@ -46,7 +46,7 @@ const currentTheme = computed<Theme>(() => {
             <Button variant="plain" size="icon">
                 <Icon
                     :name="currentTheme?.icon"
-                    class="font-medium text-lg text-secondary" />
+                    class="text-secondary" />
             </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
@@ -54,12 +54,12 @@ const currentTheme = computed<Theme>(() => {
                 <DropdownMenuRadioItem
                     v-for="(dataTheme, index) in themes"
                     :key="index"
-                    :value="dataTheme.value">
+                    :value="dataTheme.value" class="text-secondary">
                     <div class="flex justify-center gap-3">
                         <Icon
                             :name="dataTheme.icon"
-                            class="font-medium text-lg text-secondary" />
-                        <span class="capitalize">{{ dataTheme.value }}</span>
+                            class="font-medium text-lg " />
+                        <span class="capitalize text-inherit">{{ dataTheme.value }}</span>
                     </div>
                 </DropdownMenuRadioItem>
             </DropdownMenuRadioGroup>

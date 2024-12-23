@@ -1,21 +1,19 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from 'vue'
-import { cn } from '@/lib/utils'
+import type { HTMLAttributes } from 'vue';
+import { cn } from '@/lib/utils';
+import { type CardVariant, cardVariant } from '.';
 
-const props = defineProps<{
-  class?: HTMLAttributes['class']
-}>()
+interface Props {
+    variant?: CardVariant['variant'];
+    class?: HTMLAttributes['class'];
+}
+
+const props = defineProps<Props>();
+
 </script>
 
 <template>
-  <div
-    :class="
-      cn(
-        'rounded-xl border bg-card text-card-foreground shadow',
-        props.class,
-      )
-    "
-  >
-    <slot />
-  </div>
+    <div :class="cn(cardVariant({ variant }), props.class)">
+        <slot />
+    </div>
 </template>

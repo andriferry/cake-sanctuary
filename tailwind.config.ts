@@ -2,6 +2,7 @@ import type { Config } from 'tailwindcss';
 import animate from 'tailwindcss-animate';
 import plugin from 'tailwindcss/plugin';
 import {sidebar} from "./themeconfig"
+import tailwindTypography from '@tailwindcss/typography';
 
 export default {
     darkMode: 'class',
@@ -105,6 +106,7 @@ export default {
     },
     plugins: [
         animate,
+        tailwindTypography,
         plugin(function ({ addUtilities, addComponents, e, config }) {
             addUtilities( {
                 ':root': {

@@ -18,7 +18,7 @@ const { toggleSidebar } = useSidebar();
         size="icon"
         :class="cn('h-7 w-7', props.class)"
         @click="toggleSidebar">
-        <Icon name="tabler:layout-sidebar" class="text-lg" />
+        <Icon name="tabler:layout-sidebar" class="text-xl text-secondary" />
         <span class="sr-only">Toggle Sidebar</span>
     </Button>
 </template>

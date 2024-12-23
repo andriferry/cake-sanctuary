@@ -10,13 +10,14 @@
                     <SidebarTrigger class="-ml-1" />
                     <Separator orientation="vertical" class="mr-2 h-4" />
                     <h2
-                        class="scroll-m-20 text-2xl font-semibold tracking-tight transition-colors first:mt-0">
-                        Dashboard
+                        class="scroll-m-20 capitalize text-2xl font-semibold tracking-tight first:mt-0">
+                        {{ $route.name }}
                     </h2>
                 </div>
 
                 <ClientOnly>
-                    <div class="mr-4">
+                    <div class="mr-4 flex justify-center">
+                        <Alert />
                         <ThemeSwitcher />
                     </div>
                 </ClientOnly>
