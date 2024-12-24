@@ -1,41 +1,5 @@
 <script setup lang="ts">
-import { toRef } from 'vue';
 
-interface Theme {
-    icon: string;
-    value: string;
-}
-
-const colorMode = useColorMode();
-
-const colorTheme = toRef(colorMode.value);
-
-watch(colorTheme, (value) => {
-    colorMode.preference = value;
-});
-
-const themes = ref<Theme[]>([
-    {
-        icon: 'tabler:moon-stars',
-        value: 'dark',
-    },
-    {
-        icon: 'tabler:sun-high',
-        value: 'light',
-    },
-    {
-        icon: 'tabler:device-desktop',
-        value: 'system',
-    },
-]);
-
-const currentTheme = computed<Theme>(() => {
-    let dataTheme = themes.value.find(
-        (data: Theme) => data.value === colorMode.value
-    );
-
-    return dataTheme ? dataTheme : { icon: '', value: '' };
-});
 </script>
 
 <template>
@@ -48,63 +12,36 @@ const currentTheme = computed<Theme>(() => {
             </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" class="text-secondary w-96">
-            <Card variant="flat">
-                <CardHeader>
-                    <CardTitle>Create project</CardTitle>
-                    <CardDescription
-                        >Deploy your new project in one-click.</CardDescription
-                    >
+            <Card variant="flat" class="text-secondary">
+                <CardHeader class="px-4">
+                    <CardTitle class="flex capitalize justify-between">
+                        <span>Notifications</span>
+
+                        <Badge> 5 New </Badge>
+                    </CardTitle>
                 </CardHeader>
-                <CardContent>
-                    <form>
-                        <div class="grid items-center w-full gap-4">
-                            <div class="flex flex-col space-y-1.5">
-                                <Label for="name">Name</Label>
-                                <Input
-                                    id="name"
-                                    placeholder="Name of your project" />
-                            </div>
-                        </div>
-                    </form>
-                </CardContent>
-                <CardFooter class="flex justify-between px-6 pb-6">
-                    <Button variant="outline"> Cancel </Button>
-                    <Button>Deploy</Button>
-                </CardFooter>
-            </Card>
-            <!-- <DropdownMenuLabel class="flex justify-between items-center">
-                <span>Notifications</span>
-
-                <Badge>5 New</Badge>
-            </DropdownMenuLabel>
-
-            <DropdownMenuSeparator />
-
-            <DropdownMenuGroup>
-                <DropdownMenuItem v-for="data in 5" :key="data" class="">
-                    <article class="prose px-2 prose-headings:!m-0 w-full text-inherit">
-                        <div class="flex w-full justify-between items-center">
-                            <div class="flex flex-col justify-start items-start">
-                                <h4 class="text-secondary">Congrats New orders #3566</h4>
-                                <span class="truncate text-sm font-light text-secondary/70">
+                <CardContent class="px-4">
+                    <Button v-for="data in 5" :key="data" variant="ghost" size="full" class="justify-start">
+                        <div class="flex justify-between w-full items-center">
+                            <div
+                                class="flex justify-start items-start flex-col">
+                                <h6 class="text-medium text-base">
+                                    New orders #3566
+                                </h6>
+                                <span
+                                    class="truncate text-sm font-light text-secondary/70">
                                     There new orders please check it
                                 </span>
                             </div>
-                    
+
                             <span class="text-sm font-light">Today</span>
                         </div>
-                    </article>
-                </DropdownMenuItem>
-            </DropdownMenuGroup>
-
-            <DropdownMenuSeparator />
-
-
-            <DropdownMenuGroup>
-                <DropdownMenuItem class="">
-                    <Button>Read All Notifications</Button>
-                </DropdownMenuItem>
-            </DropdownMenuGroup> -->
+                    </Button>
+                </CardContent>
+                <CardFooter class="flex justify-between px-4 pb-6">
+                    <Button size="full">Read All Notifications</Button>
+                </CardFooter>
+            </Card>
         </DropdownMenuContent>
     </DropdownMenu>
 </template>

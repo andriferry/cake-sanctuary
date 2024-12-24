@@ -27,7 +27,7 @@ const {
                 </Avatar>
                 <div class="grid flex-1 text-left text-sm leading-tight">
                     <span class="truncate font-semibold">
-                        {{ name }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam blanditiis ut impedit voluptate dignissimos enim sint, voluptatum maiores ducimus ipsa minus repellat explicabo dolores hic vero cupiditate! Suscipit, hic debitis!
+                        {{ name }}
                     </span>
                     <span class="truncate text-xs">
                         {{ email }}
