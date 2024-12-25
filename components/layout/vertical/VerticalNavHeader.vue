@@ -11,9 +11,9 @@ const { title } = useAppConfig();
                     class="data-[state=open]:bg-sidebar-primary data-[state=open]:text-sidebar-accent-foreground">
                     <div
                         class="flex aspect-square size-8 items-center justify-center rounded-lg text-primary">
-                        <LogoIcon></LogoIcon>
+                        <LogoIcon />
                     </div>
-                    <div class="grid flex-1 text-left text-sm leading-tight">
+                    <div class="grid flex-1 text-left text-lg leading-tight">
                         <span class="truncate text-primary font-semibold">
                             {{ title }}
                         </span>

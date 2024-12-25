@@ -21,6 +21,12 @@ const options = ref([
 
 const dialogOpen = ref(false);
 
+
+const buttonText = computed( () => {
+    let getCurrentData = options.value.find((item) => item.value === selectModel.value)
+
+    return getCurrentData?.title
+})
 </script>
 
 <template>
@@ -35,7 +41,7 @@ const dialogOpen = ref(false);
                     size="sm"
                     variant="outline"
                     @click="dialogOpen = !dialogOpen">
-                    7 Days Ago
+                    {{ buttonText }}
                 </Button>
 
                 <Dialog v-model:open="dialogOpen">
@@ -51,28 +57,20 @@ const dialogOpen = ref(false);
                                     :key="index"
                                     v-bind="data" />
                             </RadioGroup>
+
+                            <div class="mt-4">
+                                <DatePicker />
+                            </div>
+
                         </DialogDescription>
 
-                        <!-- <DialogFooter> Save changes </DialogFooter> -->
+                        <DialogFooter> 
+                            <Button @click="dialogOpen = !dialogOpen">
+                                Save changes
+                            </Button>
+                        </DialogFooter>
                     </DialogContent>
                 </Dialog>
-
-                <!-- <Select v-model="selectModel">
-                    <SelectTrigger class="w-[180px] font-weight">
-                        <SelectValue placeholder="Select a Date Range" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectGroup>
-                            <SelectLabel>Date Range</SelectLabel>
-                            <SelectItem v-for="data , index in options" :key="index" :value="data.value"> 
-                                {{ data.title }} 
-                            </SelectItem>
-                            <SelectItem value="custom">
-                                Custom Range
-                            </SelectItem>
-                        </SelectGroup>
-                    </SelectContent>
-                </Select> -->
             </div>
         </div>
     </div>

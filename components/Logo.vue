@@ -21,6 +21,6 @@ const classData = computed(() => {
     <h3 :class="classData">
         <LogoIcon />
 
-        <span class="text-primary"> {{ title }} </span>
+        <span class=""> {{ title }} </span>
     </h3>
 </template>
