@@ -12,7 +12,7 @@ export const cardVariant = cva(
     variants: {
       variant: {
         default:
-          'shadow',
+          'drop-shadow-xl',
         flat:
           'shadow-none',
         destructive:

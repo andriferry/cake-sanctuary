@@ -25,11 +25,11 @@
                         <div class="flex justify-between w-full items-center">
                             <div
                                 class="flex justify-start items-start flex-col">
-                                <h6 class="text-medium text-base">
+                                <h6 class="font-medium text-sm">
                                     New orders #3566
                                 </h6>
                                 <span
-                                    class="truncate text-sm font-light text-secondary/70">
+                                    class="truncate text-xs font-light text-secondary/70">
                                     There new orders please check it
                                 </span>
                             </div>

@@ -101,7 +101,7 @@
         scrollbar-color: hsl(var(--border)) transparent;
     }
     body {
-        @apply bg-background;
+        @apply bg-background transition-all duration-300 ease-in-out;
     }
 }
 
