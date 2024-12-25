@@ -1,19 +1,26 @@
 <script setup lang="ts">
-const selectModel = ref( '7days' )
-const options = ref( [
+const selectModel = ref('7days');
+const options = ref([
     {
         title: 'This Week',
-        value: '7days'
+        value: '7days',
     },
     {
         title: '30 Days Ago',
-        value: '30days'
+        value: '30days',
     },
     {
         title: '3 Month Ago',
-        value: '3month'
-    }
-])
+        value: '3month',
+    },
+    {
+        title: 'Custom Range',
+        value: 'custom',
+    },
+]);
+
+const dialogOpen = ref(false);
+
 </script>
 
 <template>
@@ -24,7 +31,33 @@ const options = ref( [
                     Export
                 </Button>
 
-                <Select v-model="selectModel">
+                <Button
+                    size="sm"
+                    variant="outline"
+                    @click="dialogOpen = !dialogOpen">
+                    7 Days Ago
+                </Button>
+
+                <Dialog v-model:open="dialogOpen">
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle>Date Range</DialogTitle>
+                        </DialogHeader>
+
+                        <DialogDescription>
+                            <RadioGroup v-model="selectModel">
+                                <RadioGroupItem
+                                    v-for="(data, index) in options"
+                                    :key="index"
+                                    v-bind="data" />
+                            </RadioGroup>
+                        </DialogDescription>
+
+                        <!-- <DialogFooter> Save changes </DialogFooter> -->
+                    </DialogContent>
+                </Dialog>
+
+                <!-- <Select v-model="selectModel">
                     <SelectTrigger class="w-[180px] font-weight">
                         <SelectValue placeholder="Select a Date Range" />
                     </SelectTrigger>
@@ -34,12 +67,12 @@ const options = ref( [
                             <SelectItem v-for="data , index in options" :key="index" :value="data.value"> 
                                 {{ data.title }} 
                             </SelectItem>
-                            <!-- <SelectItem value="custom">
-                                Hello
-                            </SelectItem> -->
+                            <SelectItem value="custom">
+                                Custom Range
+                            </SelectItem>
                         </SelectGroup>
                     </SelectContent>
-                </Select>
+                </Select> -->
             </div>
         </div>
     </div>
