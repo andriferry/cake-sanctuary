@@ -304,6 +304,11 @@
   resolved "https://registry.npmjs.org/@csstools/selector-specificity/-/selector-specificity-5.0.0.tgz"
   integrity sha512-PCqQV3c4CoVm3kdPhyeZ07VmBRdH2EpMFA/pd9OASpOEC3aXNGoqPDAZ80D0cLpMBxnmk0+yNhGsEx31hq7Gtw==
 
+"@drauu/core@0.4.2":
+  version "0.4.2"
+  resolved "https://registry.npmjs.org/@drauu/core/-/core-0.4.2.tgz"
+  integrity sha512-kb2DdE8E+5CHESd9887yYFqa1MBSWQeu64qS9/oW70yLSXJS+XCt/QWBcSRzY2mWd6TVugyuq/wRnTNOx5c1/g==
+
 "@esbuild/darwin-x64@0.21.5":
   version "0.21.5"
   resolved "https://registry.npmjs.org/@esbuild/darwin-x64/-/darwin-x64-0.21.5.tgz"
@@ -510,6 +515,27 @@
   integrity sha512-rKPhxi/0r6XWP0+OjPmsfrloX/TtQmvONj2Pr3Nl8BNBznQVP3M9sphguDBUDC0AiKYx2xgup3XzAhlIDLPLIA==
   dependencies:
     lodash "^4.17.21"
+
+"@napi-rs/canvas-darwin-x64@0.1.65":
+  version "0.1.65"
+  resolved "https://registry.npmjs.org/@napi-rs/canvas-darwin-x64/-/canvas-darwin-x64-0.1.65.tgz"
+  integrity sha512-3Tr+/HjdJN7Z/VKIcsxV2DvDIibZCExgfYTgljCkUSFuoI7iNkOE6Dc1Q6j212EB9PeO8KmfrViBqHYT6IwWkA==
+
+"@napi-rs/canvas@^0.1.64":
+  version "0.1.65"
+  resolved "https://registry.npmjs.org/@napi-rs/canvas/-/canvas-0.1.65.tgz"
+  integrity sha512-YcFhXQcp+b2d38zFOJNbpyPHnIL7KAEkhJQ+UeeKI5IpE9B8Cpf/M6RiHPQXSsSqnYbrfFylnW49dyh2oeSblQ==
+  optionalDependencies:
+    "@napi-rs/canvas-android-arm64" "0.1.65"
+    "@napi-rs/canvas-darwin-arm64" "0.1.65"
+    "@napi-rs/canvas-darwin-x64" "0.1.65"
+    "@napi-rs/canvas-linux-arm-gnueabihf" "0.1.65"
+    "@napi-rs/canvas-linux-arm64-gnu" "0.1.65"
+    "@napi-rs/canvas-linux-arm64-musl" "0.1.65"
+    "@napi-rs/canvas-linux-riscv64-gnu" "0.1.65"
+    "@napi-rs/canvas-linux-x64-gnu" "0.1.65"
+    "@napi-rs/canvas-linux-x64-musl" "0.1.65"
+    "@napi-rs/canvas-win32-x64-msvc" "0.1.65"
 
 "@netlify/functions@^2.8.2":
   version "2.8.2"
@@ -1509,6 +1535,25 @@
     "@vueuse/shared" "12.0.0"
     vue "^3.5.13"
 
+"@vueuse/core@12.2.0":
+  version "12.2.0"
+  resolved "https://registry.npmjs.org/@vueuse/core/-/core-12.2.0.tgz"
+  integrity sha512-jksyNu+5EGwggNkRWd6xX+8qBkYbmrwdFQMgCABsz+wq8bKF6w3soPFLB8vocFp3wFIzn0OYkSPM9JP+AFKwsg==
+  dependencies:
+    "@types/web-bluetooth" "^0.0.20"
+    "@vueuse/metadata" "12.2.0"
+    "@vueuse/shared" "12.2.0"
+    vue "^3.5.13"
+
+"@vueuse/integrations@^12.2.0":
+  version "12.2.0"
+  resolved "https://registry.npmjs.org/@vueuse/integrations/-/integrations-12.2.0.tgz"
+  integrity sha512-Bc0unXiGNZ0w7xqSvzCuP7AflBRKcZX6ib7tGi7vAjOxhLd6GtN3J8qizIbSPnI62XyPy5fauOkq2i2HUPq6MQ==
+  dependencies:
+    "@vueuse/core" "12.2.0"
+    "@vueuse/shared" "12.2.0"
+    vue "^3.5.13"
+
 "@vueuse/metadata@10.11.1":
   version "10.11.1"
   resolved "https://registry.npmjs.org/@vueuse/metadata/-/metadata-10.11.1.tgz"
@@ -1518,6 +1563,11 @@
   version "12.0.0"
   resolved "https://registry.npmjs.org/@vueuse/metadata/-/metadata-12.0.0.tgz"
   integrity sha512-Yzimd1D3sjxTDOlF05HekU5aSGdKjxhuhRFHA7gDWLn57PRbBIh+SF5NmjhJ0WRgF3my7T8LBucyxdFJjIfRJQ==
+
+"@vueuse/metadata@12.2.0":
+  version "12.2.0"
+  resolved "https://registry.npmjs.org/@vueuse/metadata/-/metadata-12.2.0.tgz"
+  integrity sha512-x6zynZtTh1l52m0y8d/EgzpshnMjg8cNZ2KWoncJ62Z5qPSGoc4FUunmMVrrRM/I/5542rTEY89CGftngZvrkQ==
 
 "@vueuse/nuxt@^12.0.0":
   version "12.0.0"
@@ -1541,6 +1591,13 @@
   version "12.0.0"
   resolved "https://registry.npmjs.org/@vueuse/shared/-/shared-12.0.0.tgz"
   integrity sha512-3i6qtcq2PIio5i/vVYidkkcgvmTjCqrf26u+Fd4LhnbBmIT6FN8y6q/GJERp8lfcB9zVEfjdV0Br0443qZuJpw==
+  dependencies:
+    vue "^3.5.13"
+
+"@vueuse/shared@12.2.0":
+  version "12.2.0"
+  resolved "https://registry.npmjs.org/@vueuse/shared/-/shared-12.2.0.tgz"
+  integrity sha512-SRr4AZwv/giS+EmyA1ZIzn3/iALjjnWAGaBNmoDTMEob9JwQaevAocuaMDnPAvU7Z35Y5g3CFRusCWgp1gVJ3Q==
   dependencies:
     vue "^3.5.13"
 
@@ -1922,7 +1979,7 @@ chalk@^5.3.0:
   resolved "https://registry.npmjs.org/chalk/-/chalk-5.3.0.tgz"
   integrity sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==
 
-change-case@^5.4.4:
+change-case@^5, change-case@^5.4.4:
   version "5.4.4"
   resolved "https://registry.npmjs.org/change-case/-/change-case-5.4.4.tgz"
   integrity sha512-HRQyTk2/YPEkt9TnUPbOpr64Uw3KOicFWPVBb+xiHvd6eBx/qPr9xqfBFDT8P2vWsvvz4jbEkfDe71W3VyNu2w==
@@ -2556,6 +2613,13 @@ dotenv@^16.4.5:
   resolved "https://registry.npmjs.org/dotenv/-/dotenv-16.4.7.tgz"
   integrity sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==
 
+drauu@^0.4, drauu@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.npmjs.org/drauu/-/drauu-0.4.2.tgz"
+  integrity sha512-wujr8c13hxnpmC/8wh1Ck9+bq9q3svUWBvVxoQUiwNVE4RaeSHbGxfZURwbnoc+5MSKyJyr4mZeUF0bza8MiZQ==
+  dependencies:
+    "@drauu/core" "0.4.2"
+
 duplexer@^0.1.2:
   version "0.1.2"
   resolved "https://registry.npmjs.org/duplexer/-/duplexer-0.1.2.tgz"
@@ -2942,7 +3006,7 @@ function-bind@^1.1.2:
   resolved "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz"
   integrity sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==
 
-fuse.js@^7.0.0:
+fuse.js@^7, fuse.js@^7.0.0:
   version "7.0.0"
   resolved "https://registry.npmjs.org/fuse.js/-/fuse.js-7.0.0.tgz"
   integrity sha512-14F4hBIxqKvD4Zz/XjDc3y94mNZN6pRv3U13Udo0lNLCWRBUsrMv2xwcF/y/Z5sV6+FQW+/ow68cHpm4sunt8Q==
@@ -4716,6 +4780,13 @@ pathe@^1.1.0, pathe@^1.1.1, pathe@^1.1.2:
   resolved "https://registry.npmjs.org/pathe/-/pathe-1.1.2.tgz"
   integrity sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==
 
+pdfjs-dist@^4.7.76:
+  version "4.9.155"
+  resolved "https://registry.npmjs.org/pdfjs-dist/-/pdfjs-dist-4.9.155.tgz"
+  integrity sha512-epRZn6DQQKCOEqbmFsxkiMBm1MHaNrnr6T4VBNP0bsDvdJdmrWcZbS5cgJXW68P0d3uJTlFhF6Wms2tlSgPYig==
+  optionalDependencies:
+    "@napi-rs/canvas" "^0.1.64"
+
 perfect-debounce@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/perfect-debounce/-/perfect-debounce-1.0.0.tgz"
@@ -6357,6 +6428,13 @@ vue-devtools-stub@^0.1.0:
   resolved "https://registry.npmjs.org/vue-devtools-stub/-/vue-devtools-stub-0.1.0.tgz"
   integrity sha512-RutnB7X8c5hjq39NceArgXg28WZtZpGc3+J16ljMiYnFhKvd8hITxSWQSQ5bvldxMDU6gG5mkxl1MTQLXckVSQ==
 
+vue-pdf-embed@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.npmjs.org/vue-pdf-embed/-/vue-pdf-embed-2.1.1.tgz"
+  integrity sha512-5cDb9j7RFISUtAo9vusfaYxiNGLafPy/kWtqairaPFPrvMoGYnUCOyYfbdbaROVNw9KE3PNoGl+7pcx89i+log==
+  dependencies:
+    pdfjs-dist "^4.7.76"
+
 vue-router@^4.4.0, vue-router@^4.4.5, vue-router@latest:
   version "4.5.0"
   resolved "https://registry.npmjs.org/vue-router/-/vue-router-4.5.0.tgz"
@@ -6364,7 +6442,7 @@ vue-router@^4.4.0, vue-router@^4.4.5, vue-router@latest:
   dependencies:
     "@vue/devtools-api" "^6.6.4"
 
-"vue@^2.7.0 || ^3.0.0", "vue@^2.7.0 || ^3.2.25", vue@^3, vue@^3.0.0, "vue@^3.0.0-0 || ^2.6.0", vue@^3.2.0, vue@^3.2.25, vue@^3.3.4, vue@^3.4.26, vue@^3.5.13, "vue@>= 3", "vue@>= 3.2.0", "vue@>=2.7 || >=3", vue@>=3, vue@>=3.0.1, vue@3.5.13, vue@latest:
+"vue@^2.7.0 || ^3.0.0", "vue@^2.7.0 || ^3.2.25", vue@^3, vue@^3.0.0, "vue@^3.0.0-0 || ^2.6.0", vue@^3.2.0, vue@^3.2.25, vue@^3.3.0, vue@^3.3.4, vue@^3.4.26, vue@^3.5.13, "vue@>= 3", "vue@>= 3.2.0", "vue@>=2.7 || >=3", vue@>=3, vue@>=3.0.1, vue@3.5.13, vue@latest:
   version "3.5.13"
   resolved "https://registry.npmjs.org/vue/-/vue-3.5.13.tgz"
   integrity sha512-wmeiSMxkZCSc+PM2w2VRsOYAZC8GdipNFRTsLSfodVqI9mbejKeXEGr8SckuLnrQPGe3oJN5c3K0vpoU9q/wCQ==

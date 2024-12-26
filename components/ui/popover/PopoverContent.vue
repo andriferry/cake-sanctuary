@@ -9,6 +9,10 @@ import {
 } from 'radix-vue'
 import { computed, type HTMLAttributes } from 'vue'
 
+interface Props extends PopoverContentProps {
+  class?: HTMLAttributes['class'],
+}
+
 defineOptions({
   inheritAttrs: false,
 })

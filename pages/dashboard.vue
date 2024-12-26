@@ -21,12 +21,13 @@ const options = ref([
 
 const dialogOpen = ref(false);
 
+const buttonText = computed(() => {
+    let getCurrentData = options.value.find(
+        (item) => item.value === selectModel.value
+    );
 
-const buttonText = computed( () => {
-    let getCurrentData = options.value.find((item) => item.value === selectModel.value)
-
-    return getCurrentData?.title
-})
+    return getCurrentData?.title;
+});
 </script>
 
 <template>
@@ -59,12 +60,11 @@ const buttonText = computed( () => {
                             </RadioGroup>
 
                             <div class="mt-4">
-                                <DatePicker />
+                                <DatePickerRange disabled />
                             </div>
-
                         </DialogDescription>
 
-                        <DialogFooter> 
+                        <DialogFooter>
                             <Button @click="dialogOpen = !dialogOpen">
                                 Save changes
                             </Button>

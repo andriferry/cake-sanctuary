@@ -1,30 +1,23 @@
 <script setup lang="ts">
-import { Button, buttonVariants } from '@/components/ui/button';
-
-import { cn } from '@/lib/utils';
 import {
     CalendarDate,
     type DateValue,
     isEqualMonth,
 } from '@internationalized/date';
-import {
-    Calendar as CalendarIcon,
-    ChevronLeft,
-    ChevronRight,
-} from 'lucide-vue-next';
+
 import { type DateRange, RangeCalendarRoot, useDateFormatter } from 'radix-vue';
 import { createMonth, type Grid, toDate } from 'radix-vue/date';
-import { type Ref, ref, watch } from 'vue';
+import { type Ref } from 'vue';
 
 const value = ref({
     start: new CalendarDate(2022, 1, 20),
-    end: new CalendarDate(2022, 1, 20).add({ days: 20 }),
+    end: new CalendarDate(2022, 1, 20).add({ days: 7 }),
 }) as Ref<DateRange>;
 
 const locale = ref('en-US');
 const formatter = useDateFormatter(locale.value);
 
-const placeholder = ref(value.value.start) as Ref<DateValue>;
+const placeholder = ref(value.value.start) as Ref<DateValue>; // It should be computed
 const secondMonthPlaceholder = ref(value.value.end) as Ref<DateValue>;
 
 const firstMonth = ref(
@@ -43,16 +36,6 @@ const secondMonth = ref(
         weekStartsOn: 0,
     })
 ) as Ref<Grid<DateValue>>;
-
-function updateMonth(reference: 'first' | 'second', months: number) {
-    if (reference === 'first') {
-        placeholder.value = placeholder.value.add({ months });
-    } else {
-        secondMonthPlaceholder.value = secondMonthPlaceholder.value.add({
-            months,
-        });
-    }
-}
 
 watch(placeholder, (_placeholder) => {
     firstMonth.value = createMonth({
@@ -78,41 +61,47 @@ watch(secondMonthPlaceholder, (_secondMonthPlaceholder) => {
     if (isEqualMonth(_secondMonthPlaceholder, placeholder.value))
         placeholder.value = placeholder.value.subtract({ months: 1 });
 });
+
+const updateMonth = (reference: 'first' | 'second', months: number) => {
+    if (reference === 'first') {
+        placeholder.value = placeholder.value.add({ months });
+    } else {
+        secondMonthPlaceholder.value = secondMonthPlaceholder.value.add({
+            months,
+        });
+    }
+};
+
+const formatDate = (date?: DateValue) => {
+    if (date) return formatter.custom(toDate(date), { dateStyle: 'medium' });
+};
+
+const formatFullMonth = (date?: DateValue) => {
+    if (date) return formatter.fullMonthAndYear(toDate(date));
+};
+
+const currentDateRange = computed(() => {
+    return `${formatDate(value.value.start)} - ${formatDate(value.value.end)}`;
+});
 </script>
 
 <template>
     <Popover>
         <PopoverTrigger as-child>
             <Button
+                :class="[
+                    'w-[280px] justify-start text-left font-normal',
+                    !value && 'text-muted-foreground',
+                ]"
                 variant="outline"
-                :class="
-                    cn(
-                        'w-[280px] justify-start text-left font-normal',
-                        !value && 'text-muted-foreground'
-                    )
-                ">
-                <CalendarIcon class="mr-2 h-4 w-4" />
+                prepend-icon="tabler:calendar-event">
                 <template v-if="value.start">
-                    <template v-if="value.end">
-                        {{
-                            formatter.custom(toDate(value.start), {
-                                dateStyle: 'medium',
-                            })
-                        }}
-                        -
-                        {{
-                            formatter.custom(toDate(value.end), {
-                                dateStyle: 'medium',
-                            })
-                        }}
-                    </template>
+                    <span v-if="value.end">
+                        {{ currentDateRange }}
+                    </span>
 
                     <template v-else>
-                        {{
-                            formatter.custom(toDate(value.start), {
-                                dateStyle: 'medium',
-                            })
-                        }}
+                        {{ formatDate(value.start) }}
                     </template>
                 </template>
                 <template v-else> Pick a date </template>
@@ -128,33 +117,29 @@ watch(secondMonthPlaceholder, (_secondMonthPlaceholder) => {
                     class="flex flex-col gap-y-4 mt-4 sm:flex-row sm:gap-x-4 sm:gap-y-0">
                     <div class="flex flex-col gap-4">
                         <div class="flex items-center justify-between">
-                            <button
-                                :class="
-                                    cn(
-                                        buttonVariants({ variant: 'outline' }),
-                                        'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100'
-                                    )
-                                "
-                                @click="updateMonth('first', -1)">
-                                <ChevronLeft class="h-4 w-4" />
-                            </button>
-                            <div :class="cn('text-sm font-medium')">
-                                {{
-                                    formatter.fullMonthAndYear(
-                                        toDate(firstMonth.value)
-                                    )
-                                }}
+                            <Button
+                                @click="updateMonth('first', -1)"
+                                variant="outline"
+                                size="xs"
+                                class="p-0 opacity-50 hover:opacity-100">
+                                <Icon
+                                    name="tabler:chevron-left"
+                                    class="w-4"></Icon>
+                            </Button>
+
+                            <div class="text-sm font-medium">
+                                {{ formatFullMonth(firstMonth.value) }}
                             </div>
-                            <button
-                                :class="
-                                    cn(
-                                        buttonVariants({ variant: 'outline' }),
-                                        'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100'
-                                    )
-                                "
-                                @click="updateMonth('first', 1)">
-                                <ChevronRight class="h-4 w-4" />
-                            </button>
+
+                            <Button
+                                @click="updateMonth('first', 1)"
+                                variant="outline"
+                                size="xs"
+                                class="p-0 opacity-50 hover:opacity-100">
+                                <Icon
+                                    name="tabler:chevron-right"
+                                    class="w-4"></Icon>
+                            </Button>
                         </div>
                         <RangeCalendarGrid>
                             <RangeCalendarGridHead>
@@ -175,8 +160,10 @@ watch(secondMonthPlaceholder, (_secondMonthPlaceholder) => {
                                     :key="`weekDate-${index}`"
                                     class="mt-2 w-full">
                                     <RangeCalendarCell
-                                        v-for="weekDate in weekDates"
-                                        :key="weekDate.toString()"
+                                        v-for="(
+                                            weekDate, indexWeekDate
+                                        ) in weekDates"
+                                        :key="indexWeekDate"
                                         :date="weekDate">
                                         <RangeCalendarCellTrigger
                                             :day="weekDate"
@@ -188,34 +175,29 @@ watch(secondMonthPlaceholder, (_secondMonthPlaceholder) => {
                     </div>
                     <div class="flex flex-col gap-4">
                         <div class="flex items-center justify-between">
-                            <button
-                                :class="
-                                    cn(
-                                        buttonVariants({ variant: 'outline' }),
-                                        'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100'
-                                    )
-                                "
-                                @click="updateMonth('second', -1)">
-                                <ChevronLeft class="h-4 w-4" />
-                            </button>
-                            <div :class="cn('text-sm font-medium')">
-                                {{
-                                    formatter.fullMonthAndYear(
-                                        toDate(secondMonth.value)
-                                    )
-                                }}
+                            <Button
+                                @click="updateMonth('second', -1)"
+                                variant="outline"
+                                size="xs"
+                                class="p-0 opacity-50 hover:opacity-100">
+                                <Icon
+                                    name="tabler:chevron-left"
+                                    class="w-4"></Icon>
+                            </Button>
+
+                            <div class="text-sm font-medium">
+                                {{ formatFullMonth(secondMonth.value) }}
                             </div>
 
-                            <button
-                                :class="
-                                    cn(
-                                        buttonVariants({ variant: 'outline' }),
-                                        'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100'
-                                    )
-                                "
-                                @click="updateMonth('second', 1)">
-                                <ChevronRight class="h-4 w-4" />
-                            </button>
+                            <Button
+                                @click="updateMonth('second', 1)"
+                                variant="outline"
+                                size="xs"
+                                class="p-0 opacity-50 hover:opacity-100">
+                                <Icon
+                                    name="tabler:chevron-right"
+                                    class="w-4"></Icon>
+                            </Button>
                         </div>
                         <RangeCalendarGrid>
                             <RangeCalendarGridHead>
@@ -236,8 +218,10 @@ watch(secondMonthPlaceholder, (_secondMonthPlaceholder) => {
                                     :key="`weekDate-${index}`"
                                     class="mt-2 w-full">
                                     <RangeCalendarCell
-                                        v-for="weekDate in weekDates"
-                                        :key="weekDate.toString()"
+                                        v-for="(
+                                            weekDate, indexWeekDate
+                                        ) in weekDates"
+                                        :key="indexWeekDate"
                                         :date="weekDate">
                                         <RangeCalendarCellTrigger
                                             :day="weekDate"

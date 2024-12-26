@@ -16,11 +16,11 @@ export const buttonVariants = cva(
           'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/90',
         ghost: 'hover:bg-accent/60',
         link: 'text-primary underline-offset-4 hover:underline',
-        plain: 'bg-transparent'
+        plain: 'bg-transparent',
       },
       size: {
         default: 'h-9 px-4 py-2',
-        xs: 'h-7 rounded px-2',
+        xs: 'size-7 rounded-md px-2',
         sm: 'h-8 rounded-md px-3 text-xs',
         lg: 'h-10 rounded-md px-8',
         icon: 'h-9 w-9',
