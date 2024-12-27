@@ -15,21 +15,19 @@ interface Props extends RadioGroupItemProps {
     id?: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-    dotIcon: 'tabler:circle-filled',
-});
+const props = defineProps<Props>();
 
+const { icons } = useAppConfig();
 
-const delegatedProps = computed( () => {
+const delegatedProps = computed(() => {
     const { class: _, ...delegated } = props;
-
-    
 
     return delegated;
 });
 
-const forwardedProps = useForwardProps( delegatedProps );
+const icon = computed(() => props.dotIcon || icons.radioItemIcon);
 
+const forwardedProps = useForwardProps(delegatedProps);
 </script>
 
 <template>
@@ -44,24 +42,10 @@ const forwardedProps = useForwardProps( delegatedProps );
             ">
             <RadioGroupIndicator class="flex items-center justify-center">
                 <Icon
-                    :name="dotIcon"
+                    :name="icon"
                     class="font-medium h-3.5 w-3.5 text-inherit" />
             </RadioGroupIndicator>
         </RadioGroupItem>
         <Label :for="id">{{ title }}</Label>
     </div>
-    <!-- <RadioGroupItem
-        v-bind="forwardedProps"
-        :class="
-            cn(
-                'aspect-square h-4 w-4 rounded-full border ring-1 ring-primary border-primary text-primary shadow focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50',
-                props.class
-            )
-        ">
-        <RadioGroupIndicator class="flex items-center justify-center">
-            <Icon
-                :name="dotIcon"
-                class="font-medium h-3.5 w-3.5 text-inherit" />
-        </RadioGroupIndicator>
-    </RadioGroupItem> -->
 </template>

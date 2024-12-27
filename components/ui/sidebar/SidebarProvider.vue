@@ -2,20 +2,19 @@
 import { cn } from '@/lib/utils';
 import { useEventListener, useMediaQuery, useVModel } from '@vueuse/core';
 import { TooltipProvider } from 'radix-vue';
-import { computed, type HTMLAttributes, type Ref, ref } from 'vue';
+import { type HTMLAttributes, type Ref } from 'vue';
 import { provideSidebarContext } from './utils';
 
-const props = withDefaults(
-    defineProps<{
-        defaultOpen?: boolean;
-        open?: boolean;
-        class?: HTMLAttributes['class'];
-    }>(),
-    {
-        defaultOpen: true,
-        open: undefined,
-    }
-);
+interface Props {
+    defaultOpen?: boolean;
+    open?: boolean;
+    class?: HTMLAttributes['class'];
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    defaultOpen: true,
+    open: undefined,
+});
 
 const emits = defineEmits<{
     'update:open': [open: boolean];
@@ -30,23 +29,23 @@ const open = useVModel(props, 'open', emits, {
     passive: (props.open === undefined) as false,
 }) as Ref<boolean>;
 
-function setOpen(value: boolean) {
+const setOpen = (value: boolean) => {
     open.value = value; // emits('update:open', value)
 
     // This sets the cookie to keep the sidebar state.
     document.cookie = `${sidebar.SIDEBAR_COOKIE_NAME}=${open.value}; path=/; max-age=${sidebar.SIDEBAR_COOKIE_MAX_AGE}`;
-}
+};
 
-function setOpenMobile(value: boolean) {
+const setOpenMobile = (value: boolean) => {
     openMobile.value = value;
-}
+};
 
 // Helper to toggle the sidebar.
-function toggleSidebar() {
+const toggleSidebar = () => {
     return isMobile.value
         ? setOpenMobile(!openMobile.value)
         : setOpen(!open.value);
-}
+};
 
 useEventListener('keydown', (event: KeyboardEvent) => {
     if (

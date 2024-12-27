@@ -42,4 +42,17 @@ export default defineAppConfig({
     sidebar: {
         ...sidebar,
     },
+    icons: {
+        dropdownRadioItem: 'tabler:circle-dot',
+        radioItemIcon: 'tabler:circle-filled',
+        seePassword: 'mdi:eye-off-outline',
+        hidePassword: 'mdi:eye-outline',
+        sidebarTrigger: 'tabler:layout-sidebar',
+        calendarEvent: 'tabler:calendar-event',
+        chevronLeft: 'tabler:chevron-left',
+        chevronRight: 'tabler:chevron-right',
+        chevronDown: 'tabler:chevron-down',
+        chevronUp: 'tabler:chevron-up',
+        close: 'tabler:x'
+    },
 });

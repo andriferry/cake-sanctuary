@@ -60,7 +60,7 @@ const buttonText = computed(() => {
                             </RadioGroup>
 
                             <div class="mt-4">
-                                <DatePickerRange disabled />
+                                <DatePickerRange :disabled="selectModel !== 'custom'" />
                             </div>
                         </DialogDescription>
 

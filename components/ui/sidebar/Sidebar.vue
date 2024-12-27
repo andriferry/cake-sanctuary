@@ -9,19 +9,18 @@ defineOptions({
     inheritAttrs: false,
 });
 
-const props = withDefaults(
-    defineProps<{
-        side?: 'left' | 'right';
-        variant?: 'sidebar' | 'floating' | 'inset';
-        collapsible?: 'offcanvas' | 'icon' | 'none';
-        class?: HTMLAttributes['class'];
-    }>(),
-    {
-        side: 'left',
-        variant: 'sidebar',
-        collapsible: 'offcanvas',
-    }
-);
+interface Props {
+    side?: 'left' | 'right';
+    variant?: 'sidebar' | 'floating' | 'inset';
+    collapsible?: 'offcanvas' | 'icon' | 'none';
+    class?: HTMLAttributes['class'];
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    side: 'left',
+    variant: 'sidebar',
+    collapsible: 'offcanvas',
+});
 
 const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
 </script>

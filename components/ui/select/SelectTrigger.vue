@@ -8,6 +8,8 @@ import {
 } from 'radix-vue';
 import { computed, type HTMLAttributes } from 'vue';
 
+const { icons } = useAppConfig();
+
 const props = defineProps<
     SelectTriggerProps & { class?: HTMLAttributes['class'] }
 >();
@@ -32,7 +34,7 @@ const defaultClass = computed(() => {
         <slot />
         <SelectIcon as-child>
             <Icon
-                name="tabler:chevron-down"
+                :name="icons.chevronDown"
                 class="w-5 h-5 text-secondary opacity-50 transition-all duration-300 ease-in-out group-data-[state=open]:rotate-180 shrink-0"></Icon>
         </SelectIcon>
     </SelectTrigger>

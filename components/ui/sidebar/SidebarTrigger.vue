@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import Button from '@/components/ui/button/Button.vue';
 import { cn } from '@/lib/utils';
 import type { HTMLAttributes } from 'vue';
 import { useSidebar } from './utils';
+const {icons} = useAppConfig()
+
 
 const props = defineProps<{
     class?: HTMLAttributes['class'];
@@ -18,7 +19,7 @@ const { toggleSidebar } = useSidebar();
         size="icon"
         :class="cn('h-7 w-7', props.class)"
         @click="toggleSidebar">
-        <Icon name="tabler:layout-sidebar" class="text-xl text-secondary" />
+        <Icon :name="icons.sidebarTrigger" class="text-xl text-secondary" />
         <span class="sr-only">Toggle Sidebar</span>
     </Button>
 </template>

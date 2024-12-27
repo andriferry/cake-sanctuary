@@ -9,6 +9,8 @@ import { type DateRange, RangeCalendarRoot, useDateFormatter } from 'radix-vue';
 import { createMonth, type Grid, toDate } from 'radix-vue/date';
 import { type Ref } from 'vue';
 
+const { icons } = useAppConfig();
+
 const value = ref({
     start: new CalendarDate(2022, 1, 20),
     end: new CalendarDate(2022, 1, 20).add({ days: 7 }),
@@ -28,6 +30,7 @@ const firstMonth = ref(
         weekStartsOn: 0,
     })
 ) as Ref<Grid<DateValue>>;
+
 const secondMonth = ref(
     createMonth({
         dateObj: secondMonthPlaceholder.value,
@@ -36,6 +39,10 @@ const secondMonth = ref(
         weekStartsOn: 0,
     })
 ) as Ref<Grid<DateValue>>;
+
+const currentDateRange = computed(() => {
+    return `${formatDate(value.value.start)} - ${formatDate(value.value.end)}`;
+});
 
 watch(placeholder, (_placeholder) => {
     firstMonth.value = createMonth({
@@ -79,10 +86,6 @@ const formatDate = (date?: DateValue) => {
 const formatFullMonth = (date?: DateValue) => {
     if (date) return formatter.fullMonthAndYear(toDate(date));
 };
-
-const currentDateRange = computed(() => {
-    return `${formatDate(value.value.start)} - ${formatDate(value.value.end)}`;
-});
 </script>
 
 <template>
@@ -94,7 +97,7 @@ const currentDateRange = computed(() => {
                     !value && 'text-muted-foreground',
                 ]"
                 variant="outline"
-                prepend-icon="tabler:calendar-event">
+                :prepend-icon="icons.calendarEvent">
                 <template v-if="value.start">
                     <span v-if="value.end">
                         {{ currentDateRange }}
@@ -122,9 +125,8 @@ const currentDateRange = computed(() => {
                                 variant="outline"
                                 size="xs"
                                 class="p-0 opacity-50 hover:opacity-100">
-                                <Icon
-                                    name="tabler:chevron-left"
-                                    class="w-4"></Icon>
+                                <LeftIcon />
+                               
                             </Button>
 
                             <div class="text-sm font-medium">
@@ -136,9 +138,8 @@ const currentDateRange = computed(() => {
                                 variant="outline"
                                 size="xs"
                                 class="p-0 opacity-50 hover:opacity-100">
-                                <Icon
-                                    name="tabler:chevron-right"
-                                    class="w-4"></Icon>
+                                <RightIcon />
+                               
                             </Button>
                         </div>
                         <RangeCalendarGrid>
@@ -180,9 +181,8 @@ const currentDateRange = computed(() => {
                                 variant="outline"
                                 size="xs"
                                 class="p-0 opacity-50 hover:opacity-100">
-                                <Icon
-                                    name="tabler:chevron-left"
-                                    class="w-4"></Icon>
+                                <LeftIcon />
+
                             </Button>
 
                             <div class="text-sm font-medium">
@@ -194,9 +194,8 @@ const currentDateRange = computed(() => {
                                 variant="outline"
                                 size="xs"
                                 class="p-0 opacity-50 hover:opacity-100">
-                                <Icon
-                                    name="tabler:chevron-right"
-                                    class="w-4"></Icon>
+                                <RightIcon />
+                                
                             </Button>
                         </div>
                         <RangeCalendarGrid>

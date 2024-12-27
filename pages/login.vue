@@ -4,11 +4,18 @@ definePageMeta({
     layout: 'blank',
 });
 
+const { icons } = useAppConfig();
+
 const form = ref<UserValidation>();
 
 const userName = ref('');
 const password = ref('');
 const seePassword = ref(false);
+
+const passWordField = computed(() =>  seePassword.value ? 'text' : 'password')
+const passwordIcon = computed(() =>
+    seePassword.value ? icons.seePassword : icons.hidePassword
+);
 
 const onSubmit = async () => {
     form.value?.validate().then((res) => {
@@ -59,13 +66,9 @@ const onSubmit = async () => {
                                     <FormControl
                                         label="Password"
                                         v-bind="field"
-                                        :appendIcon="
-                                            seePassword
-                                                ? 'mdi:eye-off-outline'
-                                                : 'mdi:eye-outline'
-                                        "
+                                        :appendIcon="passwordIcon"
                                         :type="
-                                            seePassword ? 'text' : 'password'
+                                            passWordField
                                         "
                                         :errorMessage="errors[0]"
                                         placeholder="Input your Password"

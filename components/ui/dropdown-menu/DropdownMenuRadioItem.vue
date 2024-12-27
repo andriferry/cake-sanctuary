@@ -9,14 +9,14 @@ import {
 } from 'radix-vue';
 import { computed, type HTMLAttributes } from 'vue';
 
+const {icons} = useAppConfig()
+
 interface Props extends DropdownMenuRadioItemProps {
     class?: HTMLAttributes['class'];
     dotIcon?: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-    dotIcon: 'tabler:circle-dot',
-});
+const props = defineProps<Props>()
 
 const emits = defineEmits<DropdownMenuRadioItemEmits>();
 
@@ -25,6 +25,8 @@ const delegatedProps = computed(() => {
 
     return delegated;
 });
+
+const icon =computed(() => props.dotIcon || icons.dropdownRadioItem)
 
 const forwarded = useForwardPropsEmits(delegatedProps, emits);
 </script>
@@ -42,7 +44,7 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits);
             class="absolute start-0 z-10 inset-y-0 flex items-center justify-center px-2">
             <DropdownMenuItemIndicator class="flex">
                 <Icon
-                    :name="dotIcon"
+                    :name="icon"
                     class="font-medium text-lg text-inherit" />
             </DropdownMenuItemIndicator>
         </span>

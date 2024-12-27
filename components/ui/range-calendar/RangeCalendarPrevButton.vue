@@ -32,7 +32,7 @@ const forwardedProps = useForwardProps(delegatedProps);
         "
         v-bind="forwardedProps">
         <slot>
-            <Icon name="tabler:chevron-left" class="w-4"></Icon>
+            <LeftIcon />
         </slot>
     </RangeCalendarPrev>
 </template>
