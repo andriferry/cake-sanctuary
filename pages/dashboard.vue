@@ -98,7 +98,7 @@ const buttonText = computed(() => {
             </div>
 
             <div class="w-full flex flex-col gap-4">
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="grid grid-cols-2 xl:grid-cols-4 gap-4">
                     <div
                         v-for="(data, index) in overview"
                         :key="index"
@@ -128,8 +128,8 @@ const buttonText = computed(() => {
                 </div>
 
                 <div class="grid grid-cols-12 gap-3">
-                    <div class="col-span-3">
-                        <Card title="Today's upsale">
+                    <div class="col-span-12 xl:col-span-3">
+                        <Card title="Today's upsale" class="h-full">
                             <CardContent class="flex flex-col gap-5">
                                 <div
                                     v-for="(data, index) in upsale"
@@ -156,8 +156,15 @@ const buttonText = computed(() => {
                         </Card>
                     </div>
 
-                    <div class="col-span-9">
-                        <Card title="Accepted orders" class="h-full"></Card>
+                    <div class="col-span-12 xl:col-span-9">
+                        <Card
+                            title="Accepted orders"
+                            subtitle="Yearly Earnings Overview"
+                            class="h-full">
+                            <CardContent class="grid gap-6">
+
+                            </CardContent>
+                        </Card>
                     </div>
                 </div>
             </div>
