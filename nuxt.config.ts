@@ -24,7 +24,7 @@ export default defineNuxtConfig({
         pageTransition: { name: 'slide-fade', mode: 'out-in' },
     },
     tailwindcss: {
-        viewer: true,
+        viewer: false,
         configPath: 'tailwind.config',
     },
 
@@ -79,7 +79,7 @@ export default defineNuxtConfig({
         class: 'icon', // default <Icon> class applied
         mode: 'css', //
         serverBundle: {
-            collections: ['file-icons', 'tabler', ''],
+            collections: ['file-icons', 'tabler', 'noto'],
         },
     },
     colorMode: {

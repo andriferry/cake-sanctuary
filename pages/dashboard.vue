@@ -162,7 +162,7 @@ const buttonText = computed(() => {
                             subtitle="Yearly Earnings Overview"
                             class="h-full">
                             <CardContent class="grid gap-6">
-
+                                <!-- <SlideGroup></SlideGroup> -->
                             </CardContent>
                         </Card>
                     </div>
