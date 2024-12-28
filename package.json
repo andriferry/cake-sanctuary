@@ -11,6 +11,7 @@
     "component": "npx shadcn-vue@latest add"
   },
   "dependencies": {
+    "@iconify-json/noto": "^1.2.2",
     "@nuxt/icon": "^1.9.1",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/seo": "^2.0.2",

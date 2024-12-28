@@ -28,7 +28,7 @@ const overview = ref([
         class: 'bg-primary/20 text-primary',
         icon: 'tabler:currency-dollar',
     },
-  
+
     {
         description: 'Total Customers',
         title: '4,324',
@@ -47,8 +47,29 @@ const overview = ref([
         class: 'bg-[#7A0BC0]/20 text-[#7A0BC0]',
         icon: 'tabler:wallet',
     },
-    
+]);
 
+const upsale = ref([
+    {
+        icon: 'noto:croissant',
+        title: 'Croissant',
+        amount: '150',
+    },
+    {
+        icon: 'noto:doughnut',
+        title: 'Doughnut',
+        amount: '200',
+    },
+    {
+        icon: 'noto:french-fries',
+        title: 'French Fries',
+        amount: '400',
+    },
+    {
+        icon: 'noto:hot-beverage',
+        title: 'Coffee',
+        amount: '130',
+    },
 ]);
 
 const buttonText = computed(() => {
@@ -76,7 +97,7 @@ const buttonText = computed(() => {
                 </Button>
             </div>
 
-            <div class="w-full">
+            <div class="w-full flex flex-col gap-4">
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
                     <div
                         v-for="(data, index) in overview"
@@ -94,7 +115,8 @@ const buttonText = computed(() => {
                                     </CardTitle>
                                 </div>
 
-                                <div :class="data.class"
+                                <div
+                                    :class="data.class"
                                     class="flex items-center rounded-lg p-2">
                                     <Icon
                                         :name="data.icon"
@@ -102,6 +124,40 @@ const buttonText = computed(() => {
                                 </div>
                             </CardHeader>
                         </Card>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-12 gap-3">
+                    <div class="col-span-3">
+                        <Card title="Today's upsale">
+                            <CardContent class="flex flex-col gap-5">
+                                <div
+                                    v-for="(data, index) in upsale"
+                                    :key="index"
+                                    class="flex items-center gap-4">
+                                    <div
+                                        class="flex items-center p-2 bg-accent rounded-md">
+                                        <Icon
+                                            :name="data.icon"
+                                            class="text-3xl"></Icon>
+                                    </div>
+
+                                    <div class="">
+                                        <p class="font-semibold text-md">
+                                            {{ data.title }}
+                                        </p>
+                                        <p
+                                            class="text-muted-foreground text-xs font-medium">
+                                            Order: {{ data.amount }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
+
+                    <div class="col-span-9">
+                        <Card title="Accepted orders" class="h-full"></Card>
                     </div>
                 </div>
             </div>
