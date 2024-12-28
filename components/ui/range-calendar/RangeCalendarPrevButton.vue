@@ -32,7 +32,7 @@ const forwardedProps = useForwardProps(delegatedProps);
         "
         v-bind="forwardedProps">
         <slot>
-            <LeftIcon />
+            <ArrowLeftIcon />
         </slot>
     </RangeCalendarPrev>
 </template>

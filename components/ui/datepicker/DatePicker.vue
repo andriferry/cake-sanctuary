@@ -125,8 +125,7 @@ const formatFullMonth = (date?: DateValue) => {
                                 variant="outline"
                                 size="xs"
                                 class="p-0 opacity-50 hover:opacity-100">
-                                <LeftIcon />
-                               
+                                <ArrowLeftIcon />
                             </Button>
 
                             <div class="text-sm font-medium">
@@ -138,8 +137,7 @@ const formatFullMonth = (date?: DateValue) => {
                                 variant="outline"
                                 size="xs"
                                 class="p-0 opacity-50 hover:opacity-100">
-                                <RightIcon />
-                               
+                                <ArrowRightIcon />
                             </Button>
                         </div>
                         <RangeCalendarGrid>
@@ -181,8 +179,7 @@ const formatFullMonth = (date?: DateValue) => {
                                 variant="outline"
                                 size="xs"
                                 class="p-0 opacity-50 hover:opacity-100">
-                                <LeftIcon />
-
+                                <ArrowLeftIcon />
                             </Button>
 
                             <div class="text-sm font-medium">
@@ -194,8 +191,7 @@ const formatFullMonth = (date?: DateValue) => {
                                 variant="outline"
                                 size="xs"
                                 class="p-0 opacity-50 hover:opacity-100">
-                                <RightIcon />
-                                
+                                <ArrowRightIcon />
                             </Button>
                         </div>
                         <RangeCalendarGrid>
