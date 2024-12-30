@@ -12,13 +12,12 @@ const [useProvideCarousel, useInjectCarousel] = createInjectionState(
         const canScrollNext = ref(false);
         const canScrollPrev = ref(false);
 
-        const [emblaNode, emblaApi] = emblaCarouselVue(
-            {
-                ...opts,
-                axis: orientation === 'horizontal' ? 'x' : 'y',
-            },
-            plugins
-        );
+        let config: CarouselProps = {
+            ...opts,
+            axis: orientation === 'horizontal' ? 'x' : 'y',
+        };
+
+        const [emblaNode, emblaApi] = emblaCarouselVue(config, plugins);
 
         const scrollPrev = () => {
             emblaApi.value?.scrollPrev();
