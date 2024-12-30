@@ -10,7 +10,8 @@ import { onMounted, ref } from 'vue';
 const [useProvideCarousel, useInjectCarousel] = createInjectionState(
     ({ opts, orientation, plugins }: CarouselProps, emits: CarouselEmits) => {
         const canScrollNext = ref(false);
-        const canScrollPrev = ref(false);
+        const canScrollPrev = ref( false );
+        const currentPage = ref(0)
 
         let config: CarouselProps = {
             ...opts,
@@ -38,13 +39,14 @@ const [useProvideCarousel, useInjectCarousel] = createInjectionState(
             emblaApi.value?.on('reInit', onSelect);
             emblaApi.value?.on('select', onSelect);
 
-            emits('init-api', emblaApi.value);
+            //emits('init-api', emblaApi.value);
         });
 
         return {
             carouselRef: emblaNode,
             carouselApi: emblaApi,
             canScrollPrev,
+            currentPage,
             canScrollNext,
             scrollPrev,
             scrollNext,

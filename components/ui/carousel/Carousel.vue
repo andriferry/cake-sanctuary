@@ -50,6 +50,7 @@ const onKeyDown = (event: KeyboardEvent) => {
         scrollNext();
     }
 };
+//@init-api="(val) => (emblaThumbnailApi = val)"
 </script>
 
 <template>

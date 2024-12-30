@@ -21,7 +21,7 @@ const containerClass = computed(() => {
 </script>
 
 <template>
-    <div  class="overflow-hidden">
+    <div ref="carouselRef" class="overflow-hidden">
         <div :class="containerClass" v-bind="$attrs">
             <slot />
         </div>

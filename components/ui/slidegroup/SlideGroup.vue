@@ -36,12 +36,9 @@ const onThumbClick = (index: number) => {
 
 <template>
     <div class="w-full sm:w-auto">
-        <Carousel
-            class="relative w-full max-w-xs"
-            >
+        <Carousel class="relative w-full max-w-xs">
             <CarouselContent class="flex gap-1 ml-0">
                 <CarouselItem
-                    @click="onThumbClick(index)"
                     v-for="(_, index) in 10"
                     :key="index"
                     class="pl-0 basis-1/4 cursor-pointer">
@@ -55,7 +52,7 @@ const onThumbClick = (index: number) => {
                                     {{ index + 1 }}
                                 </span>
                             </CardContent>
-                        </Card>
+                    </Card>
                     </div>
                 </CarouselItem>
             </CarouselContent>
