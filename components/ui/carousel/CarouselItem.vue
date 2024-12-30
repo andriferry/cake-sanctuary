@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { WithClassAsProps } from './interface';
 import { cn } from '@/lib/utils';
+import type { WithClassAsProps } from './interface';
 import { useCarousel } from './useCarousel';
 
 const props = defineProps<WithClassAsProps>();
@@ -9,17 +9,26 @@ const { orientation, carouselApi, currentPage } = useCarousel();
 
 const itemRef = ref();
 
-const checkClick = () => {
-    let getNode = carouselApi.value
-        ?.slideNodes()
-        .findIndex(
-            (item: any) =>
-                item.__vueParentComponent.uid ===
-                itemRef.value.__vueParentComponent.uid
-        );
+const divClass = computed(() => {
+    return cn(
+        'min-w-0 shrink-0 grow-0 basis-full',
+        orientation === 'horizontal' ? 'pl-4' : 'pt-4',
+        props.class
+    );
+});
 
-    if (getNode) {
-        carouselApi.value?.scrollTo(getNode);
+const clickEvent = () => {
+    let getNode: number | undefined = carouselApi.value?.slideNodes().findIndex((item: any) => {
+        return (
+            item.__vueParentComponent.uid ===
+            itemRef.value.__vueParentComponent.uid
+        );
+    } );
+
+
+    if (typeof getNode === 'number' && getNode > -1) {
+        console.log( getNode );
+        carouselApi.value?.scrollTo( getNode );
         currentPage.value = getNode;
     }
 };
@@ -29,15 +38,9 @@ const checkClick = () => {
     <div
         role="group"
         ref="itemRef"
-        @click="checkClick"
+        @click="clickEvent"
         aria-roledescription="slide"
-        :class="
-            cn(
-                'min-w-0 shrink-0 grow-0 basis-full',
-                orientation === 'horizontal' ? 'pl-4' : 'pt-4',
-                props.class
-            )
-        ">
+        :class="divClass">
         <slot />
     </div>
 </template>

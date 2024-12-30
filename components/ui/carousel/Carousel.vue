@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import { cn } from '@/lib/utils';
 import type {
     CarouselEmits,
     CarouselProps,
     WithClassAsProps,
 } from './interface';
-import { cn } from '@/lib/utils';
 import { useProvideCarousel } from './useCarousel';
+
+//const { currentPage } = useCarousel();
 
 const props = withDefaults(defineProps<CarouselProps & WithClassAsProps>(), {
     orientation: 'horizontal',
@@ -21,6 +23,7 @@ const {
     orientation,
     scrollNext,
     scrollPrev,
+    currentPage,
 } = useProvideCarousel(props, emits);
 
 defineExpose({
@@ -32,6 +35,7 @@ defineExpose({
     scrollNext,
     scrollPrev,
 });
+const model = defineModel();
 
 const onKeyDown = (event: KeyboardEvent) => {
     const prevKey = props.orientation === 'vertical' ? 'ArrowUp' : 'ArrowLeft';
@@ -50,6 +54,10 @@ const onKeyDown = (event: KeyboardEvent) => {
         scrollNext();
     }
 };
+
+watch(currentPage, (value) => {
+    model.value = value;
+});
 //@init-api="(val) => (emblaThumbnailApi = val)"
 </script>
 

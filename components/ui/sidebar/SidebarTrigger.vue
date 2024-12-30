@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils';
-import type { HTMLAttributes } from 'vue';
+import type { HTMLAttributes, getCurrentInstance } from 'vue';
 import { useSidebar } from './utils';
 const {icons} = useAppConfig()
 
