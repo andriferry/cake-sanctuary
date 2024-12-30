@@ -1,46 +1,59 @@
 <script setup lang="ts">
-import { Card, CardContent } from '@/components/ui/card';
-import {
-    Carousel,
-    type CarouselApi,
-    CarouselContent,
-    CarouselItem,
-} from '@/components/ui/carousel';
-import { watchOnce } from '@vueuse/core';
+const selectedIndex = defineModel();
 
-const emblaMainApi = ref<CarouselApi>();
-const emblaThumbnailApi = ref<CarouselApi>();
-const selectedIndex = ref(0);
-
-
-const onThumbClick = (index: number) => {
-    selectedIndex.value = index;
-    emblaThumbnailApi.value?.scrollTo(index);
-};
-//            @init-api="(val) => (emblaThumbnailApi = val)"
-//@click="onThumbClick(index)"
+const annualYearly = computed(() => {
+    return [
+        {
+            title: 'Sales',
+            icon: 'tabler:currency-dollar',
+        },
+        {
+            title: 'Customer',
+            icon: 'tabler:users-group',
+        },
+        {
+            title: 'Orders',
+            icon: 'tabler:bowl-chopsticks',
+        },
+        {
+            title: 'Tips',
+            icon: 'tabler:wallet',
+        },
+        {
+            title: 'Income',
+            icon: 'tabler:chart-pie-2',
+        },
+        {
+            title: 'Satisfaction',
+            icon: 'tabler:mood-smile',
+        },
+    ];
+});
 </script>
 
 <template>
-    <div class="w-full sm:w-auto">
-        <Carousel v-model="selectedIndex" class="relative w-full max-w-xs">
-            <CarouselContent class="flex gap-1 ml-0">
+    <div class="w-full overflow-hidden relative">
+        <Carousel v-model="selectedIndex" class="relative w-full">
+            <CarouselContent class="flex gap-9 ml-0">
                 <CarouselItem
-                    v-for="(_, index) in 10"
+                    v-for="(data, index) in annualYearly"
                     :key="index"
-                    class="pl-0 basis-1/4 cursor-pointer">
-                    <div
-                        class="p-1"
-                        :class="index === selectedIndex ? '' : 'opacity-50'">
-                        <Card>
-                            <CardContent
-                                class="flex aspect-square items-center justify-center p-6">
-                                <span class="text-4xl font-semibold">
-                                    {{ index + 1 }}
-                                </span>
-                            </CardContent>
+                    class="pl-0 w-24 cursor-pointer">
+                    <Card :class="index === selectedIndex ? 'border-2 border-primary': 'border-2 border-dashed'"
+                        class="size-28 transition duration-300 flex justify-center items-center"
+                        variant="flat">
+                        <CardContent
+                            class="p-0 flex flex-col gap-3 justify-center items-center">
+                            <div :class="index === selectedIndex ? 'bg-primary/20 text-primary': 'bg-slate-300/20 text-slate-400'"
+                                class="flex items-center rounded-lg p-3">
+                                <Icon :name="data.icon" class="text-inherit" />
+                            </div>
+
+                            <span class="font-medium text-secondary">
+                                {{ data.title }}
+                            </span>
+                        </CardContent>
                     </Card>
-                    </div>
                 </CarouselItem>
             </CarouselContent>
         </Carousel>

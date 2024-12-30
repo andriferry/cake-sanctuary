@@ -7,8 +7,6 @@ import type {
 } from './interface';
 import { useProvideCarousel } from './useCarousel';
 
-//const { currentPage } = useCarousel();
-
 const props = withDefaults(defineProps<CarouselProps & WithClassAsProps>(), {
     orientation: 'horizontal',
 });
@@ -71,10 +69,10 @@ watch(currentPage, (value) => {
         <slot
             :can-scroll-next
             :can-scroll-prev
+            :scroll-next
+            :scroll-prev
             :carousel-api
             :carousel-ref
-            :orientation
-            :scroll-next
-            :scroll-prev />
+            :orientation />
     </div>
 </template>

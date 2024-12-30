@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const currentOverview = ref(0)
 const selectModel = ref('7days');
 const options = ref([
     {
@@ -107,7 +108,7 @@ const buttonText = computed(() => {
                             <CardHeader
                                 class="flex-row items-center justify-between">
                                 <div class="flex gap-2 flex-col">
-                                    <CardDescription>
+                                    <CardDescription class="truncate">
                                         {{ data.description }}
                                     </CardDescription>
                                     <CardTitle class="text-xl font-semibold">
@@ -162,7 +163,7 @@ const buttonText = computed(() => {
                             subtitle="Yearly Earnings Overview"
                             class="h-full">
                             <CardContent class="grid gap-6">
-                                <SlideGroup></SlideGroup>
+                                <SlideGroup v-model="currentOverview"></SlideGroup>
                             </CardContent>
                         </Card>
                     </div>

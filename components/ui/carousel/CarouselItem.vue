@@ -9,9 +9,10 @@ const { orientation, carouselApi, currentPage } = useCarousel();
 
 const itemRef = ref();
 
-const divClass = computed(() => {
+const divClass = computed( () => {
+    //basis-full
     return cn(
-        'min-w-0 shrink-0 grow-0 basis-full',
+        'min-w-0 shrink-0 grow-0',
         orientation === 'horizontal' ? 'pl-4' : 'pt-4',
         props.class
     );
@@ -27,7 +28,6 @@ const clickEvent = () => {
 
 
     if (typeof getNode === 'number' && getNode > -1) {
-        console.log( getNode );
         carouselApi.value?.scrollTo( getNode );
         currentPage.value = getNode;
     }
