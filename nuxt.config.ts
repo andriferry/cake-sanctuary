@@ -36,9 +36,6 @@ export default defineNuxtConfig({
         },
     },
 
-    lucide: {
-        namePrefix: 'Icon',
-    },
 
     components: [
         {
@@ -72,7 +69,6 @@ export default defineNuxtConfig({
         '@nuxtjs/color-mode',
         //   '@nuxtjs/seo',
         'nuxt-auth-utils',
-        'nuxt-lucide-icons',
         '@nuxt/icon',
     ],
     icon: {
