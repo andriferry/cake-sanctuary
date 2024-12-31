@@ -21,6 +21,7 @@ const options = ref([
 
 const dialogOpen = ref(false);
 
+
 const buttonText = computed(() => {
     let getCurrentData = options.value.find(
         (item) => item.value === selectModel.value
@@ -28,6 +29,8 @@ const buttonText = computed(() => {
 
     return getCurrentData?.title;
 });
+
+
 </script>
 
 <template>
@@ -54,33 +57,6 @@ const buttonText = computed(() => {
                 <DashboardYearlyAnalytics />
             </div>
         </div>
-
-        <Dialog v-model:open="dialogOpen">
-            <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>Date Range</DialogTitle>
-                </DialogHeader>
-
-                <DialogDescription>
-                    <RadioGroup v-model="selectModel">
-                        <RadioGroupItem
-                            v-for="(data, index) in options"
-                            :key="index"
-                            v-bind="data" />
-                    </RadioGroup>
-
-                    <div class="mt-4">
-                        <DatePickerRange :disabled="selectModel !== 'custom'" />
-                    </div>
-                </DialogDescription>
-
-                <DialogFooter>
-                    <Button @click="dialogOpen = !dialogOpen">
-                        Save changes
-                    </Button>
-                </DialogFooter>
-            </DialogContent>
-        </Dialog>
     </div>
 </template>
 

@@ -50,6 +50,10 @@ export default defineNuxtConfig({
             path: '~/components/',
             pathPrefix: false,
         },
+        {
+            path: '~/views/',
+            pathPrefix: true,
+        },
     ],
 
     typescript: {

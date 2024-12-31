@@ -35,26 +35,7 @@ const annualYearly = computed(() => {
     <div class="w-full overflow-hidden relative">
         <Carousel v-model="selectedIndex" class="relative w-full">
             <CarouselContent class="flex gap-9 ml-0">
-                <CarouselItem
-                    v-for="(data, index) in annualYearly"
-                    :key="index"
-                    class="pl-0 w-24 cursor-pointer">
-                    <Card :class="index === selectedIndex ? 'border-2 border-primary': 'border-2 border-dashed'"
-                        class="size-28 transition duration-300 flex justify-center items-center"
-                        variant="flat">
-                        <CardContent
-                            class="p-0 flex flex-col gap-3 justify-center items-center">
-                            <div :class="index === selectedIndex ? 'bg-primary/20 text-primary': 'bg-slate-300/20 text-slate-400'"
-                                class="flex items-center rounded-lg p-3">
-                                <Icon :name="data.icon" class="text-inherit" />
-                            </div>
-
-                            <span class="font-medium text-secondary">
-                                {{ data.title }}
-                            </span>
-                        </CardContent>
-                    </Card>
-                </CarouselItem>
+                <slot />
             </CarouselContent>
         </Carousel>
     </div>
