@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Bar } from 'vue-chartjs';
-import {months} from "@@/lib/utils"
+import { months } from '@@/lib/utils';
 
 const currentOverview = ref(0);
 const annualYearly = computed(() => {
@@ -34,7 +34,7 @@ const annualYearly = computed(() => {
 
 const chartData = computed(() => {
     return {
-        labels: months({count: 12, section: 3}),
+        labels: months({ count: 12, section: 3 }),
         datasets: [
             { data: [40, 20, 12, 40, 50, 60, 70, 89, 90, 100, 120, 340] },
         ],
@@ -45,6 +45,23 @@ const chartOptions = ref({
     plugins: {
         legend: {
             display: false,
+        },
+    },
+    backgroundColor: ['#ec4899'],
+    borderRadius: 9,
+    scales: {
+        x: {
+            grid: {
+                display: false
+            },
+        },
+        y: {
+            grid: {
+                display: false
+            },
+            border: {
+                display: false
+            }
         },
     },
 });

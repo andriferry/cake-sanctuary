@@ -55,15 +55,6 @@ export default defineNuxtConfig({
         },
     ],
 
-    // typescript: {
-    //     tsConfig: {
-    //         compilerOptions: {
-    //             paths: {
-    //                 '@/lib/utils/*': ['./lib/utils/*'],
-    //             },
-    //         },
-    //     },
-    // },
 
     modules: [
         '@vueuse/nuxt',
