@@ -59,7 +59,7 @@ export default defineNuxtConfig({
         tsConfig: {
             compilerOptions: {
                 paths: {
-                    '@/lib/utils/*': ['../lib/utils/*'],
+                    '@/lib/utils/*': ['./lib/utils/*'],
                 },
             },
         },
