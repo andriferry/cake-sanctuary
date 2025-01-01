@@ -20,6 +20,16 @@ const upsale = ref([
         title: 'Coffee',
         amount: '130',
     },
+    {
+        icon: 'noto:bagel',
+        title: 'Bagel',
+        amount: '200',
+    },
+    {
+        icon: 'noto:sandwich',
+        title: 'Sandwich',
+        amount: '50',
+    },
 ]);
 </script>
 

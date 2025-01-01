@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Bar } from 'vue-chartjs';
+
 const currentOverview = ref(0);
 const annualYearly = computed(() => {
     return [
@@ -28,6 +30,123 @@ const annualYearly = computed(() => {
         },
     ];
 });
+
+const chartData = ref({
+    labels: ['January', 'February', 'March'],
+    datasets: [{ data: [40, 20, 12] }],
+});
+
+const chartOptions = ref({
+    responsive: false,
+});
+
+// const chartOptions = {
+//     chart: {
+//         parentHeightOffset: 0,
+//         type: 'bar',
+//         toolbar: { show: false },
+//     },
+//     plotOptions: {
+//         bar: {
+//             columnWidth: '32%',
+//             startingShape: 'rounded',
+//             borderRadius: 4,
+//             distributed: true,
+//             dataLabels: { position: 'top' },
+//         },
+//     },
+//     grid: {
+//         show: false,
+//         padding: {
+//             top: 0,
+//             bottom: 0,
+//             left: -10,
+//             right: -10,
+//         },
+//     },
+//     colors: ['hsl(var(--primary))'],
+//     dataLabels: {
+//         enabled: true,
+//         formatter(val: string) {
+//             return `${val}k`;
+//         },
+//         offsetY: -25,
+//         style: {
+//             fontSize: '15px',
+//             colors: ['#ef4444'],
+//             fontWeight: '600',
+//             fontFamily: 'Public Sans',
+//         },
+//     },
+//     legend: { show: false },
+//     tooltip: { enabled: false },
+//     xaxis: {
+//         categories: [
+//             'Jan',
+//             'Feb',
+//             'Mar',
+//             'Apr',
+//             'May',
+//             'Jun',
+//             'Jul',
+//             'Aug',
+//             'Sep',
+//         ],
+//         axisBorder: {
+//             show: true,
+//             color: '#ef4444',
+//         },
+//         axisTicks: { show: false },
+//         labels: {
+//             style: {
+//                 colors: '#ef4444',
+//                 fontSize: '14px',
+//                 fontFamily: 'Inter',
+//             },
+//         },
+//     },
+//     yaxis: {
+//         labels: {
+//             offsetX: -15,
+//             formatter(val: number) {
+//                 return `${parseInt(val / 1)}k`;
+//             },
+//             style: {
+//                 fontSize: '14px',
+//                 colors: '#ef4444',
+//                 fontFamily: 'Public Sans',
+//             },
+//             min: 0,
+//             max: 60000,
+//             tickAmount: 6,
+//         },
+//     },
+//     responsive: [
+//         {
+//             breakpoint: 1441,
+//             options: { plotOptions: { bar: { columnWidth: '41%' } } },
+//         },
+//         {
+//             breakpoint: 590,
+//             options: {
+//                 plotOptions: { bar: { columnWidth: '61%' } },
+//                 grid: { padding: { right: 0 } },
+//                 dataLabels: {
+//                     style: {
+//                         fontSize: '12px',
+//                         fontWeight: '400',
+//                     },
+//                 },
+//                 yaxis: { labels: { show: false } },
+//             },
+//         },
+//     ],
+// };
+// const series = [
+//     {
+//         data: [35, 25, 15, 40, 42, 25, 48, 8, 30],
+//     },
+// ];
 </script>
 
 <template>
@@ -69,7 +188,11 @@ const annualYearly = computed(() => {
                 </CarouselItem>
             </SlideGroup>
 
-            <div class="mt-3"></div>
+            <div class="mt-3">
+                <Bar
+                    :data="chartData"
+                    style="height: 240px; width: 100%;" />
+            </div>
         </CardContent>
     </Card>
 </template>
