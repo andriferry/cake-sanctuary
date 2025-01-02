@@ -52,19 +52,31 @@ const chartOptions = ref({
     scales: {
         x: {
             grid: {
-                display: false
+                display: false,
+            },
+            ticks: {
+                font: {
+                    size: '12',
+                    color: 'bg-slate-300/20',
+                    weight: 'bolder',
+                },
             },
         },
         y: {
             grid: {
-                display: false
+                display: false,
             },
             border: {
-                display: false
-            }
+                display: false,
+            },
         },
     },
-});
+} );
+
+
+onMounted( () => {
+    console.log('')
+})
 </script>
 
 <template>
