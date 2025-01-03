@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Bar } from 'vue-chartjs';
 import { months } from '@@/lib/utils';
+import { Bar } from 'vue-chartjs';
 
 const currentOverview = ref(0);
 const annualYearly = computed(() => {
@@ -8,26 +8,116 @@ const annualYearly = computed(() => {
         {
             title: 'Sales',
             icon: 'tabler:currency-dollar',
+            chartData: [40, 100, 120, 340, 40, 50, 60, 70, 89, 90, 100, 120],
+            bgColors: [
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                '#ec4899',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+            ],
         },
         {
             title: 'Customer',
             icon: 'tabler:users-group',
+            chartData: [20, 40, 50, 60, 80, 100, 80, 70, 89, 90, 50, 50],
+            bgColors: [
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                '#ec4899',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+            ],
         },
         {
             title: 'Orders',
             icon: 'tabler:bowl-chopsticks',
+            chartData: [90, 140, 50, 60, 80, 100, 80, 70, 89, 90, 50, 50],
+            bgColors: [
+                'rgba(236, 72, 153, 0.5)',
+                '#ec4899',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+            ],
         },
         {
             title: 'Tips',
             icon: 'tabler:wallet',
+            chartData: [90, 100, 100, 60, 80, 100, 80, 70, 89, 90, 50, 50],
+            bgColors: [
+                'rgba(236, 72, 153, 0.5)',
+                '#ec4899',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+            ],
         },
         {
             title: 'Income',
             icon: 'tabler:chart-pie-2',
+            chartData: [190, 100, 200, 60, 80, 100, 80, 170, 89, 90, 50, 50],
+            bgColors: [
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                '#ec4899',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+            ],
         },
         {
             title: 'Satisfaction',
             icon: 'tabler:mood-smile',
+            chartData: [20, 30, 40, 60, 80, 100, 120, 110, 89, 90, 50, 50],
+            bgColors: [
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                '#ec4899',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+                'rgba(236, 72, 153, 0.5)',
+            ],
         },
     ];
 });
@@ -36,50 +126,51 @@ const chartData = computed(() => {
     return {
         labels: months({ count: 12, section: 3 }),
         datasets: [
-            { data: [40, 20, 12, 40, 50, 60, 70, 89, 90, 100, 120, 340] },
+            { data: annualYearly.value[currentOverview.value].chartData },
         ],
     };
 });
 
-const chartOptions = ref({
-    plugins: {
-        legend: {
-            display: false,
-        },
-    },
-    backgroundColor: ['#ec4899'],
-    borderRadius: 9,
-    scales: {
-        x: {
-            grid: {
+const chartOptions = computed(() => {
+    return {
+        plugins: {
+            legend: {
                 display: false,
             },
-            ticks: {
-                font: { 
-                    size: '12',
-                    weight: 'bolder',
-                    color: '#6b95a9',
+        },
+        backgroundColor: annualYearly.value[currentOverview.value].bgColors,
+        borderRadius: 9,
+        scales: {
+            x: {
+                grid: {
+                    display: false,
+                },
+                ticks: {
+                    font: {
+                        size: '12',
+                        weight: 'bolder',
+                        color: '#6b95a9',
+                    },
+                },
+            },
+            y: {
+                grid: {
+                    display: false,
+                },
+                border: {
+                    display: false,
+                },
+                ticks: {
+                    font: {
+                        size: '12',
+                        color: '#6b95a9',
+                        weight: 'bolder',
+                    },
                 },
             },
         },
-        y: {
-            grid: {
-                display: false,
-            },
-            border: {
-                display: false,
-            },
-            ticks: {
-                font: {
-                    size: '12',
-                    color: '#6b95a9',
-                    weight: 'bolder',
-                },
-            },
-        },
-    },
+    };
 });
-
 </script>
 
 <template>

@@ -1,8 +1,8 @@
+import tailwindTypography from '@tailwindcss/typography';
 import type { Config } from 'tailwindcss';
 import animate from 'tailwindcss-animate';
 import plugin from 'tailwindcss/plugin';
-import {sidebar} from "./themeconfig"
-import tailwindTypography from '@tailwindcss/typography';
+import { sidebar } from './themeconfig';
 
 export default {
     darkMode: 'class',
@@ -108,15 +108,43 @@ export default {
     plugins: [
         animate,
         tailwindTypography,
-        plugin(function ({ addUtilities, addComponents, e, config }) {
-            addUtilities( {
+        plugin(function ({ addUtilities, addComponents, addBase, e, config }) {
+            // const variableRootObject: any = {};
+            // for (const [key, value] of Object.entries(cssVariable)) {
+            //     variableRootObject[`${key}`] = {};
+
+            //     if (typeof value === 'object') {
+            //         for (const [childKey, childValue] of Object.entries(
+            //             value
+            //         )) {
+
+            //             if (childValue) {
+            //                 if ( childValue.hasOwnProperty( 'style' ) ) {
+
+            //                     if ( childValue.style === 'hsl' ) {
+            //                         const splitColor = childValue.value.split(",").map(Number)
+            //                         variableRootObject[`${key}`][`--${childKey}`] =
+            //                             hslToHex( splitColor[0], splitColor[1], splitColor[2] )
+            //                     }
+
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
+
+            const defaultRootVariable = {
                 ':root': {
                     // '--primary': '330 81% 60%',
                     '--sidebar-width': sidebar.SIDEBAR_WIDTH,
                     '--sidebar-width-icon': sidebar.SIDEBAR_WIDTH_ICON,
-                    '--sidebar-width-mobile': sidebar.SIDEBAR_WIDTH_MOBILE 
-                }, 
-            });
+                    '--sidebar-width-mobile': sidebar.SIDEBAR_WIDTH_MOBILE,
+                },
+            };
+
+            //addBase(variableRootObject)
+
+            addBase(defaultRootVariable);
         }),
     ],
 } satisfies Config;
