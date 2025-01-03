@@ -70,6 +70,7 @@ export default defineNuxtConfig({
         mode: 'css', //
         serverBundle: {
             collections: ['file-icons', 'tabler', 'noto'],
+            externalizeIconsJson: true,
         },
     },
     colorMode: {
