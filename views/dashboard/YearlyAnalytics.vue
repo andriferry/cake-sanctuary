@@ -55,10 +55,10 @@ const chartOptions = ref({
                 display: false,
             },
             ticks: {
-                font: {
+                font: { 
                     size: '12',
-                    color: 'bg-slate-300/20',
                     weight: 'bolder',
+                    color: '#6b95a9',
                 },
             },
         },
@@ -69,14 +69,17 @@ const chartOptions = ref({
             border: {
                 display: false,
             },
+            ticks: {
+                font: {
+                    size: '12',
+                    color: '#6b95a9',
+                    weight: 'bolder',
+                },
+            },
         },
     },
-} );
+});
 
-
-onMounted( () => {
-    console.log('')
-})
 </script>
 
 <template>

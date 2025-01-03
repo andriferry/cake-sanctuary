@@ -46,7 +46,7 @@ export const months = (config: { count: number; section: number }) => {
     return values;
 };
 
-export const hexToRGB = (hex: string, alpha: number) => {
+export const hexToRGBA = (hex: string, alpha: number) => {
     const r = parseInt(hex.slice(1, 3), 16);
     const g = parseInt(hex.slice(3, 5), 16);
     const b = parseInt(hex.slice(5, 7), 16);
@@ -70,3 +70,8 @@ export const hslToHex = (h: number, s: number, l: number) => {
     };
     return `#${f(0)}${f(8)}${f(4)}`;
 };
+
+
+export const convertColor = () => {
+
+}

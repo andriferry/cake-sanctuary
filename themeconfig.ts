@@ -7,4 +7,10 @@ export const sidebar = {
     SIDEBAR_KEYBOARD_SHORTCUT: 'b',
 };
 
-export const cssVariable = {};
+// Put the Css Variable, Support , HEX, RGBA, RGB , and HSL
+export const cssVariable = {
+    root: {
+        primary: { value: '330, 81, 60', style: 'hsl'},
+        'primary-foreground': {}
+    }
+};
