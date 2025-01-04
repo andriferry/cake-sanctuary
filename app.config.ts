@@ -39,7 +39,7 @@ export default defineAppConfig({
             icon: 'tabler:settings',
         },
     ],
-    sidebar: {
+sidebar: {
         ...sidebar,
     },
     icons: {
@@ -50,7 +50,9 @@ export default defineAppConfig({
         sidebarTrigger: 'tabler:layout-sidebar',
         calendarEvent: 'tabler:calendar-event',
         chevronLeft: 'tabler:chevron-left',
+        doubleChevronLeft: 'tabler:chevrons-left',
         chevronRight: 'tabler:chevron-right',
+        doubleChevronRight: 'tabler:chevrons-right',
         chevronDown: 'tabler:chevron-down',
         chevronUp: 'tabler:chevron-up',
         close: 'tabler:x'

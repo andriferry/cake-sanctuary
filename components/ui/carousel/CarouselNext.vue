@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-// import { ArrowRightIcon } from '@radix-icons/vue';
 import type { WithClassAsProps } from './interface';
 import { useCarousel } from './useCarousel';
 

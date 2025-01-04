@@ -1,7 +1,6 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import type { Updater } from '@tanstack/vue-table';
-
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
@@ -70,8 +69,3 @@ export const hslToHex = (h: number, s: number, l: number) => {
     };
     return `#${f(0)}${f(8)}${f(4)}`;
 };
-
-
-export const convertColor = () => {
-
-}

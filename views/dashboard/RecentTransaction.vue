@@ -1,15 +1,6 @@
 <script setup lang="ts">
-import {
-    Table,
-    TableBody,
-    TableCaption,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from '@/components/ui/table';
-
-const invoices = [
+import { useOffsetPagination } from '@vueuse/core';
+const invoices = ref([
     {
         invoice: 'INV001',
         paymentStatus: 'Paid',
@@ -52,39 +43,123 @@ const invoices = [
         totalAmount: '$300.00',
         paymentMethod: 'Credit Card',
     },
-];
+]);
+
+interface PaginationFetch {
+    currentPage: number;
+    currentPageSize: number;
+}
+
+const fetchData = ({ currentPage, currentPageSize }: PaginationFetch) => {
+    console.log(currentPage);
+};
+
+const {
+    currentPage,
+    currentPageSize,
+    pageCount,
+    isFirstPage,
+    isLastPage,
+    prev,
+    next,
+} = useOffsetPagination({
+    total: invoices.value.length,
+    page: 1,
+    pageSize: 10,
+    onPageChange: fetchData,
+    onPageSizeChange: fetchData,
+});
 </script>
 
 <template>
     <Card title="Recent transaction" class="h-full">
         <CardContent>
             <Table>
-                <TableCaption class="">
-                    A list of your recent invoices.
-                </TableCaption>
                 <TableHeader>
                     <TableRow>
-                        <TableHead class="w-[100px]"> Invoice </TableHead>
-                        <TableHead>Status</TableHead>
-                        <TableHead>Method</TableHead>
-                        <TableHead class="text-right"> Amount </TableHead>
+                        <TableHead class="w-[100px]"> Order ID </TableHead>
+                        <TableHead>Receipt No</TableHead>
+                        <TableHead>Menu</TableHead>
+                        <TableHead class=""> Collected/Cashier </TableHead>
+                        <TableHead class=""> Date & Time </TableHead>
+                        <TableHead class=""> Payment method </TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    <TableRow
-                        v-for="invoice in invoices"
-                        :key="invoice.invoice">
+                    <TableRow v-for="(invoice, index) in invoices" :key="index">
                         <TableCell class="font-medium">
                             {{ invoice.invoice }}
                         </TableCell>
                         <TableCell>{{ invoice.paymentStatus }}</TableCell>
                         <TableCell>{{ invoice.paymentMethod }}</TableCell>
-                        <TableCell class="text-right">
+                        <TableCell class="">
                             {{ invoice.totalAmount }}
                         </TableCell>
                     </TableRow>
                 </TableBody>
             </Table>
         </CardContent>
+
+        <CardFooter class="justify-end">
+            <!-- {{ currentPage }} {{ currentPageSize }}  -->
+            {{ pageCount }}
+
+            <div class="w-full flex items-center flex-wrap gap-3">
+                <Button @click="prev" variant="outline" size="icon">
+                    <ArrowLeftIcon />
+                </Button>
+                <Button
+                    v-for="index in currentPageSize"
+                    :key="index"
+                    class="w-9 h-9 p-0">
+                    {{ index }}
+                </Button>
+                <Button variant="outline" @click="next" size="icon">
+                    <ArrowRightIcon />
+                </Button>
+            </div>
+
+            <!-- <Button
+                class="w-9 h-9 p-0"
+                :variant="item.value === page ? 'default' : 'outline'">
+                {{ item.value }}
+            </Button> -->
+            <!-- <Pagination
+                v-slot="{ page }"
+                :total="100"
+                :sibling-count="10"
+                show-edges
+                :default-page="1">
+                <PaginationList
+                    v-slot="{ items }"
+                    class="flex items-center gap-1">
+                    <PaginationFirst />
+                    <PaginationPrev />
+
+                    <template v-for="(item, index) in items">
+                        <PaginationListItem
+                            v-if="item.type === 'page'"
+                            :key="index"
+                            :value="item.value"
+                            as-child>
+                            <Button
+                                class="w-9 h-9 p-0"
+                                :variant="
+                                    item.value === page ? 'default' : 'outline'
+                                ">
+                                {{ item.value }}
+                            </Button>
+                        </PaginationListItem>
+                        <PaginationEllipsis
+                            v-else
+                            :key="item.type"
+                            :index="index" />
+                    </template>
+
+                    <PaginationNext />
+                    <PaginationLast />
+                </PaginationList>
+            </Pagination> -->
+        </CardFooter>
     </Card>
 </template>
