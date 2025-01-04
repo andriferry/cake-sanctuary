@@ -53,6 +53,12 @@ const buttonText = computed(() => {
             <div class="col-span-12 xl:col-span-9">
                 <DashboardYearlyAnalytics />
             </div>
+
+
+
+            <div class="col-span-12">
+                <DashboardRecentTransaction />
+            </div>
         </div>
 
         <Dialog v-model:open="dialogOpen">
