@@ -55,9 +55,12 @@ const buttonText = computed(() => {
             </div>
 
 
-
             <div class="col-span-12">
                 <DashboardRecentTransaction />
+            </div>
+
+            <div class="col-span-12">
+                <DashboardRecentTransaction2 />
             </div>
         </div>
 
