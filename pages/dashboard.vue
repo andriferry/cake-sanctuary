@@ -58,9 +58,6 @@ const buttonText = computed(() => {
                 <DashboardRecentTransaction />
             </div>
 
-            <div class="col-span-12">
-                <DashboardRecentTransaction2 />
-            </div>
         </div>
 
         <Dialog v-model:open="dialogOpen">
