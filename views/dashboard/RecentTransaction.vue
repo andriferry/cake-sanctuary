@@ -77,18 +77,7 @@ const fetchData = async ({ currentPage, currentPageSize }: PaginationFetch) => {
     }
 };
 
-const { currentPage, pageCount, prev, next, isFirstPage, isLastPage } =
-    useOffsetPagination({
-        total: invoices.value.length,
-        page: 1,
-        pageSize: 2,
-        onPageChange: fetchData,
-        onPageSizeChange: fetchData,
-    });
-
-onMounted(async () => {
-    await fetchData({ currentPage: 1, currentPageSize: 2 });
-});
+const dataPagination = ref(1);
 </script>
 
 <template>
@@ -123,44 +112,11 @@ onMounted(async () => {
         </CardContent>
 
         <CardFooter class="justify-end">
-            <div class="w-full flex items-center flex-wrap gap-3">
-                <Button
-                    @click="currentPage = 1"
-                    :disabled="isFirstPage"
-                    variant="outline"
-                    size="icon">
-                    <ArrowDoubleLeftIcon />
-                </Button>
-                <Button
-                    @click="prev"
-                    :disabled="isFirstPage"
-                    variant="outline"
-                    size="icon">
-                    <ArrowLeftIcon />
-                </Button>
-                <Button
-                    v-for="index in pageCount"
-                    :key="index"
-                    class="w-9 h-9 p-0"
-                    :variant="currentPage === index ? 'default' : 'outline'"
-                    @click="currentPage = index">
-                    {{ index }}
-                </Button>
-                <Button
-                    variant="outline"
-                    :disabled="isLastPage"
-                    @click="next"
-                    size="icon">
-                    <ArrowRightIcon />
-                </Button>
-                <Button
-                    @click="currentPage = pageCount"
-                    :disabled="isLastPage"
-                    variant="outline"
-                    size="icon">
-                    <ArrowDoubleRightIcon />
-                </Button>
-            </div>
+            <Pagination
+                v-model="dataPagination"
+                :length="invoices.length"
+                :page-size="2"
+                @onChange="fetchData" />
         </CardFooter>
     </Card>
 </template>
