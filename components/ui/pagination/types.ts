@@ -10,6 +10,7 @@ export interface Props {
     currentPage?: number;
     pageSize?: number;
     lastFirstArrow?: boolean;
+    visible?: number
 }
 
 export interface PaginationFetch {

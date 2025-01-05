@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils';
 import type { Emit, PaginationFetch, Props } from './types';
+import { paginationFunc } from './index';
 
 const props = withDefaults(defineProps<Props>(), {
     length: 1,
@@ -10,6 +11,7 @@ const props = withDefaults(defineProps<Props>(), {
     lastFirstArrow: false,
     prevIcon: '',
     nextIcon: '',
+    visible: 10,
 });
 
 const emit = defineEmits<Emit>();
@@ -31,9 +33,7 @@ const { currentPage, pageCount, prev, next, isFirstPage, isLastPage } =
     });
 
 watch(currentPage, (value) => {
-    if (model.value) {
-        model.value = value;
-    }
+    if (model.value) model.value = value;
 });
 
 const nextIconArrow = computed(() => {
@@ -44,18 +44,32 @@ const prevIconArrow = computed(() => {
     return props.prevIcon ? props.prevIcon : icons.chevronLeft;
 });
 
+const pagesData = computed(() => {
+    return paginationFunc(
+        props.visible,
+        model.value || currentPage.value,
+        pageCount.value
+    );
+});
+
 onMounted(async () => {
     if (model.value === undefined) {
         currentPage.value = 1;
     } else {
         currentPage.value = model.value;
     }
-    await fetchData({ currentPage: props.currentPage, currentPageSize: props.pageSize });
+    await fetchData({
+        currentPage: props.currentPage,
+        currentPageSize: props.pageSize,
+    });
+
+    console.log(paginationFunc(10, 1, props.length));
 });
 </script>
 
 <template>
     <div class="w-full flex items-center flex-wrap gap-3">
+        {{ pagesData }}
         <Button
             v-if="lastFirstArrow"
             @click="currentPage = 1"
