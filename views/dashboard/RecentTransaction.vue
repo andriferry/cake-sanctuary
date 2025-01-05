@@ -1,6 +1,16 @@
 <script setup lang="ts">
-import { useOffsetPagination } from '@vueuse/core';
-const invoices = ref([
+interface PaginationFetch {
+    currentPage: number;
+    currentPageSize: number;
+}
+
+interface Invoice {
+    invoice: string;
+    paymentStatus: string;
+    totalAmount: string;
+    paymentMethod: string;
+}
+const invoices = ref<Invoice[]>([
     {
         invoice: 'INV001',
         paymentStatus: 'Paid',
@@ -45,29 +55,39 @@ const invoices = ref([
     },
 ]);
 
-interface PaginationFetch {
-    currentPage: number;
-    currentPageSize: number;
-}
+const dataInvoice: Ref<Invoice[]> = ref([]);
 
-const fetchData = ({ currentPage, currentPageSize }: PaginationFetch) => {
-    console.log(currentPage);
+const fetch = (page: number, pageSize: number) => {
+    return new Promise<Invoice[]>((resolve, reject) => {
+        const start = (page - 1) * pageSize;
+        const end = start + pageSize;
+
+        setTimeout(() => {
+            resolve(invoices.value.slice(start, end));
+        }, 100);
+    });
 };
 
-const {
-    currentPage,
-    currentPageSize,
-    pageCount,
-    isFirstPage,
-    isLastPage,
-    prev,
-    next,
-} = useOffsetPagination({
-    total: invoices.value.length,
-    page: 1,
-    pageSize: 10,
-    onPageChange: fetchData,
-    onPageSizeChange: fetchData,
+const fetchData = async ({ currentPage, currentPageSize }: PaginationFetch) => {
+    try {
+        const data = await fetch(currentPage, currentPageSize);
+        dataInvoice.value = data;
+    } catch (error) {
+        throw error;
+    }
+};
+
+const { currentPage, pageCount, prev, next, isFirstPage, isLastPage } =
+    useOffsetPagination({
+        total: invoices.value.length,
+        page: 1,
+        pageSize: 2,
+        onPageChange: fetchData,
+        onPageSizeChange: fetchData,
+    });
+
+onMounted(async () => {
+    await fetchData({ currentPage: 1, currentPageSize: 2 });
 });
 </script>
 
@@ -86,7 +106,9 @@ const {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    <TableRow v-for="(invoice, index) in invoices" :key="index">
+                    <TableRow
+                        v-for="(invoice, index) in dataInvoice"
+                        :key="index">
                         <TableCell class="font-medium">
                             {{ invoice.invoice }}
                         </TableCell>
@@ -101,65 +123,44 @@ const {
         </CardContent>
 
         <CardFooter class="justify-end">
-            <!-- {{ currentPage }} {{ currentPageSize }}  -->
-            {{ pageCount }}
-
             <div class="w-full flex items-center flex-wrap gap-3">
-                <Button @click="prev" variant="outline" size="icon">
+                <Button
+                    @click="currentPage = 1"
+                    :disabled="isFirstPage"
+                    variant="outline"
+                    size="icon">
+                    <ArrowDoubleLeftIcon />
+                </Button>
+                <Button
+                    @click="prev"
+                    :disabled="isFirstPage"
+                    variant="outline"
+                    size="icon">
                     <ArrowLeftIcon />
                 </Button>
                 <Button
-                    v-for="index in currentPageSize"
+                    v-for="index in pageCount"
                     :key="index"
-                    class="w-9 h-9 p-0">
+                    class="w-9 h-9 p-0"
+                    :variant="currentPage === index ? 'default' : 'outline'"
+                    @click="currentPage = index">
                     {{ index }}
                 </Button>
-                <Button variant="outline" @click="next" size="icon">
+                <Button
+                    variant="outline"
+                    :disabled="isLastPage"
+                    @click="next"
+                    size="icon">
                     <ArrowRightIcon />
                 </Button>
+                <Button
+                    @click="currentPage = pageCount"
+                    :disabled="isLastPage"
+                    variant="outline"
+                    size="icon">
+                    <ArrowDoubleRightIcon />
+                </Button>
             </div>
-
-            <!-- <Button
-                class="w-9 h-9 p-0"
-                :variant="item.value === page ? 'default' : 'outline'">
-                {{ item.value }}
-            </Button> -->
-            <!-- <Pagination
-                v-slot="{ page }"
-                :total="100"
-                :sibling-count="10"
-                show-edges
-                :default-page="1">
-                <PaginationList
-                    v-slot="{ items }"
-                    class="flex items-center gap-1">
-                    <PaginationFirst />
-                    <PaginationPrev />
-
-                    <template v-for="(item, index) in items">
-                        <PaginationListItem
-                            v-if="item.type === 'page'"
-                            :key="index"
-                            :value="item.value"
-                            as-child>
-                            <Button
-                                class="w-9 h-9 p-0"
-                                :variant="
-                                    item.value === page ? 'default' : 'outline'
-                                ">
-                                {{ item.value }}
-                            </Button>
-                        </PaginationListItem>
-                        <PaginationEllipsis
-                            v-else
-                            :key="item.type"
-                            :index="index" />
-                    </template>
-
-                    <PaginationNext />
-                    <PaginationLast />
-                </PaginationList>
-            </Pagination> -->
         </CardFooter>
     </Card>
 </template>
