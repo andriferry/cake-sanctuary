@@ -109,30 +109,6 @@ export default {
         animate,
         tailwindTypography,
         plugin(function ({ addUtilities, addComponents, addBase, e, config }) {
-            // const variableRootObject: any = {};
-            // for (const [key, value] of Object.entries(cssVariable)) {
-            //     variableRootObject[`${key}`] = {};
-
-            //     if (typeof value === 'object') {
-            //         for (const [childKey, childValue] of Object.entries(
-            //             value
-            //         )) {
-
-            //             if (childValue) {
-            //                 if ( childValue.hasOwnProperty( 'style' ) ) {
-
-            //                     if ( childValue.style === 'hsl' ) {
-            //                         const splitColor = childValue.value.split(",").map(Number)
-            //                         variableRootObject[`${key}`][`--${childKey}`] =
-            //                             hslToHex( splitColor[0], splitColor[1], splitColor[2] )
-            //                     }
-
-            //                 }
-            //             }
-            //         }
-            //     }
-            // }
-
             const defaultRootVariable = {
                 ':root': {
                     // '--primary': '330 81% 60%',
@@ -140,9 +116,7 @@ export default {
                     '--sidebar-width-icon': sidebar.SIDEBAR_WIDTH_ICON,
                     '--sidebar-width-mobile': sidebar.SIDEBAR_WIDTH_MOBILE,
                 },
-            };
-
-            //addBase(variableRootObject)
+            }
 
             addBase(defaultRootVariable);
         }),

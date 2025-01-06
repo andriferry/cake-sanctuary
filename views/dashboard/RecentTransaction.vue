@@ -116,6 +116,7 @@ const dataPagination = ref(1);
                 v-model="dataPagination"
                 :length="invoices.length"
                 :page-size="2"
+                class="justify-end"
                 @onChange="fetchData" />
         </CardFooter>
     </Card>

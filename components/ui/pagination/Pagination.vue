@@ -2,6 +2,7 @@
 import { cn } from '@/lib/utils';
 import type { Emit, PaginationFetch, Props } from './types';
 import { paginationFunc } from './index';
+import { buttonVariants, variants } from '@/components/ui/button/index';
 
 const props = withDefaults(defineProps<Props>(), {
     length: 1,
@@ -12,6 +13,7 @@ const props = withDefaults(defineProps<Props>(), {
     prevIcon: '',
     nextIcon: '',
     visible: 10,
+    activeClass: '',
 });
 
 const emit = defineEmits<Emit>();
@@ -52,6 +54,17 @@ const pagesData = computed(() => {
     );
 });
 
+const btnActiveClass = (index: number) => {
+    if (props.activeClass) {
+        return currentPage.value === index
+            ? cn(props.activeClass, variants.rounded[props.rounded || 'default'])
+            : buttonVariants({ variant: 'outline', rounded: props.rounded });
+    } else {
+        return currentPage.value === index
+            ? buttonVariants({ variant: 'default', rounded: props.rounded })
+            : buttonVariants({ variant: 'outline', rounded: props.rounded });
+    }
+};
 onMounted(async () => {
     if (model.value === undefined) {
         currentPage.value = 1;
@@ -62,21 +75,18 @@ onMounted(async () => {
         currentPage: props.currentPage,
         currentPageSize: props.pageSize,
     });
-
-    console.log(paginationFunc(10, 1, props.length));
 });
 </script>
 
 <template>
-    <div class="w-full flex items-center flex-wrap gap-3">
-        {{ pagesData }}
+    <div class="w-full flex items-center flex-wrap gap-3" :class="props.class">
         <Button
             v-if="lastFirstArrow"
             @click="currentPage = 1"
             :disabled="isFirstPage"
             variant="outline"
             :rounded="rounded"
-            :class="cn('w-9 h-9 p-0', props.class)"
+            :class="cn('w-9 h-9 p-0', props.btnClass)"
             size="icon">
             <ArrowDoubleLeftIcon />
         </Button>
@@ -85,24 +95,38 @@ onMounted(async () => {
             :disabled="isFirstPage"
             :rounded="rounded"
             variant="outline"
-            :class="cn('w-9 h-9 p-0', props.class)"
+            :class="cn('w-9 h-9 p-0', props.btnClass)"
             size="icon">
             <Icon :name="prevIconArrow" class="w-4"></Icon>
         </Button>
-        <Button
-            v-for="index in pageCount"
-            :key="index"
-            :rounded="rounded"
-            :class="cn('w-9 h-9 p-0', props.class)"
-            :variant="currentPage === index ? 'default' : 'outline'"
-            @click="currentPage = index">
-            {{ index }}
-        </Button>
+
+        <template v-for="index in pagesData">
+            <Button
+                v-if="typeof index === 'number'"
+                :class="cn('w-9 h-9 p-0', props.btnClass, btnActiveClass(index))"
+                @click="currentPage = Number(index)">
+                {{ index }}
+            </Button>
+
+            <Button
+                variant="outline"
+                disabled :rounded="rounded"
+                v-else
+                :class="
+                    cn(
+                        'w-9 h-9 p-0 border-none shadow-none disabled:bg-transparent',
+                        props.btnClass
+                    )
+                ">
+                {{ index }}
+            </Button>
+        </template>
+
         <Button
             variant="outline"
             :disabled="isLastPage"
             :rounded="rounded"
-            :class="cn('w-9 h-9 p-0', props.class)"
+            :class="cn('w-9 h-9 p-0', props.btnClass)"
             @click="next"
             size="icon">
             <Icon :name="nextIconArrow" class="w-4"></Icon>
@@ -112,7 +136,7 @@ onMounted(async () => {
             @click="currentPage = pageCount"
             :disabled="isLastPage"
             :rounded="rounded"
-            :class="cn('w-9 h-9 p-0', props.class)"
+            :class="cn('w-9 h-9 p-0', props.btnClass)"
             variant="outline"
             size="icon">
             <ArrowDoubleRightIcon />

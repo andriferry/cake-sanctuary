@@ -133,6 +133,7 @@ const chartData = computed(() => {
 
 const chartOptions = computed(() => {
     return {
+        responsive: true,
         plugins: {
             legend: {
                 display: false,
@@ -216,7 +217,7 @@ const chartOptions = computed(() => {
                 <Bar
                     :data="chartData"
                     :options="chartOptions"
-                    style="height: 240px; width: 100%" />
+                    style="height: 340px; width: 100%" />
             </div>
         </CardContent>
     </Card>

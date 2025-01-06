@@ -7,10 +7,13 @@ export interface Props {
     prevIcon?: string;
     rounded?: ButtonVariants['rounded'];
     class?: HTMLAttributes['class'];
+    btnClass?: HTMLAttributes['class'];
     currentPage?: number;
     pageSize?: number;
     lastFirstArrow?: boolean;
     visible?: number
+    activeClass?: HTMLAttributes['class']
+    size?: ButtonVariants['size']
 }
 
 export interface PaginationFetch {
