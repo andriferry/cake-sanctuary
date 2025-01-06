@@ -1,126 +1,10 @@
 <script setup lang="ts">
+import { annualYearlyAnalutics } from '@/@fake/data';
 import { months } from '@@/lib/utils';
 import { Bar } from 'vue-chartjs';
 
 const currentOverview = ref(0);
-const annualYearly = computed(() => {
-    return [
-        {
-            title: 'Sales',
-            icon: 'tabler:currency-dollar',
-            chartData: [40, 100, 120, 340, 40, 50, 60, 70, 89, 90, 100, 120],
-            bgColors: [
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                '#ec4899',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-            ],
-        },
-        {
-            title: 'Customer',
-            icon: 'tabler:users-group',
-            chartData: [20, 40, 50, 60, 80, 100, 80, 70, 89, 90, 50, 50],
-            bgColors: [
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                '#ec4899',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-            ],
-        },
-        {
-            title: 'Orders',
-            icon: 'tabler:bowl-chopsticks',
-            chartData: [90, 140, 50, 60, 80, 100, 80, 70, 89, 90, 50, 50],
-            bgColors: [
-                'rgba(236, 72, 153, 0.5)',
-                '#ec4899',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-            ],
-        },
-        {
-            title: 'Tips',
-            icon: 'tabler:wallet',
-            chartData: [90, 100, 100, 60, 80, 100, 80, 70, 89, 90, 50, 50],
-            bgColors: [
-                'rgba(236, 72, 153, 0.5)',
-                '#ec4899',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-            ],
-        },
-        {
-            title: 'Income',
-            icon: 'tabler:chart-pie-2',
-            chartData: [190, 100, 200, 60, 80, 100, 80, 170, 89, 90, 50, 50],
-            bgColors: [
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                '#ec4899',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-            ],
-        },
-        {
-            title: 'Satisfaction',
-            icon: 'tabler:mood-smile',
-            chartData: [20, 30, 40, 60, 80, 100, 120, 110, 89, 90, 50, 50],
-            bgColors: [
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                '#ec4899',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-                'rgba(236, 72, 153, 0.5)',
-            ],
-        },
-    ];
-});
+const annualYearly = computed(() => annualYearlyAnalutics);
 
 const chartData = computed(() => {
     return {
@@ -179,7 +63,7 @@ const chartOptions = computed(() => {
         title="Accepted orders"
         subtitle="Yearly Earnings Overview"
         class="h-full">
-        <CardContent class="">
+        <CardContent class="flex flex-col justify-between gap-6">
             <SlideGroup v-model="currentOverview">
                 <CarouselItem
                     v-for="(data, index) in annualYearly"
@@ -217,7 +101,7 @@ const chartOptions = computed(() => {
                 <Bar
                     :data="chartData"
                     :options="chartOptions"
-                    style="height: 340px; width: 100%" />
+                    style="height: 250px; width: 100%" />
             </div>
         </CardContent>
     </Card>

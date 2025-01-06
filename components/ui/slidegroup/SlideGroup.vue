@@ -1,34 +1,6 @@
 <script setup lang="ts">
 const selectedIndex = defineModel();
 
-const annualYearly = computed(() => {
-    return [
-        {
-            title: 'Sales',
-            icon: 'tabler:currency-dollar',
-        },
-        {
-            title: 'Customer',
-            icon: 'tabler:users-group',
-        },
-        {
-            title: 'Orders',
-            icon: 'tabler:bowl-chopsticks',
-        },
-        {
-            title: 'Tips',
-            icon: 'tabler:wallet',
-        },
-        {
-            title: 'Income',
-            icon: 'tabler:chart-pie-2',
-        },
-        {
-            title: 'Satisfaction',
-            icon: 'tabler:mood-smile',
-        },
-    ];
-});
 </script>
 
 <template>

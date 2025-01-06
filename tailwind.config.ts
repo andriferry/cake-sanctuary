@@ -39,6 +39,8 @@ export default {
                     DEFAULT: 'hsl(var(--secondary))',
                     foreground: 'hsl(var(--secondary-foreground))',
                 },
+                success: 'hsl(var(--success))',
+                warning: 'hsl(var(--warning))',
                 destructive: {
                     DEFAULT: 'hsl(var(--destructive))',
                     foreground: 'hsl(var(--destructive-foreground))',
@@ -59,7 +61,6 @@ export default {
                     DEFAULT: 'hsl(var(--card))',
                     foreground: 'hsl(var(--card-foreground))',
                 },
-                success: 'hslhsl(var(--success))',
                 sidebar: {
                     /// We need to remove this sidebar color, And also just created a few basic colors
                     DEFAULT: 'hsl(var(--sidebar-background))',
@@ -116,7 +117,7 @@ export default {
                     '--sidebar-width-icon': sidebar.SIDEBAR_WIDTH_ICON,
                     '--sidebar-width-mobile': sidebar.SIDEBAR_WIDTH_MOBILE,
                 },
-            }
+            };
 
             addBase(defaultRootVariable);
         }),

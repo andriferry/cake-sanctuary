@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { invoices } from '@/@fake/data';
+
 interface PaginationFetch {
     currentPage: number;
     currentPageSize: number;
@@ -6,56 +8,15 @@ interface PaginationFetch {
 
 interface Invoice {
     invoice: string;
-    paymentStatus: string;
+    paymentStatus: 'Pending' | 'Unpaid' | 'Paid';
     totalAmount: string;
     paymentMethod: string;
+    date: string;
+    collected: string;
 }
-const invoices = ref<Invoice[]>([
-    {
-        invoice: 'INV001',
-        paymentStatus: 'Paid',
-        totalAmount: '$250.00',
-        paymentMethod: 'Credit Card',
-    },
-    {
-        invoice: 'INV002',
-        paymentStatus: 'Pending',
-        totalAmount: '$150.00',
-        paymentMethod: 'PayPal',
-    },
-    {
-        invoice: 'INV003',
-        paymentStatus: 'Unpaid',
-        totalAmount: '$350.00',
-        paymentMethod: 'Bank Transfer',
-    },
-    {
-        invoice: 'INV004',
-        paymentStatus: 'Paid',
-        totalAmount: '$450.00',
-        paymentMethod: 'Credit Card',
-    },
-    {
-        invoice: 'INV005',
-        paymentStatus: 'Paid',
-        totalAmount: '$550.00',
-        paymentMethod: 'PayPal',
-    },
-    {
-        invoice: 'INV006',
-        paymentStatus: 'Pending',
-        totalAmount: '$200.00',
-        paymentMethod: 'Bank Transfer',
-    },
-    {
-        invoice: 'INV007',
-        paymentStatus: 'Unpaid',
-        totalAmount: '$300.00',
-        paymentMethod: 'Credit Card',
-    },
-]);
 
 const dataInvoice: Ref<Invoice[]> = ref([]);
+const dataPagination = ref(1);
 
 const fetch = (page: number, pageSize: number) => {
     return new Promise<Invoice[]>((resolve, reject) => {
@@ -63,7 +24,7 @@ const fetch = (page: number, pageSize: number) => {
         const end = start + pageSize;
 
         setTimeout(() => {
-            resolve(invoices.value.slice(start, end));
+            resolve(invoices.slice(start, end));
         }, 100);
     });
 };
@@ -77,7 +38,22 @@ const fetchData = async ({ currentPage, currentPageSize }: PaginationFetch) => {
     }
 };
 
-const dataPagination = ref(1);
+const badgeRenderColor = (value: Invoice['paymentStatus']) => {
+    switch (value) {
+        case 'Paid':
+            return 'success';
+            break;
+        case 'Unpaid':
+            return 'destructive';
+            break;
+        case 'Pending':
+            return 'secondary';
+            break;
+
+        default:
+            break;
+    }
+};
 </script>
 
 <template>
@@ -91,19 +67,45 @@ const dataPagination = ref(1);
                         <TableHead>Menu</TableHead>
                         <TableHead class=""> Collected/Cashier </TableHead>
                         <TableHead class=""> Date & Time </TableHead>
-                        <TableHead class=""> Payment method </TableHead>
+                        <TableHead class="text-center">
+                            Payment method
+                        </TableHead>
+                        <TableHead class=""> Amount </TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     <TableRow
                         v-for="(invoice, index) in dataInvoice"
                         :key="index">
-                        <TableCell class="font-medium">
+                        <TableCell class="font-medium text-secondary">
                             {{ invoice.invoice }}
                         </TableCell>
-                        <TableCell>{{ invoice.paymentStatus }}</TableCell>
-                        <TableCell>{{ invoice.paymentMethod }}</TableCell>
-                        <TableCell class="">
+                        <TableCell>
+                            <Badge
+                                :variant="
+                                    badgeRenderColor(invoice.paymentStatus)
+                                ">
+                                {{ invoice.paymentStatus }}
+                            </Badge>
+                        </TableCell>
+                        <TableCell class="text-secondary">{{
+                            invoice.paymentMethod
+                        }}</TableCell>
+                        <TableCell class="text-secondary">
+                            {{ invoice.collected }}
+                        </TableCell>
+                        <TableCell class="text-secondary">
+                            {{ useDateFormat(invoice.date, 'DD MMMM YYYY') }}
+                        </TableCell>
+                        <TableCell class="text-center text-secondary">
+                            <div class="w-full px-5">
+                                <div
+                                    class="bg-secondary/10 font-medium p-1 rounded-md">
+                                    {{ invoice.paymentMethod }}
+                                </div>
+                            </div>
+                        </TableCell>
+                        <TableCell class="text-secondary">
                             {{ invoice.totalAmount }}
                         </TableCell>
                     </TableRow>
@@ -115,7 +117,7 @@ const dataPagination = ref(1);
             <Pagination
                 v-model="dataPagination"
                 :length="invoices.length"
-                :page-size="2"
+                :page-size="5"
                 class="justify-end"
                 @onChange="fetchData" />
         </CardFooter>

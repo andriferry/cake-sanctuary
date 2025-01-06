@@ -1,36 +1,6 @@
 <script setup lang="ts">
-const upsale = ref([
-    {
-        icon: 'noto:croissant',
-        title: 'Croissant',
-        amount: '150',
-    },
-    {
-        icon: 'noto:doughnut',
-        title: 'Doughnut',
-        amount: '200',
-    },
-    {
-        icon: 'noto:french-fries',
-        title: 'French Fries',
-        amount: '400',
-    },
-    {
-        icon: 'noto:hot-beverage',
-        title: 'Coffee',
-        amount: '130',
-    },
-    {
-        icon: 'noto:bagel',
-        title: 'Bagel',
-        amount: '200',
-    },
-    {
-        icon: 'noto:sandwich',
-        title: 'Sandwich',
-        amount: '50',
-    },
-]);
+import {upsaleData} from "@/@fake/data"
+const upsale = ref(upsaleData);
 </script>
 
 <template>
