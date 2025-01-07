@@ -95,7 +95,7 @@ const chartStyle = computed(() => {
                                         ? 'bg-primary/20 text-primary'
                                         : 'bg-slate-300/20 text-slate-400'
                                 "
-                                class="flex items-center rounded-lg p-3">
+                                class="flex items-center rounded-lg p-2">
                                 <Icon :name="data.icon" class="text-inherit" />
                             </div>
 

@@ -1,6 +1,10 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import type { Updater } from '@tanstack/vue-table';
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+
+export const breakpoints = useBreakpoints(breakpointsTailwind)
+
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }

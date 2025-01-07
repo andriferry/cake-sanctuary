@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { cn } from '@/lib/utils';
-import type { Emit, PaginationFetch, Props } from './types';
-import { paginationFunc } from './index';
 import { buttonVariants, variants } from '@/components/ui/button/index';
+import { cn } from '@/lib/utils';
+import { paginationFunc } from './index';
+import type { Emit, PaginationFetch, Props } from './types';
 
 const props = withDefaults(defineProps<Props>(), {
     length: 1,
@@ -14,6 +14,7 @@ const props = withDefaults(defineProps<Props>(), {
     nextIcon: '',
     visible: 10,
     activeClass: '',
+    size: 'default',
 });
 
 const emit = defineEmits<Emit>();
@@ -57,7 +58,10 @@ const pagesData = computed(() => {
 const btnActiveClass = (index: number) => {
     if (props.activeClass) {
         return currentPage.value === index
-            ? cn(props.activeClass, variants.rounded[props.rounded || 'default'])
+            ? cn(
+                  props.activeClass,
+                  variants.rounded[props.rounded || 'default']
+              )
             : buttonVariants({ variant: 'outline', rounded: props.rounded });
     } else {
         return currentPage.value === index
