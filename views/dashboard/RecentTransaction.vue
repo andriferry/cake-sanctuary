@@ -17,6 +17,7 @@ interface Invoice {
 
 const dataInvoice: Ref<Invoice[]> = ref([]);
 const dataPagination = ref(1);
+const { icons } = useAppConfig();
 
 const fetch = (page: number, pageSize: number) => {
     return new Promise<Invoice[]>((resolve, reject) => {
@@ -62,15 +63,19 @@ const badgeRenderColor = (value: Invoice['paymentStatus']) => {
             <Table>
                 <TableHeader>
                     <TableRow>
-                        <TableHead class="w-[100px]"> Order ID </TableHead>
-                        <TableHead>Receipt No</TableHead>
-                        <TableHead>Menu</TableHead>
-                        <TableHead class=""> Collected/Cashier </TableHead>
-                        <TableHead class=""> Date & Time </TableHead>
-                        <TableHead class="text-center">
-                            Payment method
+                        <TableHead class="">
+                            <!-- <div class="w-[100px]">Order ID</div> -->
+                            Order ID
                         </TableHead>
-                        <TableHead class=""> Amount </TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead class="">
+                            <!-- <div class="w-[190px]">Collected/Cashier</div> -->
+                            Collected/Cashier
+                        </TableHead>
+                        <TableHead class=""> Date & Time </TableHead>
+                        <TableHead class=""> Payment method </TableHead>
+                        <TableHead class="w-auto"> Amount </TableHead>
+                        <TableHead class="w-auto"> Action </TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -88,9 +93,9 @@ const badgeRenderColor = (value: Invoice['paymentStatus']) => {
                                 {{ invoice.paymentStatus }}
                             </Badge>
                         </TableCell>
-                        <TableCell class="text-secondary">{{
-                            invoice.paymentMethod
-                        }}</TableCell>
+                        <!-- <TableCell class="text-secondary">
+                            {{ invoice.paymentMethod }}
+                        </TableCell> -->
                         <TableCell class="text-secondary">
                             {{ invoice.collected }}
                         </TableCell>
@@ -107,6 +112,38 @@ const badgeRenderColor = (value: Invoice['paymentStatus']) => {
                         </TableCell>
                         <TableCell class="text-secondary">
                             {{ invoice.totalAmount }}
+                        </TableCell>
+                        <TableCell class="text-secondary">
+                            <div class="w-full flex">
+                                <Button
+                                    size="xs"
+                                    variant="plain"
+                                    class="px-0"
+                                    rounded="lg">
+                                    <Icon
+                                        :name="icons.eyeIcon"
+                                        class="w-4 text-secondary"></Icon>
+                                </Button>
+
+                                <Button
+                                    size="xs"
+                                    variant="plain"
+                                    class="px-0"
+                                    rounded="lg">
+                                    <Icon
+                                        :name="icons.edit"
+                                        class="w-4 text-secondary"></Icon>
+                                </Button>
+                                <Button
+                                    size="xs"
+                                    variant="plain"
+                                    class="px-0"
+                                    rounded="lg">
+                                    <Icon
+                                        :name="icons.delete"
+                                        class="w-4 text-secondary"></Icon>
+                                </Button>
+                            </div>
                         </TableCell>
                     </TableRow>
                 </TableBody>

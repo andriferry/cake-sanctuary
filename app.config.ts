@@ -39,14 +39,14 @@ export default defineAppConfig({
             icon: 'tabler:settings',
         },
     ],
-sidebar: {
+    sidebar: {
         ...sidebar,
     },
     icons: {
         dropdownRadioItem: 'tabler:circle-dot',
         radioItemIcon: 'tabler:circle-filled',
-        seePassword: 'mdi:eye-off-outline',
-        hidePassword: 'mdi:eye-outline',
+        eyeIconOff: 'mdi:eye-off-outline',
+        eyeIcon: 'mdi:eye-outline',
         sidebarTrigger: 'tabler:layout-sidebar',
         calendarEvent: 'tabler:calendar-event',
         chevronLeft: 'tabler:chevron-left',
@@ -55,6 +55,8 @@ sidebar: {
         doubleChevronRight: 'tabler:chevrons-right',
         chevronDown: 'tabler:chevron-down',
         chevronUp: 'tabler:chevron-up',
-        close: 'tabler:x'
+        close: 'tabler:x',
+        edit: 'tabler:edit',
+        delete: 'tabler:trash'
     },
 });

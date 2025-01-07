@@ -10,11 +10,11 @@ const form = ref<UserValidation>();
 
 const userName = ref('');
 const password = ref('');
-const seePassword = ref(false);
+const eyeIconOff = ref(false);
 
-const passWordField = computed(() =>  seePassword.value ? 'text' : 'password')
+const passWordField = computed(() => (eyeIconOff.value ? 'text' : 'password'));
 const passwordIcon = computed(() =>
-    seePassword.value ? icons.seePassword : icons.hidePassword
+    eyeIconOff.value ? icons.eyeIconOff : icons.eyeIcon
 );
 
 const onSubmit = async () => {
@@ -67,13 +67,11 @@ const onSubmit = async () => {
                                         label="Password"
                                         v-bind="field"
                                         :appendIcon="passwordIcon"
-                                        :type="
-                                            passWordField
-                                        "
+                                        :type="passWordField"
                                         :errorMessage="errors[0]"
                                         placeholder="Input your Password"
                                         @clickAppend="
-                                            seePassword = !seePassword
+                                            eyeIconOff = !eyeIconOff
                                         " />
                                     <FormMessage />
                                 </FormItem>
