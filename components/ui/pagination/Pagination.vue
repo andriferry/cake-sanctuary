@@ -125,7 +125,6 @@ onMounted(async () => {
             </Button>
 
             <Button
-                variant="outline"
                 disabled
                 :size="size"
                 :rounded="rounded"

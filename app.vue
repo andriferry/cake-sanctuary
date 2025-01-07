@@ -10,6 +10,17 @@ nuxtApp.hook('page:finish', () => {
 </script>
 <template>
     <div :class="{ 'h-screen overflow-hidden': loading }">
+        <div v-if="loading"
+            class="fixed h-screen transition duration-300 ease-in-out flex justify-center items-center top-0 w-full z-[1000] bg-background">
+            <div class="relative">
+                    <Icon
+                        name="tabler:circle"
+                        class="text-7xl font-bold text-accent"></Icon>
+                    <Icon
+                        name="tabler:loader-2"
+                        class="text-7xl text-primary animate-spin absolute font-bold inset-0"></Icon>
+                </div>
+        </div>
         <NuxtLoadingIndicator />
         <NuxtLayout class="font-inter">
             <NuxtPage />

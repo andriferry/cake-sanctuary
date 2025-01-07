@@ -3,8 +3,9 @@ const route = useRoute();
 </script>
 
 <template>
-    <div class="bg-yellow-500">
+    <div class="">
         {{ route.name }}
+
     </div>
 </template>
 
