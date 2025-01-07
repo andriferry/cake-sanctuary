@@ -1,7 +1,7 @@
 import { type ButtonVariants } from '@/components/ui/button/index';
 import type { HTMLAttributes } from 'vue';
 
-export interface Props {
+export interface PaginationProps {
     length?: number;
     nextIcon?: string;
     prevIcon?: string;

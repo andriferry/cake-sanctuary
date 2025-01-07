@@ -2,9 +2,9 @@
 import { buttonVariants, variants } from '@/components/ui/button/index';
 import { cn } from '@/lib/utils';
 import { paginationFunc } from './index';
-import type { Emit, PaginationFetch, Props } from './types';
+import type { Emit, PaginationFetch, PaginationProps } from './types';
 
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<PaginationProps>(), {
     length: 1,
     currentPage: 1,
     pageSize: 5,
@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<Props>(), {
     nextIcon: '',
     visible: 10,
     activeClass: '',
-    size: 'default',
+    size: 'icon',
 });
 
 const emit = defineEmits<Emit>();
@@ -62,11 +62,23 @@ const btnActiveClass = (index: number) => {
                   props.activeClass,
                   variants.rounded[props.rounded || 'default']
               )
-            : buttonVariants({ variant: 'outline', rounded: props.rounded });
+            : buttonVariants({
+                  variant: 'outline',
+                  rounded: props.rounded,
+                  size: props.size,
+              });
     } else {
         return currentPage.value === index
-            ? buttonVariants({ variant: 'default', rounded: props.rounded })
-            : buttonVariants({ variant: 'outline', rounded: props.rounded });
+            ? buttonVariants({
+                  variant: 'default',
+                  rounded: props.rounded,
+                  size: props.size,
+              })
+            : buttonVariants({
+                  variant: 'outline',
+                  rounded: props.rounded,
+                  size: props.size,
+              });
     }
 };
 onMounted(async () => {
@@ -90,8 +102,8 @@ onMounted(async () => {
             :disabled="isFirstPage"
             variant="outline"
             :rounded="rounded"
-            :class="cn('w-9 h-9 p-0', props.btnClass)"
-            size="icon">
+            :class="cn('p-0', props.btnClass)"
+            :size="size">
             <ArrowDoubleLeftIcon />
         </Button>
         <Button
@@ -99,26 +111,28 @@ onMounted(async () => {
             :disabled="isFirstPage"
             :rounded="rounded"
             variant="outline"
-            :class="cn('w-9 h-9 p-0', props.btnClass)"
-            size="icon">
+            :class="cn('p-0', props.btnClass)"
+            :size="size">
             <Icon :name="prevIconArrow" class="w-4"></Icon>
         </Button>
 
         <template v-for="index in pagesData">
             <Button
                 v-if="typeof index === 'number'"
-                :class="cn('w-9 h-9 p-0', props.btnClass, btnActiveClass(index))"
+                :class="cn('p-0', props.btnClass, btnActiveClass(index))"
                 @click="currentPage = Number(index)">
                 {{ index }}
             </Button>
 
             <Button
                 variant="outline"
-                disabled :rounded="rounded"
+                disabled
+                :size="size"
+                :rounded="rounded"
                 v-else
                 :class="
                     cn(
-                        'w-9 h-9 p-0 border-none shadow-none disabled:bg-transparent',
+                        'p-0 border-none shadow-none disabled:bg-transparent',
                         props.btnClass
                     )
                 ">
@@ -130,9 +144,9 @@ onMounted(async () => {
             variant="outline"
             :disabled="isLastPage"
             :rounded="rounded"
-            :class="cn('w-9 h-9 p-0', props.btnClass)"
+            :class="cn('p-0', props.btnClass)"
             @click="next"
-            size="icon">
+            :size="size">
             <Icon :name="nextIconArrow" class="w-4"></Icon>
         </Button>
         <Button
@@ -140,9 +154,9 @@ onMounted(async () => {
             @click="currentPage = pageCount"
             :disabled="isLastPage"
             :rounded="rounded"
-            :class="cn('w-9 h-9 p-0', props.btnClass)"
+            :class="cn('p-0', props.btnClass)"
             variant="outline"
-            size="icon">
+            :size="size">
             <ArrowDoubleRightIcon />
         </Button>
     </div>

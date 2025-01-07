@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { type Invoice, invoices } from '@/@fake/data';
-// import { breakpoints } from '@@/lib/utils';
+import type { PaginationProps } from '@@/components/ui/pagination/types';
+import { breakpoints } from '@@/lib/utils';
 
 interface PaginationFetch {
     currentPage: number;
@@ -49,21 +50,10 @@ const badgeRenderColor = (value: Invoice['paymentStatus']) => {
             break;
     }
 };
-
-
-// const paginationResponsive = computed( () => {
-//     return {
-
-//     }
-// })
-
-
-
 </script>
 
 <template>
     <Card title="Recent transaction" class="h-full">
-        <!-- {{ breakpoints }} -->
         <CardContent>
             <Table>
                 <TableHeader>
@@ -151,6 +141,7 @@ const badgeRenderColor = (value: Invoice['paymentStatus']) => {
                 v-model="dataPagination"
                 :length="invoices.length"
                 :page-size="5"
+                :size="breakpoints.greater('sm') ? 'icon' : 'xs'"
                 :visible="4"
                 class="justify-end"
                 @onChange="fetchData" />

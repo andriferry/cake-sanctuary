@@ -8,7 +8,7 @@ const annualYearly = computed(() => annualYearlyAnalutics);
 
 const chartData = computed(() => {
     return {
-        labels: months({ count: 12, section: 3 }),
+        labels: months({ count: 7, section: 3 }),
         datasets: [
             { data: annualYearly.value[currentOverview.value].chartData },
         ],
@@ -56,14 +56,6 @@ const chartOptions = computed(() => {
                 },
             },
         },
-    };
-});
-
-const chartStyle = computed(() => {
-    return {
-        height: '250px',
-        width: '100%',
-        position: 'relative',
     };
 });
 </script>
