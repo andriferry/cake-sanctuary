@@ -43,15 +43,28 @@ const menus = ref(menuCategory);
         </SlideGroup>
 
         <div class="grid grid-cols-12 mt-3 gap-3">
-            <div v-for="data in 12" :key="data" class="col-span-6 md:col-span-3">
-                <Card>
+            <!-- border-2 border-primary -->
+            <div
+                v-for="data in 12"
+                :key="data"
+                class="col-span-6 md:col-span-2">
+                <Card class="h-auto cursor-pointer ">
                     <figure
                         class="overflow-hidden rounded-ss-[inherit] rounded-se-[inherit] rounded-es-[unset] rounded-ee-[unset]">
-                        <img height="90"
-                            src="https://images.unsplash.com/photo-1465014925804-7b9ede58d0d7?q=80&w=3176&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            alt="Shoes" />
+                        <AspectRatio :ratio="16 / 14">
+                            <img
+                                class="object-cover w-full h-full"
+                                src="https://images.unsplash.com/photo-1465014925804-7b9ede58d0d7?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Shoes" />
+                        </AspectRatio>
                     </figure>
-                    <CardContent class="mt-3"> hello </CardContent>
+                    <CardContent class="mt-1 p-2 min-h-[40px]">
+                        <div class="font-medium">
+                            <h2 class="">Healthy Salad</h2>
+
+                            <span class="text-secondary text-sm">$ 10.00</span>
+                        </div>
+                    </CardContent>
                 </Card>
             </div>
         </div>
