@@ -28,7 +28,7 @@ const allMenus = computed(() => {
                                 : 'text-secondary/80'
                         ">
                         <div class="flex items-center gap-3">
-                            <Icon :name="data?.icon" class="size-7" />
+                            <Icon :name="data?.icon || ''" class="size-7" />
 
                             <h3 class="font-bold block md:hidden">
                                 {{ data.title }}
@@ -53,7 +53,7 @@ const allMenus = computed(() => {
             <div
                 v-for="(data, index) in allMenus"
                 :key="index"
-                class="col-span-6 md:col-span-2">
+                class="col-span-6 md:col-span-3 lg:col-span-2">
                 <Card class="h-auto cursor-pointer">
                     <figure
                         class="overflow-hidden rounded-ss-[inherit] rounded-se-[inherit] rounded-es-[unset] rounded-ee-[unset]">
