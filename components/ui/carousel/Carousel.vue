@@ -56,7 +56,6 @@ const onKeyDown = (event: KeyboardEvent) => {
 watch(currentPage, (value) => {
     model.value = value;
 });
-//@init-api="(val) => (emblaThumbnailApi = val)"
 </script>
 
 <template>

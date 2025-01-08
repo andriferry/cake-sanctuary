@@ -65,12 +65,12 @@ const chartOptions = computed(() => {
         title="Accepted orders"
         subtitle="Yearly Earnings Overview"
         class="h-full">
-        <CardContent class="flex flex-col justify-between gap-6">
+        <CardContent class="flex flex-col justify-between gap-4">
             <SlideGroup v-model="currentOverview">
-                <CarouselItem
+                <SlideGroupItem
                     v-for="(data, index) in annualYearly"
                     :key="index"
-                    class="pl-0 w-24 cursor-pointer">
+                    class="pl-0 cursor-pointer">
                     <Card
                         :class="
                             index === currentOverview
@@ -96,7 +96,7 @@ const chartOptions = computed(() => {
                             </span>
                         </CardContent>
                     </Card>
-                </CarouselItem>
+                </SlideGroupItem>
             </SlideGroup>
 
             <div class="mt-3">

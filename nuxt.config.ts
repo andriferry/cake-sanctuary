@@ -79,7 +79,7 @@ export default defineNuxtConfig({
         class: 'icon', // default <Icon> class applied
         mode: 'css', //
         serverBundle: {
-            collections: ['file-icons', 'tabler', 'noto'],
+            collections: ['file-icons', 'tabler', 'noto', 'icon-park-outline'],
             externalizeIconsJson: true,
         },
     },

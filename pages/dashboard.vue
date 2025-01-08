@@ -28,11 +28,10 @@ const buttonText = computed(() => {
 
     return getCurrentData?.title;
 });
-
 </script>
 
 <template>
-    <div class="grid lg:p-4 gap-3 grid-flow-row auto-rows-max">
+    <WrapperPages>
         <div class="flex justify-end gap-3">
             <Button append-icon="tabler:download" size="sm"> Export </Button>
 
@@ -86,7 +85,7 @@ const buttonText = computed(() => {
                 </DialogFooter>
             </DialogContent>
         </Dialog>
-    </div>
+    </WrapperPages>
 </template>
 
 <style scoped></style>
