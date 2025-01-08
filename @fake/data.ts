@@ -9,9 +9,12 @@ export interface Invoice {
 
 export interface Menu {
     title: string;
-    items: number;
-    icon: string;
-    value: string;
+    items?: number;
+    icon?: string;
+    value?: string;
+    img?: string;
+    price?: number,
+    category?: any[]
 }
 
 export const invoices: Invoice[] = [
@@ -989,18 +992,147 @@ export const menuCategory: Menu[] = [
         title: 'Fast Food',
         items: 12,
         icon: 'icon-park-outline:hamburger-one',
-        value: 'fast-food'
+        value: 'fast-food',
     },
     {
         title: 'Beverage',
         items: 12,
         icon: 'icon-park-outline:tea',
-        value:'beverage'
+        value: 'beverage',
     },
     {
-        title: 'Noodles',
+        title: 'Cake',
         items: 2,
-        icon: 'icon-park-outline:noodles',
-        value: 'noodles'
+        icon: 'icon-park-outline:cake-four',
+        value: 'cake',
+    },
+];
+
+export const menus: Menu[] = [
+    {
+        title: 'Sunny Side Egg',
+        img: 'https://images.unsplash.com/photo-1465014925804-7b9ede58d0d7',
+        price: 10,
+        category: ['healthy']
+    },
+    {
+        title: 'Pancake',
+        img: 'https://images.unsplash.com/photo-1499638309848-e9968540da83?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGJyZWFrZmFzdHxlbnwwfHwwfHx8MA%3D%3D',
+        price: 12,
+        category: ['healthy']
+    },
+    {
+        title: 'Roasted Turkey',
+        img: 'https://plus.unsplash.com/premium_photo-1663840345377-3813d196d5da?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bWFpbiUyMGNvdXJzZXxlbnwwfHwwfHx8MA%3D%3D',
+        price: 40,
+        category: ['main']
+    },
+    {
+        title: 'Steak Medium Rare',
+        img: 'https://images.unsplash.com/photo-1585903211716-c5633c87554d?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D',
+        price: 50,
+        category: ['main']
+    },
+    {
+        title: 'Salad',
+        img: 'https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2FsYWR8ZW58MHx8MHx8fDA%3D',
+        price: 30,
+        category: ['healthy']
+    },
+    {
+        title: 'Burger and French Fries',
+        img: 'https://images.unsplash.com/photo-1580554530913-3241d593478d?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bWFpbiUyMGZvb2R8ZW58MHx8MHx8fDA%3D',
+        price: 30,
+        category: ['fast-food']
+    },
+    {
+        title: 'Big Mac',
+        img: 'https://plus.unsplash.com/premium_photo-1683619761492-639240d29bb5?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZmFzdCUyMGZvb2R8ZW58MHx8MHx8fDA%3D',
+        price: 40,
+        category: ['fast-food']
+    },
+    {
+        title: 'Salmon Veggie',
+        img: 'https://images.unsplash.com/photo-1712334562767-5d366d0c40d9?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        price: 60,
+        category: ['main', 'healthy']
+    },
+    {
+        title: 'Potato Soup',
+        img: 'https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        price: 20,
+        category: ['main', 'healthy']
+    },
+    {
+        title: 'Sandwich Egg Boiled',
+        img: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=3110&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        price: 20,
+        category: ['main', 'healthy']
+    },
+    {
+        title: 'Spicy Lasagna',
+        img: 'https://images.unsplash.com/photo-1614961908593-2c6bf2bdf2ba?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        price: 25,
+        category: ['main']
+    },
+    {
+        title: 'Cheese Pasta',
+        img: 'https://images.unsplash.com/photo-1579631542720-3a87824fff86?q=80&w=3164&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        price: 35,
+        category: ['main']
+    },
+    {
+        title: 'Grilled Chiken Indonesian Sauce',
+        img: 'https://images.unsplash.com/photo-1584949602334-4e99f98286a9?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        price: 25,
+        category: ['main']
+    },
+    {
+        title: 'Beef Sandwich',
+        img: 'https://images.unsplash.com/photo-1481070414801-51fd732d7184?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        price: 20,
+        category: ['fast-food']
+    },
+    {
+        title: 'Choco Milk Shake',
+        img: 'https://images.unsplash.com/photo-1586985289071-36f62f55ce44?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        price: 15,
+        category: ['fast-food', 'beverage']
+    },
+    {
+        title: 'Strawberry Milk Shake Extra Ice Cream',
+        img: 'https://images.unsplash.com/photo-1571183911579-687725adb5f8?q=80&w=3118&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        price: 20,
+        category: ['fast-food', 'beverage']
+    },
+    {
+        title: 'Coffe Latte',
+        img: 'https://images.unsplash.com/photo-1689697971955-9368177cd795?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        price: 15,
+        category: [ 'beverage']
+    },
+    {
+        title: 'Americano Coffe',
+        img: 'https://images.unsplash.com/photo-1697021833011-1d695df02e6b?q=80&w=3164&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        price: 13,
+        category: [ 'beverage']
+    },
+    {
+        title: 'Cupcake',
+        img: 'https://images.unsplash.com/photo-1486427944299-d1955d23e34d?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        price: 5,
+        category: [ 'cake']
+    },
+    {
+        title: 'Dougnut',
+        img: 'https://images.unsplash.com/photo-1582293041079-7814c2f12063?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        price: 7,
+        category: [ 'cake']
+    },
+    {
+        title: '6 Mix Piece Dougnut',
+        img: 'https://images.unsplash.com/photo-1514517521153-1be72277b32f?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        price: 20,
+        category: [ 'cake']
     },
 ];

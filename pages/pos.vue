@@ -1,18 +1,25 @@
 <script setup lang="ts">
-import { menuCategory } from '@/@fake/data';
+import { menuCategory, menus, type Menu } from '@/@fake/data';
 
 const menuIndex = ref(0);
-const menus = ref(menuCategory);
+const menusCategory = ref(menuCategory);
+const allMenus = computed(() => {
+    let category = menusCategory.value[menuIndex.value].value;
+
+    return menus.filter((item: Menu) => {
+        if (item.category?.includes(category)) return item;
+    });
+});
 </script>
 
 <template>
     <WrapperPages class="min-h-screen">
         <SlideGroup v-model="menuIndex" class="mt-4">
-            <SlideGroupItem v-for="(data, index) in menus" :key="index">
+            <SlideGroupItem v-for="(data, index) in menusCategory" :key="index">
                 <Card
                     variant="flat"
                     :class="{ 'border-primary': index === menuIndex }"
-                    class="transition min-w-28 hover:border-primary duration-300 items-center border-2">
+                    class="transition min-w-[198px] hover:border-primary duration-300 items-center border-2">
                     <CardContent
                         class="py-2 md:py-4 flex flex-col hover:text-primary gap-1 px-3"
                         :class="
@@ -21,7 +28,7 @@ const menus = ref(menuCategory);
                                 : 'text-secondary/80'
                         ">
                         <div class="flex items-center gap-3">
-                            <Icon :name="data.icon" class="size-7" />
+                            <Icon :name="data?.icon" class="size-7" />
 
                             <h3 class="font-bold block md:hidden">
                                 {{ data.title }}
@@ -43,26 +50,32 @@ const menus = ref(menuCategory);
         </SlideGroup>
 
         <div class="grid grid-cols-12 mt-3 gap-3">
-            <!-- border-2 border-primary -->
             <div
-                v-for="data in 12"
-                :key="data"
+                v-for="(data, index) in allMenus"
+                :key="index"
                 class="col-span-6 md:col-span-2">
-                <Card class="h-auto cursor-pointer ">
+                <Card class="h-auto cursor-pointer">
                     <figure
                         class="overflow-hidden rounded-ss-[inherit] rounded-se-[inherit] rounded-es-[unset] rounded-ee-[unset]">
                         <AspectRatio :ratio="16 / 14">
                             <img
                                 class="object-cover w-full h-full"
-                                src="https://images.unsplash.com/photo-1465014925804-7b9ede58d0d7?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                                alt="Shoes" />
+                                :src="data.img"
+                                :alt="data.title" />
                         </AspectRatio>
                     </figure>
-                    <CardContent class="mt-1 p-2 min-h-[40px]">
+                    <CardContent class="mt-1 p-3 min-h-[40px]">
                         <div class="font-medium">
-                            <h2 class="">Healthy Salad</h2>
+                            <h2 class="truncate">{{ data.title }}</h2>
 
-                            <span class="text-secondary text-sm">$ 10.00</span>
+                            <span class="text-secondary text-sm">
+                                {{
+                                    data.price?.toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD',
+                                    })
+                                }}
+                            </span>
                         </div>
                     </CardContent>
                 </Card>
