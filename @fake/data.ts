@@ -6,6 +6,14 @@ export interface Invoice {
     date: string;
     collected: string;
 }
+
+export interface Menu {
+    title: string;
+    items: number;
+    icon: string;
+    value: string;
+}
+
 export const invoices: Invoice[] = [
     {
         invoice: 'INV27',
@@ -961,5 +969,38 @@ export const upsaleData = [
         icon: 'noto:cupcake',
         title: 'Cupcake',
         amount: '120',
+    },
+];
+
+export const menuCategory: Menu[] = [
+    {
+        title: 'Main Course',
+        items: 12,
+        icon: 'tabler:star-filled',
+        value: 'main',
+    },
+    {
+        title: 'Healthy Food',
+        items: 12,
+        icon: 'icon-park-outline:vegetables',
+        value: 'healthy',
+    },
+    {
+        title: 'Fast Food',
+        items: 12,
+        icon: 'icon-park-outline:hamburger-one',
+        value: 'fast-food'
+    },
+    {
+        title: 'Beverage',
+        items: 12,
+        icon: 'icon-park-outline:tea',
+        value:'beverage'
+    },
+    {
+        title: 'Noodles',
+        items: 2,
+        icon: 'icon-park-outline:noodles',
+        value: 'noodles'
     },
 ];
