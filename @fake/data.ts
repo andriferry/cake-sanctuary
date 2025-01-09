@@ -13,8 +13,15 @@ export interface Menu {
     icon?: string;
     value?: string;
     img?: string;
-    price?: number,
-    category?: any[]
+    price?: number;
+    category?: any[];
+    id: number;
+}
+
+export interface Cart {
+    id: string;
+    menuId: number;
+    qty: number;
 }
 
 export const invoices: Invoice[] = [
@@ -977,30 +984,35 @@ export const upsaleData = [
 
 export const menuCategory: Menu[] = [
     {
+        id: 0,
         title: 'Main Course',
         items: 0,
         icon: 'tabler:star-filled',
         value: 'main',
     },
     {
+        id: 1,
         title: 'Healthy Food',
         items: 0,
         icon: 'icon-park-outline:vegetables',
         value: 'healthy',
     },
     {
+        id: 2,
         title: 'Fast Food',
         items: 0,
         icon: 'icon-park-outline:hamburger-one',
         value: 'fast-food',
     },
     {
+        id: 3,
         title: 'Beverage',
         items: 0,
         icon: 'icon-park-outline:tea',
         value: 'beverage',
     },
     {
+        id: 4,
         title: 'Cake',
         items: 0,
         icon: 'icon-park-outline:cake-four',
@@ -1010,162 +1022,309 @@ export const menuCategory: Menu[] = [
 
 export const menus: Menu[] = [
     {
+        id: 0,
         title: 'Sunny Side Egg',
         img: 'https://images.unsplash.com/photo-1465014925804-7b9ede58d0d7',
         price: 10,
-        category: ['healthy']
+        category: ['healthy'],
     },
     {
+        id: 1,
         title: 'Pancake',
         img: 'https://images.unsplash.com/photo-1499638309848-e9968540da83?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGJyZWFrZmFzdHxlbnwwfHwwfHx8MA%3D%3D',
         price: 12,
-        category: ['healthy']
+        category: ['healthy'],
     },
     {
+        id: 2,
         title: 'Roasted Turkey',
         img: 'https://plus.unsplash.com/premium_photo-1663840345377-3813d196d5da?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bWFpbiUyMGNvdXJzZXxlbnwwfHwwfHx8MA%3D%3D',
         price: 40,
-        category: ['main']
+        category: ['main'],
     },
     {
+        id: 3,
         title: 'Steak Medium Rare',
         img: 'https://images.unsplash.com/photo-1585903211716-c5633c87554d?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D',
         price: 50,
-        category: ['main']
+        category: ['main'],
     },
     {
+        id: 4,
         title: 'Salad',
         img: 'https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2FsYWR8ZW58MHx8MHx8fDA%3D',
         price: 30,
-        category: ['healthy']
+        category: ['healthy'],
     },
     {
+        id: 5,
         title: 'Burger and French Fries',
         img: 'https://images.unsplash.com/photo-1580554530913-3241d593478d?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bWFpbiUyMGZvb2R8ZW58MHx8MHx8fDA%3D',
         price: 30,
-        category: ['fast-food']
+        category: ['fast-food'],
     },
     {
+        id: 6,
         title: 'Big Mac',
         img: 'https://plus.unsplash.com/premium_photo-1683619761492-639240d29bb5?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZmFzdCUyMGZvb2R8ZW58MHx8MHx8fDA%3D',
         price: 40,
-        category: ['fast-food']
+        category: ['fast-food'],
     },
     {
+        id: 7,
         title: 'Salmon Veggie',
         img: 'https://images.unsplash.com/photo-1712334562767-5d366d0c40d9?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         price: 60,
-        category: ['main', 'healthy']
+        category: ['main', 'healthy'],
     },
     {
+        id: 8,
         title: 'Potato Soup',
         img: 'https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         price: 20,
-        category: ['main', 'healthy']
+        category: ['main', 'healthy'],
     },
     {
+        id: 9,
         title: 'Sandwich Egg Boiled',
         img: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=3110&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         price: 20,
-        category: ['main', 'healthy']
+        category: ['main', 'healthy'],
     },
     {
+        id: 10,
         title: 'Spicy Lasagna',
         img: 'https://images.unsplash.com/photo-1614961908593-2c6bf2bdf2ba?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         price: 25,
-        category: ['main']
+        category: ['main'],
     },
     {
+        id: 11,
         title: 'Cheese Pasta',
         img: 'https://images.unsplash.com/photo-1579631542720-3a87824fff86?q=80&w=3164&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         price: 35,
-        category: ['main']
+        category: ['main'],
     },
     {
+        id: 12,
         title: 'Grilled Chiken Indonesian Sauce',
         img: 'https://images.unsplash.com/photo-1584949602334-4e99f98286a9?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         price: 25,
-        category: ['main']
+        category: ['main'],
     },
     {
+        id: 13,
         title: 'Beef Sandwich',
         img: 'https://images.unsplash.com/photo-1481070414801-51fd732d7184?q=80&w=3024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         price: 20,
-        category: ['fast-food']
+        category: ['fast-food'],
     },
     {
+        id: 14,
         title: 'Choco Milk Shake',
         img: 'https://images.unsplash.com/photo-1586985289071-36f62f55ce44?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         price: 15,
-        category: ['fast-food', 'beverage']
+        category: ['fast-food', 'beverage'],
     },
     {
+        id: 15,
         title: 'Strawberry Milk Shake Extra Ice Cream',
         img: 'https://images.unsplash.com/photo-1571183911579-687725adb5f8?q=80&w=3118&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         price: 20,
-        category: ['fast-food', 'beverage']
+        category: ['fast-food', 'beverage'],
     },
     {
+        id: 16,
         title: 'Coffe Latte',
         img: 'https://images.unsplash.com/photo-1689697971955-9368177cd795?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         price: 15,
-        category: [ 'beverage']
+        category: ['beverage'],
     },
     {
+        id: 17,
         title: 'Americano Coffe',
         img: 'https://images.unsplash.com/photo-1697021833011-1d695df02e6b?q=80&w=3164&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         price: 13,
-        category: [ 'beverage']
+        category: ['beverage'],
     },
     {
+        id: 18,
         title: 'Cupcake',
         img: 'https://images.unsplash.com/photo-1486427944299-d1955d23e34d?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         price: 5,
-        category: [ 'cake']
+        category: ['cake'],
     },
     {
+        id: 19,
         title: 'Dougnut',
         img: 'https://images.unsplash.com/photo-1582293041079-7814c2f12063?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         price: 7,
-        category: [ 'cake']
+        category: ['cake'],
     },
     {
+        id: 20,
         title: '6 Mix Piece Dougnut',
         img: 'https://images.unsplash.com/photo-1514517521153-1be72277b32f?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         price: 20,
-        category: [ 'cake']
+        category: ['cake'],
     },
     {
+        id: 21,
         title: 'Lemon Tea',
         img: 'https://images.unsplash.com/photo-1735989586413-3d3091b381e2?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fHw%3D',
         price: 5,
-        category: [ 'beverage']
+        category: ['beverage'],
     },
     {
+        id: 22,
         title: 'Lemon Tea X-Large',
         img: 'https://images.unsplash.com/photo-1683170275059-302acae79168?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8aWNlJTIwdGVhfGVufDB8fDB8fHww',
         price: 15,
-        category: [ 'beverage']
+        category: ['beverage'],
     },
     {
+        id: 23,
         title: 'Bagel',
         img: 'https://images.unsplash.com/photo-1542317979-b963a610f64d?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D',
         price: 20,
-        category: [ 'cake']
+        category: ['cake'],
     },
     {
+        id: 24,
         title: 'Bread Toast',
         img: 'https://images.unsplash.com/photo-1588484588657-0bbbee05132f?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         price: 23,
-        category: [ 'cake']
+        category: ['cake'],
     },
     {
+        id: 25,
         title: 'Croissant',
         img: 'https://images.unsplash.com/photo-1485597530180-9a3a2a4e0277?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGNyb2lzc2FudHxlbnwwfHwwfHx8MA%3D%3D',
         price: 27,
-        category: [ 'cake']
+        category: ['cake'],
     },
-
-
-    
 ];
+
+export const carts: Cart[] = [
+    {
+        id: '8203a6c4-22ea-4141-a5fc-788858d78f28',
+        menuId: 9,
+        qty: 4,
+    },
+    {
+        id: '5738f182-5baf-408f-a385-9cdcc4f0fe8f',
+        menuId: 11,
+        qty: 8,
+    },
+    {
+        id: 'd6476baa-2156-4bd0-81b0-333e702cc536',
+        menuId: 8,
+        qty: 2,
+    },
+    {
+        id: '0b83b560-9d34-4fc3-b6e8-add34d7ad0af',
+        menuId: 13,
+        qty: 4,
+    },
+    {
+        id: '6ef24f43-5c44-45a3-8ec2-08a78ecebd2a',
+        menuId: 1,
+        qty: 10,
+    },
+    {
+        id: '17d14d9f-a977-4ba5-b567-1dbf0074a1ac',
+        menuId: 24,
+        qty: 3,
+    },
+    {
+        id: 'ae4d4a1d-9f59-43a0-a8d0-69990a12e8a9',
+        menuId: 23,
+        qty: 1,
+    },
+    {
+        id: 'ed92db62-cb1d-4364-b6c9-55f6d45b8ac9',
+        menuId: 2,
+        qty: 3,
+    },
+    {
+        id: '40d5484c-ca85-49ef-b72b-3d90da5a1e94',
+        menuId: 19,
+        qty: 5,
+    },
+    {
+        id: 'bd704d6f-61c7-4f03-9f1e-27ded86b8265',
+        menuId: 1,
+        qty: 7,
+    },
+    {
+        id: '237e73d4-0cce-4158-a55e-b852b3f126a7',
+        menuId: 24,
+        qty: 6,
+    },
+    {
+        id: '1b1ea14e-af81-46a2-a9ad-93e8ea6a4b7a',
+        menuId: 23,
+        qty: 4,
+    },
+    {
+        id: '53bd9868-2918-4e12-bdca-fe7c55fbfa00',
+        menuId: 0,
+        qty: 3,
+    },
+    {
+        id: 'afc7c182-dc6b-4110-92f8-ed8161fccb5e',
+        menuId: 18,
+        qty: 2,
+    },
+    {
+        id: '9e717592-019b-4ac9-b7df-fa50f4c6acce',
+        menuId: 17,
+        qty: 0,
+    },
+    {
+        id: '5aa199aa-59b0-4aed-a1f4-d2c7bdee845a',
+        menuId: 19,
+        qty: 10,
+    },
+    {
+        id: '18a8cfbd-75e3-43bf-8f06-eccabe78806d',
+        menuId: 4,
+        qty: 8,
+    },
+    {
+        id: '3c887ce2-b089-4159-922c-71fecb9e7bb5',
+        menuId: 12,
+        qty: 7,
+    },
+    {
+        id: 'd5112e7d-b308-432b-bcb2-4c9f72a1a8cc',
+        menuId: 19,
+        qty: 4,
+    },
+    {
+        id: '5508ec96-945c-4d10-ada2-e8915fd74c3d',
+        menuId: 6,
+        qty: 2,
+    },
+];
+
+
+// import { faker } from '@faker-js/faker';
+
+// const dataCart = ref([])
+
+// onMounted(() => {
+    
+//     for (let index = 0; index < 20; index++) {
+//         let dataFaker = {
+//             id: faker.string.uuid(),
+//             menuId: faker.helpers.arrayElement([
+//                 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+//                 18, 19, 20, 21, 22, 23, 24, 25,
+//             ]),
+//             qty: faker.number.int({max: 10}),
+//         };
+
+//         dataCart.value.push(dataFaker);
+//     }
+// });

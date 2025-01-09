@@ -65,7 +65,6 @@ export default defineNuxtConfig({
         },
     },
 
-
     modules: [
         '@vueuse/nuxt',
         '@nuxtjs/tailwindcss',
@@ -74,7 +73,11 @@ export default defineNuxtConfig({
         //   '@nuxtjs/seo',
         'nuxt-auth-utils',
         '@nuxt/icon',
+        '@pinia/nuxt',
     ],
+    pinia: {
+        storesDirs: ['./stores/**'],
+    },
     icon: {
         class: 'icon', // default <Icon> class applied
         mode: 'css', //

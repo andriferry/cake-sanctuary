@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { menuCategory, menus, type Menu } from '@/@fake/data';
 
+// const carts = useCartStore()
+
 const menuIndex = ref(0);
+
 const menusCategory = computed(() => {
     return menuCategory.map((allMenu: Menu) => {
         let getAllMenu = menus.filter((dataItem: Menu) => {
@@ -20,6 +23,8 @@ const allMenus = computed(() => {
         if (item.category?.includes(category)) return item;
     });
 });
+
+
 </script>
 
 <template>
@@ -60,17 +65,15 @@ const allMenus = computed(() => {
         </SlideGroup>
 
         <div class="grid grid-cols-12 mt-3 gap-3">
-
-
             <Tooltip v-for="(data, index) in allMenus" :key="index">
                 <TooltipTrigger class="col-span-6 md:col-span-3 lg:col-span-2">
                     <Card
-                        class="h-auto group cursor-pointer hover:border-2 transition-all duration-300 ease-in-out border-primary">
+                        class="h-auto group cursor-pointer hover:border-4 transition-all duration-300 ease-in-out border-primary">
                         <figure
                             class="overflow-hidden rounded-ss-[inherit] rounded-se-[inherit] rounded-es-[unset] rounded-ee-[unset]">
                             <AspectRatio :ratio="16 / 14">
                                 <img
-                                    class="object-cover w-full group-hover:scale-105 transition-all duration-300 ease-in-out h-full"
+                                    class="object-cover w-full group-hover:scale-110 transition-all duration-300 ease-in-out h-full"
                                     :src="data.img"
                                     :alt="data.title" />
                             </AspectRatio>
