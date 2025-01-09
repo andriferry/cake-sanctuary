@@ -2,9 +2,9 @@
     <DropdownMenu>
         <DropdownMenuTrigger as-child>
             <Button variant="plain" size="icon">
-                <Icon name="tabler:bell" class="text-secondary" />
+                <Icon name="tabler:shopping-cart" class="text-secondary" />
 
-                <Indicator pingAnimate content="5" />
+                <Indicator content="5" />
             </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" class="text-secondary w-96 p-0">

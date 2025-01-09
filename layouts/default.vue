@@ -1,5 +1,3 @@
-<script setup lang="ts"></script>
-
 <template>
     <SidebarProvider>
         <NavigationDrawer />
@@ -15,12 +13,11 @@
                     </h2>
                 </div>
 
-                <ClientOnly>
-                    <div class="mr-4 flex justify-center">
+                <div class="mr-4 flex justify-center">
                         <Alert />
+                        <Cart />
                         <ThemeSwitcher />
                     </div>
-                </ClientOnly>
             </header>
             <div class="flex flex-1 flex-col gap-4 p-4 pt-0">
                 <slot />
