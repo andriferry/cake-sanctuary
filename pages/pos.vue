@@ -60,36 +60,44 @@ const allMenus = computed(() => {
         </SlideGroup>
 
         <div class="grid grid-cols-12 mt-3 gap-3">
-            <div
-                v-for="(data, index) in allMenus"
-                :key="index"
-                class="col-span-6 md:col-span-3 lg:col-span-2">
-                <Card class="h-auto cursor-pointer">
-                    <figure
-                        class="overflow-hidden rounded-ss-[inherit] rounded-se-[inherit] rounded-es-[unset] rounded-ee-[unset]">
-                        <AspectRatio :ratio="16 / 14">
-                            <img
-                                class="object-cover w-full h-full"
-                                :src="data.img"
-                                :alt="data.title" />
-                        </AspectRatio>
-                    </figure>
-                    <CardContent class="mt-1 p-3 min-h-[40px]">
-                        <div class="font-medium">
-                            <h2 class="truncate">{{ data.title }}</h2>
 
-                            <span class="text-secondary text-sm">
-                                {{
-                                    data.price?.toLocaleString('en-US', {
-                                        style: 'currency',
-                                        currency: 'USD',
-                                    })
-                                }}
-                            </span>
-                        </div>
-                    </CardContent>
-                </Card>
-            </div>
+
+            <Tooltip v-for="(data, index) in allMenus" :key="index">
+                <TooltipTrigger class="col-span-6 md:col-span-3 lg:col-span-2">
+                    <Card
+                        class="h-auto group cursor-pointer hover:border-2 transition-all duration-300 ease-in-out border-primary">
+                        <figure
+                            class="overflow-hidden rounded-ss-[inherit] rounded-se-[inherit] rounded-es-[unset] rounded-ee-[unset]">
+                            <AspectRatio :ratio="16 / 14">
+                                <img
+                                    class="object-cover w-full group-hover:scale-105 transition-all duration-300 ease-in-out h-full"
+                                    :src="data.img"
+                                    :alt="data.title" />
+                            </AspectRatio>
+                        </figure>
+                        <CardContent
+                            class="mt-1 p-3 text-start min-h-[40px] group-hover:text-primary">
+                            <div class="font-medium">
+                                <h2 class="truncate">{{ data.title }}</h2>
+
+                                <span
+                                    class="text-secondary group-hover:text-primary text-sm">
+                                    {{
+                                        data.price?.toLocaleString('en-US', {
+                                            style: 'currency',
+                                            currency: 'USD',
+                                        })
+                                    }}
+                                </span>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TooltipTrigger>
+
+                <TooltipContent>
+                    <p>{{ data.title }}</p>
+                </TooltipContent>
+            </Tooltip>
         </div>
     </WrapperPages>
 </template>
