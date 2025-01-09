@@ -978,31 +978,31 @@ export const upsaleData = [
 export const menuCategory: Menu[] = [
     {
         title: 'Main Course',
-        items: 12,
+        items: 0,
         icon: 'tabler:star-filled',
         value: 'main',
     },
     {
         title: 'Healthy Food',
-        items: 12,
+        items: 0,
         icon: 'icon-park-outline:vegetables',
         value: 'healthy',
     },
     {
         title: 'Fast Food',
-        items: 12,
+        items: 0,
         icon: 'icon-park-outline:hamburger-one',
         value: 'fast-food',
     },
     {
         title: 'Beverage',
-        items: 12,
+        items: 0,
         icon: 'icon-park-outline:tea',
         value: 'beverage',
     },
     {
         title: 'Cake',
-        items: 2,
+        items: 0,
         icon: 'icon-park-outline:cake-four',
         value: 'cake',
     },
@@ -1135,4 +1135,37 @@ export const menus: Menu[] = [
         price: 20,
         category: [ 'cake']
     },
+    {
+        title: 'Lemon Tea',
+        img: 'https://images.unsplash.com/photo-1735989586413-3d3091b381e2?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fHw%3D',
+        price: 5,
+        category: [ 'beverage']
+    },
+    {
+        title: 'Lemon Tea X-Large',
+        img: 'https://images.unsplash.com/photo-1683170275059-302acae79168?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8aWNlJTIwdGVhfGVufDB8fDB8fHww',
+        price: 15,
+        category: [ 'beverage']
+    },
+    {
+        title: 'Bagel',
+        img: 'https://images.unsplash.com/photo-1542317979-b963a610f64d?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D',
+        price: 20,
+        category: [ 'cake']
+    },
+    {
+        title: 'Bread Toast',
+        img: 'https://images.unsplash.com/photo-1588484588657-0bbbee05132f?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        price: 23,
+        category: [ 'cake']
+    },
+    {
+        title: 'Croissant',
+        img: 'https://images.unsplash.com/photo-1485597530180-9a3a2a4e0277?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGNyb2lzc2FudHxlbnwwfHwwfHx8MA%3D%3D',
+        price: 27,
+        category: [ 'cake']
+    },
+
+
+    
 ];

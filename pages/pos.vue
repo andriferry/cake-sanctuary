@@ -2,7 +2,17 @@
 import { menuCategory, menus, type Menu } from '@/@fake/data';
 
 const menuIndex = ref(0);
-const menusCategory = ref(menuCategory);
+const menusCategory = computed(() => {
+    return menuCategory.map((allMenu: Menu) => {
+        let getAllMenu = menus.filter((dataItem: Menu) => {
+            if (dataItem.category?.includes(allMenu.value)) return dataItem;
+        });
+        return {
+            ...allMenu,
+            items: getAllMenu.length,
+        };
+    });
+});
 const allMenus = computed(() => {
     let category = menusCategory.value[menuIndex.value].value;
 
