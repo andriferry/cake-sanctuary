@@ -2,6 +2,7 @@
 import { convertCurrency } from '@@/lib/utils';
 
 const { getAllProduct } = useCartStore();
+const { icons } = useAppConfig();
 
 onMounted(() => {
     console.log(getAllProduct);
@@ -51,7 +52,7 @@ onMounted(() => {
                                             <div
                                                 class="flex justify-start items-start flex-col">
                                                 <h6
-                                                    class="font-medium truncate text-base">
+                                                    class="font-medium w-52 text-start truncate text-base">
                                                     {{ data?.title }}
                                                 </h6>
                                                 <span
@@ -83,7 +84,11 @@ onMounted(() => {
                                             </div>
                                         </div>
 
-                                        <small class="text-xs">$ 20.00</small>
+                                        <Button size="icon" variant="plain">
+                                            <Icon
+                                                :name="icons.delete"
+                                                class="text-destructive size-5" />
+                                        </Button>
                                     </div>
                                 </Button>
                             </li>

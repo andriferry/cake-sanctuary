@@ -1251,21 +1251,7 @@ export const carts: Cart[] = [
         menuId: 19,
         qty: 5,
     },
-    {
-        id: 'bd704d6f-61c7-4f03-9f1e-27ded86b8265',
-        menuId: 1,
-        qty: 7,
-    },
-    {
-        id: '237e73d4-0cce-4158-a55e-b852b3f126a7',
-        menuId: 24,
-        qty: 6,
-    },
-    {
-        id: '1b1ea14e-af81-46a2-a9ad-93e8ea6a4b7a',
-        menuId: 23,
-        qty: 4,
-    },
+
     {
         id: '53bd9868-2918-4e12-bdca-fe7c55fbfa00',
         menuId: 0,
@@ -1282,11 +1268,6 @@ export const carts: Cart[] = [
         qty: 0,
     },
     {
-        id: '5aa199aa-59b0-4aed-a1f4-d2c7bdee845a',
-        menuId: 19,
-        qty: 10,
-    },
-    {
         id: '18a8cfbd-75e3-43bf-8f06-eccabe78806d',
         menuId: 4,
         qty: 8,
@@ -1295,11 +1276,6 @@ export const carts: Cart[] = [
         id: '3c887ce2-b089-4159-922c-71fecb9e7bb5',
         menuId: 12,
         qty: 7,
-    },
-    {
-        id: 'd5112e7d-b308-432b-bcb2-4c9f72a1a8cc',
-        menuId: 19,
-        qty: 4,
     },
     {
         id: '5508ec96-945c-4d10-ada2-e8915fd74c3d',
