@@ -1,22 +1,39 @@
-interface Cart {
-    id: string,
-    menuId: number, 
-    qty: number
-}
+import { type Cart, carts, menus, type Menu } from '@/@fake/data';
 
-export const useCartStore = defineStore( 'cart', () => {
-    const carts = ref<number[]>([0, 2, 4, 5, 6, 8, 9, 10, 11]);
+export const useCartStore = defineStore('cart', () => {
+    const dataCart = ref<Cart[]>(carts);
+
+    const getAllProduct = computed(() => {
+        // console.log(dataCart.value);
+        return dataCart.value.map((item: Cart) => {
+            let product = menus.find(
+                (dataProduct: Menu) => dataProduct.id === item.menuId
+            );
+
+            if (product) {
+                let obj = {
+                    ...item,
+                    ...product
+                };
+
+                return obj;
+            }
+        });
+
+        // return 'Hello';
+    });
 
     const addCartItem = (value: number) => {
-        carts.value.push(value);
+        //carts.value.push(value);
     };
 
     const removeCartItem = (value: number) => {
-        carts.value.slice(value, 1);
+        //carts.value.slice(value, 1);
     };
 
     return {
-        carts,
+        dataCart,
+        getAllProduct,
         addCartItem,
         removeCartItem,
     };

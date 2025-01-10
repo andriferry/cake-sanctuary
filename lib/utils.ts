@@ -1,9 +1,9 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import type { Updater } from '@tanstack/vue-table';
-import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 
-export const breakpoints = useBreakpoints(breakpointsTailwind)
+export const breakpoints = useBreakpoints(breakpointsTailwind);
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -72,4 +72,15 @@ export const hslToHex = (h: number, s: number, l: number) => {
             .padStart(2, '0'); // convert to Hex and prefix "0" if needed
     };
     return `#${f(0)}${f(8)}${f(4)}`;
+};
+
+export const convertCurrency = (
+    price: number,
+    lang = 'en-US',
+    currency = 'USD'
+) => {
+    return price.toLocaleString(lang, {
+        style: 'currency',
+        currency,
+    });
 };

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { menuCategory, menus, type Menu } from '@/@fake/data';
-
-// const carts = useCartStore()
+import { convertCurrency } from '@@/lib/utils';
 
 const menuIndex = ref(0);
 
@@ -16,15 +15,13 @@ const menusCategory = computed(() => {
         };
     });
 });
-const allMenus = computed(() => {
+const allMenus = computed<Menu[]>(() => {
     let category = menusCategory.value[menuIndex.value].value;
 
     return menus.filter((item: Menu) => {
         if (item.category?.includes(category)) return item;
     });
 });
-
-
 </script>
 
 <template>
@@ -84,13 +81,9 @@ const allMenus = computed(() => {
                                 <h2 class="truncate">{{ data.title }}</h2>
 
                                 <span
+                                    v-if="data.price"
                                     class="text-secondary group-hover:text-primary text-sm">
-                                    {{
-                                        data.price?.toLocaleString('en-US', {
-                                            style: 'currency',
-                                            currency: 'USD',
-                                        })
-                                    }}
+                                    {{ convertCurrency(data.price) }}
                                 </span>
                             </div>
                         </CardContent>
