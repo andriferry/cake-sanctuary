@@ -5,7 +5,7 @@ const { getAllProduct } = useCartStore();
 const { icons } = useAppConfig();
 
 onMounted(() => {
-    console.log(getAllProduct);
+    //console.log(getAllProduct);
 });
 </script>
 
