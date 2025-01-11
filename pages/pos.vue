@@ -23,8 +23,7 @@ const allMenus = computed<Menu[]>(() => {
     });
 });
 
-
-const sheetData = ref(false)
+const sheetData = ref(false);
 </script>
 
 <template>
@@ -99,41 +98,24 @@ const sheetData = ref(false)
             </Tooltip>
         </div>
 
-        <Button variant="outline" @click="sheetData = !sheetData"> Open {{ sheetData }} </Button>
-        <Sheet v-model="sheetData">
-            <SheetContent>
-                <SheetHeader>
-                    <SheetTitle>Edit profile</SheetTitle>
-                    <SheetDescription>
-                        Make changes to your profile here. Click save when
-                        you're done.
-                    </SheetDescription>
-                </SheetHeader>
-                <div class="grid gap-4 py-4">
-                    <div class="grid grid-cols-4 items-center gap-4">
-                        <Label for="name" class="text-right"> Name </Label>
-                        <Input
-                            id="name"
-                            value="Pedro Duarte"
-                            class="col-span-3" />
+        <!-- <div class="">
+            <ResizablePanelGroup
+                id="handle-demo-group-1"
+                direction="horizontal"
+                class="min-h-[200px] max-w-md rounded-lg border">
+                <ResizablePanel id="handle-demo-panel-1" :default-size="100">
+                    <div class="flex h-full items-center justify-center p-6">
+                        <span class="font-semibold">Sidebar</span>
                     </div>
-                    <div class="grid grid-cols-4 items-center gap-4">
-                        <Label for="username" class="text-right">
-                            Username
-                        </Label>
-                        <Input
-                            id="username"
-                            value="@peduarte"
-                            class="col-span-3" />
+                </ResizablePanel>
+                <ResizableHandle with-handle icon="tabler:shopping-cart" />
+                <ResizablePanel id="handle-demo-panel-2" :default-size="0">
+                    <div class="flex h-full items-center justify-center p-6">
+                        <span class="font-semibold">Content</span>
                     </div>
-                </div>
-                <SheetFooter>
-                    <SheetClose as-child>
-                        <Button type="submit"> Save changes </Button>
-                    </SheetClose>
-                </SheetFooter>
-            </SheetContent>
-        </Sheet>
+                </ResizablePanel>
+            </ResizablePanelGroup>
+        </div> -->
     </WrapperPages>
 </template>
 

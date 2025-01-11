@@ -57,6 +57,7 @@ export default defineAppConfig({
         chevronUp: 'tabler:chevron-up',
         close: 'tabler:x',
         edit: 'tabler:edit',
-        delete: 'tabler:trash'
+        delete: 'tabler:trash',
+        dragHandle: 'tabler:grip-vertical'
     },
 });
