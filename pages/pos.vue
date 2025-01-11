@@ -32,14 +32,18 @@ const sheetData = ref(false);
             <SlideGroupItem v-for="(data, index) in menusCategory" :key="index">
                 <Card
                     variant="flat"
-                    :class="{ 'border-primary': index === menuIndex }"
-                    class="transition min-w-[198px] hover:border-primary duration-300 items-center border-2">
+                    :class="
+                        index === menuIndex
+                            ? 'bg-primary border-2 border-primary'
+                            : 'border-2 hover:border-primary'
+                    "
+                    class="transition min-w-[198px] duration-300 items-center">
                     <CardContent
-                        class="py-2 md:py-4 flex flex-col hover:text-primary gap-1 px-3"
+                        class="py-2 md:py-4 flex flex-col gap-1 px-3"
                         :class="
                             index === menuIndex
-                                ? 'text-primary'
-                                : 'text-secondary/80'
+                                ? 'text-white'
+                                : 'text-secondary/80 hover:text-primary'
                         ">
                         <div class="flex items-center gap-3">
                             <Icon :name="data?.icon || ''" class="size-7" />
@@ -65,7 +69,7 @@ const sheetData = ref(false);
 
         <div class="grid grid-cols-12 mt-3 gap-3">
             <Tooltip v-for="(data, index) in allMenus" :key="index">
-                <TooltipTrigger class="col-span-6 md:col-span-3 lg:col-span-2">
+                <TooltipTrigger class="col-span-6 md:col-span-3 lg:col-span-3">
                     <Card
                         class="h-auto group cursor-pointer hover:border-4 transition-all duration-300 ease-in-out border-primary">
                         <figure
@@ -97,25 +101,6 @@ const sheetData = ref(false);
                 </TooltipContent>
             </Tooltip>
         </div>
-
-        <!-- <div class="">
-            <ResizablePanelGroup
-                id="handle-demo-group-1"
-                direction="horizontal"
-                class="min-h-[200px] max-w-md rounded-lg border">
-                <ResizablePanel id="handle-demo-panel-1" :default-size="100">
-                    <div class="flex h-full items-center justify-center p-6">
-                        <span class="font-semibold">Sidebar</span>
-                    </div>
-                </ResizablePanel>
-                <ResizableHandle with-handle icon="tabler:shopping-cart" />
-                <ResizablePanel id="handle-demo-panel-2" :default-size="0">
-                    <div class="flex h-full items-center justify-center p-6">
-                        <span class="font-semibold">Content</span>
-                    </div>
-                </ResizablePanel>
-            </ResizablePanelGroup>
-        </div> -->
     </WrapperPages>
 </template>
 

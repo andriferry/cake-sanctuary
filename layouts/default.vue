@@ -1,9 +1,6 @@
 <template>
     <SidebarProvider>
-        <ClientOnly>
-            <NavigationDrawer />
-        </ClientOnly>
-        <!-- <NavigationDrawer /> -->
+        <NavigationDrawer />
         <SidebarInset>
             <header
                 class="flex h-16 shrink-0 items-center justify-between gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
@@ -26,5 +23,17 @@
                 <slot />
             </div>
         </SidebarInset>
+        <div class="h-screen w-[--sidebar-width]">
+            <div class="border-b p-4 flex items-center">
+                <div class="font-medium w-full">
+                    <p class="truncate">Current Order</p>
+
+                    <span class="text-secondary font-medium text-xs">
+                        #123456
+                    </span>
+                </div>
+            </div>
+            <CartDrawer />
+        </div>
     </SidebarProvider>
 </template>

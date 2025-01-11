@@ -1,39 +1,34 @@
 <script setup lang="ts">
-import VerticalNavLink from '@/components/layout/vertical/VerticalNavLink.vue';
-import VerticalNavTitle from '@/components/layout/vertical/VerticalNavTitle.vue';
-
-interface NavData {
-    heading?: string;
-    title?: string;
-    to?: string;
-    icon?: string;
-    childrem?: any[];
-}
-
-const { navigations } = useAppConfig();
-
-const isComponent = (component: NavData) => {
-    if ('heading' in component) {
-        return VerticalNavTitle;
-    }
-
-    return VerticalNavLink;
-};
+const tabs = ref([
+    {
+        title: 'Dine In',
+        value: 'dine-in',
+        icon: 'tabler:building-store',
+    },
+    {
+        title: 'Take Away',
+        value: 'take-away',
+        icon: 'tabler:basket',
+    },
+]);
 </script>
 
 <template>
-    <Sidebar side="right" class="!border-none">
-        <SidebarContent>
-            <SidebarGroup class="">
-                <SidebarMenu>
-                    <component
-                        v-for="(nav, index) in navigations"
-                        :key="index"
-                        v-bind="{ ...nav }"
-                        :is="isComponent(nav)" />
-                </SidebarMenu>
-            </SidebarGroup>
-        </SidebarContent>
-        <VerticalNavFooter />
-    </Sidebar>
+    <div class="mt-3 px-2 flex flex-col gap-3">
+        <FormControl
+            modelValue="John Doe"
+            prepend-icon="tabler:user"
+            placeholder="Input Customer Name" />
+        <Tabs default-value="dine-in" class="w-full">
+            <TabsList class="grid w-full bg-transparent gap-3 grid-cols-2">
+                <TabsTrigger
+                    v-for="(dataTabs, index) in tabs"
+                    :key="index"
+                    :value="dataTabs.value"
+                    :prepend-icon="dataTabs.icon">
+                    <span>{{ dataTabs.title }}</span>
+                </TabsTrigger>
+            </TabsList>
+        </Tabs>
+    </div>
 </template>
