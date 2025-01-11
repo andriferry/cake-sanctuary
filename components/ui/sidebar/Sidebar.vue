@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Sheet from '@/components/ui/sheet/Sheet.vue';
 import SheetContent from '@/components/ui/sheet/SheetContent.vue';
 import { cn } from '@/lib/utils';
 import type { HTMLAttributes } from 'vue';
@@ -40,7 +39,7 @@ const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
 
     <Sheet
         v-else-if="isMobile"
-        :open="openMobile"
+        v-model="openMobile"
         v-bind="$attrs"
         @update:open="setOpenMobile">
         <SheetContent

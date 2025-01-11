@@ -1,6 +1,9 @@
 <template>
     <SidebarProvider>
-        <NavigationDrawer />
+        <ClientOnly>
+            <NavigationDrawer />
+        </ClientOnly>
+        <!-- <NavigationDrawer /> -->
         <SidebarInset>
             <header
                 class="flex h-16 shrink-0 items-center justify-between gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
@@ -14,10 +17,10 @@
                 </div>
 
                 <div class="mr-4 flex justify-center">
-                        <Alert />
-                        <Cart />
-                        <ThemeSwitcher />
-                    </div>
+                    <Alert />
+                    <Cart />
+                    <ThemeSwitcher />
+                </div>
             </header>
             <div class="flex flex-1 flex-col gap-4 p-4 pt-0">
                 <slot />
