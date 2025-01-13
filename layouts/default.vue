@@ -23,17 +23,6 @@
                 <slot />
             </div>
         </SidebarInset>
-        <div class="h-screen w-[--sidebar-width]">
-            <div class="border-b p-4 flex items-center">
-                <div class="font-medium w-full">
-                    <p class="truncate">Current Order</p>
-
-                    <span class="text-secondary font-medium text-xs">
-                        #123456
-                    </span>
-                </div>
-            </div>
-            <CartDrawer />
-        </div>
+        <CartDrawer />
     </SidebarProvider>
 </template>
