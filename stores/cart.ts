@@ -3,8 +3,21 @@ import { type Cart, carts, menus, type Menu } from '@/@fake/data';
 export const useCartStore = defineStore('cart', () => {
     const dataCart = ref<Cart[]>(carts);
 
+    const order = ref({
+        orderNumber: '1234',
+        orderStatus: 'dine-in',
+        tables: ['TO1'],
+        paperBag: false,
+        orderProduct: [
+            {
+                id: 21,
+                qty: 2,
+            },
+        ],
+        paymentMethod: ''
+    });
+
     const getAllProduct = computed(() => {
-        // console.log(dataCart.value);
         return dataCart.value.map((item: Cart) => {
             let product = menus.find(
                 (dataProduct: Menu) => dataProduct.id === item.menuId
@@ -13,14 +26,12 @@ export const useCartStore = defineStore('cart', () => {
             if (product) {
                 let obj = {
                     ...item,
-                    ...product
+                    ...product,
                 };
 
                 return obj;
             }
         });
-
-        // return 'Hello';
     });
 
     const addCartItem = (value: number) => {
@@ -32,6 +43,7 @@ export const useCartStore = defineStore('cart', () => {
     };
 
     return {
+        order,
         dataCart,
         getAllProduct,
         addCartItem,

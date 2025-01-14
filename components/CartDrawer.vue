@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { tables, type Table } from '@@/@fake/data';
-const tableDialog = ref(true);
+const tableDialog = ref(false);
 const dataTable = ref(tables);
+const tab = ref('take-away');
 const tabs = ref([
     {
         title: 'Dine In',
@@ -15,15 +16,11 @@ const tabs = ref([
     },
 ]);
 
-
 const eventClickTable = (event: Table['status']) => {
-    if ( event === 'available' ) {
-        return 'click'
-    } else return null
-}
-
-
-
+    if (event === 'available') {
+        return 'click';
+    } else return null;
+};
 </script>
 
 <template>
@@ -45,7 +42,7 @@ const eventClickTable = (event: Table['status']) => {
 
             <Label> Where will you eat: </Label>
 
-            <Tabs default-value="dine-in" class="w-full">
+            <Tabs v-model="tab" class="w-full">
                 <TabsList class="grid w-full bg-transparent gap-3 grid-cols-2">
                     <TabsTrigger
                         v-for="(dataTabs, index) in tabs"
@@ -55,22 +52,33 @@ const eventClickTable = (event: Table['status']) => {
                         <span>{{ dataTabs.title }}</span>
                     </TabsTrigger>
                 </TabsList>
+                <TabsContent value="dine-in">
+                    <div class="flex flex-col gap-3">
+                        <Label> Select Table </Label>
 
-                <TabsContent value="dine-in" class="flex mt-3 flex-col gap-3">
-                    <Label> Select Table </Label>
+                        <Button
+                            @click="tableDialog = !tableDialog"
+                            variant="outline"
+                            class="flex hover:border-primary hover:text-primary hover:bg-transparent justify-between">
+                            <span>Select table</span>
 
-                    <Button
-                        @click="tableDialog = !tableDialog"
-                        variant="outline"
-                        class="flex hover:border-primary hover:text-primary hover:bg-transparent justify-between">
-                        <span>Select table</span>
-
-                        <Icon name="tabler:arrow-narrow-right"></Icon>
-                    </Button>
+                            <Icon name="tabler:arrow-narrow-right"></Icon>
+                        </Button>
+                    </div>
                 </TabsContent>
+                <TabsContent value="take-away">
+                    <div class="flex flex-col gap-3">
+                        <Label> Packaging </Label>
 
-                <TabsContent value="take-away" class="mt-3">
-                    Hello This is Take Away
+                        <Button
+                            @click="tableDialog = !tableDialog"
+                            variant="outline"
+                            class="flex hover:border-primary hover:text-primary hover:bg-transparent justify-between">
+                            <span>Select table</span>
+
+                            <Icon name="tabler:arrow-narrow-right"></Icon>
+                        </Button>
+                    </div>
                 </TabsContent>
             </Tabs>
         </div>
@@ -107,7 +115,9 @@ const eventClickTable = (event: Table['status']) => {
                                 v-for="(data, index) in dataTable"
                                 :key="index"
                                 class="col-span-5 md:col-span-1 rounded-md"
-                                @[eventClickTable(data.status)]="data.active = !data.active"
+                                @[eventClickTable(data.status)]="
+                                    data.active = !data.active
+                                "
                                 :class="[
                                     {
                                         'cursor-pointer':

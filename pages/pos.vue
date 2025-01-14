@@ -24,6 +24,19 @@ const allMenus = computed<Menu[]>(() => {
 });
 
 const sheetData = ref(false);
+
+const tabs = ref([
+    {
+        title: 'Dine In',
+        value: 'dine-in',
+        icon: 'tabler:building-store',
+    },
+    {
+        title: 'Take Away',
+        value: 'take-away',
+        icon: 'tabler:basket',
+    },
+]);
 </script>
 
 <template>
@@ -100,7 +113,6 @@ const sheetData = ref(false);
                     <p>{{ data.title }}</p>
                 </TooltipContent>
             </Tooltip>
-            
         </div>
     </WrapperPages>
 </template>
