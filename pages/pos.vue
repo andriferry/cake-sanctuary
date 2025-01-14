@@ -23,20 +23,6 @@ const allMenus = computed<Menu[]>(() => {
     });
 });
 
-const sheetData = ref(false);
-
-const tabs = ref([
-    {
-        title: 'Dine In',
-        value: 'dine-in',
-        icon: 'tabler:building-store',
-    },
-    {
-        title: 'Take Away',
-        value: 'take-away',
-        icon: 'tabler:basket',
-    },
-]);
 </script>
 
 <template>
@@ -82,7 +68,7 @@ const tabs = ref([
 
         <div class="grid grid-cols-12 mt-3 gap-3">
             <Tooltip v-for="(data, index) in allMenus" :key="index">
-                <TooltipTrigger class="col-span-6 md:col-span-3 lg:col-span-3">
+                <TooltipTrigger class="col-span-6 md:col-span-3 lg:col-span-2">
                     <Card
                         class="h-auto group cursor-pointer hover:border-4 transition-all duration-300 ease-in-out border-primary">
                         <figure
