@@ -58,6 +58,8 @@ export default defineAppConfig({
         close: 'tabler:x',
         edit: 'tabler:edit',
         delete: 'tabler:trash',
-        dragHandle: 'tabler:grip-vertical'
+        dragHandle: 'tabler:grip-vertical',
+        minus: 'tabler:minus',
+        plus: 'tabler:plus'
     },
 });

@@ -1,13 +1,5 @@
 <script setup lang="ts">
-import {
-    BookOpen,
-    Bot,
-    Frame,
-    Map,
-    PieChart,
-    Settings2,
-    SquareTerminal,
-} from 'lucide-vue-next';
+const { icons } = useAppConfig();
 
 const data = ref({
     user: {
@@ -19,7 +11,6 @@ const data = ref({
         {
             title: 'Playground',
             url: '#',
-            icon: SquareTerminal,
             isActive: false,
             items: [
                 {
@@ -39,7 +30,6 @@ const data = ref({
         {
             title: 'Models',
             url: '#',
-            icon: Bot,
             items: [
                 {
                     title: 'Genesis',
@@ -58,7 +48,6 @@ const data = ref({
         {
             title: 'Documentation',
             url: '#',
-            icon: BookOpen,
             items: [
                 {
                     title: 'Introduction',
@@ -81,7 +70,6 @@ const data = ref({
         {
             title: 'Settings',
             url: '#',
-            icon: Settings2,
             items: [
                 {
                     title: 'General',
@@ -100,23 +88,6 @@ const data = ref({
                     url: '#',
                 },
             ],
-        },
-    ],
-    projects: [
-        {
-            name: 'Design Engineering',
-            url: '#',
-            icon: Frame,
-        },
-        {
-            name: 'Sales & Marketing',
-            url: '#',
-            icon: PieChart,
-        },
-        {
-            name: 'Travel',
-            url: '#',
-            icon: Map,
         },
     ],
 });
@@ -138,7 +109,7 @@ const data = ref({
                             class="text-lg shrink-0" />
                         <span>{{ item.title }}</span>
                         <Icon
-                            name="tabler:chevron-right"
+                            :name="icons.chevronRight"
                             class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"></Icon>
                     </SidebarMenuButton>
                 </CollapsibleTrigger>
