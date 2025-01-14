@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import { tables, type Table } from '@@/@fake/data';
+import { convertCurrency } from '@@/lib/utils';
+
+const { getAllProduct } = useCartStore();
+const { icons } = useAppConfig();
+
 const tableDialog = ref(false);
 const dataTable = ref(tables);
-const tab = ref('take-away');
+const tab = ref('dine-in');
 const tabs = ref([
     {
         title: 'Dine In',
@@ -24,7 +29,7 @@ const eventClickTable = (event: Table['status']) => {
 </script>
 
 <template>
-    <div class="h-screen w-[--sidebar-width]">
+    <div class="h-screen w-[--sidebar-width-mobile]">
         <div class="border-b p-4 flex items-center">
             <div class="font-medium w-full">
                 <p class="truncate">Current Order</p>
@@ -62,7 +67,7 @@ const eventClickTable = (event: Table['status']) => {
                             class="flex hover:border-primary hover:text-primary hover:bg-transparent justify-between">
                             <span>Select table</span>
 
-                            <Icon name="tabler:arrow-narrow-right"></Icon>
+                            <Icon name="tabler:arrow-narrow-right" />
                         </Button>
                     </div>
                 </TabsContent>
@@ -104,7 +109,9 @@ const eventClickTable = (event: Table['status']) => {
                         <div
                             class="p-3 border-2 flex text-secondary rounded-lg">
                             <div class="flex items-center">
-                                <Icon name="tabler:shopping-bag" class="size-9" />
+                                <Icon
+                                    name="tabler:shopping-bag"
+                                    class="size-9" />
                             </div>
 
                             <div class="flex flex-col gap-2 pl-2">
@@ -134,6 +141,55 @@ const eventClickTable = (event: Table['status']) => {
                     </div>
                 </TabsContent>
             </Tabs>
+
+            <Label class="mt-3"> Your Order: </Label>
+            <div class="flex flex-col gap-3 mt-3">
+                <div
+                    v-for="(product, index) in getAllProduct"
+                    :key="index"
+                    class="p-3 border-2 grid grid-cols-12 text-secondary rounded-lg">
+                    <div class="col-span-3">
+                        <Avatar class="size-12" shape="square">
+                            <AvatarImage
+                                :src="product?.img || ''"
+                                :alt="product?.title" />
+                        </Avatar>
+                    </div>
+                    <div class="col-span-7 flex flex-col">
+                        <p class="text-sm font-medium truncate">
+                            {{ product?.title }}
+                        </p>
+                        <small class="mb-1">
+                            {{ convertCurrency(product?.price || 0) }}
+                        </small>
+
+                        <NumberField
+                            :default-value="product?.qty"
+                            :min="0"
+                            class="w-20">
+                            <NumberFieldContent>
+                                <NumberFieldDecrement
+                                    class="w-5 p-0 border flex justify-center items-center h-5 rounded-md" />
+                                <NumberFieldInput
+                                    class="border-none text-primary h-5 shadow-none" />
+                                <NumberFieldIncrement
+                                    class="w-5 p-0 border flex justify-center items-center h-5 rounded-md" />
+                            </NumberFieldContent>
+                        </NumberField>
+                    </div>
+                    <div
+                        class="col-span-2 flex flex-col justify-between items-end">
+                        <Button variant="plain" size="xs">
+                            <Icon
+                                :name="icons.delete"
+                                class="text-destructive" />
+                        </Button>
+                        <p class="text-xs font-light">
+                            {{ convertCurrency(product?.price * product?.qty || 0)  }}
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <Dialog v-model:open="tableDialog">

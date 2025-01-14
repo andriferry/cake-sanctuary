@@ -3,10 +3,6 @@ import { convertCurrency } from '@@/lib/utils';
 
 const { getAllProduct } = useCartStore();
 const { icons } = useAppConfig();
-
-onMounted(() => {
-    //console.log(getAllProduct);
-});
 </script>
 
 <template>
@@ -43,7 +39,7 @@ onMounted(() => {
                                     <div
                                         class="flex p-1 justify-between w-full items-center">
                                         <div class="flex gap-3">
-                                            <Avatar v-if="data?.img">
+                                            <Avatar v-if="data?.img" shape="square">
                                                 <AvatarImage
                                                     :src="data?.img"
                                                     :alt="data?.title" />
