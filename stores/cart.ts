@@ -36,16 +36,16 @@ export const useCartStore = defineStore('cart', () => {
 
     const getAllProduct = computed(() => {
         const allProduct = dataCart.value.map((item: Cart) => {
-            let product = menus.find(
+            let product: Menu | undefined = menus.find(
                 (dataProduct: Menu) => dataProduct.id === item.menuId
             );
 
-            if (product) {
+            if ( product ) {
                 let obj = {
                     ...item,
                     ...product,
                     qty: item.qty,
-                    price: product.price
+                    //price: product.price
                 };
 
                 return obj;

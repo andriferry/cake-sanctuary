@@ -4,7 +4,7 @@
             <Button variant="plain" size="icon">
                 <Icon name="tabler:bell" class="text-secondary" />
 
-                <Indicator pingAnimate content="5" />
+                <Indicator pingAnimate content="3" />
             </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" class="text-secondary w-96 p-0">
@@ -13,7 +13,7 @@
                     <CardTitle class="flex capitalize justify-between">
                         <span>Notifications</span>
 
-                        <Badge> 5 New </Badge>
+                        <Badge> 3 New </Badge>
                     </CardTitle>
                 </CardHeader>
                 <CardContent class="p-1">

@@ -15,10 +15,10 @@ nuxtApp.hook('page:finish', () => {
             <div class="relative">
                     <Icon
                         name="tabler:circle"
-                        class="text-7xl font-bold text-accent"></Icon>
+                        class="text-7xl font-bold text-accent" />
                     <Icon
                         name="tabler:loader-2"
-                        class="text-7xl text-primary animate-spin absolute font-bold inset-0"></Icon>
+                        class="text-7xl text-primary animate-spin absolute font-bold inset-0" />
                 </div>
         </div>
         <NuxtLoadingIndicator />
