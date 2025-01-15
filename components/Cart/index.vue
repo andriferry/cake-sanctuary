@@ -21,6 +21,24 @@ const tabs = ref([
     },
 ]);
 
+const paymentMethod = ref([
+    {
+        title: 'Debit Card',
+        icon: 'tabler:credit-card',
+        value: 'debitCard',
+    },
+    {
+        title: 'Paypal',
+        icon: 'tabler:brand-paypal',
+        value: 'paypal',
+    },
+    {
+        title: 'Scan QR',
+        icon: 'tabler:qrcode',
+        value: 'scan-qr',
+    },
+]);
+
 const eventClickTable = (event: Table['status']) => {
     if (event === 'available') {
         return 'click';
@@ -151,10 +169,31 @@ const convertToCurrency = (
 
                             <p class="text-sm font-bold">$ 12.00</p>
                         </div>
-                        <div class="border-t-2 w-full flex justify-between pt-2">
+                        <div
+                            class="border-t-2 w-full flex justify-between pt-2">
                             <p class="text-sm font-black">Total Payment</p>
 
                             <p class="text-sm font-bold">$ 120</p>
+                        </div>
+                    </div>
+
+                    <Label class="pt-2"> Payment Method: </Label>
+
+                    <div class="grid grid-cols-3 py-2 gap-3">
+                        <div
+                            v-for="(payment, index) in paymentMethod"
+                            :key="index"
+                            class="col-span-1 group gap-2 flex flex-col justify-center items-center">
+                            <Button
+                                size="full"
+                                variant="outline"
+                                class="p-3 rounded-lg group-hover:bg-transparent group-hover:border-primary group-hover:text-primary">
+                                <Icon :name="payment.icon" class="size-6" />
+                            </Button>
+                            <p
+                                class="text-xs group-hover:text-primary font-medium">
+                                {{ payment.title }}
+                            </p>
                         </div>
                     </div>
 
