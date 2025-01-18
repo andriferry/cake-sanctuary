@@ -8,15 +8,19 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "component": "npx shadcn-vue@latest add"
+    "component": "npx shadcn-vue@latest add",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@iconify/json": "^2.2.291",
     "@nuxt/icon": "^1.9.1",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/seo": "^2.0.2",
+    "@nuxtjs/storybook": "8.3.3",
     "@pinia/nuxt": "^0.9.0",
     "@radix-icons/vue": "^1.0.0",
+    "@storybook/addon-interactions": "^8.5.0",
     "@tailwindcss/typography": "^0.5.15",
     "@tanstack/vue-table": "^8.20.5",
     "@vee-validate/i18n": "^4.14.7",
@@ -44,8 +48,11 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.4",
     "@faker-js/faker": "^9.3.0",
     "@nuxtjs/tailwindcss": "^6.12.2",
+    "@storybook/addon-a11y": "^8.4.7",
+    "@storybook/addon-essentials": "^8.5.0",
     "shadcn-nuxt": "^0.11.3"
   },
   "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
