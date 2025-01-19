@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { menuCategory, menus, type Menu } from '@/@fake/data';
 import { convertCurrency } from '@@/lib/utils';
+definePageMeta({
+    middleware: 'auth',
+});
 
 const menuIndex = ref(0);
 
