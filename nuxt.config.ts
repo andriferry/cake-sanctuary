@@ -34,6 +34,22 @@ export default defineNuxtConfig({
         public: {
             title: 'Cake Sanctuary',
         },
+        oauth: {
+            google: {
+                clientId: process.env.NUXT_OAUTH_GOOGLE_CLIENT_ID,
+                clientSecret: process.env.NUXT_OAUTH_GOOGLE_CLIENT_SECRET,
+                redirectURL: process.env.NUXT_OAUTH_GOOGLE_REDIRECT_URL,
+                scope: [
+                    'email',
+                    'openid',
+                    'profile',
+                ],
+                authorizationParams: {
+                    access_type: 'offline',
+                    approval_prompt: 'force',
+                },
+            },
+        },
     },
 
     components: [
@@ -65,8 +81,16 @@ export default defineNuxtConfig({
         },
     },
 
-    modules: ['@vueuse/nuxt', '@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxtjs/color-mode', //   '@nuxtjs/seo',
-    'nuxt-auth-utils', '@nuxt/icon', '@pinia/nuxt', '@nuxtjs/storybook'],
+    modules: [
+        '@vueuse/nuxt',
+        '@nuxtjs/tailwindcss',
+        'shadcn-nuxt',
+        '@nuxtjs/color-mode', //   '@nuxtjs/seo',
+        'nuxt-auth-utils',
+        '@nuxt/icon',
+        '@pinia/nuxt',
+        '@nuxtjs/storybook',
+    ],
     pinia: {
         storesDirs: ['./stores/**'],
     },
@@ -74,7 +98,7 @@ export default defineNuxtConfig({
         class: 'icon', // default <Icon> class applied
         mode: 'css', //
         serverBundle: {
-            collections: ['file-icons', 'tabler', 'noto', 'icon-park-outline'],
+            collections: ['file-icons', 'tabler', 'noto', 'icon-park-outline', 'mdi'],
             externalizeIconsJson: true,
         },
     },

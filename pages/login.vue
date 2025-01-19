@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { UserValidation } from '@/types/index';
+// const { loggedIn, user, session, fetch, clear } = useUserSession();
+
 definePageMeta({
     layout: 'blank',
 });
@@ -17,9 +19,17 @@ const passwordIcon = computed(() =>
     eyeIconOff.value ? icons.eyeIconOff : icons.eyeIcon
 );
 
+const location = useBrowserLocation();
+const url = useCookie('url');
+const route = useRoute()
+
 const onSubmit = async () => {
     form.value?.validate().then((res) => {
         console.log(res);
+
+        url.value = `${route.path}`;
+
+        window.location.href = `${location.value.origin}/api/auth/google`;
     });
 };
 </script>
@@ -84,11 +94,10 @@ const onSubmit = async () => {
         </div>
         <div class="hidden bg-muted lg:block">
             <img
-                src=""
+                src="https://images.unsplash.com/photo-1670710028588-4e71498034cf?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2FrZSUyMHN0b3JlfGVufDB8fDB8fHww"
                 alt="Image"
                 width="1920"
-                height="1080"
-                class="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale" />
+                class="h-screen w-full object-cover dark:brightness-[0.2] dark:grayscale" />
         </div>
     </div>
 </template>
