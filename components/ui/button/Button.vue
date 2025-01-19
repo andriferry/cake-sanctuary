@@ -19,6 +19,10 @@ const props = withDefaults(defineProps<Props>(), {
     disabled: false,
     rounded: 'default',
 });
+
+defineSlots<{
+    default(): any;
+}>();
 </script>
 
 <template>

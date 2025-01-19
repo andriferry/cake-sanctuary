@@ -43,6 +43,7 @@
     "vee-validate": "^4.14.7",
     "vue": "latest",
     "vue-chartjs": "^5.3.2",
+    "vue-component-meta": "^2.2.0",
     "vue-router": "latest",
     "vue3-apexcharts": "^1.8.0",
     "zod": "^3.23.8"
