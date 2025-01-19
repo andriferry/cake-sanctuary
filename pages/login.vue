@@ -4,6 +4,7 @@ import type { UserValidation } from '@/types/index';
 
 definePageMeta({
     layout: 'blank',
+    middleware: 'unauth'
 });
 
 const { icons } = useAppConfig();
@@ -21,16 +22,18 @@ const passwordIcon = computed(() =>
 
 const location = useBrowserLocation();
 const url = useCookie('url');
-const route = useRoute()
+const route = useRoute();
 
 const onSubmit = async () => {
     form.value?.validate().then((res) => {
         console.log(res);
-
-        url.value = `${route.path}`;
-
-        window.location.href = `${location.value.origin}/api/auth/google`;
     });
+};
+
+const loginWithSocial = async (service: 'google') => {
+    url.value = `${route.path}`;
+
+    window.location.href = `${location.value.origin}/api/auth/${service}`;
 };
 </script>
 
@@ -47,8 +50,8 @@ const onSubmit = async () => {
                         </CardDescription>
                     </CardHeader>
 
-                    <CardContent>
-                        <FormObserver ref="form">
+                    <CardContent class="pb-0">
+                        <FormObserver ref="form" @submit="onSubmit">
                             <FieldProvider
                                 v-slot="{ errors, field }"
                                 name="username"
@@ -60,6 +63,7 @@ const onSubmit = async () => {
                                         label="Email"
                                         v-bind="field"
                                         type="email"
+                                        @keyup.enter="onSubmit"
                                         :errorMessage="errors[0]"
                                         placeholder="Input your Email" />
                                     <FormMessage />
@@ -80,6 +84,7 @@ const onSubmit = async () => {
                                         :type="passWordField"
                                         :errorMessage="errors[0]"
                                         placeholder="Input your Password"
+                                        @keyup.enter="onSubmit"
                                         @clickAppend="
                                             eyeIconOff = !eyeIconOff
                                         " />
@@ -87,8 +92,20 @@ const onSubmit = async () => {
                                 </FormItem>
                             </FieldProvider>
                         </FormObserver>
-                        <Button @click="onSubmit"> Submit </Button>
                     </CardContent>
+
+                    <CardFooter
+                        class="flex justify-between flex-col gap-3 pb-6">
+                        <Button size="full" @click="onSubmit"> Submit </Button>
+
+                        <Button
+                            size="full"
+                            variant="outline"
+                            prependIcon="tabler:brand-google-filled"
+                            @click="loginWithSocial('google')">
+                            Login With Google
+                        </Button>
+                    </CardFooter>
                 </Card>
             </div>
         </div>

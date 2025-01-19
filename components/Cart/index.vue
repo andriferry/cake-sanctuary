@@ -5,7 +5,7 @@ import { convertCurrency } from '@@/lib/utils';
 const { getAllProduct } = useCartStore();
 const { icons } = useAppConfig();
 
-const dialogOpen = ref(true);
+const dialogOpen = ref(false);
 const dataTable = ref(tables);
 const tab = ref('dine-in');
 const tabs = ref([

@@ -1,36 +1,39 @@
 <script setup lang="ts">
 import { initialName } from '~/utils';
-interface Props {
-    name?: string;
-    email?: string;
-    avatar?: string;
-}
 
-const {
-    name = 'john doe',
-    email = 'johndoe@mail.com',
-    avatar = '',
-} = defineProps<Props>();
+const { user, clear } = useUserSession();
+
+const router = useRouter();
+
+const logout = async () => {
+    try {
+        await clear();
+
+        router.push('/login');
+    } catch (error) {
+        throw error;
+    }
+};
 </script>
 
 <template>
-    <DropdownMenu>
+    <DropdownMenu v-if="user">
         <DropdownMenuTrigger as-child>
             <SidebarMenuButton
                 size="lg"
                 class="data-[state=open]:bg-sidebar-accent">
                 <Avatar class="h-8 w-8 text-white bg-primary rounded-lg">
-                    <AvatarImage :src="avatar" :alt="name" />
+                    <AvatarImage :src="user.picture" :alt="user.name" />
                     <AvatarFallback class="rounded-lg">
-                        {{ initialName(name) }}
+                        {{ initialName(user?.name) }}
                     </AvatarFallback>
                 </Avatar>
                 <div class="grid flex-1 text-left text-sm leading-tight">
                     <span class="truncate font-semibold">
-                        {{ name }}
+                        {{ user?.name }}
                     </span>
                     <span class="truncate text-xs">
-                        {{ email }}
+                        {{ user?.email }}
                     </span>
                 </div>
                 <Icon
@@ -47,17 +50,18 @@ const {
                 <div
                     class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                     <Avatar class="h-8 w-8 rounded-lg text-white bg-primary">
-                        <AvatarImage :src="avatar" :alt="name" />
+                        <AvatarImage :src="user.picture" :alt="user.name" />
                         <AvatarFallback class="rounded-lg">
-                            {{ initialName('andri ferry') }}
+                            {{ initialName(user?.name) }}
                         </AvatarFallback>
                     </Avatar>
-                    <div class="grid flex-1 text-secondary text-left text-sm leading-tight">
+                    <div
+                        class="grid flex-1 text-secondary text-left text-sm leading-tight">
                         <span class="truncate font-semibold">
-                            {{ name }}
+                            {{ user?.name }}
                         </span>
                         <span class="truncate text-xs">
-                            {{ email }}
+                            {{ user.email }}
                         </span>
                     </div>
                 </div>
@@ -74,7 +78,7 @@ const {
                     </NuxtLink>
                 </DropdownMenuItem>
 
-                <DropdownMenuItem class="cursor-pointer">
+                <DropdownMenuItem @click="logout" class="cursor-pointer">
                     <Icon class="text-lg" name="tabler:logout"></Icon>
                     Log out
                 </DropdownMenuItem>
