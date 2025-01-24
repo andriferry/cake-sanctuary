@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/vue3';
 
 import Button from './Button.vue';
-import {  variants,  } from './index';
 
 const meta = {
-    title: 'Button',
+    title: 'Component/Button',
     component: Button,
     // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/vue/writing-docs/autodocs
     tags: ['autodocs'],
