@@ -47,7 +47,9 @@ export default defineNuxtConfig({
             },
         },
     },
-
+    auth: {
+        webAuthn: true,
+    },
     components: [
         {
             path: '~/components/ui/',
@@ -85,7 +87,7 @@ export default defineNuxtConfig({
         'nuxt-auth-utils',
         '@nuxt/icon',
         '@pinia/nuxt',
-        '@nuxtjs/storybook',
+        // '@nuxtjs/storybook',
     ],
     pinia: {
         storesDirs: ['./stores/**'],
