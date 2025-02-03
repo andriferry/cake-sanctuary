@@ -10,6 +10,13 @@ declare global {
         statusCode: number;
         message: string;
     }
+
+    interface DBUser {
+        id: number;
+        email: string;
+        password: string;
+        picture: string;
+    }
 }
 
 declare module '#auth-utils' {

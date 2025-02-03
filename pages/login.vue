@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useToast } from '~/components/ui/toast';
-
-// const { loggedIn, user, session, fetch, clear } = useUserSession();
+const { fetch: fetchUserSession } = useUserSession();
 
 definePageMeta({
     layout: 'blank',
@@ -10,15 +9,15 @@ definePageMeta({
 
 const { icons } = useAppConfig();
 const { toast } = useToast();
+const router = useRouter();
 
 const form = ref<UserValidation>();
+const eyeIconOff = ref(false);
 
 const formAuth = reactive({
     email: 'demo@mail.com',
     password: 'demo12345678',
 });
-
-const eyeIconOff = ref(false);
 
 const passWordField = computed(() => (eyeIconOff.value ? 'text' : 'password'));
 const passwordIcon = computed(() =>
@@ -60,7 +59,9 @@ const onSubmit = async () => {
         await $fetch('/api/auth/login', {
             method: 'POST',
             body: formAuth,
-        });
+        }).then(fetchUserSession);
+
+        router.push('/dashboard');
     } catch (error) {
         if (error) {
             errorHandling(error);

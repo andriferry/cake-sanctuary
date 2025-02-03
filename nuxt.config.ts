@@ -21,7 +21,7 @@ export default defineNuxtConfig({
             ],
         },
         // layoutTransition: { name: 'slide-fade', mode: 'out-in' },
-        pageTransition: { name: 'slide-fade', },
+        pageTransition: { name: 'slide-fade' },
     },
     tailwindcss: {
         viewer: false,
@@ -76,7 +76,7 @@ export default defineNuxtConfig({
                     '@/lib/utils/*': ['../lib/utils/*'],
                 },
             },
-            include: ['global.d.ts','types/*.d.ts']
+            include: ['global.d.ts', 'types/*.d.ts'],
         },
     },
 

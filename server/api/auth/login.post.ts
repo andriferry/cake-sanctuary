@@ -2,12 +2,6 @@ import { z } from 'zod';
 import { users } from '@/database/schema';
 import { eq, and } from 'drizzle-orm';
 
-interface DBUser {
-    id: number;
-    email: string;
-    password: string;
-}
-
 const invalidCredentialsError = createError({
     statusCode: 401,
     // This message is intentionally vague to prevent user enumeration attacks.
@@ -42,8 +36,17 @@ export default defineEventHandler(async (event) => {
             )
             .get();
 
-        if (!user) throw invalidCredentialsError;
+        if (user) {
+            await setUserSession(event, {
+                user: {
+                    ...user,
+                },
+                loggedInAt: Date.now(),
+            });
+        } else {
+            throw invalidCredentialsError;
+        }
     }
 
-    return result.data;
+    return setResponseStatus(event, 200);
 });

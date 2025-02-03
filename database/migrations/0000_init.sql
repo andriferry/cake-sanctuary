@@ -3,7 +3,7 @@ CREATE TABLE `users` (
 	`name` text NOT NULL,
 	`email` text NOT NULL,
 	`password` text NOT NULL,
-	`avatar` text NOT NULL,
+	`picture` text NOT NULL,
 	`created_at` text DEFAULT (CURRENT_TIMESTAMP)
 );
 --> statement-breakpoint
