@@ -87,7 +87,8 @@ const loginWithSocial = async (service: 'google') => {
                     <CardHeader>
                         <Logo />
 
-                        <CardDescription class="text-secondary mt-3">
+                        <CardDescription
+                            class="text-secondary mt-3 text-center">
                             Enter your email below to login to your account
                         </CardDescription>
                     </CardHeader>
@@ -137,7 +138,7 @@ const loginWithSocial = async (service: 'google') => {
                     </CardContent>
 
                     <CardFooter
-                        class="flex justify-between flex-col gap-3 pb-6">
+                        class="flex justify-start items-start flex-col gap-3 pb-6">
                         <Button size="full" @click="onSubmit"> Submit </Button>
 
                         <Button
@@ -147,6 +148,13 @@ const loginWithSocial = async (service: 'google') => {
                             @click="loginWithSocial('google')">
                             Login With Google
                         </Button>
+
+                        <p class="text-secondary text-sm">
+                            New on our platform ?
+                            <Button variant="link" class="p-0 text-sm" as-child>
+                                <NuxtLink to="/"> Create an account </NuxtLink>
+                            </Button>
+                        </p>
                     </CardFooter>
                 </Card>
             </div>
