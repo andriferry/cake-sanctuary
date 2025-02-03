@@ -14,8 +14,8 @@ const { toast } = useToast();
 const form = ref<UserValidation>();
 
 const formAuth = reactive({
-    email: '',
-    password: '',
+    email: 'demo@mail.com',
+    password: 'demo12345678',
 });
 
 const eyeIconOff = ref(false);
@@ -29,6 +29,28 @@ const location = useBrowserLocation();
 const url = useCookie('url');
 const route = useRoute();
 
+const errorHandling = (error: any) => {
+    if (error.data.statusCode === 401) {
+        toast({
+            title: 'Error',
+            description: error.data.message,
+            variant: 'destructive',
+        });
+    } else {
+        let allError = JSON.parse(error.data.message);
+
+        if (allError.issues.length > 0) {
+            allError.issues.forEach((item: any) => {
+                toast({
+                    title: 'Error',
+                    description: item.message,
+                    variant: 'destructive',
+                });
+            });
+        }
+    }
+};
+
 const onSubmit = async () => {
     try {
         const dataValid = await form.value?.validate();
@@ -41,17 +63,7 @@ const onSubmit = async () => {
         });
     } catch (error) {
         if (error) {
-            let allError = JSON.parse(error.data.message);
-
-            if (allError.issues.length > 0) {
-                allError.issues.forEach((item: any) => {
-                    toast({
-                        title: 'Error',
-                        description: item.message,
-                        variant: 'destructive',
-                    });
-                });
-            }
+            errorHandling(error);
         }
 
         throw error;

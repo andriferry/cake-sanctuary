@@ -5,6 +5,6 @@ export default defineConfig({
     schema: './database/schema.ts',
     out: './database/migrations',
     dbCredentials: {
-      url: process.env.NUXT_DB_FILE_NAME!,
+        url: `file:${process.env.NUXT_DB_FILE_NAME}`,
     },
 });

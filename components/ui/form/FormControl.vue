@@ -31,7 +31,7 @@ const emits = defineEmits<Emits>();
 
 const modelValue = useVModel(props, 'modelValue', emits, {
     passive: true,
-    defaultValue: props.defaultValue,
+    defaultValue: props.defaultValue || props.value,
 });
 
 const hitHint = ref(false);

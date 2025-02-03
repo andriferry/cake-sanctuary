@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { users } from '@/database/schema';
-import { drizzle } from 'drizzle-orm/better-sqlite3';
+import { eq, and } from 'drizzle-orm';
 
 interface DBUser {
     id: number;
@@ -20,29 +20,30 @@ const userSchema = z.object({
 });
 
 export default defineEventHandler(async (event) => {
+    const body = await readBody(event);
     const result = await readValidatedBody(event, (body) =>
         userSchema.safeParse(body)
     );
 
-    if (!result.success)
+    if (!result.success) {
         throw createError({
             statusCode: 400,
             message: JSON.stringify(result.error),
         });
+    } else {
+        const user = await dbConnect
+            .select()
+            .from(users)
+            .where(
+                and(
+                    eq(users.email, body.email),
+                    eq(users.password, body.password)
+                )
+            )
+            .get();
+
+        if (!user) throw invalidCredentialsError;
+    }
 
     return result.data;
 });
-
-// export default defineEventHandler( async ( event ) => {
-//   // const db = drizzleConnection( users )
-
-//     console.log(drizzleConnection)
-//   console.log(process.env.NUXT_DB_FILE_NAME)
-
-//   // const db = drizzle( process.env.DATABASE_URL );
-
-//   // console.log(db.$count(users))
-//     // const result = await drizzleConnection(users)
-
-//     // console.log(result);
-// });
