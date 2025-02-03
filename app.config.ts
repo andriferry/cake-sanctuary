@@ -60,6 +60,7 @@ export default defineAppConfig({
         delete: 'tabler:trash',
         dragHandle: 'tabler:grip-vertical',
         minus: 'tabler:minus',
-        plus: 'tabler:plus'
+        plus: 'tabler:plus',
+        alertTriangle: 'tabler:alert-triangle',
     },
 });

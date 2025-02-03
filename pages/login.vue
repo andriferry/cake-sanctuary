@@ -1,18 +1,23 @@
 <script setup lang="ts">
-import type { UserValidation } from '@/types/index';
+import { useToast } from '~/components/ui/toast';
+
 // const { loggedIn, user, session, fetch, clear } = useUserSession();
 
 definePageMeta({
     layout: 'blank',
-    middleware: 'unauth'
+    middleware: 'unauth',
 });
 
 const { icons } = useAppConfig();
+const { toast } = useToast();
 
 const form = ref<UserValidation>();
 
-const userName = ref('');
-const password = ref('');
+const formAuth = reactive({
+    email: '',
+    password: '',
+});
+
 const eyeIconOff = ref(false);
 
 const passWordField = computed(() => (eyeIconOff.value ? 'text' : 'password'));
@@ -25,9 +30,32 @@ const url = useCookie('url');
 const route = useRoute();
 
 const onSubmit = async () => {
-    form.value?.validate().then((res) => {
-        console.log(res);
-    });
+    try {
+        const dataValid = await form.value?.validate();
+
+        if (!dataValid?.valid) return;
+
+        await $fetch('/api/auth/login', {
+            method: 'POST',
+            body: formAuth,
+        });
+    } catch (error) {
+        if (error) {
+            let allError = JSON.parse(error.data.message);
+
+            if (allError.issues.length > 0) {
+                allError.issues.forEach((item: any) => {
+                    toast({
+                        title: 'Error',
+                        description: item.message,
+                        variant: 'destructive',
+                    });
+                });
+            }
+        }
+
+        throw error;
+    }
 };
 
 const loginWithSocial = async (service: 'google') => {
@@ -45,17 +73,18 @@ const loginWithSocial = async (service: 'google') => {
                 <Card class="w-full">
                     <CardHeader>
                         <Logo />
+
                         <CardDescription class="text-secondary mt-3">
                             Enter your email below to login to your account
                         </CardDescription>
                     </CardHeader>
 
                     <CardContent class="pb-0">
-                        <FormObserver ref="form" @submit="onSubmit">
+                        <FormObserver ref="form">
                             <FieldProvider
                                 v-slot="{ errors, field }"
                                 name="username"
-                                v-model="userName"
+                                v-model="formAuth.email"
                                 label="Email"
                                 rules="required|email">
                                 <FormItem class="">
@@ -73,7 +102,7 @@ const loginWithSocial = async (service: 'google') => {
                             <FieldProvider
                                 v-slot="{ errors, field }"
                                 name="password"
-                                v-model="password"
+                                v-model="formAuth.password"
                                 label="Password"
                                 rules="required">
                                 <FormItem>

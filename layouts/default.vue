@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="mr-4 flex justify-center">
-                    <Alert />
+                    <Notification />
                     <Cart />
                     <!-- <ThemeSwitcher /> -->
                 </div>

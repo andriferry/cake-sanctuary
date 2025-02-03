@@ -21,7 +21,7 @@ export default defineNuxtConfig({
             ],
         },
         // layoutTransition: { name: 'slide-fade', mode: 'out-in' },
-        pageTransition: { name: 'slide-fade', mode: 'out-in' },
+        pageTransition: { name: 'slide-fade', },
     },
     tailwindcss: {
         viewer: false,
@@ -76,6 +76,7 @@ export default defineNuxtConfig({
                     '@/lib/utils/*': ['../lib/utils/*'],
                 },
             },
+            include: ['global.d.ts','types/*.d.ts']
         },
     },
 
@@ -104,6 +105,12 @@ export default defineNuxtConfig({
                 'mdi',
             ],
             externalizeIconsJson: true,
+        },
+    },
+    nitro: {
+        experimental: {
+            database: true,
+            websocket: true,
         },
     },
     // colorMode: {
