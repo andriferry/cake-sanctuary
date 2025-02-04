@@ -11,6 +11,7 @@ const { toast } = useToast();
 const router = useRouter();
 
 const eyeIconOff = ref(false);
+const eyeIconOffConfirm = ref(false);
 const form = ref<UserValidation>();
 const formAuth = reactive({
     name: '',
@@ -22,6 +23,12 @@ const formAuth = reactive({
 const passWordField = computed(() => (eyeIconOff.value ? 'text' : 'password'));
 const passwordIcon = computed(() =>
     eyeIconOff.value ? icons.eyeIconOff : icons.eyeIcon
+);
+const passwordFieldConfirm = computed(() =>
+    eyeIconOffConfirm.value ? 'text' : 'password'
+);
+const passwordConfirmIcon = computed(() =>
+    eyeIconOffConfirm.value ? icons.eyeIconOff : icons.eyeIcon
 );
 
 const onSubmit = async () => {
@@ -118,13 +125,14 @@ const onSubmit = async () => {
                                     <FormControl
                                         label="Confirm Password"
                                         v-bind="field"
-                                        :appendIcon="passwordIcon"
-                                        :type="passWordField"
+                                        :appendIcon="passwordConfirmIcon"
+                                        :type="passwordFieldConfirm"
                                         :errorMessage="errors[0]"
                                         placeholder="Input Your Password"
                                         @keyup.enter="onSubmit"
                                         @clickAppend="
-                                            eyeIconOff = !eyeIconOff
+                                            eyeIconOffConfirm =
+                                                !eyeIconOffConfirm
                                         " />
                                     <FormMessage />
                                 </FormItem>
