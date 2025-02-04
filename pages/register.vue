@@ -13,11 +13,11 @@ const router = useRouter();
 const eyeIconOff = ref(false);
 const eyeIconOffConfirm = ref(false);
 const form = ref<UserValidation>();
+const passwordConfirm = ref('demo123456789');
 const formAuth = reactive({
-    name: '',
-    email: '',
-    password: '',
-    passwordConfirm: '',
+    name: 'demo',
+    email: 'demo1@mail.com',
+    password: 'demo123456789',
 });
 
 const passWordField = computed(() => (eyeIconOff.value ? 'text' : 'password'));
@@ -31,12 +31,42 @@ const passwordConfirmIcon = computed(() =>
     eyeIconOffConfirm.value ? icons.eyeIconOff : icons.eyeIcon
 );
 
+const errorHandling = (error: any) => {
+    if (error.data.statusCode === 401) {
+        toast({
+            title: 'Error',
+            description: error.data.message,
+            variant: 'destructive',
+        });
+    } else {
+        let allError = JSON.parse(error.data.message);
+
+        if (allError.issues.length > 0) {
+            allError.issues.forEach((item: any) => {
+                toast({
+                    title: 'Error',
+                    description: item.message,
+                    variant: 'destructive',
+                });
+            });
+        }
+    }
+};
+
 const onSubmit = async () => {
     try {
         const dataValid = await form.value?.validate();
 
         if (!dataValid?.valid) return;
+
+        await $fetch('/api/auth/register', {
+            method: 'POST',
+            body: formAuth,
+        });
     } catch (error) {
+        if (error) {
+            errorHandling(error);
+        }
         throw error;
     }
 };
@@ -118,7 +148,7 @@ const onSubmit = async () => {
                             <FieldProvider
                                 v-slot="{ errors, field }"
                                 name="confirmpassword"
-                                v-model="formAuth.passwordConfirm"
+                                v-model="passwordConfirm"
                                 label="Password"
                                 rules="confirmed:@password">
                                 <FormItem>

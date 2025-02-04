@@ -1,4 +1,3 @@
-import { z } from 'zod';
 import { users } from '@/database/schema';
 import { eq, and } from 'drizzle-orm';
 
@@ -6,11 +5,6 @@ const invalidCredentialsError = createError({
     statusCode: 401,
     // This message is intentionally vague to prevent user enumeration attacks.
     message: 'Invalid credentials',
-});
-
-const userSchema = z.object({
-    email: z.string().email(),
-    password: z.string().min(8, { message: 'Password Must be a 8 or more' }),
 });
 
 export default defineEventHandler(async (event) => {
