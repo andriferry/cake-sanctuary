@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useToast } from '~/components/ui/toast';
-const { fetch: fetchUserSession } = useUserSession();
 
 definePageMeta({
     layout: 'blank',
@@ -11,12 +10,13 @@ const { icons } = useAppConfig();
 const { toast } = useToast();
 const router = useRouter();
 
-const form = ref<UserValidation>();
 const eyeIconOff = ref(false);
-
+const form = ref<UserValidation>();
 const formAuth = reactive({
-    email: 'demo@mail.com',
-    password: 'demo12345678',
+    name: '',
+    email: '',
+    password: '',
+    passwordConfirm: '',
 });
 
 const passWordField = computed(() => (eyeIconOff.value ? 'text' : 'password'));
@@ -24,57 +24,14 @@ const passwordIcon = computed(() =>
     eyeIconOff.value ? icons.eyeIconOff : icons.eyeIcon
 );
 
-const location = useBrowserLocation();
-const url = useCookie('url');
-const route = useRoute();
-
-const errorHandling = (error: any) => {
-    if (error.data.statusCode === 401) {
-        toast({
-            title: 'Error',
-            description: error.data.message,
-            variant: 'destructive',
-        });
-    } else {
-        let allError = JSON.parse(error.data.message);
-
-        if (allError.issues.length > 0) {
-            allError.issues.forEach((item: any) => {
-                toast({
-                    title: 'Error',
-                    description: item.message,
-                    variant: 'destructive',
-                });
-            });
-        }
-    }
-};
-
 const onSubmit = async () => {
     try {
         const dataValid = await form.value?.validate();
 
         if (!dataValid?.valid) return;
-
-        await $fetch('/api/auth/login', {
-            method: 'POST',
-            body: formAuth,
-        }).then(fetchUserSession);
-
-        router.push('/dashboard');
     } catch (error) {
-        if (error) {
-            errorHandling(error);
-        }
-
         throw error;
     }
-};
-
-const loginWithSocial = async (service: 'google') => {
-    url.value = `${route.path}`;
-
-    window.location.href = `${location.value.origin}/api/auth/${service}`;
 };
 </script>
 
@@ -82,14 +39,14 @@ const loginWithSocial = async (service: 'google') => {
     <div class="w-full lg:grid lg:min-h-screen lg:grid-cols-2 xl:min-h-screen">
         <div
             class="bg-background flex flex-col h-screen items-center justify-center">
-            <div class="">
+            <div>
                 <Card class="w-[349px]">
                     <CardHeader>
                         <Logo />
-
                         <CardDescription
-                            class="text-secondary mt-3 text-center">
-                            Enter your email below to login to your account
+                            class="text-secondary mt-3 items-center justify-center flex gap-2 text-center">
+                            <span> Start Your Adventure from here </span>
+                            <Icon name="noto:rocket" class="w-6"></Icon>
                         </CardDescription>
                     </CardHeader>
 
@@ -97,18 +54,34 @@ const loginWithSocial = async (service: 'google') => {
                         <FormObserver ref="form">
                             <FieldProvider
                                 v-slot="{ errors, field }"
-                                name="username"
-                                v-model="formAuth.email"
+                                name="name"
+                                label="Name"
+                                rules="required"
+                                v-model="formAuth.name">
+                                <FormItem class="">
+                                    <FormControl
+                                        label="Name"
+                                        v-bind="field"
+                                        @keyup.enter="onSubmit"
+                                        :errorMessage="errors[0]"
+                                        placeholder="Input Your Name" />
+                                    <FormMessage />
+                                </FormItem>
+                            </FieldProvider>
+
+                            <FieldProvider
+                                v-slot="{ errors, field }"
+                                name="email"
                                 label="Email"
-                                rules="required|email">
+                                rules="required|email"
+                                v-model="formAuth.email">
                                 <FormItem class="">
                                     <FormControl
                                         label="Email"
                                         v-bind="field"
-                                        type="email"
                                         @keyup.enter="onSubmit"
                                         :errorMessage="errors[0]"
-                                        placeholder="Input your Email" />
+                                        placeholder="Input Your Email" />
                                     <FormMessage />
                                 </FormItem>
                             </FieldProvider>
@@ -126,7 +99,29 @@ const loginWithSocial = async (service: 'google') => {
                                         :appendIcon="passwordIcon"
                                         :type="passWordField"
                                         :errorMessage="errors[0]"
-                                        placeholder="Input your Password"
+                                        placeholder="Input Your Password"
+                                        @keyup.enter="onSubmit"
+                                        @clickAppend="
+                                            eyeIconOff = !eyeIconOff
+                                        " />
+                                    <FormMessage />
+                                </FormItem>
+                            </FieldProvider>
+
+                            <FieldProvider
+                                v-slot="{ errors, field }"
+                                name="confirmpassword"
+                                v-model="formAuth.passwordConfirm"
+                                label="Password"
+                                rules="confirmed:@password">
+                                <FormItem>
+                                    <FormControl
+                                        label="Confirm Password"
+                                        v-bind="field"
+                                        :appendIcon="passwordIcon"
+                                        :type="passWordField"
+                                        :errorMessage="errors[0]"
+                                        placeholder="Input Your Password"
                                         @keyup.enter="onSubmit"
                                         @clickAppend="
                                             eyeIconOff = !eyeIconOff
@@ -140,21 +135,10 @@ const loginWithSocial = async (service: 'google') => {
                     <CardFooter
                         class="flex justify-start items-center flex-col gap-3 pb-6">
                         <Button size="full" @click="onSubmit"> Submit </Button>
-
-                        <Button
-                            size="full"
-                            variant="outline"
-                            prependIcon="tabler:brand-google-filled"
-                            @click="loginWithSocial('google')">
-                            Login With Google
-                        </Button>
-
                         <p class="text-secondary text-sm">
-                            New on our platform ?
+                            Already have an account ?
                             <Button variant="link" class="p-0 text-sm" as-child>
-                                <NuxtLink to="/register">
-                                    Create an account
-                                </NuxtLink>
+                                <NuxtLink to="/login"> Login </NuxtLink>
                             </Button>
                         </p>
                     </CardFooter>
@@ -170,3 +154,5 @@ const loginWithSocial = async (service: 'google') => {
         </div>
     </div>
 </template>
+
+<style scoped></style>

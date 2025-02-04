@@ -5,5 +5,3 @@ const { icons } = useAppConfig();
 <template>
     <Icon :name="icons.chevronLeft" class="w-4"></Icon>
 </template>
-
-<style scoped></style>
