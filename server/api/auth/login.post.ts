@@ -1,5 +1,5 @@
 import { users } from '@/database/schema';
-import { eq, and } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 
 const invalidCredentialsError = createError({
     statusCode: 401,
@@ -22,24 +22,23 @@ export default defineEventHandler(async (event) => {
         const user = await dbConnect
             .select()
             .from(users)
-            .where(
-                and(
-                    eq(users.email, body.email),
-                    eq(users.password, body.password)
-                )
-            )
+            .where(eq(users.email, body.email))
             .get();
 
-        if (user) {
-            await setUserSession(event, {
-                user: {
-                    ...user,
-                },
-                loggedInAt: Date.now(),
-            });
-        } else {
+        if (!user) {
             throw invalidCredentialsError;
         }
+
+        if (!(await verifyPassword(user.password, body.password))) {
+            throw invalidCredentialsError;
+        }
+
+        await setUserSession(event, {
+            user: {
+                ...user,
+            },
+            loggedInAt: Date.now(),
+        });
     }
 
     return setResponseStatus(event, 200);

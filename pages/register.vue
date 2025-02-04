@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useToast } from '~/components/ui/toast';
+import { ToastAction } from '@/components/ui/toast';
 
 definePageMeta({
     layout: 'blank',
@@ -13,11 +14,11 @@ const router = useRouter();
 const eyeIconOff = ref(false);
 const eyeIconOffConfirm = ref(false);
 const form = ref<UserValidation>();
-const passwordConfirm = ref('demo123456789');
+const passwordConfirm = ref('');
 const formAuth = reactive({
-    name: 'demo',
-    email: 'demo1@mail.com',
-    password: 'demo123456789',
+    name: '',
+    email: '',
+    password: '',
 });
 
 const passWordField = computed(() => (eyeIconOff.value ? 'text' : 'password'));
@@ -32,25 +33,21 @@ const passwordConfirmIcon = computed(() =>
 );
 
 const errorHandling = (error: any) => {
-    if (error.data.statusCode === 401) {
-        toast({
-            title: 'Error',
-            description: error.data.message,
-            variant: 'destructive',
-        });
-    } else {
-        let allError = JSON.parse(error.data.message);
+    toast({
+        title: 'Error',
+        description: error.data.message,
+        variant: 'destructive',
+        action: h(
+            ToastAction,
+            {
+                altText: 'Try hello',
+            },
 
-        if (allError.issues.length > 0) {
-            allError.issues.forEach((item: any) => {
-                toast({
-                    title: 'Error',
-                    description: item.message,
-                    variant: 'destructive',
-                });
-            });
-        }
-    }
+            {
+                default: () => 'Try again',
+            }
+        ),
+    });
 };
 
 const onSubmit = async () => {
@@ -63,6 +60,13 @@ const onSubmit = async () => {
             method: 'POST',
             body: formAuth,
         });
+
+        toast({
+            title: 'Success',
+            description: 'Register user has been successfully',
+        });
+
+        router.push('/login');
     } catch (error) {
         if (error) {
             errorHandling(error);

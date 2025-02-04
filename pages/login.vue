@@ -16,7 +16,7 @@ const eyeIconOff = ref(false);
 
 const formAuth = reactive({
     email: 'demo@mail.com',
-    password: 'demo12345678',
+    password: 'demo123456789',
 });
 
 const passWordField = computed(() => (eyeIconOff.value ? 'text' : 'password'));
