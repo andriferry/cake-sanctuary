@@ -61,7 +61,13 @@ const onSubmit = async () => {
             body: formAuth,
         }).then(fetchUserSession);
 
-        router.push('/dashboard');
+        router.push('/dashboard').then(() => {
+            toast({
+                title: 'Hello Welcome Back',
+                description: 'Welcome Back Demo',
+                
+            });
+        });
     } catch (error) {
         if (error) {
             errorHandling(error);
