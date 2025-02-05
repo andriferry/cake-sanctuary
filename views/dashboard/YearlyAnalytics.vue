@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { annualYearlyAnalutics } from '@/@fake/data';
+import { annualYearlyAnalytics } from '@/@fake/data';
 import { months } from '@@/lib/utils';
 import { Bar } from 'vue-chartjs';
 
 const currentOverview = ref(0);
-const annualYearly = computed(() => annualYearlyAnalutics);
+const annualYearly = computed(() => annualYearlyAnalytics);
 
 const chartData = computed(() => {
     return {
@@ -100,10 +100,7 @@ const chartOptions = computed(() => {
             </SlideGroup>
 
             <div class="mt-3">
-                <Bar
-                    :data="chartData"
-                    :options="chartOptions"
-                    :height="250" />
+                <Bar :data="chartData" :options="chartOptions" :height="250" />
             </div>
         </CardContent>
     </Card>

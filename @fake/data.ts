@@ -22,8 +22,8 @@ export interface Table {
     chair: number;
     value: string;
     id: string;
-    status: 'available'| 'filled'| 'reserved';
-    active: boolean
+    status: 'available' | 'filled' | 'reserved';
+    active: boolean;
 }
 
 export interface Cart {
@@ -835,7 +835,7 @@ export const invoices: Invoice[] = [
     },
 ];
 
-export const annualYearlyAnalutics = [
+export const annualYearlyAnalytics = [
     {
         title: 'Sales',
         icon: 'tabler:currency-dollar',
@@ -1298,140 +1298,140 @@ export const tables: Table[] = [
         chair: 3,
         value: 'T01',
         status: 'available',
-        active: false
+        active: false,
     },
     {
         id: '2a459fd8-e93b-45d0-af2e-47b5dd7ceeef',
         chair: 2,
         value: 'T02',
         status: 'available',
-        active: false
+        active: false,
     },
     {
         id: 'df4d7477-fdf9-4898-bcb1-c0a4f1f2c0b4',
         chair: 3,
         value: 'T03',
         status: 'reserved',
-        active: false
+        active: false,
     },
     {
         id: 'd3256074-5110-41ae-a95c-679a6867dc26',
         chair: 2,
         value: 'T04',
         status: 'filled',
-        active: false
+        active: false,
     },
     {
         id: '600d49f9-feaf-4084-9f0f-c6bcb1d501b1',
         chair: 3,
         value: 'T05',
         status: 'available',
-        active: false
+        active: false,
     },
     {
         id: '1ce8e225-aaf9-496b-8c09-628f5ebed2cb',
         chair: 2,
         value: 'T06',
         status: 'available',
-        active: false
+        active: false,
     },
     {
         id: 'd87b55de-c395-4974-8597-92c4748d9b47',
         chair: 2,
         value: 'T07',
         status: 'reserved',
-        active: false
+        active: false,
     },
     {
         id: 'ac3898a7-882f-4406-aa67-307f9ff10b98',
         chair: 3,
         value: 'T08',
         status: 'filled',
-        active: false
+        active: false,
     },
     {
         id: '82182c2a-7668-4a81-8585-54e2dcfcced6',
         chair: 3,
         value: 'T09',
         status: 'available',
-        active: false
+        active: false,
     },
     {
         id: 'cf9c754b-478e-4640-9a56-65f43bdd3a67',
         chair: 3,
         value: 'T10',
         status: 'reserved',
-        active: false
+        active: false,
     },
     {
         id: 'f3868830-6820-4b95-853e-dd2a69593cd2',
         chair: 3,
         value: 'T11',
         status: 'available',
-        active: false
+        active: false,
     },
     {
         id: '7180da69-6947-4452-b6ca-f412bbbde397',
         chair: 3,
         value: 'T12',
         status: 'filled',
-        active: false
+        active: false,
     },
     {
         id: '9b51ee17-4aab-4137-9211-af664c8ba177',
         chair: 3,
         value: 'T13',
         status: 'available',
-        active: false
+        active: false,
     },
     {
         id: '613ebc86-a089-4ada-ab48-c4919b9109fa',
         chair: 3,
         value: 'T14',
         status: 'reserved',
-        active: false
+        active: false,
     },
     {
         id: '8c08eb38-6aad-4f15-b469-b07bfa133f9d',
         chair: 2,
         value: 'T15',
         status: 'filled',
-        active: false
+        active: false,
     },
     {
         id: '9a0a88b9-8773-40a9-bb59-4995f1b32cc9',
         chair: 2,
         value: 'T16',
         status: 'available',
-        active: false
+        active: false,
     },
     {
         id: 'd595fad2-b5fc-477a-9cf7-5042d5025de0',
         chair: 2,
         value: 'T17',
         status: 'reserved',
-        active: false
+        active: false,
     },
     {
         id: '43b9bc83-72ee-4064-8e5a-7489921e6334',
         chair: 2,
         value: 'T18',
         status: 'available',
-        active: false
+        active: false,
     },
     {
         id: 'df68f736-c0f5-4d68-8fe8-f7fbdb358f5b',
         chair: 3,
         value: 'T19',
         status: 'available',
-        active: false
+        active: false,
     },
     {
         id: 'f80759b7-aa67-444d-a2e7-691e2c267dbf',
         chair: 3,
         value: 'T20',
         status: 'filled',
-        active: false
+        active: false,
     },
 ];
 
