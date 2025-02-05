@@ -31,7 +31,7 @@ defineSlots<{
         :as-child="asChild"
         :class="
             cn(buttonVariants({ variant, size, rounded }), props.class, {
-                'cursor-text opacity-50 bg-accent': disabled,
+                'cursor-text opacity-50 bg-accent hover:!bg-accent': disabled,
             })
         ">
         <Icon

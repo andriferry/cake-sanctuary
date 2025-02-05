@@ -131,7 +131,7 @@ onMounted(async () => {
                 v-else
                 :class="
                     cn(
-                        'p-0 border-none shadow-none disabled:bg-transparent',
+                        'p-0 border-none text-secondary  shadow-none ',
                         props.btnClass
                     )
                 ">
