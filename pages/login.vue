@@ -129,6 +129,7 @@ const loginWithSocial = async (service: 'google') => {
                                         :errorMessage="errors[0]"
                                         placeholder="Input your Password"
                                         @keyup.enter="onSubmit"
+                                        hint="*at least 8 characters"
                                         @clickAppend="
                                             eyeIconOff = !eyeIconOff
                                         " />

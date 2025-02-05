@@ -58,11 +58,17 @@ const inputClass = computed(() => {
             :class="[
                 hitHint ? 'text-primary' : 'text-secondary',
                 { 'text-destructive': errorMessage },
+                'flex justify-between',
             ]">
             {{ label }}
+
+
+            <span v-if="hint" class="text-[0.75rem] text-secondary/60">
+                {{ hint }}
+            </span>
         </FormLabel>
 
-        <div class="flex flex-col relative" :class="{ 'mb-3': hint }">
+        <div class="flex flex-col relative">
             <div class="relative w-full max-w-sm items-center">
                 <Input
                     @focus="hitHint = true"
@@ -91,16 +97,25 @@ const inputClass = computed(() => {
                         class="text-lg text-muted-foreground" />
                 </span>
             </div>
-
-            <Transition name="fade" mode="out-in">
-                <span
-                    v-if="hitHint"
-                    class="transition text-secondary text-sm absolute -bottom-5 duration-300 ease-in-out z-0">
-                    {{ hint }}
-                </span>
-            </Transition>
         </div>
 
         <FormMessage :message="errorMessage" />
     </div>
 </template>
+
+
+<!-- <script setup lang="ts">
+import Input from '@/components/ui/Input.vue'
+import Label from '@/components/ui/Label.vue'
+</script>
+
+<template>
+  <div>
+    <div class="mb-2 flex justify-between gap-1">
+      <Label for="input-04" class="mb-0">Input with hint</Label>
+      <span class="text-sm text-muted-foreground">Optional</span>
+    </div>
+    <Input id="input-04" placeholder="Email" type="email" />
+  </div>
+</template> -->
+
