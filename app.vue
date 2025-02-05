@@ -25,7 +25,12 @@ nuxtApp.hook('page:finish', () => {
         </div>
         <NuxtLoadingIndicator />
         <NuxtLayout class="font-inter">
-            <Toaster richColors position="top-right" />
+            <Toaster
+                richColors
+                position="top-right"
+                :toastOptions="{
+                    class: 'shadow-2xl',
+                }" />
             <NuxtPage />
         </NuxtLayout>
     </div>

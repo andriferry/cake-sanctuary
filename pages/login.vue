@@ -45,8 +45,11 @@ const errorHandling = (error: any) => {
     }
 };
 
-
 const onSubmit = async () => {
+    $toast('Default', {
+        description: `Test`,
+    });
+
     try {
         const dataValid = await form.value?.validate();
 
