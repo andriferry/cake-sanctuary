@@ -4,12 +4,17 @@ definePageMeta({
     middleware: 'unauth',
 });
 
-const { icons } = useAppConfig();
 const { $toast } = useNuxtApp();
 const router = useRouter();
+const {
+    isPasswordVisible,
+    passWordField,
+    passwordIcon,
+    isPasswordConfirmVisible,
+    passwordConfirmIcon,
+    passwordFieldConfirm,
+} = useUtils();
 
-const eyeIconOff = ref(false);
-const eyeIconOffConfirm = ref(false);
 const form = ref<UserValidation>();
 const passwordConfirm = ref('');
 const formAuth = reactive({
@@ -17,17 +22,6 @@ const formAuth = reactive({
     email: '',
     password: '',
 });
-
-const passWordField = computed(() => (eyeIconOff.value ? 'text' : 'password'));
-const passwordIcon = computed(() =>
-    eyeIconOff.value ? icons.eyeIconOff : icons.eyeIcon
-);
-const passwordFieldConfirm = computed(() =>
-    eyeIconOffConfirm.value ? 'text' : 'password'
-);
-const passwordConfirmIcon = computed(() =>
-    eyeIconOffConfirm.value ? icons.eyeIconOff : icons.eyeIcon
-);
 
 const registerProccess = async () => {
     return await $fetch('/api/auth/register', {
@@ -132,7 +126,8 @@ const onSubmit = async () => {
                                         placeholder="Input Your Password"
                                         @keyup.enter="onSubmit"
                                         @clickAppend="
-                                            eyeIconOff = !eyeIconOff
+                                            isPasswordVisible =
+                                                !isPasswordVisible
                                         " />
                                     <FormMessage />
                                 </FormItem>
@@ -154,8 +149,8 @@ const onSubmit = async () => {
                                         placeholder="Input Your Password"
                                         @keyup.enter="onSubmit"
                                         @clickAppend="
-                                            eyeIconOffConfirm =
-                                                !eyeIconOffConfirm
+                                            isPasswordConfirmVisible =
+                                                !isPasswordConfirmVisible
                                         " />
                                     <FormMessage />
                                 </FormItem>

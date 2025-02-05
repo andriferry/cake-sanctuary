@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { tables, type Table } from '@@/@fake/data';
+import { tables } from '@@/@fake/data';
 import { convertCurrency } from '@@/lib/utils';
 
 const { getAllProduct } = useCartStore();
@@ -33,17 +33,11 @@ const paymentMethod = ref([
         value: 'paypal',
     },
     {
-        title: 'Scan QR',
-        icon: 'tabler:qrcode',
+        title: 'Cash',
+        icon: 'tabler:cash',
         value: 'scan-qr',
     },
 ]);
-
-const eventClickTable = (event: Table['status']) => {
-    if (event === 'available') {
-        return 'click';
-    } else return null;
-};
 
 const convertToCurrency = (
     price: number | undefined,
@@ -165,7 +159,7 @@ const convertToCurrency = (
                             <p class="text-sm font-bold">$ 120</p>
                         </div>
                         <div class="w-full flex justify-between">
-                            <p class="text-sm font-medium">Service Tax 2%</p>
+                            <p class="text-sm font-medium">Service Tax (2%)</p>
 
                             <p class="text-sm font-bold">$ 12.00</p>
                         </div>

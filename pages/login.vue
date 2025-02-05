@@ -1,27 +1,21 @@
 <script setup lang="ts">
-const { $toast } = useNuxtApp();
-const { fetch: fetchUserSession, user } = useUserSession();
-
 definePageMeta({
     layout: 'blank',
     middleware: 'unauth',
 });
 
-const { icons } = useAppConfig();
+const { $toast } = useNuxtApp();
+const { fetch: fetchUserSession, user } = useUserSession();
+const { isPasswordVisible, passWordField, passwordIcon } = useUtils();
+
 const router = useRouter();
 
 const form = ref<UserValidation>();
-const eyeIconOff = ref(false);
 
 const formAuth = reactive({
     email: 'demo@mail.com',
     password: 'demo123456789',
 });
-
-const passWordField = computed(() => (eyeIconOff.value ? 'text' : 'password'));
-const passwordIcon = computed(() =>
-    eyeIconOff.value ? icons.eyeIconOff : icons.eyeIcon
-);
 
 const location = useBrowserLocation();
 const url = useCookie('url');
@@ -131,7 +125,8 @@ const loginWithSocial = async (service: 'google') => {
                                         @keyup.enter="onSubmit"
                                         hint="*at least 8 characters"
                                         @clickAppend="
-                                            eyeIconOff = !eyeIconOff
+                                            isPasswordVisible =
+                                                !isPasswordVisible
                                         " />
                                     <FormMessage />
                                 </FormItem>
