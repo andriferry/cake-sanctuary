@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useToast } from '~/components/ui/toast';
-const { fetch: fetchUserSession } = useUserSession();
+const { $toast } = useNuxtApp();
+const { fetch: fetchUserSession, user } = useUserSession();
 
 definePageMeta({
     layout: 'blank',
@@ -8,7 +8,6 @@ definePageMeta({
 });
 
 const { icons } = useAppConfig();
-const { toast } = useToast();
 const router = useRouter();
 
 const form = ref<UserValidation>();
@@ -30,25 +29,22 @@ const route = useRoute();
 
 const errorHandling = (error: any) => {
     if (error.data.statusCode === 401) {
-        toast({
-            title: 'Error',
+        $toast.error('Error', {
             description: error.data.message,
-            variant: 'destructive',
         });
     } else {
         let allError = JSON.parse(error.data.message);
 
         if (allError.issues.length > 0) {
             allError.issues.forEach((item: any) => {
-                toast({
-                    title: 'Error',
+                $toast.error('Error', {
                     description: item.message,
-                    variant: 'destructive',
                 });
             });
         }
     }
 };
+
 
 const onSubmit = async () => {
     try {
@@ -59,13 +55,13 @@ const onSubmit = async () => {
         await $fetch('/api/auth/login', {
             method: 'POST',
             body: formAuth,
-        }).then(fetchUserSession);
+        });
+
+        await fetchUserSession();
 
         router.push('/dashboard').then(() => {
-            toast({
-                title: 'Hello Welcome Back',
-                description: 'Welcome Back Demo',
-                
+            $toast('Success', {
+                description: `Hello, ${user.value?.name} Welcome Back`,
             });
         });
     } catch (error) {

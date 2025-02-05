@@ -18,3 +18,17 @@ declare global {
         picture: string;
     }
 }
+
+declare module '#auth-utils' {
+    interface User {
+        name: string,
+        email: string,
+        picture: string
+    }
+
+    // interface UserSession {}
+
+    // interface SecureSessionData {}
+}
+
+// export {};

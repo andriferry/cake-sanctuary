@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const nuxtApp = useNuxtApp();
 const loading = ref(true);
+
 nuxtApp.hook('page:start', () => {
     loading.value = true;
 });
@@ -24,7 +25,7 @@ nuxtApp.hook('page:finish', () => {
         </div>
         <NuxtLoadingIndicator />
         <NuxtLayout class="font-inter">
-            <Toaster />
+            <Toaster richColors position="top-right" />
             <NuxtPage />
         </NuxtLayout>
     </div>

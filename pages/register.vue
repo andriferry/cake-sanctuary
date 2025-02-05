@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import { useToast } from '~/components/ui/toast';
-import { ToastAction } from '@/components/ui/toast';
-
 definePageMeta({
     layout: 'blank',
     middleware: 'unauth',
 });
 
 const { icons } = useAppConfig();
-const { toast } = useToast();
+const { $toast } = useNuxtApp();
 const router = useRouter();
 
 const eyeIconOff = ref(false);
@@ -32,21 +29,10 @@ const passwordConfirmIcon = computed(() =>
     eyeIconOffConfirm.value ? icons.eyeIconOff : icons.eyeIcon
 );
 
-const errorHandling = (error: any) => {
-    toast({
-        title: 'Error',
-        description: error.data.message,
-        variant: 'destructive',
-        action: h(
-            ToastAction,
-            {
-                altText: 'Try hello',
-            },
-
-            {
-                default: () => 'Try again',
-            }
-        ),
+const registerProccess = async () => {
+    return await $fetch('/api/auth/register', {
+        method: 'POST',
+        body: formAuth,
     });
 };
 
@@ -56,20 +42,23 @@ const onSubmit = async () => {
 
         if (!dataValid?.valid) return;
 
-        await $fetch('/api/auth/register', {
-            method: 'POST',
-            body: formAuth,
-        });
-
-        toast({
-            title: 'Success',
-            description: 'Register user has been successfully',
+        $toast.promise(registerProccess(), {
+            loading: 'Please Wait...',
+            success: () => {
+                return 'User has been registered successfully !';
+            },
         });
 
         router.push('/login');
-    } catch (error) {
+    } catch (error: any) {
         if (error) {
-            errorHandling(error);
+            $toast('Error', {
+                description: error.data.message,
+                action: {
+                    label: 'Login',
+                    onClick: () => router.push('/login'),
+                },
+            });
         }
         throw error;
     }

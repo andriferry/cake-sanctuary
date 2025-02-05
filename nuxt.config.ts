@@ -92,6 +92,7 @@ export default defineNuxtConfig({
         'nuxt-auth-utils',
         '@nuxt/icon',
         '@pinia/nuxt',
+        'vue-sonner/nuxt',
         // '@nuxtjs/storybook',
     ],
     pinia: {
