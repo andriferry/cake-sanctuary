@@ -36,6 +36,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     '@stylistic/ts/brace-style': ['off'],
     'antfu/if-newline': ['off'],
+
     // indentation (Already present in TypeScript)
     'comma-spacing': ['error', { before: false, after: true }],
     'key-spacing': ['error', { afterColon: true }],
@@ -43,7 +44,7 @@ module.exports = {
     'sonarjs/cognitive-complexity': ['off'],
 
     'vue/first-attribute-linebreak': [
-      'error',
+      'off',
       {
         singleline: 'beside',
         multiline: 'below',

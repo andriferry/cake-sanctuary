@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { NumberFieldRootEmits, NumberFieldRootProps } from 'radix-vue'
-import { cn } from '@/lib/utils'
 import { NumberFieldRoot, useForwardPropsEmits } from 'radix-vue'
-import { computed, type HTMLAttributes } from 'vue'
+import { type HTMLAttributes, computed } from 'vue'
+import { cn } from '@/lib/utils'
 
 const props = defineProps<NumberFieldRootProps & { class?: HTMLAttributes['class'] }>()
 const emits = defineEmits<NumberFieldRootEmits>()
@@ -17,7 +17,10 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
 </script>
 
 <template>
-  <NumberFieldRoot v-bind="forwarded" :class="cn('grid gap-1.5', props.class)">
+  <NumberFieldRoot
+    v-bind="forwarded"
+    :class="cn('grid gap-1.5', props.class)"
+  >
     <slot />
   </NumberFieldRoot>
 </template>

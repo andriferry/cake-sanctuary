@@ -1,24 +1,7 @@
-import { type Cart, carts, menus, type Menu } from '@/@fake/data';
-
-interface PersonName {
-    firstName?: string;
-    lastName?: string;
-}
-interface AllProduct {
-    qty: number;
-    price: number | undefined;
-    title: string;
-    items?: number;
-    icon?: string;
-    value?: string;
-    img?: string;
-    category?: any[];
-    id: number;
-    menuId: number;
-}
+import { type Cart, type Menu, carts, menus } from '@/@fake/data'
 
 export const useCartStore = defineStore('cart', () => {
-  const dataCart = ref<Cart[]>(carts);
+  const dataCart = ref<Cart[]>(carts)
 
   const order = ref({
     orderNumber: '1234',
@@ -32,36 +15,34 @@ export const useCartStore = defineStore('cart', () => {
       },
     ],
     paymentMethod: '',
-  });
+  })
 
   const getAllProduct = computed(() => {
     const allProduct = dataCart.value.map((item: Cart) => {
-      const product: Menu | undefined = menus.find(
-        (dataProduct: Menu) => dataProduct.id === item.menuId
-      );
+      const product: Menu | undefined = menus.find((dataProduct: Menu) => dataProduct.id === item.menuId)
 
-      if ( product ) {
-        const obj = {
+      let obj = {}
+      if (product) {
+        obj = {
           ...item,
           ...product,
           qty: item.qty,
-          //price: product.price
-        };
-
-        return obj;
+        }
       }
-    });
 
-    return allProduct.slice(0, 5);
-  });
+      return obj
+    })
 
-  const addCartItem = (value: number) => {
-    //carts.value.push(value);
-  };
+    return allProduct.slice(0, 5)
+  })
 
-  const removeCartItem = (value: number) => {
-    //carts.value.slice(value, 1);
-  };
+  const addCartItem = () => {
+    // carts.value.push(value);
+  }
+
+  const removeCartItem = () => {
+    // carts.value.slice(value, 1);
+  }
 
   return {
     order,
@@ -69,5 +50,5 @@ export const useCartStore = defineStore('cart', () => {
     getAllProduct,
     addCartItem,
     removeCartItem,
-  };
-});
+  }
+})

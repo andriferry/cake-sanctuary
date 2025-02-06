@@ -1,37 +1,29 @@
-import { users } from '@/database/schema';
-import { eq } from 'drizzle-orm';
+import { eq } from 'drizzle-orm'
+import { users } from '@/database/schema'
 
 const invalidCredentialsError = createError({
   statusCode: 401,
+
   // This message is intentionally vague to prevent user enumeration attacks.
   message: 'Invalid credentials',
-});
+})
 
-export default defineEventHandler(async (event) => {
-  const body = await readBody(event);
-  const result = await readValidatedBody(event, (body) =>
-    userSchema.safeParse(body)
-  );
+export default defineEventHandler(async event => {
+  const bodyRequest = await readBody(event)
+
+  const result = await readValidatedBody(event, body => userSchema.safeParse(body))
 
   if (!result.success) {
     throw createError({
       statusCode: 400,
       message: JSON.stringify(result.error),
-    });
+    })
   } else {
-    const user = await dbConnect
-      .select()
-      .from(users)
-      .where(eq(users.email, body.email))
-      .get();
+    const user = await dbConnect.select().from(users).where(eq(users.email, bodyRequest.email)).get()
 
-    if (!user) {
-      throw invalidCredentialsError;
-    }
+    if (!user) throw invalidCredentialsError
 
-    if (!(await verifyPassword(user.password, body.password))) {
-      throw invalidCredentialsError;
-    }
+    if (!(await verifyPassword(user.password, bodyRequest.password))) throw invalidCredentialsError
 
     await setUserSession(event, {
       user: {
@@ -40,8 +32,8 @@ export default defineEventHandler(async (event) => {
         picture: user.picture || '',
       },
       loggedInAt: Date.now(),
-    });
+    })
   }
 
-  return setResponseStatus(event, 200);
-});
+  return setResponseStatus(event, 200)
+})
