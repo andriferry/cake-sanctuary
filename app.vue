@@ -9,6 +9,7 @@ nuxtApp.hook('page:finish', () => {
   loading.value = false
 })
 </script>
+
 <template>
   <div :class="{ 'h-screen overflow-hidden': loading }">
     <div
@@ -51,8 +52,8 @@ nuxtApp.hook('page:finish', () => {
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  transform: translateY(-20px);
   opacity: 0;
+  transform: translateY(-20px);
 }
 
 .fade-enter-active,
