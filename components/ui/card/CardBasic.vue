@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type CardVariant } from '.';
+import type { CardVariant } from '.';
 import type { HTMLAttributes } from 'vue';
 
 interface Props {
@@ -10,10 +10,10 @@ interface Props {
 }
 
 withDefaults( defineProps<Props>(), {
-    title: 'Card Title',
-    subtitle: 'Card Subtitle',
-    variant: 'default',
-    class: ''
+  title: 'Card Title',
+  subtitle: 'Card Subtitle',
+  variant: 'default',
+  class: ''
 })
 </script>
 

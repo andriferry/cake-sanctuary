@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import {
-    CalendarDate,
-    type DateValue,
-    isEqualMonth,
+  CalendarDate,
+  type DateValue,
+  isEqualMonth,
 } from '@internationalized/date';
 
 import { type DateRange, RangeCalendarRoot, useDateFormatter } from 'radix-vue';
 import { createMonth, type Grid, toDate } from 'radix-vue/date';
-import { type Ref } from 'vue';
+import type { Ref } from 'vue';
 
 const { icons } = useAppConfig();
 
 const value = ref({
-    start: new CalendarDate(2022, 1, 20),
-    end: new CalendarDate(2022, 1, 20).add({ days: 7 }),
+  start: new CalendarDate(2022, 1, 20),
+  end: new CalendarDate(2022, 1, 20).add({ days: 7 }),
 }) as Ref<DateRange>;
 
 const locale = ref('en-US');
@@ -23,68 +23,68 @@ const placeholder = ref(value.value.start) as Ref<DateValue>; // It should be co
 const secondMonthPlaceholder = ref(value.value.end) as Ref<DateValue>;
 
 const firstMonth = ref(
-    createMonth({
-        dateObj: placeholder.value,
-        locale: locale.value,
-        fixedWeeks: true,
-        weekStartsOn: 0,
-    })
+  createMonth({
+    dateObj: placeholder.value,
+    locale: locale.value,
+    fixedWeeks: true,
+    weekStartsOn: 0,
+  })
 ) as Ref<Grid<DateValue>>;
 
 const secondMonth = ref(
-    createMonth({
-        dateObj: secondMonthPlaceholder.value,
-        locale: locale.value,
-        fixedWeeks: true,
-        weekStartsOn: 0,
-    })
+  createMonth({
+    dateObj: secondMonthPlaceholder.value,
+    locale: locale.value,
+    fixedWeeks: true,
+    weekStartsOn: 0,
+  })
 ) as Ref<Grid<DateValue>>;
 
 const currentDateRange = computed(() => {
-    return `${formatDate(value.value.start)} - ${formatDate(value.value.end)}`;
+  return `${formatDate(value.value.start)} - ${formatDate(value.value.end)}`;
 });
 
 watch(placeholder, (_placeholder) => {
-    firstMonth.value = createMonth({
-        dateObj: _placeholder,
-        weekStartsOn: 0,
-        fixedWeeks: false,
-        locale: locale.value,
+  firstMonth.value = createMonth({
+    dateObj: _placeholder,
+    weekStartsOn: 0,
+    fixedWeeks: false,
+    locale: locale.value,
+  });
+  if (isEqualMonth(secondMonthPlaceholder.value, _placeholder)) {
+    secondMonthPlaceholder.value = secondMonthPlaceholder.value.add({
+      months: 1,
     });
-    if (isEqualMonth(secondMonthPlaceholder.value, _placeholder)) {
-        secondMonthPlaceholder.value = secondMonthPlaceholder.value.add({
-            months: 1,
-        });
-    }
+  }
 });
 
 watch(secondMonthPlaceholder, (_secondMonthPlaceholder) => {
-    secondMonth.value = createMonth({
-        dateObj: _secondMonthPlaceholder,
-        weekStartsOn: 0,
-        fixedWeeks: false,
-        locale: locale.value,
-    });
-    if (isEqualMonth(_secondMonthPlaceholder, placeholder.value))
-        placeholder.value = placeholder.value.subtract({ months: 1 });
+  secondMonth.value = createMonth({
+    dateObj: _secondMonthPlaceholder,
+    weekStartsOn: 0,
+    fixedWeeks: false,
+    locale: locale.value,
+  });
+  if (isEqualMonth(_secondMonthPlaceholder, placeholder.value))
+    placeholder.value = placeholder.value.subtract({ months: 1 });
 });
 
 const updateMonth = (reference: 'first' | 'second', months: number) => {
-    if (reference === 'first') {
-        placeholder.value = placeholder.value.add({ months });
-    } else {
-        secondMonthPlaceholder.value = secondMonthPlaceholder.value.add({
-            months,
-        });
-    }
+  if (reference === 'first') {
+    placeholder.value = placeholder.value.add({ months });
+  } else {
+    secondMonthPlaceholder.value = secondMonthPlaceholder.value.add({
+      months,
+    });
+  }
 };
 
 const formatDate = (date?: DateValue) => {
-    if (date) return formatter.custom(toDate(date), { dateStyle: 'medium' });
+  if (date) return formatter.custom(toDate(date), { dateStyle: 'medium' });
 };
 
 const formatFullMonth = (date?: DateValue) => {
-    if (date) return formatter.fullMonthAndYear(toDate(date));
+  if (date) return formatter.fullMonthAndYear(toDate(date));
 };
 </script>
 
@@ -121,10 +121,10 @@ const formatFullMonth = (date?: DateValue) => {
                     <div class="flex flex-col gap-4">
                         <div class="flex items-center justify-between">
                             <Button
-                                @click="updateMonth('first', -1)"
                                 variant="outline"
                                 size="xs"
-                                class="p-0 opacity-50 hover:opacity-100">
+                                class="p-0 opacity-50 hover:opacity-100"
+                                @click="updateMonth('first', -1)">
                                 <ArrowLeftIcon />
                             </Button>
 
@@ -133,10 +133,10 @@ const formatFullMonth = (date?: DateValue) => {
                             </div>
 
                             <Button
-                                @click="updateMonth('first', 1)"
                                 variant="outline"
                                 size="xs"
-                                class="p-0 opacity-50 hover:opacity-100">
+                                class="p-0 opacity-50 hover:opacity-100"
+                                @click="updateMonth('first', 1)">
                                 <ArrowRightIcon />
                             </Button>
                         </div>
@@ -175,10 +175,10 @@ const formatFullMonth = (date?: DateValue) => {
                     <div class="flex flex-col gap-4">
                         <div class="flex items-center justify-between">
                             <Button
-                                @click="updateMonth('second', -1)"
                                 variant="outline"
                                 size="xs"
-                                class="p-0 opacity-50 hover:opacity-100">
+                                class="p-0 opacity-50 hover:opacity-100"
+                                @click="updateMonth('second', -1)">
                                 <ArrowLeftIcon />
                             </Button>
 
@@ -187,10 +187,10 @@ const formatFullMonth = (date?: DateValue) => {
                             </div>
 
                             <Button
-                                @click="updateMonth('second', 1)"
                                 variant="outline"
                                 size="xs"
-                                class="p-0 opacity-50 hover:opacity-100">
+                                class="p-0 opacity-50 hover:opacity-100"
+                                @click="updateMonth('second', 1)">
                                 <ArrowRightIcon />
                             </Button>
                         </div>

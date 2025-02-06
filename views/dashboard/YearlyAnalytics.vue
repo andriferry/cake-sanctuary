@@ -7,56 +7,56 @@ const currentOverview = ref(0);
 const annualYearly = computed(() => annualYearlyAnalytics);
 
 const chartData = computed(() => {
-    return {
-        labels: months({ count: 7, section: 3 }),
-        datasets: [
-            { data: annualYearly.value[currentOverview.value].chartData },
-        ],
-    };
+  return {
+    labels: months({ count: 7, section: 3 }),
+    datasets: [
+      { data: annualYearly.value[currentOverview.value].chartData },
+    ],
+  };
 });
 
 const chartOptions = computed(() => {
-    return {
-        maintainAspectRatio: false,
-        animation: { duration: 500 },
-        responsive: true,
-        plugins: {
-            legend: {
-                display: false,
-            },
+  return {
+    maintainAspectRatio: false,
+    animation: { duration: 500 },
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    backgroundColor: annualYearly.value[currentOverview.value].bgColors,
+    borderRadius: 9,
+    scales: {
+      x: {
+        grid: {
+          display: false,
         },
-        backgroundColor: annualYearly.value[currentOverview.value].bgColors,
-        borderRadius: 9,
-        scales: {
-            x: {
-                grid: {
-                    display: false,
-                },
-                ticks: {
-                    font: {
-                        size: '12',
-                        weight: 'bolder',
-                        color: '#6b95a9',
-                    },
-                },
-            },
-            y: {
-                grid: {
-                    display: false,
-                },
-                border: {
-                    display: false,
-                },
-                ticks: {
-                    font: {
-                        size: '12',
-                        color: '#6b95a9',
-                        weight: 'bolder',
-                    },
-                },
-            },
+        ticks: {
+          font: {
+            size: '12',
+            weight: 'bolder',
+            color: '#6b95a9',
+          },
         },
-    };
+      },
+      y: {
+        grid: {
+          display: false,
+        },
+        border: {
+          display: false,
+        },
+        ticks: {
+          font: {
+            size: '12',
+            color: '#6b95a9',
+            weight: 'bolder',
+          },
+        },
+      },
+    },
+  };
 });
 </script>
 

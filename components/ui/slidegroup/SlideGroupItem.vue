@@ -7,7 +7,7 @@ interface Props {
 const props = defineProps<Props>();
 
 const divClass = computed(() => {
-    return cn('pl-0 cursor-pointer', props.class);
+  return cn('pl-0 cursor-pointer', props.class);
 });
 </script>
 

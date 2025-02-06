@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils';
 import {
-    DialogClose,
-    DialogContent,
-    type DialogContentEmits,
-    type DialogContentProps,
-    DialogOverlay,
-    DialogPortal,
-    useForwardPropsEmits,
+  DialogClose,
+  DialogContent,
+  type DialogContentEmits,
+  type DialogContentProps,
+  DialogOverlay,
+  DialogPortal,
+  useForwardPropsEmits,
 } from 'radix-vue';
 import { computed, type HTMLAttributes } from 'vue';
 
@@ -19,22 +19,22 @@ const emits = defineEmits<DialogContentEmits>();
 const { icons } = useAppConfig();
 
 const delegatedProps = computed(() => {
-    const { class: _, ...delegated } = props;
+  const { class: _, ...delegated } = props;
 
-    return delegated;
+  return delegated;
 });
 
 const forwarded = useForwardPropsEmits(delegatedProps, emits);
 
 const pointerDownEvent = (event: any) => {
-    const originalEvent = event.detail.originalEvent;
-    const target = originalEvent.target as HTMLElement;
-    if (
-        originalEvent.offsetX > target.clientWidth ||
+  const originalEvent = event.detail.originalEvent;
+  const target = originalEvent.target as HTMLElement;
+  if (
+    originalEvent.offsetX > target.clientWidth ||
         originalEvent.offsetY > target.clientHeight
-    ) {
-        event.preventDefault();
-    }
+  ) {
+    event.preventDefault();
+  }
 };
 </script>
 

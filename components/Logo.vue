@@ -10,10 +10,10 @@ interface Props {
 const props = defineProps<Props>();
 
 const classData = computed(() => {
-    return cn(
-        'font-semibold leading-none justify-center tracking-tight flex text-primary items-center gap-3 text-xl',
-        props.class
-    );
+  return cn(
+    'font-semibold leading-none justify-center tracking-tight flex text-primary items-center gap-3 text-xl',
+    props.class
+  );
 });
 </script>
 

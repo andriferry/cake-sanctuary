@@ -6,13 +6,13 @@ const { user, clear } = useUserSession();
 const router = useRouter();
 
 const logout = async () => {
-    try {
-        await clear();
+  try {
+    await clear();
 
-        router.push('/login');
-    } catch (error) {
-        throw error;
-    }
+    router.push('/login');
+  } catch (error) {
+    throw error;
+  }
 };
 </script>
 
@@ -73,13 +73,13 @@ const logout = async () => {
                     <NuxtLink to="/">
                         <Icon
                             class="text-lg"
-                            name="tabler:rosette-discount-check"></Icon>
+                            name="tabler:rosette-discount-check"/>
                         Account
                     </NuxtLink>
                 </DropdownMenuItem>
 
-                <DropdownMenuItem @click="logout" class="cursor-pointer">
-                    <Icon class="text-lg" name="tabler:logout"></Icon>
+                <DropdownMenuItem class="cursor-pointer" @click="logout">
+                    <Icon class="text-lg" name="tabler:logout"/>
                     Log out
                 </DropdownMenuItem>
             </DropdownMenuGroup>

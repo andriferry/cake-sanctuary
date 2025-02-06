@@ -10,9 +10,9 @@ const props = defineProps<WithClassAsProps>();
 const { orientation, canScrollNext, scrollNext } = useCarousel();
 
 const btnClass = computed(() => {
-    return orientation === 'horizontal'
-        ? '-right-12 top-1/2 -translate-y-1/2'
-        : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90';
+  return orientation === 'horizontal'
+    ? '-right-12 top-1/2 -translate-y-1/2'
+    : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90';
 });
 </script>
 

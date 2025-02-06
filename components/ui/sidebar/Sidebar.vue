@@ -5,7 +5,7 @@ import type { HTMLAttributes } from 'vue';
 import { useSidebar } from './utils';
 
 defineOptions({
-    inheritAttrs: false,
+  inheritAttrs: false,
 });
 
 interface Props {
@@ -16,9 +16,9 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    side: 'left',
-    variant: 'sidebar',
-    collapsible: 'offcanvas',
+  side: 'left',
+  variant: 'sidebar',
+  collapsible: 'offcanvas',
 });
 
 const { isMobile, state, openMobile, setOpenMobile } = useSidebar();

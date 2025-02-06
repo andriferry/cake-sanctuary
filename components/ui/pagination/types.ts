@@ -1,4 +1,4 @@
-import { type ButtonVariants } from '@/components/ui/button/index';
+import type { ButtonVariants } from '@/components/ui/button/index';
 import type { HTMLAttributes } from 'vue';
 
 export interface PaginationProps {

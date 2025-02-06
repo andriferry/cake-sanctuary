@@ -11,7 +11,7 @@ const upsale = ref(upsaleData);
                 :key="index"
                 class="flex items-center gap-4">
                 <div class="flex items-center p-2 bg-accent rounded-md">
-                    <Icon :name="data.icon" class="text-3xl"></Icon>
+                    <Icon :name="data.icon" class="text-3xl"/>
                 </div>
 
                 <div class="">

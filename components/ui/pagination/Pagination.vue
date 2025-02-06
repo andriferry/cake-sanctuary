@@ -5,16 +5,16 @@ import { paginationFunc } from './index';
 import type { Emit, PaginationFetch, PaginationProps } from './types';
 
 const props = withDefaults(defineProps<PaginationProps>(), {
-    length: 1,
-    currentPage: 1,
-    pageSize: 5,
-    rounded: 'default',
-    lastFirstArrow: false,
-    prevIcon: '',
-    nextIcon: '',
-    visible: 10,
-    activeClass: '',
-    size: 'icon',
+  length: 1,
+  currentPage: 1,
+  pageSize: 5,
+  rounded: 'default',
+  lastFirstArrow: false,
+  prevIcon: '',
+  nextIcon: '',
+  visible: 10,
+  activeClass: '',
+  size: 'icon',
 });
 
 const emit = defineEmits<Emit>();
@@ -23,74 +23,74 @@ const { icons } = useAppConfig();
 const model = defineModel<number>();
 
 const fetchData = ({ currentPage, currentPageSize }: PaginationFetch) => {
-    emit('onChange', { currentPage, currentPageSize });
+  emit('onChange', { currentPage, currentPageSize });
 };
 
 const { currentPage, pageCount, prev, next, isFirstPage, isLastPage } =
     useOffsetPagination({
-        total: props.length,
-        page: props.currentPage,
-        pageSize: props.pageSize,
-        onPageChange: fetchData,
-        onPageSizeChange: fetchData,
+      total: props.length,
+      page: props.currentPage,
+      pageSize: props.pageSize,
+      onPageChange: fetchData,
+      onPageSizeChange: fetchData,
     });
 
 watch(currentPage, (value) => {
-    if (model.value) model.value = value;
+  if (model.value) model.value = value;
 });
 
 const nextIconArrow = computed(() => {
-    return props.nextIcon ? props.nextIcon : icons.chevronRight;
+  return props.nextIcon ? props.nextIcon : icons.chevronRight;
 });
 
 const prevIconArrow = computed(() => {
-    return props.prevIcon ? props.prevIcon : icons.chevronLeft;
+  return props.prevIcon ? props.prevIcon : icons.chevronLeft;
 });
 
 const pagesData = computed(() => {
-    return paginationFunc(
-        props.visible,
-        model.value || currentPage.value,
-        pageCount.value
-    );
+  return paginationFunc(
+    props.visible,
+    model.value || currentPage.value,
+    pageCount.value
+  );
 });
 
 const btnActiveClass = (index: number) => {
-    if (props.activeClass) {
-        return currentPage.value === index
-            ? cn(
-                  props.activeClass,
-                  variants.rounded[props.rounded || 'default']
-              )
-            : buttonVariants({
-                  variant: 'outline',
-                  rounded: props.rounded,
-                  size: props.size,
-              });
-    } else {
-        return currentPage.value === index
-            ? buttonVariants({
-                  variant: 'default',
-                  rounded: props.rounded,
-                  size: props.size,
-              })
-            : buttonVariants({
-                  variant: 'outline',
-                  rounded: props.rounded,
-                  size: props.size,
-              });
-    }
+  if (props.activeClass) {
+    return currentPage.value === index
+      ? cn(
+        props.activeClass,
+        variants.rounded[props.rounded || 'default']
+      )
+      : buttonVariants({
+        variant: 'outline',
+        rounded: props.rounded,
+        size: props.size,
+      });
+  } else {
+    return currentPage.value === index
+      ? buttonVariants({
+        variant: 'default',
+        rounded: props.rounded,
+        size: props.size,
+      })
+      : buttonVariants({
+        variant: 'outline',
+        rounded: props.rounded,
+        size: props.size,
+      });
+  }
 };
 onMounted(async () => {
-    if (model.value === undefined) {
-        currentPage.value = 1;
-    } else {
-        currentPage.value = model.value;
-    }
-    await fetchData({
-        currentPage: props.currentPage,
-        currentPageSize: props.pageSize,
-    });
+  if (model.value === undefined) {
+    currentPage.value = 1;
+  } else {
+    currentPage.value = model.value;
+  }
+  await fetchData({
+    currentPage: props.currentPage,
+    currentPageSize: props.pageSize,
+  });
 });
 </script>
 
@@ -98,22 +98,22 @@ onMounted(async () => {
     <div class="w-full flex items-center flex-wrap gap-3" :class="props.class">
         <Button
             v-if="lastFirstArrow"
-            @click="currentPage = 1"
             :disabled="isFirstPage"
             variant="outline"
             :rounded="rounded"
             :class="cn('p-0', props.btnClass)"
-            :size="size">
+            :size="size"
+            @click="currentPage = 1">
             <ArrowDoubleLeftIcon />
         </Button>
         <Button
-            @click="prev"
             :disabled="isFirstPage"
             :rounded="rounded"
             variant="outline"
             :class="cn('p-0', props.btnClass)"
-            :size="size">
-            <Icon :name="prevIconArrow" class="w-4"></Icon>
+            :size="size"
+            @click="prev">
+            <Icon :name="prevIconArrow" class="w-4"/>
         </Button>
 
         <template v-for="index in pagesData">
@@ -125,10 +125,10 @@ onMounted(async () => {
             </Button>
 
             <Button
+                v-else
                 disabled
                 :size="size"
                 :rounded="rounded"
-                v-else
                 :class="
                     cn(
                         'p-0 border-none text-secondary  shadow-none ',
@@ -144,18 +144,18 @@ onMounted(async () => {
             :disabled="isLastPage"
             :rounded="rounded"
             :class="cn('p-0', props.btnClass)"
-            @click="next"
-            :size="size">
-            <Icon :name="nextIconArrow" class="w-4"></Icon>
+            :size="size"
+            @click="next">
+            <Icon :name="nextIconArrow" class="w-4"/>
         </Button>
         <Button
             v-if="lastFirstArrow"
-            @click="currentPage = pageCount"
             :disabled="isLastPage"
             :rounded="rounded"
             :class="cn('p-0', props.btnClass)"
             variant="outline"
-            :size="size">
+            :size="size"
+            @click="currentPage = pageCount">
             <ArrowDoubleRightIcon />
         </Button>
     </div>

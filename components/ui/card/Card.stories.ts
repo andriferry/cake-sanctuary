@@ -5,35 +5,35 @@ import CardBasic from './CardBasic.vue';
 import { Card, CardTitle, CardContent, CardFooter } from './index';
 
 const meta = {
-    title: 'Component/Card',
-    component: Card,
-    // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/vue/writing-docs/autodocs
-    tags: ['autodocs'],
+  title: 'Component/Card',
+  component: Card,
+  // This component will have an automatically generated docsPage entry: https://storybook.js.org/docs/vue/writing-docs/autodocs
+  tags: ['autodocs'],
 
-    argTypes: {
-        variant: {
-            control: 'select',
-            options: ['default', 'flat', 'destructive', 'outline'],
-        },
-        subtitle: {
-            control: 'text',
-        },
-        title: {
-            control: 'text',
-        },
-        class: {
-            control: 'text',
-        },
+  argTypes: {
+    variant: {
+      control: 'select',
+      options: ['default', 'flat', 'destructive', 'outline'],
     },
+    subtitle: {
+      control: 'text',
+    },
+    title: {
+      control: 'text',
+    },
+    class: {
+      control: 'text',
+    },
+  },
 } satisfies Meta<typeof Card>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
-    render: (args) => ({
-        components: { Card, CardContent, CardFooter },
-        template: `
+  render: (args) => ({
+    components: { Card, CardContent, CardFooter },
+    template: `
             <Card v-bind="args">
                 <CardContent>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
@@ -47,18 +47,18 @@ export const Basic: Story = {
                 </CardFooter>
             </Card>
         `,
-    }),
-    args: {
-        title: 'Card Title',
-        subtitle: 'Card Subtitle',
-        class: '',
-    },
-    // name: 'Card Basic',
-    // args: {
-    //     title: 'Card Title',
-    //     subtitle: 'Card Subtitle',
-    //     class: '',
-    // },
+  }),
+  args: {
+    title: 'Card Title',
+    subtitle: 'Card Subtitle',
+    class: '',
+  },
+  // name: 'Card Basic',
+  // args: {
+  //     title: 'Card Title',
+  //     subtitle: 'Card Subtitle',
+  //     class: '',
+  // },
 };
 
 // export const ManyItems: Story = {

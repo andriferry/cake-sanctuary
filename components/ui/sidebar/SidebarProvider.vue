@@ -2,7 +2,7 @@
 import { cn } from '@/lib/utils';
 import { useEventListener, useMediaQuery, useVModel } from '@vueuse/core';
 import { TooltipProvider } from 'radix-vue';
-import { type HTMLAttributes, type Ref } from 'vue';
+import type { HTMLAttributes, Ref } from 'vue';
 import { provideSidebarContext } from './utils';
 
 interface Props {
@@ -16,8 +16,8 @@ interface Emit {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    defaultOpen: true,
-    open: undefined,
+  defaultOpen: true,
+  open: undefined,
 });
 
 const emits = defineEmits<Emit>();
@@ -27,36 +27,36 @@ const openMobile = ref(false);
 const { sidebar } = useAppConfig();
 
 const open = useVModel(props, 'open', emits, {
-    defaultValue: props.defaultOpen ?? false,
-    passive: (props.open === undefined) as false,
+  defaultValue: props.defaultOpen ?? false,
+  passive: (props.open === undefined) as false,
 }) as Ref<boolean>;
 
 const setOpen = (value: boolean) => {
-    open.value = value; // emits('update:open', value)
+  open.value = value; // emits('update:open', value)
 
-    // This sets the cookie to keep the sidebar state.
-    document.cookie = `${sidebar.SIDEBAR_COOKIE_NAME}=${open.value}; path=/; max-age=${sidebar.SIDEBAR_COOKIE_MAX_AGE}`;
+  // This sets the cookie to keep the sidebar state.
+  document.cookie = `${sidebar.SIDEBAR_COOKIE_NAME}=${open.value}; path=/; max-age=${sidebar.SIDEBAR_COOKIE_MAX_AGE}`;
 };
 
 const setOpenMobile = (value: boolean) => {
-    openMobile.value = value;
+  openMobile.value = value;
 };
 
 // Helper to toggle the sidebar.
 const toggleSidebar = () => {
-    return isMobile.value
-        ? setOpenMobile(!openMobile.value)
-        : setOpen(!open.value);
+  return isMobile.value
+    ? setOpenMobile(!openMobile.value)
+    : setOpen(!open.value);
 };
 
 useEventListener('keydown', (event: KeyboardEvent) => {
-    if (
-        event.key === sidebar.SIDEBAR_KEYBOARD_SHORTCUT &&
+  if (
+    event.key === sidebar.SIDEBAR_KEYBOARD_SHORTCUT &&
         (event.metaKey || event.ctrlKey)
-    ) {
-        event.preventDefault();
-        toggleSidebar();
-    }
+  ) {
+    event.preventDefault();
+    toggleSidebar();
+  }
 });
 
 // We add a state so that we can do data-state="expanded" or "collapsed".
@@ -64,13 +64,13 @@ useEventListener('keydown', (event: KeyboardEvent) => {
 const state = computed(() => (open.value ? 'expanded' : 'collapsed'));
 
 provideSidebarContext({
-    state,
-    open,
-    setOpen,
-    isMobile,
-    openMobile,
-    setOpenMobile,
-    toggleSidebar,
+  state,
+  open,
+  setOpen,
+  isMobile,
+  openMobile,
+  setOpenMobile,
+  toggleSidebar,
 });
 </script>
 

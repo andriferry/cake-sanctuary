@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type CardVariant } from '.';
+import type { CardVariant } from '.';
 import type { HTMLAttributes } from 'vue';
 
 interface Props {
@@ -10,10 +10,10 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-    title: 'Card Title',
-    subtitle: 'Card Subtitle',
-    variant: 'flat',
-    class: '',
+  title: 'Card Title',
+  subtitle: 'Card Subtitle',
+  variant: 'flat',
+  class: '',
 });
 </script>
 
@@ -26,7 +26,7 @@ withDefaults(defineProps<Props>(), {
                 <AspectRatio :ratio="16 / 14">
                     <img
                         class="object-cover w-full transition-all duration-300 ease-in-out h-full"
-                        src="https://plus.unsplash.com/premium_photo-1663840345377-3813d196d5da?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bWFpbiUyMGNvdXJzZXxlbnwwfHwwfHx8MA%3D%3D" />
+                        src="https://plus.unsplash.com/premium_photo-1663840345377-3813d196d5da?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bWFpbiUyMGNvdXJzZXxlbnwwfHwwfHx8MA%3D%3D" >
                 </AspectRatio>
             </figure>
             <CardContent class="mt-1 p-3 text-start min-h-[40px]">

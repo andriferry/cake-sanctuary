@@ -24,30 +24,30 @@ interface Emits {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    errorMessage: '',
+  errorMessage: '',
 });
 
 const emits = defineEmits<Emits>();
 
 const modelValue = useVModel(props, 'modelValue', emits, {
-    passive: true,
-    defaultValue: props.defaultValue || props.value,
+  passive: true,
+  defaultValue: props.defaultValue || props.value,
 });
 
 const hitHint = ref(false);
 
 const inputClass = computed(() => {
-    return [
-        {
-            'border-destructive': props.errorMessage,
-        },
-        {
-            'pr-10': props.appendIcon,
-        },
-        {
-            'pl-10': props.prependIcon,
-        },
-    ];
+  return [
+    {
+      'border-destructive': props.errorMessage,
+    },
+    {
+      'pr-10': props.appendIcon,
+    },
+    {
+      'pl-10': props.prependIcon,
+    },
+  ];
 });
 </script>
 
@@ -71,18 +71,18 @@ const inputClass = computed(() => {
         <div class="flex flex-col relative">
             <div class="relative w-full max-w-sm items-center">
                 <Input
-                    @focus="hitHint = true"
-                    @blur="hitHint = false"
-                    :type="type"
                     v-model="modelValue"
+                    :type="type"
                     :class="inputClass"
-                    :placeholder="placeholder" />
+                    :placeholder="placeholder"
+                    @focus="hitHint = true"
+                    @blur="hitHint = false" />
 
                 <span
                     v-if="appendIcon"
                     role="button"
-                    @click="emits('clickAppend')"
-                    class="absolute end-0 inset-y-0 z-10 flex items-center justify-center px-2">
+                    class="absolute end-0 inset-y-0 z-10 flex items-center justify-center px-2"
+                    @click="emits('clickAppend')">
                     <Icon
                         role="button"
                         :name="appendIcon"

@@ -1,30 +1,30 @@
 <script setup lang="ts">
 const overview = ref([
-    {
-        description: 'Total Sales',
-        title: '$ 121,412',
-        class: 'bg-primary/20 text-primary',
-        icon: 'tabler:currency-dollar',
-    },
+  {
+    description: 'Total Sales',
+    title: '$ 121,412',
+    class: 'bg-primary/20 text-primary',
+    icon: 'tabler:currency-dollar',
+  },
 
-    {
-        description: 'Total Customers',
-        title: '4,324',
-        class: 'bg-[#F26627]/20 text-[#F26627]',
-        icon: 'tabler:users-group',
-    },
-    {
-        description: 'Total Order',
-        title: '5,021',
-        class: 'bg-[#15B392]/20 text-[#15B392]',
-        icon: 'tabler:bowl-chopsticks',
-    },
-    {
-        description: 'Total Tips',
-        title: '$ 1,401',
-        class: 'bg-[#7A0BC0]/20 text-[#7A0BC0]',
-        icon: 'tabler:wallet',
-    },
+  {
+    description: 'Total Customers',
+    title: '4,324',
+    class: 'bg-[#F26627]/20 text-[#F26627]',
+    icon: 'tabler:users-group',
+  },
+  {
+    description: 'Total Order',
+    title: '5,021',
+    class: 'bg-[#15B392]/20 text-[#15B392]',
+    icon: 'tabler:bowl-chopsticks',
+  },
+  {
+    description: 'Total Tips',
+    title: '$ 1,401',
+    class: 'bg-[#7A0BC0]/20 text-[#7A0BC0]',
+    icon: 'tabler:wallet',
+  },
 ]);
 </script>
 
@@ -45,7 +45,7 @@ const overview = ref([
                     <div
                         :class="data.class"
                         class="flex items-center rounded-lg p-2">
-                        <Icon :name="data.icon" class="text-inherit"></Icon>
+                        <Icon :name="data.icon" class="text-inherit"/>
                     </div>
                 </CardHeader>
             </Card>

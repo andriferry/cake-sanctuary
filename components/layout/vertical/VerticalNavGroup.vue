@@ -2,94 +2,94 @@
 const { icons } = useAppConfig();
 
 const data = ref({
-    user: {
-        name: 'shadcn',
-        email: 'm@example.com',
-        avatar: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  user: {
+    name: 'shadcn',
+    email: 'm@example.com',
+    avatar: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+  },
+  navMain: [
+    {
+      title: 'Playground',
+      url: '#',
+      isActive: false,
+      items: [
+        {
+          title: 'History',
+          url: '#',
+        },
+        {
+          title: 'Starred',
+          url: '#',
+        },
+        {
+          title: 'Settings',
+          url: '#',
+        },
+      ],
     },
-    navMain: [
+    {
+      title: 'Models',
+      url: '#',
+      items: [
         {
-            title: 'Playground',
-            url: '#',
-            isActive: false,
-            items: [
-                {
-                    title: 'History',
-                    url: '#',
-                },
-                {
-                    title: 'Starred',
-                    url: '#',
-                },
-                {
-                    title: 'Settings',
-                    url: '#',
-                },
-            ],
+          title: 'Genesis',
+          url: '#',
         },
         {
-            title: 'Models',
-            url: '#',
-            items: [
-                {
-                    title: 'Genesis',
-                    url: '#',
-                },
-                {
-                    title: 'Explorer',
-                    url: '#',
-                },
-                {
-                    title: 'Quantum',
-                    url: '#',
-                },
-            ],
+          title: 'Explorer',
+          url: '#',
         },
         {
-            title: 'Documentation',
-            url: '#',
-            items: [
-                {
-                    title: 'Introduction',
-                    url: '#',
-                },
-                {
-                    title: 'Get Started',
-                    url: '#',
-                },
-                {
-                    title: 'Tutorials',
-                    url: '#',
-                },
-                {
-                    title: 'Changelog',
-                    url: '#',
-                },
-            ],
+          title: 'Quantum',
+          url: '#',
+        },
+      ],
+    },
+    {
+      title: 'Documentation',
+      url: '#',
+      items: [
+        {
+          title: 'Introduction',
+          url: '#',
         },
         {
-            title: 'Settings',
-            url: '#',
-            items: [
-                {
-                    title: 'General',
-                    url: '#',
-                },
-                {
-                    title: 'Team',
-                    url: '#',
-                },
-                {
-                    title: 'Billing',
-                    url: '#',
-                },
-                {
-                    title: 'Limits',
-                    url: '#',
-                },
-            ],
+          title: 'Get Started',
+          url: '#',
         },
-    ],
+        {
+          title: 'Tutorials',
+          url: '#',
+        },
+        {
+          title: 'Changelog',
+          url: '#',
+        },
+      ],
+    },
+    {
+      title: 'Settings',
+      url: '#',
+      items: [
+        {
+          title: 'General',
+          url: '#',
+        },
+        {
+          title: 'Team',
+          url: '#',
+        },
+        {
+          title: 'Billing',
+          url: '#',
+        },
+        {
+          title: 'Limits',
+          url: '#',
+        },
+      ],
+    },
+  ],
 });
 </script>
 
@@ -110,7 +110,7 @@ const data = ref({
                         <span>{{ item.title }}</span>
                         <Icon
                             :name="icons.chevronRight"
-                            class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"></Icon>
+                            class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"/>
                     </SidebarMenuButton>
                 </CollapsibleTrigger>
                 <CollapsibleContent>

@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils';
 import {
-    DialogClose,
-    DialogContent,
-    type DialogContentEmits,
-    type DialogContentProps,
-    DialogOverlay,
-    DialogPortal,
-    useForwardPropsEmits,
+  DialogClose,
+  DialogContent,
+  type DialogContentEmits,
+  type DialogContentProps,
+  DialogOverlay,
+  DialogPortal,
+  useForwardPropsEmits,
 } from 'radix-vue';
-import { type HTMLAttributes } from 'vue';
+import type { HTMLAttributes } from 'vue';
 import { type SheetVariants, sheetVariants } from '.';
 
 interface SheetContentProps extends DialogContentProps {
@@ -18,7 +18,7 @@ interface SheetContentProps extends DialogContentProps {
 }
 
 defineOptions({
-    inheritAttrs: false,
+  inheritAttrs: false,
 });
 
 const props = defineProps<SheetContentProps>();
@@ -28,9 +28,9 @@ const emits = defineEmits<DialogContentEmits>();
 const { icons } = useAppConfig();
 
 const delegatedProps = computed(() => {
-    const { class: _, side, ...delegated } = props;
+  const { class: _, side, ...delegated } = props;
 
-    return delegated;
+  return delegated;
 });
 
 const forwarded = useForwardPropsEmits(delegatedProps, emits);
@@ -47,7 +47,7 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits);
 
             <DialogClose
                 class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
-                <Icon :name="icons.close" class="size-4"></Icon>
+                <Icon :name="icons.close" class="size-4"/>
             </DialogClose>
         </DialogContent>
     </DialogPortal>

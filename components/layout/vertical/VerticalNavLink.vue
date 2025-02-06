@@ -6,8 +6,8 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    title: '',
-    icon: undefined,
+  title: '',
+  icon: undefined,
 });
 </script>
 
@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
         <SidebarMenuButton :tooltip='props.title' as-child size="lg">
             <NuxtLink
                 v-bind="props"
-                activeClass="bg-primary transition-all duration-300 ease-in-out hover:!bg-primary/90 !text-white hover:!text-white">
+                active-class="bg-primary transition-all duration-300 ease-in-out hover:!bg-primary/90 !text-white hover:!text-white">
                 <div
                     v-if="props.icon"
                     class="flex aspect-square size-8 items-center justify-center rounded-lg">

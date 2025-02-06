@@ -4,7 +4,7 @@
             <Button variant="plain" size="icon">
                 <Icon name="tabler:bell" class="text-secondary" />
 
-                <Indicator pingAnimate content="3" />
+                <Indicator ping-animate content="3" />
             </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" class="text-secondary w-96 p-0">
@@ -30,7 +30,7 @@
                                             class="bg-primary/30 text-primary flex items-center justify-center rounded-full size-10">
                                             <Icon
                                                 name="tabler:brand-paypal"
-                                                class="size-6"></Icon>
+                                                class="size-6"/>
                                         </div>
                                         <div
                                             class="flex justify-start items-start flex-col">
@@ -64,7 +64,7 @@
                                             class="bg-secondary/30 text-secondary flex items-center justify-center rounded-full size-10">
                                             <Icon
                                                 name="tabler:message"
-                                                class="size-6"></Icon>
+                                                class="size-6"/>
                                         </div>
                                         <div
                                             class="flex justify-start items-start flex-col">
@@ -97,7 +97,7 @@
                                             class="bg-success/30 text-success flex items-center justify-center rounded-full size-10">
                                             <Icon
                                                 name="tabler:circle-check"
-                                                class="size-6"></Icon>
+                                                class="size-6"/>
                                         </div>
                                         <div
                                             class="flex justify-start items-start flex-col">

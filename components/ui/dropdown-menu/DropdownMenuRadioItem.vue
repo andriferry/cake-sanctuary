@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils';
 import {
-    DropdownMenuItemIndicator,
-    DropdownMenuRadioItem,
-    type DropdownMenuRadioItemEmits,
-    type DropdownMenuRadioItemProps,
-    useForwardPropsEmits,
+  DropdownMenuItemIndicator,
+  DropdownMenuRadioItem,
+  type DropdownMenuRadioItemEmits,
+  type DropdownMenuRadioItemProps,
+  useForwardPropsEmits,
 } from 'radix-vue';
 import { computed, type HTMLAttributes } from 'vue';
 
@@ -21,9 +21,9 @@ const props = defineProps<Props>()
 const emits = defineEmits<DropdownMenuRadioItemEmits>();
 
 const delegatedProps = computed(() => {
-    const { class: _, ...delegated } = props;
+  const { class: _, ...delegated } = props;
 
-    return delegated;
+  return delegated;
 });
 
 const icon =computed(() => props.dotIcon || icons.dropdownRadioItem)

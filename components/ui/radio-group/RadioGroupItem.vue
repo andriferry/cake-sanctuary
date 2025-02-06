@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { cn } from '@/lib/utils';
 import {
-    RadioGroupIndicator,
-    RadioGroupItem,
-    type RadioGroupItemProps,
-    useForwardProps,
+  RadioGroupIndicator,
+  RadioGroupItem,
+  type RadioGroupItemProps,
+  useForwardProps,
 } from 'radix-vue';
 import { computed, type HTMLAttributes } from 'vue';
 
@@ -20,9 +20,9 @@ const props = defineProps<Props>();
 const { icons } = useAppConfig();
 
 const delegatedProps = computed(() => {
-    const { class: _, ...delegated } = props;
+  const { class: _, ...delegated } = props;
 
-    return delegated;
+  return delegated;
 });
 
 const icon = computed(() => props.dotIcon || icons.radioItemIcon);

@@ -13,30 +13,30 @@ const colorTheme = toRef(colorMode.value);
 
 
 watch( colorTheme, ( value ) => {
-    colorMode.preference = value    
+  colorMode.preference = value    
 } )
 
 const themes = ref<Theme[]>([
-    {
-        icon: 'tabler:moon-stars',
-        value: 'dark',
-    },
-    {
-        icon: 'tabler:sun-high',
-        value: 'light',
-    },
-    {
-        icon: 'tabler:device-desktop',
-        value: 'system',
-    },
+  {
+    icon: 'tabler:moon-stars',
+    value: 'dark',
+  },
+  {
+    icon: 'tabler:sun-high',
+    value: 'light',
+  },
+  {
+    icon: 'tabler:device-desktop',
+    value: 'system',
+  },
 ]);
 
 const currentTheme = computed<Theme>(() => {
-    let dataTheme = themes.value.find(
-        (data: Theme) => data.value === colorMode.value
-    );
+  const dataTheme = themes.value.find(
+    (data: Theme) => data.value === colorMode.value
+  );
 
-    return dataTheme ? dataTheme : { icon: '', value: '' };
+  return dataTheme ? dataTheme : { icon: '', value: '' };
 });
 </script>
 

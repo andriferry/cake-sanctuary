@@ -11,8 +11,8 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    size: 'sm',
-    shape: 'circle',
+  size: 'sm',
+  shape: 'circle',
 });
 </script>
 

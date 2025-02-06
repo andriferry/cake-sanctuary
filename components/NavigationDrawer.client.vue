@@ -13,11 +13,11 @@ interface NavData {
 const { navigations } = useAppConfig();
 
 const isComponent = (component: NavData) => {
-    if ('heading' in component) {
-        return VerticalNavTitle;
-    }
+  if ('heading' in component) {
+    return VerticalNavTitle;
+  }
 
-    return VerticalNavLink;
+  return VerticalNavLink;
 };
 </script>
 
@@ -29,10 +29,10 @@ const isComponent = (component: NavData) => {
             <SidebarGroup class="">
                 <SidebarMenu>
                     <component
-                        v-for="(nav, index) in navigations"
-                        :key="index"
                         v-bind="{ ...nav }"
-                        :is="isComponent(nav)" />
+                        :is="isComponent(nav)"
+                        v-for="(nav, index) in navigations"
+                        :key="index" />
                 </SidebarMenu>
             </SidebarGroup>
         </SidebarContent>

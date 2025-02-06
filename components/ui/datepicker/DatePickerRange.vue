@@ -2,40 +2,40 @@
 import type { DateRange } from 'radix-vue';
 import { PopoverTrigger } from '@/components/ui/popover';
 import {
-    CalendarDate,
-    DateFormatter,
-    getLocalTimeZone,
-    type DateValue,
+  CalendarDate,
+  DateFormatter,
+  getLocalTimeZone,
+  type DateValue,
 } from '@internationalized/date';
-import { type Ref } from 'vue';
+import type { Ref } from 'vue';
 
 interface Props {
     disabled?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    disabled: false,
+  disabled: false,
 });
 
 const df = new DateFormatter('en-US', {
-    dateStyle: 'medium',
+  dateStyle: 'medium',
 });
 
 const value = ref({
-    start: new CalendarDate(2022, 1, 20),
-    end: new CalendarDate(2022, 1, 20).add({ days: 20 }),
+  start: new CalendarDate(2022, 1, 20),
+  end: new CalendarDate(2022, 1, 20).add({ days: 20 }),
 }) as Ref<DateRange>;
 
 const formatDate = (date?: DateValue) => {
-    if (date) return df.format(date.toDate(getLocalTimeZone()));
+  if (date) return df.format(date.toDate(getLocalTimeZone()));
 };
 
 const currentDateRange = computed(() => {
-    return `${formatDate(value.value.start)} - ${formatDate(value.value.end)}`;
+  return `${formatDate(value.value.start)} - ${formatDate(value.value.end)}`;
 });
 
 const disabledTemplate = computed( () => {
-    return props.disabled ? 'div': PopoverTrigger
+  return props.disabled ? 'div': PopoverTrigger
 });
 </script>
 

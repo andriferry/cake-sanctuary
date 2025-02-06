@@ -13,7 +13,9 @@
     "build-storybook": "storybook build",
     "db:generate": "drizzle-kit generate --name=init",
     "db:studio": "drizzle-kit studio --port=3001",
-    "db:push": "drizzle-kit push"
+    "db:push": "drizzle-kit push",
+    "lint": "eslint . -c .eslintrc.cjs --fix --ext .ts,.js,.cjs,.vue,.tsx,.jsx",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@adonisjs/hash": "^9.0.5",
@@ -27,6 +29,8 @@
     "@simplewebauthn/browser": "11",
     "@simplewebauthn/server": "11",
     "@storybook/addon-interactions": "^8.5.0",
+    "@stylistic/stylelint-config": "^1.0.1",
+    "@stylistic/stylelint-plugin": "^3.1.2",
     "@tailwindcss/typography": "^0.5.15",
     "@tanstack/vue-table": "^8.20.5",
     "@vee-validate/i18n": "^4.14.7",
@@ -42,9 +46,11 @@
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.38.4",
     "embla-carousel-vue": "^8.5.1",
+    "eslint": "^9.19.0",
     "nuxt": "^3.14.1592",
     "nuxt-auth-utils": "^0.5.5",
     "pinia": "^2.3.0",
+    "postcss-html": "^1.8.0",
     "radix-vue": "^1.9.12",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
@@ -58,14 +64,31 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@antfu/eslint-config-vue": "^0.43.1",
     "@chromatic-com/storybook": "^3.2.4",
     "@faker-js/faker": "^9.3.0",
     "@nuxtjs/tailwindcss": "^6.12.2",
     "@storybook/addon-a11y": "^8.4.7",
     "@storybook/addon-essentials": "^8.5.0",
+    "@stylistic/eslint-plugin-js": "^3.0.1",
     "@types/better-sqlite3": "^7.6.12",
     "drizzle-kit": "^0.30.3",
-    "shadcn-nuxt": "^0.11.3"
-  },
-  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-case-police": "^0.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-regex": "^1.10.0",
+    "eslint-plugin-regexp": "^2.6.0",
+    "eslint-plugin-sonarjs": "^0.24.0",
+    "eslint-plugin-unicorn": "^51.0.1",
+    "eslint-plugin-vue": "^9.32.0",
+    "shadcn-nuxt": "^0.11.3",
+    "stylelint": "16.7.0",
+    "stylelint-codeguide": "2.0.0",
+    "stylelint-config-idiomatic-order": "10.0.0",
+    "stylelint-config-standard-scss": "13.1.0",
+    "stylelint-use-logical-spec": "5.0.1"
+  }
 }

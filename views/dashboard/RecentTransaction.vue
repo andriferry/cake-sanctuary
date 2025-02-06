@@ -13,42 +13,42 @@ const dataPagination = ref(1);
 const { icons } = useAppConfig();
 
 const fetch = async (page: number, pageSize: number) => {
-    return new Promise<Invoice[]>((resolve, reject) => {
-        const start = (page - 1) * pageSize;
-        const end = start + pageSize;
+  return new Promise<Invoice[]>((resolve, reject) => {
+    const start = (page - 1) * pageSize;
+    const end = start + pageSize;
 
-        setTimeout(() => {
-            resolve(invoices.slice(start, end));
-        }, 100);
-    });
+    setTimeout(() => {
+      resolve(invoices.slice(start, end));
+    }, 100);
+  });
 };
 
 const fetchData = async ({ currentPage, currentPageSize }: PaginationFetch) => {
-    try {
-        const data = await fetch(currentPage, currentPageSize);
-        if (data) {
-            dataInvoice.value = data;
-        }
-    } catch (error) {
-        throw error;
+  try {
+    const data = await fetch(currentPage, currentPageSize);
+    if (data) {
+      dataInvoice.value = data;
     }
+  } catch (error) {
+    throw error;
+  }
 };
 
 const badgeRenderColor = (value: Invoice['paymentStatus']) => {
-    switch (value) {
-        case 'Paid':
-            return 'success';
-            break;
-        case 'Unpaid':
-            return 'destructive';
-            break;
-        case 'Pending':
-            return 'secondary';
-            break;
+  switch (value) {
+  case 'Paid':
+    return 'success';
+    break;
+  case 'Unpaid':
+    return 'destructive';
+    break;
+  case 'Pending':
+    return 'secondary';
+    break;
 
-        default:
-            break;
-    }
+  default:
+    break;
+  }
 };
 </script>
 
@@ -108,7 +108,7 @@ const badgeRenderColor = (value: Invoice['paymentStatus']) => {
                                     rounded="lg">
                                     <Icon
                                         :name="icons.eyeIcon"
-                                        class="w-4 text-secondary"></Icon>
+                                        class="w-4 text-secondary"/>
                                 </Button>
 
                                 <Button
@@ -118,7 +118,7 @@ const badgeRenderColor = (value: Invoice['paymentStatus']) => {
                                     rounded="lg">
                                     <Icon
                                         :name="icons.edit"
-                                        class="w-4 text-secondary"></Icon>
+                                        class="w-4 text-secondary"/>
                                 </Button>
                                 <Button
                                     size="xs"
@@ -127,7 +127,7 @@ const badgeRenderColor = (value: Invoice['paymentStatus']) => {
                                     rounded="lg">
                                     <Icon
                                         :name="icons.delete"
-                                        class="w-4 text-secondary"></Icon>
+                                        class="w-4 text-secondary"/>
                                 </Button>
                             </div>
                         </TableCell>
@@ -144,7 +144,7 @@ const badgeRenderColor = (value: Invoice['paymentStatus']) => {
                 :size="breakpoints.greater('sm') ? 'icon' : 'xs'"
                 :visible="4"
                 class="justify-end"
-                @onChange="fetchData" />
+                @on-change="fetchData" />
         </CardFooter>
     </Card>
 </template>

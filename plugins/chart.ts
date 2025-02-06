@@ -1,6 +1,6 @@
-import { Chart, registerables } from 'chart.js';
+import { Chart, registerables } from 'chart.js'
 
-export default defineNuxtPlugin((nuxtApp) => {
-    Chart.register(...registerables);
-    Chart.defaults.responsive = false;
-});
+export default defineNuxtPlugin(nuxtApp => {
+  Chart.register(...registerables)
+  Chart.defaults.responsive = false
+})
