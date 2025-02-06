@@ -1,27 +1,43 @@
 import { type Cart, type Menu, carts, menus } from '@/@fake/data'
 
+interface Order {
+  orderNumber: string
+  orderStatus: string
+  tables: string[]
+  paperBag: false
+  products: any[]
+  paymentMethod: string
+}
+
 export const useCartStore = defineStore('cart', () => {
   const dataCart = ref<Cart[]>(carts)
 
-  const order = ref({
-    orderNumber: '1234',
+  const order = ref<Order>({
+    orderNumber: '123456',
     orderStatus: 'dine-in',
-    tables: ['TO1'],
+    tables: [],
     paperBag: false,
-    orderProduct: [
-      {
-        id: 21,
-        qty: 2,
-      },
-    ],
+    products: [],
     paymentMethod: '',
   })
 
-  const getAllProduct = computed(() => {
-    const allProduct = dataCart.value.map((item: Cart) => {
+  const addCartItem = () => {
+    // carts.value.push(value);
+  }
+
+  const removeCartItem = (item: Menu) => {
+    const productIndex = order.value.products.findIndex((dataProduct: Menu) => dataProduct.id === item.id)
+
+    if (productIndex > -1)
+      order.value.products.splice(productIndex, 1)
+  }
+
+  const init = () => {
+    const allProduct: Menu[] = dataCart.value.map((item: Cart) => {
       const product: Menu | undefined = menus.find((dataProduct: Menu) => dataProduct.id === item.menuId)
 
-      let obj = {}
+      let obj: any = {}
+
       if (product) {
         obj = {
           ...item,
@@ -33,22 +49,14 @@ export const useCartStore = defineStore('cart', () => {
       return obj
     })
 
-    return allProduct.slice(0, 5)
-  })
-
-  const addCartItem = () => {
-    // carts.value.push(value);
-  }
-
-  const removeCartItem = () => {
-    // carts.value.slice(value, 1);
+    order.value.products = allProduct.slice(0, 5)
   }
 
   return {
     order,
     dataCart,
-    getAllProduct,
     addCartItem,
     removeCartItem,
+    init,
   }
 })

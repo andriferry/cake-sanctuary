@@ -4,10 +4,9 @@ import { convertCurrency } from '@@/lib/utils'
 const cartStore = useCartStore()
 const { icons } = useAppConfig()
 
-const { getAllProduct } = storeToRefs(cartStore)
+const { order } = storeToRefs(cartStore)
 
 const dialogOpen = ref(true)
-const tab = ref('dine-in')
 
 const tabs = ref([
   {
@@ -44,6 +43,10 @@ const convertToCurrency = (price: number | undefined, qty: number | undefined) =
   if (typeof price == 'number' && typeof qty === 'number') return convertCurrency(price * qty)
   else return convertCurrency(0)
 }
+
+onMounted(() => {
+  cartStore.init()
+})
 </script>
 
 <template>
@@ -58,15 +61,15 @@ const convertToCurrency = (price: number | undefined, qty: number | undefined) =
         class="text-secondary"
       />
 
-      <Indicator :content="`${getAllProduct.length}`" />
+      <Indicator :content="`${order.products.length}`" />
     </Button>
 
     <Dialog v-model:open="dialogOpen">
       <DialogContent
-        class="sm:max-w-[425px] md:max-w-lg xl:w-full xl:max-w-md grid-rows-[auto_minmax(0,1fr)_auto] p-0 max-h-[90dvh]"
+        class="w-full sm:max-w-[425px] md:max-w-lg xl:w-full xl:max-w-md grid-rows-[auto_minmax(0,1fr)_auto] p-0 max-h-[90dvh]"
       >
         <DialogHeader class="p-6 pb-0">
-          <DialogTitle> Current Order #123456 </DialogTitle>
+          <DialogTitle> Current Order #{{ order.orderNumber }} </DialogTitle>
         </DialogHeader>
         <div class="grid gap-4 py-4 overflow-y-auto px-6">
           <div class="flex flex-col h-auto">
@@ -80,7 +83,7 @@ const convertToCurrency = (price: number | undefined, qty: number | undefined) =
             <Label class="mb-3"> Where will you eat: </Label>
 
             <Tabs
-              v-model="tab"
+              v-model="order.orderStatus"
               class="w-full"
             >
               <TabsList class="grid w-full bg-transparent gap-3 grid-cols-2">
@@ -105,27 +108,27 @@ const convertToCurrency = (price: number | undefined, qty: number | undefined) =
 
             <div class="flex flex-col gap-3 mt-3">
               <div
-                v-for="(product, index) in getAllProduct"
+                v-for="(product, index) in order.products"
                 :key="index"
-                class="p-3 border grid grid-cols-12 text-secondary rounded-lg"
+                class="p-3 border grid grid-cols-12 gap-2 text-secondary rounded-lg"
               >
                 <div class="col-span-3">
                   <Avatar
-                    class="size-12"
+                    class="size-12 lg:size-[5.3rem]"
                     shape="square"
                   >
                     <AvatarImage
-                      :src="product?.img || ''"
-                      :alt="product?.title"
+                      :src="product.img || ''"
+                      :alt="product.title"
                     />
                   </Avatar>
                 </div>
                 <div class="col-span-7 flex flex-col">
                   <p class="text-sm font-medium truncate">
-                    {{ product?.title }}
+                    {{ product.title }}
                   </p>
                   <small class="mb-1">
-                    {{ convertCurrency(product?.price || 0) }}
+                    {{ convertCurrency(product.price || 0) }}
                   </small>
 
                   <NumberField
@@ -144,6 +147,7 @@ const convertToCurrency = (price: number | undefined, qty: number | undefined) =
                   <Button
                     variant="plain"
                     size="xs"
+                    @click="cartStore.removeCartItem(product)"
                   >
                     <Icon
                       :name="icons.delete"
@@ -151,7 +155,6 @@ const convertToCurrency = (price: number | undefined, qty: number | undefined) =
                     />
                   </Button>
                   <p class="text-xs font-light">
-                    {{ product?.qty }}
                     {{ convertToCurrency(product?.price, product?.qty) }}
                   </p>
                 </div>
