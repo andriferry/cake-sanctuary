@@ -7,6 +7,8 @@ interface Order {
   paperBag: false
   products: any[]
   paymentMethod: string
+  subtotal: number
+  tax: number
 }
 
 export const useCartStore = defineStore('cart', () => {
@@ -19,11 +21,29 @@ export const useCartStore = defineStore('cart', () => {
     paperBag: false,
     products: [],
     paymentMethod: '',
+    subtotal: 0,
+    tax: 2,
   })
 
-  const addCartItem = () => {
+  const addCartItem = (item: Menu) => {
     // carts.value.push(value);
+
+    console.log(item)
   }
+
+  const subtotal = computed(() => {
+    const subtotalProduct = useArrayReduce(order.value.products, (sum, val) => sum + val.qty, 0)
+    const subtotalPrice = useArrayReduce(order.value.products, (sum, val) => sum + val.qty * val.price, 0)
+    const subtotalTaxAmount = (order.value.tax / 100 * subtotalPrice.value)
+    const subtotalTotalAmount = subtotalPrice.value + subtotalTaxAmount
+
+    return {
+      subtotal: subtotalProduct.value,
+      subtotalAmount: subtotalPrice.value,
+      taxAmount: subtotalTaxAmount,
+      totalPayment: subtotalTotalAmount,
+    }
+  })
 
   const removeCartItem = (item: Menu) => {
     const productIndex = order.value.products.findIndex((dataProduct: Menu) => dataProduct.id === item.id)
@@ -55,6 +75,7 @@ export const useCartStore = defineStore('cart', () => {
   return {
     order,
     dataCart,
+    subtotal,
     addCartItem,
     removeCartItem,
     init,

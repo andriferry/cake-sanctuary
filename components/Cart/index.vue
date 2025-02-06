@@ -1,12 +1,14 @@
 <script setup lang="ts">
+import { type Cart, type Menu, carts, menus } from '@/@fake/data'
+
 import { convertCurrency } from '@@/lib/utils'
 
 const cartStore = useCartStore()
 const { icons } = useAppConfig()
 
-const { order } = storeToRefs(cartStore)
+const { order, subtotal } = storeToRefs(cartStore)
 
-const dialogOpen = ref(true)
+const dialogOpen = ref(false)
 
 const tabs = ref([
   {
@@ -38,6 +40,10 @@ const paymentMethod = ref([
     value: 'scan-qr',
   },
 ])
+
+const changeProductQty = (event: number, item: Menu) => {
+  if (event === 0) cartStore.removeCartItem(item)
+}
 
 const convertToCurrency = (price: number | undefined, qty: number | undefined) => {
   if (typeof price == 'number' && typeof qty === 'number') return convertCurrency(price * qty)
@@ -123,7 +129,7 @@ onMounted(() => {
                     />
                   </Avatar>
                 </div>
-                <div class="col-span-7 flex flex-col">
+                <div class="col-span-7 flex gap-2 flex-col">
                   <p class="text-sm font-medium truncate">
                     {{ product.title }}
                   </p>
@@ -135,6 +141,7 @@ onMounted(() => {
                     v-model="product.qty"
                     :min="0"
                     class="w-20"
+                    @update:model-value="changeProductQty($event, product)"
                   >
                     <NumberFieldContent>
                       <NumberFieldDecrement class="w-5 p-0 border flex justify-center items-center h-5 rounded-md" />
@@ -165,19 +172,19 @@ onMounted(() => {
         <DialogFooter class="p-6 pt-0 flex !flex-col gap-3">
           <div class="p-3 grid gap-3 grid-flow-row auto-rows-max border text-secondary rounded-lg">
             <div class="w-full flex justify-between">
-              <p class="text-sm font-medium">Subtotal (2)</p>
+              <p class="text-sm font-medium">Subtotal ({{ subtotal.subtotal }})</p>
 
-              <p class="text-sm font-bold">$ 120</p>
+              <p class="text-sm font-bold">{{ convertCurrency(subtotal.subtotalAmount || 0) }} </p>
             </div>
             <div class="w-full flex justify-between">
-              <p class="text-sm font-medium">Service Tax (2%)</p>
+              <p class="text-sm font-medium">Service Tax ({{ order.tax }} %)</p>
 
-              <p class="text-sm font-bold">$ 12.00</p>
+              <p class="text-sm font-bold">{{ convertCurrency(subtotal.taxAmount || 0) }}</p>
             </div>
             <div class="border-t-2 w-full flex justify-between pt-2">
               <p class="text-sm font-black">Total Payment</p>
 
-              <p class="text-sm font-bold">$ 120</p>
+              <p class="text-sm font-bold"> {{ convertCurrency(subtotal.totalPayment || 0) }}</p>
             </div>
           </div>
 
