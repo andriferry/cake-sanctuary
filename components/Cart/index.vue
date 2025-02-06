@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { convertCurrency } from '@@/lib/utils'
 
-const { getAllProduct } = useCartStore()
+const cartStore = useCartStore()
 const { icons } = useAppConfig()
+
+const { getAllProduct } = storeToRefs(cartStore)
 
 const dialogOpen = ref(true)
 const tab = ref('dine-in')
-
-const sample = ref(2)
 
 const tabs = ref([
   {
@@ -43,10 +43,6 @@ const paymentMethod = ref([
 const convertToCurrency = (price: number | undefined, qty: number | undefined) => {
   if (typeof price == 'number' && typeof qty === 'number') return convertCurrency(price * qty)
   else return convertCurrency(0)
-}
-
-const check = event => {
-  console.log(event)
 }
 </script>
 
@@ -133,7 +129,7 @@ const check = event => {
                   </small>
 
                   <NumberField
-                    :default-value="product?.qty"
+                    v-model="product.qty"
                     :min="0"
                     class="w-20"
                   >
@@ -206,20 +202,7 @@ const check = event => {
             </div>
           </div>
 
-          <NumberField
-            :default-value="sample"
-            :min="0"
-            class="w-20"
-            @update:model-value="check"
-          >
-            <NumberFieldContent>
-              <NumberFieldDecrement class="w-5 p-0 border flex justify-center items-center h-5 rounded-md" />
-              <NumberFieldInput class="border-none text-primary h-5 shadow-none" />
-              <NumberFieldIncrement class="w-5 p-0 border flex justify-center items-center h-5 rounded-md" />
-            </NumberFieldContent>
-          </NumberField>
-
-          <Button> Make Order {{ sample }} </Button>
+          <Button> Make Order  </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
