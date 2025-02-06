@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { tables } from '@@/@fake/data'
 import { convertCurrency } from '@@/lib/utils'
 
 const { getAllProduct } = useCartStore()
 const { icons } = useAppConfig()
 
 const dialogOpen = ref(false)
-const dataTable = ref(tables)
 const tab = ref('dine-in')
+
 const tabs = ref([
   {
     title: 'Dine In',
@@ -28,7 +27,7 @@ const paymentMethod = ref([
     value: 'debitCard',
   },
   {
-    title: 'Paypal',
+    title: 'PayPal',
     icon: 'tabler:brand-paypal',
     value: 'paypal',
   },
@@ -207,5 +206,3 @@ const convertToCurrency = (price: number | undefined, qty: number | undefined) =
     </Dialog>
   </div>
 </template>
-
-<style scoped></style>
