@@ -23,5 +23,8 @@ logs
 .env.*
 !.env.example
 
+# Database sqlite
+database/*.sqlite
+
 *storybook.log
 storybook-static

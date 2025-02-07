@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Cart, type Menu, carts, menus } from '@/@fake/data'
+import { type Menu } from '@/@fake/data'
 
 import { convertCurrency } from '@@/lib/utils'
 

@@ -209,60 +209,6 @@ module.exports = {
     'sonarjs/no-duplicate-string': 'off',
     'sonarjs/no-nested-template-literals': 'off',
     'vue/singleline-html-element-content-newline': 'off',
-
-    // -- Unicorn
-    // 'unicorn/filename-case': 'off',
-    // 'unicorn/prevent-abbreviations': ['error', {
-    //   replacements: {
-    //     props: false,
-    //   },
-    // }],
-
-    // Internal Rules
-
-    // https://github.com/gmullerb/eslint-plugin-regex
-    'regex/invalid': [
-      'error',
-      [
-        {
-          regex: '@/assets/images',
-          replacement: '@images',
-          message: 'Use \'@images\' path alias for image imports',
-        },
-        {
-          regex: '@/assets/styles',
-          replacement: '@styles',
-          message:
-                        'Use \'@styles\' path alias for importing styles from \'assets/styles\'',
-        },
-
-        {
-          id: 'Disallow icon of icon library',
-          regex: 'mdi-\\w',
-          message: 'Only \'remix\' icons are allowed',
-        },
-
-        {
-          regex: '@core/\\w',
-          message:
-                        'You can\'t use @core when you are in @layouts module',
-          files: {
-            inspect: '@layouts/.*',
-          },
-        },
-        {
-          regex: 'useLayouts\\(',
-          message:
-                        '`useLayouts` composable is only allowed in @layouts & @core directory. Please use `useThemeConfig` composable instead.',
-          files: {
-            inspect: '^(?!.*(@core|@layouts)).*',
-          },
-        },
-      ],
-
-      // Ignore files
-      '.eslintrc.cjs',
-    ],
   },
   settings: {
     'import/resolver': {
