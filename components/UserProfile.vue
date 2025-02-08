@@ -5,13 +5,13 @@ const { user, clear } = useUserSession()
 
 const router = useRouter()
 
-const logout = async () => {
+async function logout() {
   try {
     await clear()
-
     router.push('/login')
-  } catch (error) {
-    throw error
+  }
+  catch (error) {
+    console.error(error)
   }
 }
 </script>

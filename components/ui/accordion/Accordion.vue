@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { AccordionRoot, type AccordionRootEmits, type AccordionRootProps, useForwardPropsEmits } from 'radix-vue'
+import type { AccordionRootEmits, AccordionRootProps } from 'radix-vue'
+import { AccordionRoot, useForwardPropsEmits } from 'radix-vue'
 
 const props = defineProps<AccordionRootProps>()
 const emits = defineEmits<AccordionRootEmits>()
@@ -9,6 +10,6 @@ const forwarded = useForwardPropsEmits(props, emits)
 
 <template>
   <AccordionRoot v-bind="forwarded">
-    <slot />
+    <slot></slot>
   </AccordionRoot>
 </template>

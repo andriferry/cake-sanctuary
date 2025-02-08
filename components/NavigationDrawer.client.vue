@@ -12,8 +12,9 @@ interface NavData {
 
 const { navigations } = useAppConfig()
 
-const isComponent = (component: NavData) => {
-  if ('heading' in component) return VerticalNavTitle
+function isComponent(component: NavData) {
+  if ('heading' in component)
+    return VerticalNavTitle
 
   return VerticalNavLink
 }

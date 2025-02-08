@@ -83,7 +83,7 @@ export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
     '@nuxtjs/tailwindcss',
-    'shadcn-nuxt', //'@nuxtjs/color-mode', //   '@nuxtjs/seo',
+    'shadcn-nuxt', // '@nuxtjs/color-mode', //   '@nuxtjs/seo',
     'nuxt-auth-utils',
     '@nuxt/icon',
     '@pinia/nuxt', // '@nuxtjs/storybook',

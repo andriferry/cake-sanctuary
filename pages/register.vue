@@ -34,7 +34,8 @@ const onSubmit = async () => {
   try {
     const dataValid = await form.value?.validate()
 
-    if (!dataValid?.valid) return
+    if (!dataValid?.valid)
+      return
 
     $toast.promise(registerProccess(), {
       loading: 'Please Wait...',
@@ -44,7 +45,8 @@ const onSubmit = async () => {
     })
 
     router.push('/login')
-  } catch (error: any) {
+  }
+  catch (error: any) {
     if (error) {
       $toast('Error', {
         description: error.data.message,
@@ -175,7 +177,9 @@ const onSubmit = async () => {
                 class="p-0 text-sm"
                 as-child
               >
-                <NuxtLink to="/login"> Login </NuxtLink>
+                <NuxtLink to="/login">
+                  Login
+                </NuxtLink>
               </Button>
             </p>
           </CardFooter>
@@ -192,5 +196,3 @@ const onSubmit = async () => {
     </div>
   </div>
 </template>
-
-<style scoped></style>

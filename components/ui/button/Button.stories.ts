@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3'
 
-import Button from './Button.vue';
+import Button from './Button.vue'
 
 const meta = {
   title: 'Component/Button',
@@ -17,11 +17,11 @@ const meta = {
     rounded: 'default',
     as: 'button',
   },
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof Button>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const ButtonComponent: Story = {
   args: {},
-};
+}

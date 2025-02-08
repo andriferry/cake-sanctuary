@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { menuCategory, menus, type Menu } from '@/@fake/data'
+import type { Menu } from '@/@fake/data'
+import { menuCategory, menus } from '@/@fake/data'
 import { convertCurrency } from '@@/lib/utils'
+
 definePageMeta({
   middleware: 'auth',
 })
@@ -10,7 +12,8 @@ const menuIndex = ref(0)
 const menusCategory = computed(() => {
   return menuCategory.map((allMenu: Menu) => {
     const getAllMenu = menus.filter((dataItem: Menu) => {
-      if (dataItem.category?.includes(allMenu.value)) return dataItem
+      if (dataItem.category?.includes(allMenu.value))
+        return dataItem
     })
     return {
       ...allMenu,
@@ -22,7 +25,8 @@ const allMenus = computed<Menu[]>(() => {
   const category = menusCategory.value[menuIndex.value].value
 
   return menus.filter((item: Menu) => {
-    if (item.category?.includes(category)) return item
+    if (item.category?.includes(category))
+      return item
   })
 })
 </script>
@@ -90,7 +94,9 @@ const allMenus = computed<Menu[]>(() => {
             </figure>
             <CardContent class="mt-1 p-3 text-start min-h-[40px] group-hover:text-primary">
               <div class="font-medium">
-                <h2 class="truncate">{{ data.title }}</h2>
+                <h2 class="truncate">
+                  {{ data.title }}
+                </h2>
 
                 <span
                   v-if="data.price"
@@ -110,5 +116,3 @@ const allMenus = computed<Menu[]>(() => {
     </div>
   </WrapperPages>
 </template>
-
-<style scoped></style>

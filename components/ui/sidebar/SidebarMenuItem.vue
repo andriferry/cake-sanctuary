@@ -12,6 +12,6 @@ const props = defineProps<{
     data-sidebar="menu-item"
     :class="cn('group/menu-item relative font-medium text-secondary', props.class)"
   >
-    <slot />
+    <slot></slot>
   </li>
 </template>

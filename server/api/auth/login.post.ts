@@ -1,5 +1,5 @@
-import { eq } from 'drizzle-orm'
 import { users } from '@/database/schema'
+import { eq } from 'drizzle-orm'
 
 const invalidCredentialsError = createError({
   statusCode: 401,
@@ -8,7 +8,7 @@ const invalidCredentialsError = createError({
   message: 'Invalid credentials',
 })
 
-export default defineEventHandler(async event => {
+export default defineEventHandler(async (event) => {
   const bodyRequest = await readBody(event)
 
   const result = await readValidatedBody(event, body => userSchema.safeParse(body))
@@ -18,12 +18,15 @@ export default defineEventHandler(async event => {
       statusCode: 400,
       message: JSON.stringify(result.error),
     })
-  } else {
+  }
+  else {
     const user = await dbConnect.select().from(users).where(eq(users.email, bodyRequest.email)).get()
 
-    if (!user) throw invalidCredentialsError
+    if (!user)
+      throw invalidCredentialsError
 
-    if (!(await verifyPassword(user.password, bodyRequest.password))) throw invalidCredentialsError
+    if (!(await verifyPassword(user.password, bodyRequest.password)))
+      throw invalidCredentialsError
 
     await setUserSession(event, {
       user: {

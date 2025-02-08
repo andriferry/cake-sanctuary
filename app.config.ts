@@ -1,4 +1,5 @@
-import { sidebar } from '@/themeconfig';
+import { sidebar } from '@/themeconfig'
+
 export default defineAppConfig({
   title: 'Cake Sanctuary',
   navigations: [
@@ -63,4 +64,4 @@ export default defineAppConfig({
     plus: 'tabler:plus',
     alertTriangle: 'tabler:alert-triangle',
   },
-});
+})

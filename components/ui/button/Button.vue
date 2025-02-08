@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { Primitive, type PrimitiveProps } from 'radix-vue'
+import type { PrimitiveProps } from 'radix-vue'
 import type { HTMLAttributes } from 'vue'
-import { type ButtonVariants, buttonVariants } from '.'
+import type { ButtonVariants } from '.'
 import { cn } from '@/lib/utils'
+import { Primitive } from 'radix-vue'
+import { buttonVariants } from '.'
 
 interface Props extends PrimitiveProps {
   variant?: ButtonVariants['variant']
@@ -21,7 +23,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 defineSlots<{
-  default(): any
+  default: () => any
 }>()
 </script>
 
@@ -40,7 +42,7 @@ defineSlots<{
       :name="props.prependIcon"
       class="text-xl"
     />
-    <slot />
+    <slot></slot>
     <Icon
       v-if="props.appendIcon"
       :name="props.appendIcon"

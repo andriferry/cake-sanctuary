@@ -11,7 +11,9 @@
       </div>
 
       <div class="col-span-7 flex flex-col gap-2">
-        <p class="text-sm font-medium">Paper Bag</p>
+        <p class="text-sm font-medium">
+          Paper Bag
+        </p>
 
         <NumberField
           :default-value="1"
@@ -32,7 +34,9 @@
         </NumberField>
       </div>
       <div class="col-span-2 flex flex-col justify-between items-end">
-        <p class="text-xs font-light">$ 1.00</p>
+        <p class="text-xs font-light">
+          $ 1.00
+        </p>
       </div>
     </div>
 
@@ -44,7 +48,9 @@
       </div>
 
       <div class="col-span-7 flex flex-col gap-2">
-        <p class="text-sm font-medium">Shopping Bag</p>
+        <p class="text-sm font-medium">
+          Shopping Bag
+        </p>
 
         <NumberField
           :default-value="1"
@@ -65,7 +71,9 @@
         </NumberField>
       </div>
       <div class="col-span-2 flex flex-col justify-between items-end">
-        <p class="text-xs font-light">$ 3.00</p>
+        <p class="text-xs font-light">
+          $ 3.00
+        </p>
       </div>
     </div>
   </div>

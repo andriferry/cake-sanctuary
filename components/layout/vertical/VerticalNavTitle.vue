@@ -1,11 +1,11 @@
 <script setup lang="ts">
 interface Props {
-    heading?: string;
+  heading?: string
 }
 
-const { heading = '' } = defineProps<Props>();
+const { heading = '' } = defineProps<Props>()
 </script>
 
 <template>
-    <SidebarGroupLabel>{{ heading }}</SidebarGroupLabel>
+  <SidebarGroupLabel>{{ heading }}</SidebarGroupLabel>
 </template>

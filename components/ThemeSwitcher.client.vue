@@ -8,7 +8,7 @@ const colorMode = useColorMode()
 
 const colorTheme = toRef(colorMode.value)
 
-watch(colorTheme, value => {
+watch(colorTheme, (value) => {
   colorMode.preference = value
 })
 

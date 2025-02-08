@@ -88,11 +88,11 @@ const buttonText = computed(() => {
         </DialogDescription>
 
         <DialogFooter>
-          <Button @click="dialogOpen = !dialogOpen"> Save changes </Button>
+          <Button @click="dialogOpen = !dialogOpen">
+            Save changes
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
   </WrapperPages>
 </template>
-
-<style scoped></style>

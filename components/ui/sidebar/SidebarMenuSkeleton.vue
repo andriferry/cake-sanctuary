@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import type { HTMLAttributes } from 'vue'
 import Skeleton from '@/components/ui/skeleton/Skeleton.vue'
 import { cn } from '@/lib/utils'
-import { computed, type HTMLAttributes } from 'vue'
+import { computed } from 'vue'
 
 const props = defineProps<{
   showIcon?: boolean
@@ -9,7 +10,7 @@ const props = defineProps<{
 }>()
 
 const width = computed(() => {
-  return `${Math.floor(Math.random() * 40) + 50}%`;
+  return `${Math.floor(Math.random() * 40) + 50}%`
 })
 </script>
 

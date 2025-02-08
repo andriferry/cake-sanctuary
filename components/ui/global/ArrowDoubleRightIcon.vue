@@ -1,10 +1,7 @@
 <script setup lang="ts">
-const { icons } = useAppConfig();
+const { icons } = useAppConfig()
 </script>
 
 <template>
-    <Icon :name="icons.doubleChevronRight" class="w-4"/>
+  <Icon :name="icons.doubleChevronRight" class="w-4" />
 </template>
-
-<style scoped></style>
-

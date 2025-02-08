@@ -21,16 +21,17 @@ const location = useBrowserLocation()
 const url = useCookie('url')
 const route = useRoute()
 
-const errorHandling = error => {
+const errorHandling = (error: any) => {
   if (error.data.statusCode === 401) {
     $toast.error('Error', {
       description: error.data.message,
     })
-  } else {
+  }
+  else {
     const allError = JSON.parse(error.data.message)
 
     if (allError.issues.length > 0) {
-      allError.issues.forEach(item => {
+      allError.issues.forEach((item: any) => {
         $toast.error('Error', {
           description: item.message,
         })
@@ -43,7 +44,8 @@ const onSubmit = async () => {
   try {
     const dataValid = await form.value?.validate()
 
-    if (!dataValid?.valid) return
+    if (!dataValid?.valid)
+      return
 
     await $fetch('/api/auth/login', {
       method: 'POST',
@@ -57,7 +59,8 @@ const onSubmit = async () => {
         description: `Hello, ${user.value?.name} Welcome Back`,
       })
     })
-  } catch (error) {
+  }
+  catch (error) {
     if (error) {
       errorHandling(error)
     }
@@ -157,7 +160,9 @@ const loginWithSocial = async (service: 'google') => {
                 class="p-0 text-sm"
                 as-child
               >
-                <NuxtLink to="/register"> Create an account </NuxtLink>
+                <NuxtLink to="/register">
+                  Create an account
+                </NuxtLink>
               </Button>
             </p>
           </CardFooter>

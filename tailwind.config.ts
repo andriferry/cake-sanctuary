@@ -1,8 +1,8 @@
-import tailwindTypography from '@tailwindcss/typography';
-import type { Config } from 'tailwindcss';
-import animate from 'tailwindcss-animate';
-import plugin from 'tailwindcss/plugin';
-import { sidebar } from './themeconfig';
+import type { Config } from 'tailwindcss'
+import tailwindTypography from '@tailwindcss/typography'
+import animate from 'tailwindcss-animate'
+import plugin from 'tailwindcss/plugin'
+import { sidebar } from './themeconfig'
 
 export default {
   darkMode: 'class',
@@ -63,15 +63,15 @@ export default {
         },
         sidebar: {
           /// We need to remove this sidebar color, And also just created a few basic colors
-          DEFAULT: 'hsl(var(--sidebar-background))',
-          foreground: 'hsl(var(--sidebar-foreground))',
-          primary: 'hsl(var(--primary))',
+          'DEFAULT': 'hsl(var(--sidebar-background))',
+          'foreground': 'hsl(var(--sidebar-foreground))',
+          'primary': 'hsl(var(--primary))',
           'primary-foreground':
                         'hsl(var(--sidebar-primary-foreground))',
-          accent: 'hsl(var(--accent))',
+          'accent': 'hsl(var(--accent))',
           'accent-foreground': 'hsl(var(--accent-foreground))',
-          border: 'hsl(var(--sidebar-border))',
-          ring: 'hsl(var(--sidebar-ring))',
+          'border': 'hsl(var(--sidebar-border))',
+          'ring': 'hsl(var(--sidebar-ring))',
         },
       },
       borderRadius: {
@@ -109,7 +109,7 @@ export default {
   plugins: [
     animate,
     tailwindTypography,
-    plugin(function ({ addUtilities, addComponents, addBase, e, config }) {
+    plugin(({ addBase }) => {
       const defaultRootVariable = {
         ':root': {
           // '--primary': '330 81% 60%',
@@ -117,9 +117,9 @@ export default {
           '--sidebar-width-icon': sidebar.SIDEBAR_WIDTH_ICON,
           '--sidebar-width-mobile': sidebar.SIDEBAR_WIDTH_MOBILE,
         },
-      };
+      }
 
-      addBase(defaultRootVariable);
+      addBase(defaultRootVariable)
     }),
   ],
-} satisfies Config;
+} satisfies Config

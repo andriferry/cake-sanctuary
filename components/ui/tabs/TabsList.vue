@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import type { TabsListProps } from 'radix-vue'
+import type { HTMLAttributes } from 'vue'
 import { cn } from '@/lib/utils'
-import { TabsList, type TabsListProps } from 'radix-vue'
-import { computed, type HTMLAttributes } from 'vue'
+import { TabsList } from 'radix-vue'
+import { computed } from 'vue'
 
 const props = defineProps<TabsListProps & { class?: HTMLAttributes['class'] }>()
 
@@ -20,6 +22,6 @@ const delegatedProps = computed(() => {
       props.class,
     )"
   >
-    <slot />
+    <slot></slot>
   </TabsList>
 </template>

@@ -10,5 +10,3 @@ const route = useRoute()
     {{ route.name }}
   </div>
 </template>
-
-<style scoped></style>

@@ -48,7 +48,9 @@
                       />
                     </div>
                     <div class="flex justify-start items-start flex-col">
-                      <h6 class="font-medium text-base">PayPal</h6>
+                      <h6 class="font-medium text-base">
+                        PayPal
+                      </h6>
                       <span class="truncate text-xs font-light text-secondary/70">
                         Received Payment for
                         <span class="font-medium"> #3566 </span>
@@ -76,7 +78,9 @@
                       />
                     </div>
                     <div class="flex justify-start items-start flex-col">
-                      <h6 class="font-normal text-base">New message received</h6>
+                      <h6 class="font-normal text-base">
+                        New message received
+                      </h6>
                       <span class="truncate text-xs font-light text-secondary/70">
                         You have new message from customer
                       </span>
@@ -102,7 +106,9 @@
                       />
                     </div>
                     <div class="flex justify-start items-start flex-col">
-                      <h6 class="font-normal text-base">Congratulation New Order !</h6>
+                      <h6 class="font-normal text-base">
+                        Congratulation New Order !
+                      </h6>
                       <span class="truncate text-xs font-light text-secondary/70">
                         You have new order from John Doe
                       </span>
@@ -116,7 +122,9 @@
           </ul>
         </CardContent>
         <CardFooter class="flex justify-between border-t border-secondary/10 px-3.5 py-3.5">
-          <Button size="full"> Read All Notifications </Button>
+          <Button size="full">
+            Read All Notifications
+          </Button>
         </CardFooter>
       </Card>
     </DropdownMenuContent>

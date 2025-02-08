@@ -1,17 +1,17 @@
 <script lang="ts" setup>
-import { Label } from '@/components/ui/label';
-import { cn } from '@/lib/utils';
-import type { LabelProps } from 'radix-vue';
-import type { HTMLAttributes } from 'vue';
+import type { LabelProps } from 'radix-vue'
+import type { HTMLAttributes } from 'vue'
+import { Label } from '@/components/ui/label'
+import { cn } from '@/lib/utils'
 // import { useFormField } from './useFormField';
 
-const props = defineProps<LabelProps & { class?: HTMLAttributes['class'] }>();
+const props = defineProps<LabelProps & { class?: HTMLAttributes['class'] }>()
 
 // const { formItemId } = useFormField();
 </script>
 
 <template>
-    <Label :class="cn(props.class)">
-        <slot />
-    </Label>
+  <Label :class="cn(props.class)">
+    <slot></slot>
+  </Label>
 </template>

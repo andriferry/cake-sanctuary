@@ -1,9 +1,5 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
   <li>
-    <slot />
+    <slot></slot>
   </li>
 </template>

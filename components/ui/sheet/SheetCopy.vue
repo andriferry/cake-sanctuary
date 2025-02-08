@@ -1,15 +1,15 @@
 <script setup lang="ts">
+import type { DialogRootEmits, DialogRootProps } from 'radix-vue'
 import {
   DialogRoot,
-  type DialogRootEmits,
-  type DialogRootProps,
+
   useForwardPropsEmits,
-} from 'radix-vue';
+} from 'radix-vue'
 
-const props = defineProps<DialogRootProps>();
-const emits = defineEmits<DialogRootEmits>();
+const props = defineProps<DialogRootProps>()
+const emits = defineEmits<DialogRootEmits>()
 
-const forwarded = useForwardPropsEmits(props, emits);
+const forwarded = useForwardPropsEmits(props, emits)
 // const model = defineModel<boolean>();
 // const openModal = ref(false);
 
@@ -25,7 +25,7 @@ const forwarded = useForwardPropsEmits(props, emits);
 </script>
 
 <template>
-    <DialogRoot v-bind="forwarded">
-        <slot />
-    </DialogRoot>
+  <DialogRoot v-bind="forwarded">
+    <slot></slot>
+  </DialogRoot>
 </template>

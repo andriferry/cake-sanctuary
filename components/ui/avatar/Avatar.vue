@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { AvatarRoot } from 'radix-vue'
 import type { HTMLAttributes } from 'vue'
-import { type AvatarVariants, avatarVariant } from '.'
+import type { AvatarVariants } from '.'
 import { cn } from '@/lib/utils'
+import { AvatarRoot } from 'radix-vue'
+import { avatarVariant } from '.'
 
 interface Props {
   class?: HTMLAttributes['class']
@@ -18,6 +19,6 @@ const props = withDefaults(defineProps<Props>(), {
 
 <template>
   <AvatarRoot :class="cn(avatarVariant({ size, shape }), props.class)">
-    <slot />
+    <slot></slot>
   </AvatarRoot>
 </template>

@@ -1,4 +1,5 @@
-import { type Cart, type Menu, carts, menus } from '@/@fake/data'
+import type { Cart, Menu } from '@/@fake/data'
+import { carts, menus } from '@/@fake/data'
 
 interface Order {
   orderNumber: string
@@ -25,7 +26,7 @@ export const useCartStore = defineStore('cart', () => {
     tax: 2,
   })
 
-  const addCartItem = (item: Menu) => {
+  const addCartItem = (item: Menu): void => {
     // carts.value.push(value);
 
     console.log(item)
@@ -45,14 +46,14 @@ export const useCartStore = defineStore('cart', () => {
     }
   })
 
-  const removeCartItem = (item: Menu) => {
+  const removeCartItem = (item: Menu): void => {
     const productIndex = order.value.products.findIndex((dataProduct: Menu) => dataProduct.id === item.id)
 
     if (productIndex > -1)
       order.value.products.splice(productIndex, 1)
   }
 
-  const init = () => {
+  const init = (): void => {
     const allProduct: Menu[] = dataCart.value.map((item: Cart) => {
       const product: Menu | undefined = menus.find((dataProduct: Menu) => dataProduct.id === item.menuId)
 

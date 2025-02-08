@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import { cn } from '@/lib/utils';
-import type { htmlAttributes } from '@/types/index';
+import type { htmlAttributes } from '@/types/index'
+import { cn } from '@/lib/utils'
 
 interface Props {
-    class?: htmlAttributes['class'];
+  class?: htmlAttributes['class']
 }
-const props = defineProps<Props>();
+const props = defineProps<Props>()
 </script>
 
 <template>
-    <p :class="cn('text-sm text-muted-foreground', props.class)">
-        <slot />
-    </p>
+  <p :class="cn('text-sm text-muted-foreground', props.class)">
+    <slot></slot>
+  </p>
 </template>

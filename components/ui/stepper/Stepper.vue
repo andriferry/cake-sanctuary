@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import type { StepperRootEmits, StepperRootProps } from 'radix-vue'
+import type { HTMLAttributes } from 'vue'
 import { cn } from '@/lib/utils'
-import { StepperRoot, useForwardPropsEmits } from 'radix-vue'
 
-import { computed, type HTMLAttributes } from 'vue'
+import { StepperRoot, useForwardPropsEmits } from 'radix-vue'
+import { computed } from 'vue'
 
 const props = defineProps<StepperRootProps & { class?: HTMLAttributes['class'] }>()
 const emits = defineEmits<StepperRootEmits>()
@@ -26,6 +27,6 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
     )"
     v-bind="forwarded"
   >
-    <slot v-bind="slotProps" />
+    <slot v-bind="slotProps"></slot>
   </StepperRoot>
 </template>

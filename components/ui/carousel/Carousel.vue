@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { cn } from '@/lib/utils';
 import type {
   CarouselEmits,
   CarouselProps,
   WithClassAsProps,
-} from './interface';
-import { useProvideCarousel } from './useCarousel';
+} from './interface'
+import { cn } from '@/lib/utils'
+import { useProvideCarousel } from './useCarousel'
 
 const props = withDefaults(defineProps<CarouselProps & WithClassAsProps>(), {
   orientation: 'horizontal',
-});
+})
 
-const emits = defineEmits<CarouselEmits>();
+const emits = defineEmits<CarouselEmits>()
 
 const {
   canScrollNext,
@@ -22,7 +22,7 @@ const {
   scrollNext,
   scrollPrev,
   currentPage,
-} = useProvideCarousel(props, emits);
+} = useProvideCarousel(props, emits)
 
 defineExpose({
   canScrollNext,
@@ -32,46 +32,48 @@ defineExpose({
   orientation,
   scrollNext,
   scrollPrev,
-});
-const model = defineModel();
+})
+const model = defineModel()
 
-const onKeyDown = (event: KeyboardEvent) => {
-  const prevKey = props.orientation === 'vertical' ? 'ArrowUp' : 'ArrowLeft';
-  const nextKey =
-        props.orientation === 'vertical' ? 'ArrowDown' : 'ArrowRight';
+function onKeyDown(event: KeyboardEvent) {
+  const prevKey = props.orientation === 'vertical' ? 'ArrowUp' : 'ArrowLeft'
+  const nextKey
+        = props.orientation === 'vertical' ? 'ArrowDown' : 'ArrowRight'
 
   if (event.key === prevKey) {
-    event.preventDefault();
-    scrollPrev();
+    event.preventDefault()
+    scrollPrev()
 
-    return;
+    return
   }
 
   if (event.key === nextKey) {
-    event.preventDefault();
-    scrollNext();
+    event.preventDefault()
+    scrollNext()
   }
-};
+}
 
 watch(currentPage, (value) => {
-  model.value = value;
-});
+  model.value = value
+})
 </script>
 
 <template>
-    <div
-        :class="cn('relative', props.class)"
-        role="region"
-        aria-roledescription="carousel"
-        tabindex="0"
-        @keydown="onKeyDown">
-        <slot
-            :can-scroll-next
-            :can-scroll-prev
-            :scroll-next
-            :scroll-prev
-            :carousel-api
-            :carousel-ref
-            :orientation />
-    </div>
+  <div
+    :class="cn('relative', props.class)"
+    role="region"
+    aria-roledescription="carousel"
+    tabindex="0"
+    @keydown="onKeyDown"
+  >
+    <slot
+      :can-scroll-next
+      :can-scroll-prev
+      :scroll-next
+      :scroll-prev
+      :carousel-api
+      :carousel-ref
+      :orientation
+    ></slot>
+  </div>
 </template>

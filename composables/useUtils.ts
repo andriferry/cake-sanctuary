@@ -1,23 +1,23 @@
-export const useUtils = () => {
-  const { icons } = useAppConfig();
+export function useUtils() {
+  const { icons } = useAppConfig()
 
-  const isPasswordVisible = ref(false);
+  const isPasswordVisible = ref(false)
 
-  const isPasswordConfirmVisible = ref(false);
+  const isPasswordConfirmVisible = ref(false)
 
   const passWordField = computed(() =>
-    isPasswordVisible.value ? 'text' : 'password'
-  );
+    isPasswordVisible.value ? 'text' : 'password',
+  )
   const passwordIcon = computed(() =>
-    isPasswordVisible.value ? icons.eyeIconOff : icons.eyeIcon
-  );
+    isPasswordVisible.value ? icons.eyeIconOff : icons.eyeIcon,
+  )
 
   const passwordFieldConfirm = computed(() =>
-    isPasswordConfirmVisible.value ? 'text' : 'password'
-  );
+    isPasswordConfirmVisible.value ? 'text' : 'password',
+  )
   const passwordConfirmIcon = computed(() =>
-    isPasswordConfirmVisible.value ? icons.eyeIconOff : icons.eyeIcon
-  );
+    isPasswordConfirmVisible.value ? icons.eyeIconOff : icons.eyeIcon,
+  )
 
   return {
     isPasswordVisible,
@@ -26,5 +26,5 @@ export const useUtils = () => {
     isPasswordConfirmVisible,
     passwordFieldConfirm,
     passwordConfirmIcon,
-  };
-};
+  }
+}

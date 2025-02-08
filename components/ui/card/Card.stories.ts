@@ -1,8 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from '@storybook/vue3'
 
-import CardBasic from './CardBasic.vue';
-
-import { Card, CardTitle, CardContent, CardFooter } from './index';
+import { Card, CardContent, CardFooter } from './index'
 
 const meta = {
   title: 'Component/Card',
@@ -25,13 +23,13 @@ const meta = {
       control: 'text',
     },
   },
-} satisfies Meta<typeof Card>;
+} satisfies Meta<typeof Card>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const Basic: Story = {
-  render: (args) => ({
+  render: () => ({
     components: { Card, CardContent, CardFooter },
     template: `
             <Card v-bind="args">
@@ -59,7 +57,7 @@ export const Basic: Story = {
   //     subtitle: 'Card Subtitle',
   //     class: '',
   // },
-};
+}
 
 // export const ManyItems: Story = {
 //     render: (args) => ({

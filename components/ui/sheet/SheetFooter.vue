@@ -14,6 +14,6 @@ const props = defineProps<{ class?: HTMLAttributes['class'] }>()
       )
     "
   >
-    <slot />
+    <slot></slot>
   </div>
 </template>

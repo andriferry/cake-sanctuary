@@ -30,6 +30,6 @@ const props = withDefaults(defineProps<PrimitiveProps & {
       props.class,
     )"
   >
-    <slot />
+    <slot></slot>
   </Primitive>
 </template>
