@@ -1,4 +1,4 @@
-export function useUtils() {
+export const useUtils = (): UseUtils => {
   const { icons } = useAppConfig()
 
   const isPasswordVisible = ref(false)

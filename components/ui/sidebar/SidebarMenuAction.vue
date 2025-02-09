@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { PrimitiveProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import { cn } from '@/lib/utils'
 import { Primitive } from 'radix-vue'
 
 const props = withDefaults(defineProps<PrimitiveProps & {
   showOnHover?: boolean
-  class?: HTMLAttributes['class']
+  class?: VueHtmlAttributes['class']
 }>(), {
   as: 'button',
 })

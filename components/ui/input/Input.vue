@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from 'vue'
 import { cn } from '@/lib/utils'
 
 interface Props {
   defaultValue?: string | number
   modelValue?: string | number
-  class?: HTMLAttributes['class']
+  class?: VueHtmlAttributes['class']
   placeholder?: string
   type?: string
 }

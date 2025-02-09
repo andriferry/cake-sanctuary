@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { PrimitiveProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import type { SidebarMenuButtonVariants } from '.'
 import { cn } from '@/lib/utils'
 import { Primitive } from 'radix-vue'
@@ -10,7 +10,7 @@ export interface SidebarMenuButtonProps extends PrimitiveProps {
   variant?: SidebarMenuButtonVariants['variant']
   size?: SidebarMenuButtonVariants['size']
   isActive?: boolean
-  class?: HTMLAttributes['class']
+  class?: VueHtmlAttributes['class']
 }
 
 const props = withDefaults(defineProps<SidebarMenuButtonProps>(), {

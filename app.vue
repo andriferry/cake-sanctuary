@@ -27,7 +27,7 @@ nuxtApp.hook('page:finish', () => {
         />
       </div>
     </div>
-    <NuxtLoadingIndicator />
+    <NuxtLoadingIndicator color="hsl(var(--primary))" />
     <NuxtLayout class="font-inter">
       <Toaster
         rich-colors

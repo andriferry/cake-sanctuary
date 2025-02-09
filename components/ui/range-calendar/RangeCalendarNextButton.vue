@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { RangeCalendarNextProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import {
@@ -11,7 +11,7 @@ import {
 import { computed } from 'vue'
 
 const props = defineProps<
-    RangeCalendarNextProps & { class?: HTMLAttributes['class'] }
+    RangeCalendarNextProps & { class?: VueHtmlAttributes['class'] }
 >()
 
 const delegatedProps = computed(() => {

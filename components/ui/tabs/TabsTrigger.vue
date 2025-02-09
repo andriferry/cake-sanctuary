@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { TabsTriggerProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import { cn } from '@/lib/utils'
 import { TabsTrigger, useForwardProps } from 'radix-vue'
 
 interface Props extends TabsTriggerProps {
-  class?: HTMLAttributes['class']
+  class?: VueHtmlAttributes['class']
   prependIcon?: string
   appendIcon?: string
   activeClass?: string

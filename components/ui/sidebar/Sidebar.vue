@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from 'vue'
 import SheetContent from '@/components/ui/sheet/SheetContent.vue'
 import { cn } from '@/lib/utils'
 import { useSidebar } from './utils'
@@ -18,7 +17,7 @@ interface Props {
   side?: 'left' | 'right'
   variant?: 'sidebar' | 'floating' | 'inset'
   collapsible?: 'offcanvas' | 'icon' | 'none'
-  class?: HTMLAttributes['class']
+  class?: VueHtmlAttributes['class']
 }
 
 const { isMobile, state, openMobile, setOpenMobile } = useSidebar()

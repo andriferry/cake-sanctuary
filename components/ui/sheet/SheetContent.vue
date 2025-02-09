@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DialogContentEmits, DialogContentProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import type { SheetVariants } from '.'
 import { cn } from '@/lib/utils'
 import {
@@ -14,7 +14,7 @@ import {
 import { sheetVariants } from '.'
 
 interface SheetContentProps extends DialogContentProps {
-  class?: HTMLAttributes['class']
+  class?: VueHtmlAttributes['class']
   side?: SheetVariants['side']
 }
 

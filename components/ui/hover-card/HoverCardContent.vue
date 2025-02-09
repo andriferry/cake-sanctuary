@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { HoverCardContentProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import { cn } from '@/lib/utils'
 import {
   HoverCardContent,
@@ -11,7 +11,7 @@ import {
 import { computed } from 'vue'
 
 const props = withDefaults(
-  defineProps<HoverCardContentProps & { class?: HTMLAttributes['class'] }>(),
+  defineProps<HoverCardContentProps & { class?: VueHtmlAttributes['class'] }>(),
   {
     sideOffset: 5,
     collisionPadding: {

@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import type { AccordionTriggerProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import { cn } from '@/lib/utils'
 import { ChevronDownIcon } from '@radix-icons/vue'
 import {
   AccordionHeader,
   AccordionTrigger,
-
 } from 'radix-vue'
 import { computed } from 'vue'
 
-const props = defineProps<AccordionTriggerProps & { class?: HTMLAttributes['class'] }>()
+const props = defineProps<AccordionTriggerProps & { class?: VueHtmlAttributes['class'] }>()
 
 const delegatedProps = computed(() => {
   const { class: _, ...delegated } = props

@@ -1,18 +1,17 @@
 import type { ButtonVariants } from '@/components/ui/button/index'
-import type { HTMLAttributes } from 'vue'
 
 export interface PaginationProps {
   length?: number
   nextIcon?: string
   prevIcon?: string
   rounded?: ButtonVariants['rounded']
-  class?: HTMLAttributes['class']
-  btnClass?: HTMLAttributes['class']
+  class?: VueHtmlAttributes['class']
+  btnClass?: VueHtmlAttributes['class']
   currentPage?: number
   pageSize?: number
   lastFirstArrow?: boolean
   visible?: number
-  activeClass?: HTMLAttributes['class']
+  activeClass?: VueHtmlAttributes['class']
   size?: ButtonVariants['size']
 }
 

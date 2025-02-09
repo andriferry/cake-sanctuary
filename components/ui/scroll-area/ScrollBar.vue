@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ScrollAreaScrollbarProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import { cn } from '@/lib/utils'
 import {
   ScrollAreaScrollbar,
@@ -10,7 +10,7 @@ import {
 import { computed } from 'vue'
 
 interface Props extends ScrollAreaScrollbarProps {
-  class?: HTMLAttributes['class']
+  class?: VueHtmlAttributes['class']
 }
 
 const props = withDefaults(defineProps<Props>(), {

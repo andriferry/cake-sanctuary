@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { SplitterResizeHandleEmits, SplitterResizeHandleProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import { cn } from '@/lib/utils'
 import {
   SplitterResizeHandle,
@@ -9,7 +9,7 @@ import {
 } from 'radix-vue'
 
 interface Props extends SplitterResizeHandleProps {
-  class?: HTMLAttributes['class']
+  class?: VueHtmlAttributes['class']
   withHandle?: boolean
   icon?: string
 }

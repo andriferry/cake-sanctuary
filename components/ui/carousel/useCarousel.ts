@@ -1,6 +1,5 @@
 import type {
   UnwrapRefCarouselApi as CarouselApi,
-  CarouselEmits,
   CarouselProps,
 } from './interface'
 import { createInjectionState } from '@vueuse/core'
@@ -8,7 +7,7 @@ import emblaCarouselVue from 'embla-carousel-vue'
 import { onMounted, ref } from 'vue'
 
 const [useProvideCarousel, useInjectCarousel] = createInjectionState(
-  ({ opts, orientation, plugins }: CarouselProps, emits: CarouselEmits) => {
+  ({ opts, orientation, plugins }: CarouselProps) => {
     const canScrollNext = ref(false)
     const canScrollPrev = ref(false)
     const currentPage = ref(0)
@@ -20,14 +19,14 @@ const [useProvideCarousel, useInjectCarousel] = createInjectionState(
 
     const [emblaNode, emblaApi] = emblaCarouselVue(config, plugins)
 
-    const scrollPrev = () => {
+    const scrollPrev = (): void => {
       emblaApi.value?.scrollPrev()
     }
-    const scrollNext = () => {
+    const scrollNext = (): void => {
       emblaApi.value?.scrollNext()
     }
 
-    const onSelect = (api: CarouselApi) => {
+    const onSelect = (api: CarouselApi): void => {
       canScrollNext.value = api?.canScrollNext() || false
       canScrollPrev.value = api?.canScrollPrev() || false
     }
@@ -56,7 +55,7 @@ const [useProvideCarousel, useInjectCarousel] = createInjectionState(
   },
 )
 
-function useCarousel() {
+const useCarousel = (): any => {
   const carouselState = useInjectCarousel()
 
   if (!carouselState)

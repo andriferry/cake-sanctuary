@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { RadioGroupItemProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import { cn } from '@/lib/utils'
 import {
   RadioGroupIndicator,
@@ -11,7 +11,7 @@ import {
 import { computed } from 'vue'
 
 interface Props extends RadioGroupItemProps {
-  class?: HTMLAttributes['class']
+  class?: VueHtmlAttributes['class']
   dotIcon?: string
   title?: string
   id?: string

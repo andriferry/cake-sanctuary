@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DialogContentEmits, DialogContentProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import { cn } from '@/lib/utils'
 import {
   DialogClose,
@@ -13,7 +13,7 @@ import {
 import { computed } from 'vue'
 
 const props = defineProps<
-    DialogContentProps & { class?: HTMLAttributes['class'] }
+    DialogContentProps & { class?: VueHtmlAttributes['class'] }
 >()
 const emits = defineEmits<DialogContentEmits>()
 

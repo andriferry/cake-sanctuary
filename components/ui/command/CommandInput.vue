@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ComboboxInputProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import { cn } from '@/lib/utils'
 import { MagnifyingGlassIcon } from '@radix-icons/vue'
 import { ComboboxInput, useForwardProps } from 'radix-vue'
@@ -11,7 +11,7 @@ defineOptions({
 })
 
 const props = defineProps<ComboboxInputProps & {
-  class?: HTMLAttributes['class']
+  class?: VueHtmlAttributes['class']
 }>()
 
 const delegatedProps = computed(() => {

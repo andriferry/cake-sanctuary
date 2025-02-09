@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { SelectScrollDownButtonProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import { cn } from '@/lib/utils'
 import { ChevronDownIcon } from '@radix-icons/vue'
 import { SelectScrollDownButton, useForwardProps } from 'radix-vue'
 import { computed } from 'vue'
 
-const props = defineProps<SelectScrollDownButtonProps & { class?: HTMLAttributes['class'] }>()
+const props = defineProps<SelectScrollDownButtonProps & { class?: VueHtmlAttributes['class'] }>()
 
 const delegatedProps = computed(() => {
   const { class: _, ...delegated } = props

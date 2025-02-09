@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ScrollAreaRootProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import { cn } from '@/lib/utils'
 import {
   ScrollAreaCorner,
@@ -11,7 +11,7 @@ import {
 import ScrollBar from './ScrollBar.vue'
 
 const props = defineProps<
-    ScrollAreaRootProps & { class?: HTMLAttributes['class'] }
+    ScrollAreaRootProps & { class?: VueHtmlAttributes['class'] }
 >()
 
 const delegatedProps = computed(() => {

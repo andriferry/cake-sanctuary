@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { NumberFieldIncrementProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import { cn } from '@/lib/utils'
 import { NumberFieldIncrement, useForwardProps } from 'radix-vue'
 
 const props = defineProps<
-    NumberFieldIncrementProps & { class?: HTMLAttributes['class'] }
+    NumberFieldIncrementProps & { class?: VueHtmlAttributes['class'] }
 >()
 
 const { icons } = useAppConfig()

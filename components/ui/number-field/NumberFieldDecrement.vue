@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { NumberFieldDecrementProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import { cn } from '@/lib/utils'
 import { NumberFieldDecrement, useForwardProps } from 'radix-vue'
 
-const props = defineProps<NumberFieldDecrementProps & { class?: HTMLAttributes['class'] }>()
+const props = defineProps<NumberFieldDecrementProps & { class?: VueHtmlAttributes['class'] }>()
 const { icons } = useAppConfig()
 
 const delegatedProps = computed(() => {

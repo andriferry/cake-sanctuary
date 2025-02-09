@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { SelectItemProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import { cn } from '@/lib/utils'
 import {
   SelectItem,
@@ -12,7 +12,7 @@ import {
 import { computed } from 'vue'
 
 const props = defineProps<
-    SelectItemProps & { class?: HTMLAttributes['class'] }
+    SelectItemProps & { class?: VueHtmlAttributes['class'] }
 >()
 
 const delegatedProps = computed(() => {

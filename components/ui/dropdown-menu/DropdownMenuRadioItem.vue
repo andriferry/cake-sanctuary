@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DropdownMenuRadioItemEmits, DropdownMenuRadioItemProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import { cn } from '@/lib/utils'
 import {
   DropdownMenuItemIndicator,
@@ -17,7 +17,7 @@ const emits = defineEmits<DropdownMenuRadioItemEmits>()
 const { icons } = useAppConfig()
 
 interface Props extends DropdownMenuRadioItemProps {
-  class?: HTMLAttributes['class']
+  class?: VueHtmlAttributes['class']
   dotIcon?: string
 }
 

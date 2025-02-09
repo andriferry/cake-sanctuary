@@ -1,10 +1,10 @@
 import type { PrivateFormContext } from 'vee-validate'
-import type { HTMLAttributes } from 'vue'
+import type { HTMLAttributes, Ref } from 'vue'
 
 declare global {
     type UserValidation = PrivateFormContext
 
-    type htmlAttributes = HTMLAttributes
+    type VueHtmlAttributes = HTMLAttributes
 
     interface ErrorMessage {
       statusCode: number
@@ -17,6 +17,15 @@ declare global {
       password: string
       picture: string
     }
+
+    interface UseUtils {
+      passWordField: Ref<string>
+      passwordIcon: Ref<string>
+      passwordFieldConfirm: Ref<string>
+      passwordConfirmIcon: Ref<string>
+      isPasswordVisible: Ref<boolean>
+      isPasswordConfirmVisible: Ref<boolean>
+    }
 }
 
 declare module '#auth-utils' {
@@ -25,10 +34,4 @@ declare module '#auth-utils' {
     email: string
     picture: string
   }
-
-  // interface UserSession {}
-
-  // interface SecureSessionData {}
 }
-
-// export {};

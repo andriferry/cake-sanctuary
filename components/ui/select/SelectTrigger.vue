@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { SelectTriggerProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import { cn } from '@/lib/utils'
 import {
   SelectIcon,
@@ -11,7 +11,7 @@ import {
 import { computed } from 'vue'
 
 const props = defineProps<
-    SelectTriggerProps & { class?: HTMLAttributes['class'] }
+    SelectTriggerProps & { class?: VueHtmlAttributes['class'] }
 >()
 
 const { icons } = useAppConfig()

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { SelectContentEmits, SelectContentProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import { cn } from '@/lib/utils'
 import {
   SelectContent,
@@ -17,7 +17,7 @@ defineOptions({
 })
 
 const props = withDefaults(
-  defineProps<SelectContentProps & { class?: HTMLAttributes['class'] }>(),
+  defineProps<SelectContentProps & { class?: VueHtmlAttributes['class'] }>(),
   {
     position: 'popper',
   },

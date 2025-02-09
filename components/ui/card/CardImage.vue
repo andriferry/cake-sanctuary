@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from 'vue'
 import type { CardVariant } from '.'
 
 interface Props {
   variant?: CardVariant['variant']
-  class?: HTMLAttributes['class']
+  class?: VueHtmlAttributes['class']
   title?: string
   subtitle?: string
 }

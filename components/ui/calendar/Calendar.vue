@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { CalendarRootEmits, CalendarRootProps } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
+
 import { cn } from '@/lib/utils'
 import { CalendarRoot, useForwardPropsEmits } from 'radix-vue'
 import { computed } from 'vue'
@@ -18,7 +18,7 @@ import {
   CalendarPrevButton,
 } from '.'
 
-const props = defineProps<CalendarRootProps & { class?: HTMLAttributes['class'] }>()
+const props = defineProps<CalendarRootProps & { class?: VueHtmlAttributes['class'] }>()
 
 const emits = defineEmits<CalendarRootEmits>()
 
