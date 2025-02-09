@@ -11,10 +11,8 @@ const menuIndex = ref(0)
 
 const menusCategory = computed(() => {
   return menuCategory.map((allMenu: Menu) => {
-    const getAllMenu = menus.filter((dataItem: Menu) => {
-      if (dataItem.category?.includes(allMenu.value))
-        return dataItem
-    })
+    const getAllMenu = menus.filter((dataItem: Menu) => dataItem.category?.includes(allMenu.value))
+
     return {
       ...allMenu,
       items: getAllMenu.length,
@@ -24,10 +22,7 @@ const menusCategory = computed(() => {
 const allMenus = computed<Menu[]>(() => {
   const category = menusCategory.value[menuIndex.value].value
 
-  return menus.filter((item: Menu) => {
-    if (item.category?.includes(category))
-      return item
-  })
+  return menus.filter((item: Menu) => item.category?.includes(category))
 })
 </script>
 
