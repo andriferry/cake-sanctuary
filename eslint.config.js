@@ -73,4 +73,5 @@ export default antfu({
   perfectionist: true,
   imports: true,
   eslint: true,
+  unocss: true,
 })
