@@ -39,7 +39,11 @@ export default defineNuxtConfig({
         clientId: process.env.NUXT_OAUTH_GOOGLE_CLIENT_ID,
         clientSecret: process.env.NUXT_OAUTH_GOOGLE_CLIENT_SECRET,
         redirectURL: process.env.NUXT_OAUTH_GOOGLE_REDIRECT_URL,
-        scope: ['email', 'openid', 'profile'],
+        scope: [
+          'email',
+          'openid',
+          'profile',
+        ],
         authorizationParams: {
           access_type: 'offline',
           approval_prompt: 'force',
@@ -76,7 +80,11 @@ export default defineNuxtConfig({
           '@/lib/utils/*': ['../lib/utils/*'],
         },
       },
-      include: ['global.d.ts', 'types/*.d.ts', '~/components/ui/use-toast.ts'],
+      include: [
+        'global.d.ts',
+        'types/*.d.ts',
+        '~/components/ui/use-toast.ts',
+      ],
     },
   },
 
@@ -96,7 +104,13 @@ export default defineNuxtConfig({
     class: 'icon', // default <Icon> class applied
     mode: 'css', //
     serverBundle: {
-      collections: ['file-icons', 'tabler', 'noto', 'icon-park-outline', 'mdi'],
+      collections: [
+        'file-icons',
+        'tabler',
+        'noto',
+        'icon-park-outline',
+        'mdi',
+      ],
       externalizeIconsJson: true,
     },
   },

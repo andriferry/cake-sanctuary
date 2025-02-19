@@ -26,6 +26,17 @@ declare global {
       isPasswordVisible: Ref<boolean>
       isPasswordConfirmVisible: Ref<boolean>
     }
+
+    interface Theme {
+      icon: string
+      value: string
+    }
+
+    interface Lang {
+      title: string
+      value: string
+      changeValue: 'en' | 'fr'
+    }
 }
 
 declare module '#auth-utils' {
@@ -35,3 +46,6 @@ declare module '#auth-utils' {
     picture: string
   }
 }
+
+
+export { global }
