@@ -28,7 +28,6 @@
     "@tanstack/vue-table": "^8.20.5",
     "@unocss/reset": "^66.0.0",
     "@vee-validate/i18n": "^4.14.7",
-    "@vee-validate/nuxt": "^4.14.7",
     "@vee-validate/rules": "^4.14.7",
     "@vee-validate/zod": "^4.14.7",
     "@vueuse/core": "^12.2.0",
