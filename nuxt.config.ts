@@ -23,12 +23,16 @@ export default defineNuxtConfig({
     // layoutTransition: { name: 'slide-fade', mode: 'out-in' },
     pageTransition: { name: 'slide-fade', mode: 'out-in' },
   },
-  tailwindcss: {
-    viewer: false,
-    configPath: 'tailwind.config',
-  },
 
-  css: ['@unocss/reset/tailwind.css'], // '~/assets/css/tailwind.css'
+  // tailwindcss: {
+  //   viewer: false,
+  //   configPath: 'tailwind.config',
+  // },
+
+  css: [
+    '@unocss/reset/tailwind.css',
+    '~/assets/css/main.css',
+  ], // '~/assets/css/tailwind.css'
 
   runtimeConfig: {
     public: {
@@ -90,11 +94,11 @@ export default defineNuxtConfig({
 
   modules: [
     '@vueuse/nuxt',
-    '@nuxtjs/tailwindcss',
-    'shadcn-nuxt', // '@nuxtjs/color-mode', //   '@nuxtjs/seo',
+    // '@nuxtjs/tailwindcss',
+    // 'shadcn-nuxt', // '@nuxtjs/color-mode', //   '@nuxtjs/seo',
     'nuxt-auth-utils',
     '@nuxt/icon',
-    '@pinia/nuxt', // '@nuxtjs/storybook',
+    '@pinia/nuxt', // '@nuxtjs/storybook', // Remove Storybook
     'vue-sonner/nuxt',
     '@unocss/nuxt',
   ],
