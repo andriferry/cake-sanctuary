@@ -32,6 +32,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/tailwind.css'],
 
   runtimeConfig: {
+    databasePath: process.env.NUXT_DB_FILE_NAME,
     public: {
       title: 'Cake Sanctuary',
     },

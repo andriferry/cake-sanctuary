@@ -7,7 +7,10 @@
       >
         <div class="flex items-center gap-2 px-4">
           <SidebarTrigger class="-ml-1" />
-          <Separator orientation="vertical" class="mr-2 h-4" />
+          <Separator
+            orientation="vertical"
+            class="mr-2 h-4"
+          />
           <h2
             class="scroll-m-20 capitalize text-2xl font-semibold tracking-tight first:mt-0"
           >

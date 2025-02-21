@@ -1,10 +1,12 @@
 import { defineConfig } from 'drizzle-kit'
 
+const runtimeConfig = useRuntimeConfig()
+
 export default defineConfig({
   dialect: 'sqlite',
-  schema: './database/schema.ts',
-  out: './database/migrations',
+  schema: './server/database/schema.ts',
+  out: './server/database/migrations',
   dbCredentials: {
-    url: `file:${process.env.NUXT_DB_FILE_NAME}`,
+    url: `file:${runtimeConfig.databasePath}`,
   },
 })

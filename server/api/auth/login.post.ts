@@ -1,5 +1,5 @@
-import { users } from '@/database/schema'
 import { eq } from 'drizzle-orm'
+import { users } from '~/server/database/schema'
 
 const invalidCredentialsError = createError({
   statusCode: 401,
