@@ -29,7 +29,7 @@ export default defineNuxtConfig({
     configPath: 'tailwind.config',
   },
 
-  css: ['~/assets/css/tailwind.css'], // '~/assets/css/tailwind.css'     '@unocss/reset/tailwind.css',
+  css: ['~/assets/css/tailwind.css'],
 
   runtimeConfig: {
     public: {
@@ -97,7 +97,6 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@pinia/nuxt', // '@nuxtjs/storybook', // Remove Storybook
     'vue-sonner/nuxt',
-    // '@unocss/nuxt',
   ],
   pinia: {
     storesDirs: ['./stores/**'],
