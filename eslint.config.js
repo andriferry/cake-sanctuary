@@ -13,9 +13,9 @@ export default antfu({
       'vue/singleline-html-element-content-newline': ['error'],
       'vue/prefer-true-attribute-shorthand': ['error'],
       'vue/first-attribute-linebreak': [
-        'off',
+        'warn',
         {
-          singleline: 'beside',
+          singleline: 'ignore',
           multiline: 'below',
         },
       ],
@@ -37,9 +37,6 @@ export default antfu({
       'vue/max-attributes-per-line': [
         'error',
         {
-          singleline: {
-            max: 1,
-          },
           multiline: {
             max: 1,
           },
