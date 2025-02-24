@@ -7,7 +7,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare && npm run db:generate && npm run db:push",
+    "postinstall": "nuxt prepare",
     "component": "npx shadcn-vue@latest add",
     "db:generate": "drizzle-kit generate --name=init",
     "db:studio": "drizzle-kit studio --port=3001",
