@@ -11,12 +11,13 @@
     "component": "npx shadcn-vue@latest add",
     "db:generate": "drizzle-kit generate --name=init",
     "db:studio": "drizzle-kit studio --port=3001",
-    "db:push": "mkdir -p .data/database && drizzle-kit push",
+    "db:push": "drizzle-kit push",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@iconify/json": "^2.2.291",
+    "@neondatabase/serverless": "^0.10.4",
     "@nuxt/icon": "^1.9.1",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/seo": "^2.0.2",

@@ -1,5 +1,5 @@
 import { eq } from 'drizzle-orm'
-import { users } from '~/server/database/schema'
+import { users } from '~/server/database/pgSchema'
 
 const invalidCredentialsError = createError({
   statusCode: 401,
@@ -20,19 +20,19 @@ export default defineEventHandler(async (event) => {
     })
   }
   else {
-    const user = await dbConnect.select().from(users).where(eq(users.email, bodyRequest.email)).get()
+    const user = await dbConnect.select().from(users).where(eq(users.email, bodyRequest.email))
 
-    if (!user)
+    if (user.length === 0)
       throw invalidCredentialsError
 
-    if (!(await verifyPassword(user.password, bodyRequest.password)))
+    if (!(await verifyPassword(user[0].password, bodyRequest.password)))
       throw invalidCredentialsError
 
     await setUserSession(event, {
       user: {
-        name: user.name,
-        email: user.email,
-        picture: user.picture || '',
+        name: user[0].name,
+        email: user[0].email,
+        picture: user[0].picture || '',
       },
       loggedInAt: Date.now(),
     })

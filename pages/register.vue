@@ -23,13 +23,6 @@ const formAuth = reactive({
   password: '',
 })
 
-const registerProccess = async () => {
-  return await $fetch('/api/auth/register', {
-    method: 'POST',
-    body: formAuth,
-  })
-}
-
 const onSubmit = async () => {
   try {
     const dataValid = await form.value?.validate()
@@ -37,14 +30,16 @@ const onSubmit = async () => {
     if (!dataValid?.valid)
       return
 
-    $toast.promise(registerProccess(), {
-      loading: 'Please Wait...',
-      success: () => {
-        return 'User has been registered successfully !'
-      },
+    await $fetch('/api/auth/register', {
+      method: 'POST',
+      body: formAuth,
     })
 
-    router.push('/login')
+    router.push('/login').then(() => {
+      $toast('Error', {
+        description: 'User has been registered successfully !',
+      })
+    })
   }
   catch (error: any) {
     if (error) {

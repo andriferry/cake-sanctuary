@@ -1,5 +1,5 @@
 import { eq } from 'drizzle-orm'
-import { users } from '~/server/database/schema'
+import { users } from '~/server/database/pgSchema'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
@@ -17,13 +17,9 @@ export default defineEventHandler(async (event) => {
     const hashedPassword = await hashPassword(body.password)
 
     // Check Existing User
-    const getUser = await dbConnect
-      .select()
-      .from(users)
-      .where(eq(users.email, body.email))
-      .get()
+    const getUser = await dbConnect.select().from(users).where(eq(users.email, body.email))
 
-    if (getUser) {
+    if (getUser.length > 0) {
       throw createError({
         statusCode: 404,
         message: 'User is existing !',
@@ -39,6 +35,30 @@ export default defineEventHandler(async (event) => {
         })
         .returning({ insertedId: users.id })
     }
+
+    // const getUser = await dbConnect
+    //   .select()
+    //   .from(users)
+    //   .where(eq(users.email, body.email))
+    //   .get()
+
+    // if (getUser) {
+    //   throw createError({
+    //     statusCode: 404,
+    //     message: 'User is existing !',
+    //   })
+    // }
+    // else {
+    //   console.log('Hello')
+    //   // await dbConnect
+    //   //   .insert(users)
+    //   //   .values({
+    //   //     name: body.name,
+    //   //     email: body.email,
+    //   //     password: hashedPassword,
+    //   //   })
+    //   //   .returning({ insertedId: users.id })
+    // }
   }
 
   return setResponseStatus(event, 200)

@@ -1,6 +1,7 @@
-import { drizzle } from 'drizzle-orm/better-sqlite3'
-import * as schema from '~/server/database/schema'
+import { neon } from '@neondatabase/serverless'
+import { drizzle } from 'drizzle-orm/neon-http'
+// import * as schema from '~/server/database/schema'
 
-const runtimeConfig = useRuntimeConfig()
-
-export const dbConnect = drizzle({ connection: runtimeConfig.databasePath!, schema })
+// const runtimeConfig = useRuntimeConfig()
+const sql = neon(process.env.DATABASE_URL!)
+export const dbConnect = drizzle({ client: sql })
