@@ -9,9 +9,7 @@ const annualYearly = computed(() => annualYearlyAnalytics)
 const chartData = computed(() => {
   return {
     labels: months({ count: 7, section: 3 }),
-    datasets: [
-      { data: annualYearly.value[currentOverview.value].chartData },
-    ],
+    datasets: [{ data: annualYearly.value[currentOverview.value].chartData, borderRadius: 9 }],
   }
 })
 
@@ -26,18 +24,13 @@ const chartOptions = computed(() => {
       },
     },
     backgroundColor: annualYearly.value[currentOverview.value].bgColors,
-    borderRadius: 9,
     scales: {
       x: {
         grid: {
           display: false,
         },
-        ticks: {
-          font: {
-            size: '12',
-            weight: 'bolder',
-            color: '#6b95a9',
-          },
+        border: {
+          display: false,
         },
       },
       y: {
@@ -47,13 +40,7 @@ const chartOptions = computed(() => {
         border: {
           display: false,
         },
-        ticks: {
-          font: {
-            size: '12',
-            color: '#6b95a9',
-            weight: 'bolder',
-          },
-        },
+
       },
     },
   }
@@ -93,7 +80,10 @@ const chartOptions = computed(() => {
                 "
                 class="flex items-center rounded-lg p-2"
               >
-                <Icon :name="data.icon" class="text-inherit" />
+                <Icon
+                  :name="data.icon"
+                  class="text-inherit"
+                />
               </div>
 
               <span class="font-medium text-secondary">
@@ -105,7 +95,11 @@ const chartOptions = computed(() => {
       </SlideGroup>
 
       <div class="mt-3">
-        <Bar :data="chartData" :options="chartOptions" :height="250" />
+        <Bar
+          :data="chartData"
+          :options="chartOptions"
+          :height="250"
+        />
       </div>
     </CardContent>
   </Card>
