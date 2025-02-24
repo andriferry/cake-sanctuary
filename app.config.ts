@@ -17,11 +17,11 @@ export default defineAppConfig({
       to: '/pos',
       icon: 'tabler:layout-dashboard',
     },
-    // {
-    //     title: 'Product',
-    //     to: '/product',
-    //     icon: 'tabler:package',
-    // },
+    {
+      title: 'Product',
+      to: '/product',
+      icon: 'tabler:package',
+    },
     // {
     //     title: 'Orders',
     //     to: '/order',

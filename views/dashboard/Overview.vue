@@ -30,7 +30,11 @@ const overview = ref([
 
 <template>
   <div class="grid grid-cols-2 xl:grid-cols-4 gap-4">
-    <div v-for="(data, index) in overview" :key="index" class="col-span-1">
+    <div
+      v-for="(data, index) in overview"
+      :key="index"
+      class="col-span-1"
+    >
       <Card>
         <CardHeader class="flex-row items-center justify-between">
           <div class="flex gap-2 flex-col">
@@ -46,7 +50,10 @@ const overview = ref([
             :class="data.class"
             class="flex items-center rounded-lg p-2"
           >
-            <Icon :name="data.icon" class="text-inherit" />
+            <Icon
+              :name="data.icon"
+              class="text-inherit"
+            />
           </div>
         </CardHeader>
       </Card>

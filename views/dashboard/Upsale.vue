@@ -5,7 +5,10 @@ const upsale = ref(upsaleData)
 </script>
 
 <template>
-  <Card title="Today's upsale" class="h-full">
+  <Card
+    title="Today's upsale"
+    class="h-full"
+  >
     <CardContent class="flex flex-col gap-5">
       <div
         v-for="(data, index) in upsale"
@@ -13,7 +16,10 @@ const upsale = ref(upsaleData)
         class="flex items-center gap-4"
       >
         <div class="flex items-center p-2 bg-accent rounded-md">
-          <Icon :name="data.icon" class="text-3xl" />
+          <Icon
+            :name="data.icon"
+            class="text-3xl"
+          />
         </div>
 
         <div class="">
