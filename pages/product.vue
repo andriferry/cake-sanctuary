@@ -9,14 +9,14 @@ definePageMeta({
   <WrapperPages class="min-h-screen">
     <Card subtitle="Let's manage your product">
       <CardContent>
-        <div class="grid py-3 gap-4 md:grid-cols-4">
+        <div class="grid py-3 gap-4 md:grid-cols-3">
           <div class="flex flex-col p-3">
             <p class="font-medium text-sm">
               Total Product Menu
             </p>
 
             <div class="flex gap-1 my-2 items-end">
-              <p class="font-bold text-5xl">
+              <p class="font-bold text-4xl">
                 200
               </p>
               <Badge>+2</Badge>
@@ -26,15 +26,49 @@ definePageMeta({
               last week
             </p>
           </div>
-          <div class="bg-primary p-3">
-            02
+
+          <div class="flex flex-col p-3">
+            <p class="font-medium text-sm">
+              Purchase invoice
+            </p>
+
+            <div class="flex gap-1 my-2 items-end">
+              <p class="font-bold text-4xl">
+                30
+              </p>
+              <Badge>+2</Badge>
+            </div>
+
+            <p class="font-base text-secondary text-sm">
+              last week
+            </p>
           </div>
-          <div class="bg-primary p-3">
+
+          <div class="flex flex-col p-3">
+            <p class="font-medium text-sm">
+              Monthly Income
+            </p>
+
+            <div class="flex gap-1 my-2 items-end">
+              <p class="font-bold text-4xl">
+                $ 5,190
+              </p>
+              <Badge variant="destructive">
+                -10%
+              </Badge>
+            </div>
+
+            <p class="font-base text-secondary text-sm">
+              last week
+            </p>
+          </div>
+
+          <!-- <div class="bg-primary p-3">
             03
           </div>
           <div class="bg-primary p-3">
             04
-          </div>
+          </div> -->
         </div>
       </CardContent>
     </Card>
