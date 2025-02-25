@@ -9,7 +9,10 @@ const annualYearly = computed(() => annualYearlyAnalytics)
 const chartData = computed(() => {
   return {
     labels: months({ count: 7, section: 3 }),
-    datasets: [{ data: annualYearly.value[currentOverview.value].chartData, borderRadius: 9 }],
+    datasets: [{
+      data: annualYearly.value[currentOverview.value].chartData,
+      borderRadius: 9,
+    }],
   }
 })
 
