@@ -40,7 +40,6 @@ const chartOptions = computed(() => {
         border: {
           display: false,
         },
-
       },
     },
   }

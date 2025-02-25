@@ -2,21 +2,20 @@
 definePageMeta({
   middleware: 'auth',
 })
-// const route = useRoute()
 </script>
 
 <template>
   <WrapperPages class="min-h-screen">
-    <Card subtitle="Let's manage your product">
-      <CardContent>
-        <div class="grid py-3 gap-4 md:grid-cols-3">
+    <Card>
+      <CardContent class="py-4">
+        <div class="grid py-3 gap-4 lg:grid-cols-4">
           <div class="flex flex-col p-3">
             <p class="font-medium text-sm">
               Total Product Menu
             </p>
 
             <div class="flex gap-1 my-2 items-end">
-              <p class="font-bold text-4xl">
+              <p class="font-bold text-3xl">
                 200
               </p>
               <Badge>+2</Badge>
@@ -29,11 +28,23 @@ definePageMeta({
 
           <div class="flex flex-col p-3">
             <p class="font-medium text-sm">
+              Total Product Category
+            </p>
+
+            <div class="flex gap-1 my-2 items-end">
+              <p class="font-bold text-3xl">
+                50
+              </p>
+            </div>
+          </div>
+
+          <div class="flex flex-col p-3">
+            <p class="font-medium text-sm">
               Purchase invoice
             </p>
 
             <div class="flex gap-1 my-2 items-end">
-              <p class="font-bold text-4xl">
+              <p class="font-bold text-3xl">
                 30
               </p>
               <Badge>+2</Badge>
@@ -50,7 +61,7 @@ definePageMeta({
             </p>
 
             <div class="flex gap-1 my-2 items-end">
-              <p class="font-bold text-4xl">
+              <p class="font-bold text-3xl">
                 $ 5,190
               </p>
               <Badge variant="destructive">
