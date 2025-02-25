@@ -66,12 +66,18 @@ export default {
           'DEFAULT': 'hsl(var(--sidebar-background))',
           'foreground': 'hsl(var(--sidebar-foreground))',
           'primary': 'hsl(var(--primary))',
-          'primary-foreground':
-                        'hsl(var(--sidebar-primary-foreground))',
+          'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
           'accent': 'hsl(var(--accent))',
           'accent-foreground': 'hsl(var(--accent-foreground))',
           'border': 'hsl(var(--sidebar-border))',
           'ring': 'hsl(var(--sidebar-ring))',
+        },
+        chart: {
+          1: 'hsl(var(--chart-1))',
+          2: 'hsl(var(--chart-2))',
+          3: 'hsl(var(--chart-3))',
+          4: 'hsl(var(--chart-4))',
+          5: 'hsl(var(--chart-5))',
         },
       },
       borderRadius: {
