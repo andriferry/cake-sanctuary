@@ -9,18 +9,18 @@ const chartData = computed(() => {
     labels: months({ count: 12, section: 3 }),
     datasets: [{
       data: [
-        100,
-        150,
-        180,
-        270,
-        210,
-        160,
-        160,
-        202,
-        265,
-        210,
-        270,
-        210,
+        1000,
+        1500,
+        1800,
+        2700,
+        2100,
+        1600,
+        1600,
+        2020,
+        2650,
+        2100,
+        2700,
+        2100,
       ],
       borderRadius: 9,
       tension: 0.5,
@@ -45,6 +45,24 @@ const chartOptions = computed(() => {
       legend: {
         display: false,
       },
+      tooltip: {
+        position: 'average',
+        callbacks: {
+          label: (context: any) => {
+            let label = context.parsed.y
+
+            if (context.parsed.y !== null) {
+              label = new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                maximumSignificantDigits: 3,
+              }).format(context.parsed.y)
+            }
+
+            return label
+          },
+        },
+      },
     },
     scales: {
       x: {
@@ -58,19 +76,33 @@ const chartOptions = computed(() => {
       y: {
         beginAtZero: true,
         ticks: {
-          stepSize: 50,
+          callback(val: number) {
+            return new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: 'USD',
+              maximumSignificantDigits: 3,
+            }).format(val)
+          },
         },
         border: {
           display: false,
         },
       },
     },
+
   }
 })
 </script>
 
 <template>
-  <Card title="Income Statistics">
+  <Card>
+    <CardHeader>
+      <CardTitle class="flex justify-between">
+        Income Statistics
+
+        <div>Hello</div>
+      </CardTitle>
+    </CardHeader>
     <CardContent>
       <div class="w-full">
         <ClientOnly>
