@@ -4,7 +4,27 @@ import { months } from '@@/lib/utils'
 import { pink } from 'tailwindcss/colors'
 import { Line } from 'vue-chartjs'
 
-const select = ref('')
+const selectModel = ref('')
+
+const selectOptions = ref([
+  {
+    title: 'A day',
+    value: 'aDay',
+  },
+  {
+    title: 'One week',
+    value: 'aWeek',
+  },
+  {
+    title: '8 Month',
+    value: '8Month',
+  },
+  {
+    title: 'A year',
+    value: 'aYear',
+  },
+
+])
 
 const chartData = computed(() => {
   return {
@@ -95,90 +115,16 @@ const chartOptions = computed(() => {
   <Card>
     <CardHeader>
       <CardTitle class="flex items-center justify-between">
-        Income Statistics
+        Income Statistics {{ selectModel }}
 
-        <Select v-model="select">
-          <SelectTrigger class="w-[180px]">
-            <SelectValue placeholder="Select a period" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>North America</SelectLabel>
-              <SelectItem value="est">
-                Eastern Standard Time (EST)
-              </SelectItem>
-              <SelectItem value="cst">
-                Central Standard Time (CST)
-              </SelectItem>
-              <SelectItem value="mst">
-                Mountain Standard Time (MST)
-              </SelectItem>
-              <SelectItem value="pst">
-                Pacific Standard Time (PST)
-              </SelectItem>
-              <SelectItem value="akst">
-                Alaska Standard Time (AKST)
-              </SelectItem>
-              <SelectItem value="hst">
-                Hawaii Standard Time (HST)
-              </SelectItem>
-              <SelectItem value="est">
-                Eastern Standard Time (EST)
-              </SelectItem>
-              <SelectItem value="cst">
-                Central Standard Time (CST)
-              </SelectItem>
-              <SelectItem value="mst">
-                Mountain Standard Time (MST)
-              </SelectItem>
-              <SelectItem value="pst">
-                Pacific Standard Time (PST)
-              </SelectItem>
-              <SelectItem value="akst">
-                Alaska Standard Time (AKST)
-              </SelectItem>
-              <SelectItem value="hst">
-                Hawaii Standard Time (HST)
-              </SelectItem>
-              <SelectItem value="est">
-                Eastern Standard Time (EST)
-              </SelectItem>
-              <SelectItem value="cst">
-                Central Standard Time (CST)
-              </SelectItem>
-              <SelectItem value="mst">
-                Mountain Standard Time (MST)
-              </SelectItem>
-              <SelectItem value="pst">
-                Pacific Standard Time (PST)
-              </SelectItem>
-              <SelectItem value="akst">
-                Alaska Standard Time (AKST)
-              </SelectItem>
-              <SelectItem value="hst">
-                Hawaii Standard Time (HST)
-              </SelectItem>
-              <SelectItem value="est">
-                Eastern Standard Time (EST)
-              </SelectItem>
-              <SelectItem value="cst">
-                Central Standard Time (CST)
-              </SelectItem>
-              <SelectItem value="mst">
-                Mountain Standard Time (MST)
-              </SelectItem>
-              <SelectItem value="pst">
-                Pacific Standard Time (PST)
-              </SelectItem>
-              <SelectItem value="akst">
-                Alaska Standard Time (AKST)
-              </SelectItem>
-              <SelectItem value="hst">
-                Hawaii Standard Time (HST)
-              </SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+        <Select
+          v-model="selectModel"
+          placeholder="Select a period"
+          label="Time a period"
+          :items="selectOptions"
+          item-title="title"
+          item-value="value"
+        />
       </CardTitle>
     </CardHeader>
     <CardContent>
