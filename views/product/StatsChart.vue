@@ -23,6 +23,70 @@ const selectOptions = ref([
     title: 'A year',
     value: 'aYear',
   },
+  {
+    title: 'A day',
+    value: 'aDay',
+  },
+  {
+    title: 'One week',
+    value: 'aWeek',
+  },
+  {
+    title: '8 Month',
+    value: '8Month',
+  },
+  {
+    title: 'A year',
+    value: 'aYear',
+  },
+  {
+    title: 'A day',
+    value: 'aDay',
+  },
+  {
+    title: 'One week',
+    value: 'aWeek',
+  },
+  {
+    title: '8 Month',
+    value: '8Month',
+  },
+  {
+    title: 'A year',
+    value: 'aYear',
+  },
+  {
+    title: 'A day',
+    value: 'aDay',
+  },
+  {
+    title: 'One week',
+    value: 'aWeek',
+  },
+  {
+    title: '8 Month',
+    value: '8Month',
+  },
+  {
+    title: 'A year',
+    value: 'aYear',
+  },
+  {
+    title: 'A day',
+    value: 'aDay',
+  },
+  {
+    title: 'One week',
+    value: 'aWeek',
+  },
+  {
+    title: '8 Month',
+    value: '8Month',
+  },
+  {
+    title: 'A year',
+    value: 'aYear',
+  },
 
 ])
 
