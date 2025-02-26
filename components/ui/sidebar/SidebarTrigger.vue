@@ -19,7 +19,10 @@ const { toggleSidebar } = useSidebar()
     :class="cn('h-7 w-7', props.class)"
     @click="toggleSidebar"
   >
-    <Icon :name="icons.sidebarTrigger" class="text-xl text-secondary" />
+    <Icon
+      :name="icons.sidebarTrigger"
+      class="text-xl text-secondary"
+    />
     <span class="sr-only">Toggle Sidebar</span>
   </Button>
 </template>

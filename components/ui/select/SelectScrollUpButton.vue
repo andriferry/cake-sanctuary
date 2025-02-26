@@ -2,7 +2,6 @@
 import type { SelectScrollUpButtonProps } from 'radix-vue'
 
 import { cn } from '@/lib/utils'
-import { ChevronUpIcon } from '@radix-icons/vue'
 import { SelectScrollUpButton, useForwardProps } from 'radix-vue'
 import { computed } from 'vue'
 
@@ -18,7 +17,10 @@ const forwardedProps = useForwardProps(delegatedProps)
 </script>
 
 <template>
-  <SelectScrollUpButton v-bind="forwardedProps" :class="cn('flex cursor-default items-center justify-center py-1', props.class)">
+  <SelectScrollUpButton
+    v-bind="forwardedProps"
+    :class="cn('flex cursor-default items-center justify-center py-1', props.class)"
+  >
     <slot>
       <ChevronUpIcon />
     </slot>

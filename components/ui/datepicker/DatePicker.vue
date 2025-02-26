@@ -98,7 +98,8 @@ function formatFullMonth(date?: DateValue) {
   <Popover>
     <PopoverTrigger as-child>
       <Button
-        class="w-[280px] justify-start text-left font-normal" :class="[
+        class="w-[280px] justify-start text-left font-normal"
+        :class="[
           !value && 'text-muted-foreground',
         ]"
         variant="outline"

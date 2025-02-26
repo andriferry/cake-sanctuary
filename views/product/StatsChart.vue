@@ -4,6 +4,8 @@ import { months } from '@@/lib/utils'
 import { pink } from 'tailwindcss/colors'
 import { Line } from 'vue-chartjs'
 
+const select = ref('')
+
 const chartData = computed(() => {
   return {
     labels: months({ count: 12, section: 3 }),
@@ -46,7 +48,6 @@ const chartOptions = computed(() => {
         display: false,
       },
       tooltip: {
-        position: 'average',
         callbacks: {
           label: (context: any) => {
             let label = context.parsed.y
@@ -76,12 +77,8 @@ const chartOptions = computed(() => {
       y: {
         beginAtZero: true,
         ticks: {
-          callback(val: number) {
-            return new Intl.NumberFormat('en-US', {
-              style: 'currency',
-              currency: 'USD',
-              maximumSignificantDigits: 3,
-            }).format(val)
+          callback(val: any) {
+            return `$${val}`
           },
         },
         border: {
@@ -97,10 +94,91 @@ const chartOptions = computed(() => {
 <template>
   <Card>
     <CardHeader>
-      <CardTitle class="flex justify-between">
+      <CardTitle class="flex items-center justify-between">
         Income Statistics
 
-        <div>Hello</div>
+        <Select v-model="select">
+          <SelectTrigger class="w-[180px]">
+            <SelectValue placeholder="Select a period" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>North America</SelectLabel>
+              <SelectItem value="est">
+                Eastern Standard Time (EST)
+              </SelectItem>
+              <SelectItem value="cst">
+                Central Standard Time (CST)
+              </SelectItem>
+              <SelectItem value="mst">
+                Mountain Standard Time (MST)
+              </SelectItem>
+              <SelectItem value="pst">
+                Pacific Standard Time (PST)
+              </SelectItem>
+              <SelectItem value="akst">
+                Alaska Standard Time (AKST)
+              </SelectItem>
+              <SelectItem value="hst">
+                Hawaii Standard Time (HST)
+              </SelectItem>
+              <SelectItem value="est">
+                Eastern Standard Time (EST)
+              </SelectItem>
+              <SelectItem value="cst">
+                Central Standard Time (CST)
+              </SelectItem>
+              <SelectItem value="mst">
+                Mountain Standard Time (MST)
+              </SelectItem>
+              <SelectItem value="pst">
+                Pacific Standard Time (PST)
+              </SelectItem>
+              <SelectItem value="akst">
+                Alaska Standard Time (AKST)
+              </SelectItem>
+              <SelectItem value="hst">
+                Hawaii Standard Time (HST)
+              </SelectItem>
+              <SelectItem value="est">
+                Eastern Standard Time (EST)
+              </SelectItem>
+              <SelectItem value="cst">
+                Central Standard Time (CST)
+              </SelectItem>
+              <SelectItem value="mst">
+                Mountain Standard Time (MST)
+              </SelectItem>
+              <SelectItem value="pst">
+                Pacific Standard Time (PST)
+              </SelectItem>
+              <SelectItem value="akst">
+                Alaska Standard Time (AKST)
+              </SelectItem>
+              <SelectItem value="hst">
+                Hawaii Standard Time (HST)
+              </SelectItem>
+              <SelectItem value="est">
+                Eastern Standard Time (EST)
+              </SelectItem>
+              <SelectItem value="cst">
+                Central Standard Time (CST)
+              </SelectItem>
+              <SelectItem value="mst">
+                Mountain Standard Time (MST)
+              </SelectItem>
+              <SelectItem value="pst">
+                Pacific Standard Time (PST)
+              </SelectItem>
+              <SelectItem value="akst">
+                Alaska Standard Time (AKST)
+              </SelectItem>
+              <SelectItem value="hst">
+                Hawaii Standard Time (HST)
+              </SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
       </CardTitle>
     </CardHeader>
     <CardContent>
