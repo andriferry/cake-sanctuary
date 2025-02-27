@@ -28,8 +28,8 @@ const selectOptions = ref([
 
 const chartData = computed<ChartData<'line'>>(() => {
   const colors = {
-    default: 'rgba(236, 70, 153, 1)',
-    half: 'rgba(236, 70, 153, 0.5)',
+    default: 'rgba(236, 70, 153, 0.1)',
+    half: 'rgba(236, 70, 153, 0.1)',
     quarter: 'rgba(236, 70, 153, 0.25)',
     zero: 'rgba(236, 70, 153, 0)',
   }
