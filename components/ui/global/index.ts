@@ -47,7 +47,7 @@ const ChevronDownIcon = defineComponent(() => {
 
 const WrapperPages = defineComponent((props, { slots }) => {
   return () => {
-    return h('div', { class: 'grid lg:p-4 gap-3 grid-flow-row auto-rows-max' }, slots.default())
+    return h('div', { class: 'grid lg:p-4 gap-3 grid-flow-row auto-rows-max' }, slots.default ? slots.default() : 'Main Content')
   }
 })
 
