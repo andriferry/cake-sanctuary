@@ -19,7 +19,6 @@ import {
   useVueTable,
 } from '@tanstack/vue-table'
 import { Button } from '~/components/ui/button/index'
-import { Checkbox } from '~/components/ui/checkbox/index'
 
 import { SortIcon } from '~/components/ui/global/index'
 
@@ -64,21 +63,7 @@ const data: Payment[] = [
 ]
 
 const columns: ColumnDef<Payment>[] = [
-  {
-    id: 'select',
-    header: ({ table }) => h(Checkbox, {
-      'modelValue': table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate'),
-      'onUpdate:modelValue': (value: any) => table.toggleAllPageRowsSelected(!!value),
-      'ariaLabel': 'Select all',
-    }),
-    cell: ({ row }) => h(Checkbox, {
-      'modelValue': row.getIsSelected(),
-      'onUpdate:modelValue': (value: any) => row.toggleSelected(!!value),
-      'ariaLabel': 'Select row',
-    }),
-    enableSorting: false,
-    enableHiding: false,
-  },
+
   {
     accessorKey: 'status',
     header: 'Status',

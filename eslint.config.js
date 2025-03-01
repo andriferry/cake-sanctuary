@@ -13,9 +13,9 @@ export default antfu({
       'vue/singleline-html-element-content-newline': ['error'],
       'vue/prefer-true-attribute-shorthand': ['error'],
       'vue/first-attribute-linebreak': [
-        'warn',
+        'error',
         {
-          singleline: 'ignore',
+          singleline: 'beside',
           multiline: 'below',
         },
       ],
@@ -37,9 +37,8 @@ export default antfu({
       'vue/max-attributes-per-line': [
         'error',
         {
-          multiline: {
-            max: 1,
-          },
+          singleline: { max: 1 },
+          multiline: { max: 1 },
         },
       ],
     },
@@ -47,13 +46,20 @@ export default antfu({
 
   rules: {
     'node/prefer-global/process': 'off',
-    // 'func-style': ['error', 'declaration', { allowArrowFunctions: true }],
+    'object-curly-newline': [
+      'error',
+      {
+        multiline: true,
+        minProperties: 2,
+      },
+    ],
   },
   javascript: {
     overrides: {
       'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
       'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
       'no-useless-catch': 'off',
+      'no-alert': 'off',
     },
   },
   typescript: true,

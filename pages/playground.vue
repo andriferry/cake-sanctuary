@@ -1,7 +1,5 @@
 <script setup lang="ts">
-definePageMeta({
-  layout: 'blank',
-})
+definePageMeta({ layout: 'blank' })
 </script>
 
 <template>
