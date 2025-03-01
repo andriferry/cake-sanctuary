@@ -6,8 +6,18 @@ definePageMeta({
 
 <template>
   <WrapperPages class="min-h-screen">
-    <ProductOverview />
-    <!-- <ProductStatsChart /> -->
-    <ProductTable />
+    <div class="grid grid-cols-12 gap-3">
+      <div class="col-span-12">
+        <ProductOverview />
+      </div>
+
+      <div class="col-span-12">
+        <ProductStatsChart />
+      </div>
+
+      <div class="col-span-12">
+        <ProductTable />
+      </div>
+    </div>
   </WrapperPages>
 </template>

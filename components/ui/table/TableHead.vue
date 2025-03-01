@@ -16,7 +16,7 @@ const props = defineProps<{
       )
     "
   >
-    <div class="w-full">
+    <div class="w-full flex items-center">
       <slot></slot>
     </div>
   </th>
