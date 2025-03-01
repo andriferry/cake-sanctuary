@@ -45,6 +45,20 @@ const ChevronDownIcon = defineComponent(() => {
   }
 })
 
+const CheckIcon = defineComponent(() => {
+  // use Composition API here like in <script setup>
+  return () => {
+    return h(Icon, { name: icons.check, class: 'w-4' })
+  }
+})
+
+const SortIcon = defineComponent(() => {
+  // use Composition API here like in <script setup>
+  return () => {
+    return h(Icon, { name: icons.sort, class: 'w-4' })
+  }
+})
+
 const WrapperPages = defineComponent((props, { slots }) => {
   return () => {
     return h('div', { class: 'grid lg:p-4 gap-3 grid-flow-row auto-rows-max' }, slots.default ? slots.default() : 'Main Content')
@@ -56,7 +70,9 @@ export {
   ArrowDoubleRightIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
+  CheckIcon,
   ChevronDownIcon,
   ChevronUpIcon,
+  SortIcon,
   WrapperPages,
 }

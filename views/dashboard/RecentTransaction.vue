@@ -54,7 +54,10 @@ const badgeRenderColor = (value: Invoice['paymentStatus']) => {
 </script>
 
 <template>
-  <Card title="Recent transaction" class="h-full">
+  <Card
+    title="Recent transaction"
+    class="h-full"
+  >
     <CardContent>
       <Table>
         <TableHeader>

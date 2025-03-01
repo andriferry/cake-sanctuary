@@ -98,7 +98,10 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="w-full flex items-center flex-wrap gap-3" :class="props.class">
+  <div
+    class="w-full flex items-center flex-wrap gap-3"
+    :class="props.class"
+  >
     <Button
       v-if="lastFirstArrow"
       :disabled="isFirstPage"
@@ -118,7 +121,10 @@ onMounted(async () => {
       :size="size"
       @click="prev"
     >
-      <Icon :name="prevIconArrow" class="w-4" />
+      <Icon
+        :name="prevIconArrow"
+        class="w-4"
+      />
     </Button>
 
     <template v-for="index in pagesData">
@@ -156,7 +162,10 @@ onMounted(async () => {
       :size="size"
       @click="next"
     >
-      <Icon :name="nextIconArrow" class="w-4" />
+      <Icon
+        :name="nextIconArrow"
+        class="w-4"
+      />
     </Button>
     <Button
       v-if="lastFirstArrow"

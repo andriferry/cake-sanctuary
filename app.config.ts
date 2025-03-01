@@ -63,5 +63,7 @@ export default defineAppConfig({
     minus: 'tabler:minus',
     plus: 'tabler:plus',
     alertTriangle: 'tabler:alert-triangle',
+    sort: 'tabler:arrows-sort',
+    check: 'tabler:check',
   },
 })

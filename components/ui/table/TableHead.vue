@@ -16,7 +16,7 @@ const props = defineProps<{
       )
     "
   >
-    <div class="min-w-32">
+    <div class="w-full">
       <slot></slot>
     </div>
   </th>

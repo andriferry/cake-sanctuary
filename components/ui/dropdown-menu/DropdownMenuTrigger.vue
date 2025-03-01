@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import type { DropdownMenuTriggerProps } from 'radix-vue'
-import { DropdownMenuTrigger, useForwardProps } from 'radix-vue'
+import { DropdownMenuTrigger, type DropdownMenuTriggerProps, useForwardProps } from 'reka-ui'
 
 const props = defineProps<DropdownMenuTriggerProps>()
 
@@ -9,6 +8,6 @@ const forwardedProps = useForwardProps(props)
 
 <template>
   <DropdownMenuTrigger class="outline-none" v-bind="forwardedProps">
-    <slot></slot>
+    <slot />
   </DropdownMenuTrigger>
 </template>
