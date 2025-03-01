@@ -1,7 +1,8 @@
 import { Icon } from '#components'
+import config from '@/app.config'
 import { defineComponent } from 'vue'
 
-const { icons } = useAppConfig()
+const { icons } = config
 
 const ChevronUpIcon = defineComponent(() => {
   // use Composition API here like in <script setup>

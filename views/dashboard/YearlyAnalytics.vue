@@ -37,11 +37,15 @@ const chartOptions = computed(() => {
         },
       },
       y: {
+        beginAtZero: true,
         grid: {
           display: false,
         },
         border: {
           display: false,
+        },
+        ticks: {
+          stepSize: 40,
         },
       },
     },

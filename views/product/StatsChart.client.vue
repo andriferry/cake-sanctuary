@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ChartData } from 'chart.js'
+import type { ChartData, ChartOptions } from 'chart.js'
 
 import { months } from '@@/lib/utils'
 import { Line } from 'vue-chartjs'
@@ -76,7 +76,7 @@ const chartData = computed<ChartData<'line'>>(() => {
   }
 })
 
-const chartOptions = computed(() => {
+const chartOptions = computed<ChartOptions<'line'>>(() => {
   return {
     maintainAspectRatio: false,
     animation: { duration: 500 },
