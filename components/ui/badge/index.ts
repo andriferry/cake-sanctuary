@@ -19,9 +19,7 @@ export const badgeVariants = cva(
         success: 'shadow border-transparent bg-success text-white hover:bg-success/80',
       },
     },
-    defaultVariants: {
-      variant: 'default',
-    },
+    defaultVariants: { variant: 'default' },
   },
 )
 

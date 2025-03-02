@@ -8,7 +8,10 @@ const annualYearly = computed(() => annualYearlyAnalytics)
 
 const chartData = computed(() => {
   return {
-    labels: months({ count: 7, section: 3 }),
+    labels: months({
+      count: 7,
+      section: 3,
+    }),
     datasets: [{
       data: annualYearly.value[currentOverview.value].chartData,
       borderRadius: 9,
@@ -21,32 +24,18 @@ const chartOptions = computed(() => {
     maintainAspectRatio: false,
     animation: { duration: 500 },
     responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
+    plugins: { legend: { display: false } },
     backgroundColor: annualYearly.value[currentOverview.value].bgColors,
     scales: {
       x: {
-        grid: {
-          display: false,
-        },
-        border: {
-          display: false,
-        },
+        grid: { display: false },
+        border: { display: false },
       },
       y: {
         beginAtZero: true,
-        grid: {
-          display: false,
-        },
-        border: {
-          display: false,
-        },
-        ticks: {
-          stepSize: 40,
-        },
+        grid: { display: false },
+        border: { display: false },
+        ticks: { stepSize: 40 },
       },
     },
   }
@@ -75,9 +64,7 @@ const chartOptions = computed(() => {
             class="size-28 transition duration-300 flex justify-center items-center"
             variant="flat"
           >
-            <CardContent
-              class="p-0 flex flex-col gap-3 justify-center items-center"
-            >
+            <CardContent class="p-0 flex flex-col gap-3 justify-center items-center">
               <div
                 :class="
                   index === currentOverview

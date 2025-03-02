@@ -1,6 +1,12 @@
 <script setup lang="ts">
-import type { SelectRootEmits, SelectRootProps } from 'radix-vue'
-import { SelectRoot, useForwardPropsEmits } from 'radix-vue'
+import type {
+  SelectRootEmits,
+  SelectRootProps,
+} from 'radix-vue'
+import {
+  SelectRoot,
+  useForwardPropsEmits,
+} from 'radix-vue'
 
 interface Props extends SelectRootProps {
   items?: any[]
@@ -11,9 +17,7 @@ interface Props extends SelectRootProps {
   itemValue?: any
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  width: 'w-[180px]',
-})
+const props = withDefaults(defineProps<Props>(), { width: 'w-[180px]' })
 
 const emits = defineEmits<SelectRootEmits>()
 

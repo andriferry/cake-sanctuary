@@ -7,9 +7,7 @@ import { Primitive } from 'radix-vue'
 const props = withDefaults(defineProps<PrimitiveProps & {
   showOnHover?: boolean
   class?: VueHtmlAttributes['class']
-}>(), {
-  as: 'button',
-})
+}>(), { as: 'button' })
 </script>
 
 <template>

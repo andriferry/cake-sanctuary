@@ -6,7 +6,10 @@ import { convertCurrency } from '@@/lib/utils'
 const cartStore = useCartStore()
 const { icons } = useAppConfig()
 
-const { order, subtotal } = storeToRefs(cartStore)
+const {
+  order,
+  subtotal,
+} = storeToRefs(cartStore)
 
 const dialogOpen = ref(false)
 
@@ -73,9 +76,7 @@ onMounted(() => {
     </Button>
 
     <Dialog v-model:open="dialogOpen">
-      <DialogContent
-        class="w-full sm:max-w-[425px] md:max-w-lg xl:w-full xl:max-w-md grid-rows-[auto_minmax(0,1fr)_auto] p-0 max-h-[90dvh]"
-      >
+      <DialogContent class="w-full sm:max-w-[425px] md:max-w-lg xl:w-full xl:max-w-md grid-rows-[auto_minmax(0,1fr)_auto] p-0 max-h-[90dvh]">
         <DialogHeader class="p-6 pb-0">
           <DialogTitle> Current Order #{{ order.orderNumber }} </DialogTitle>
         </DialogHeader>

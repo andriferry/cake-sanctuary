@@ -3,19 +3,23 @@ import type { ComboboxInputProps } from 'radix-vue'
 
 import { cn } from '@/lib/utils'
 import { MagnifyingGlassIcon } from '@radix-icons/vue'
-import { ComboboxInput, useForwardProps } from 'radix-vue'
+import {
+  ComboboxInput,
+  useForwardProps,
+} from 'radix-vue'
 import { computed } from 'vue'
 
-defineOptions({
-  inheritAttrs: false,
-})
+defineOptions({ inheritAttrs: false })
 
 const props = defineProps<ComboboxInputProps & {
   class?: VueHtmlAttributes['class']
 }>()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })
@@ -24,7 +28,10 @@ const forwardedProps = useForwardProps(delegatedProps)
 </script>
 
 <template>
-  <div class="flex items-center border-b px-3" cmdk-input-wrapper>
+  <div
+    class="flex items-center border-b px-3"
+    cmdk-input-wrapper
+  >
     <MagnifyingGlassIcon class="mr-2 h-4 w-4 shrink-0 opacity-50" />
     <ComboboxInput
       v-bind="{ ...forwardedProps, ...$attrs }"

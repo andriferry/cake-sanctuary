@@ -3,13 +3,19 @@ import type { StepperIndicatorProps } from 'radix-vue'
 
 import { cn } from '@/lib/utils'
 
-import { StepperIndicator, useForwardProps } from 'radix-vue'
+import {
+  StepperIndicator,
+  useForwardProps,
+} from 'radix-vue'
 import { computed } from 'vue'
 
 const props = defineProps<StepperIndicatorProps & { class?: VueHtmlAttributes['class'] }>()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })

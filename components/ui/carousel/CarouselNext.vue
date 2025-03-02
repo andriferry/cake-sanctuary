@@ -6,7 +6,11 @@ import { useCarousel } from './useCarousel'
 
 const props = defineProps<WithClassAsProps>()
 
-const { orientation, canScrollNext, scrollNext } = useCarousel()
+const {
+  orientation,
+  canScrollNext,
+  scrollNext,
+} = useCarousel()
 
 const btnClass = computed(() => {
   return orientation === 'horizontal'

@@ -2,9 +2,7 @@
 import type { DropdownMenuSeparatorProps } from 'reka-ui'
 import type { HTMLAttributes } from 'vue'
 import { cn } from '@/lib/utils'
-import {
-  DropdownMenuSeparator,
-} from 'reka-ui'
+import { DropdownMenuSeparator } from 'reka-ui'
 import { computed } from 'vue'
 
 const props = defineProps<DropdownMenuSeparatorProps & {
@@ -12,7 +10,10 @@ const props = defineProps<DropdownMenuSeparatorProps & {
 }>()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })

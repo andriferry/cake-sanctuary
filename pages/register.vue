@@ -36,9 +36,7 @@ const onSubmit = async () => {
     })
 
     router.push('/login').then(() => {
-      $toast('Error', {
-        description: 'User has been registered successfully !',
-      })
+      $toast('Error', { description: 'User has been registered successfully !' })
     })
   }
   catch (error: any) {

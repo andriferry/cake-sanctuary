@@ -9,7 +9,10 @@ export const sidebar = {
 
 export const cssVariable: any = {
   ':root': {
-    primary: { value: '330, 81, 60', style: 'hsl' },
+    primary: {
+      value: '330, 81, 60',
+      style: 'hsl',
+    },
     // 'primary-foreground': {}
   },
 }

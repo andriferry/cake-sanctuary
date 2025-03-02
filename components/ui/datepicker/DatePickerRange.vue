@@ -14,13 +14,9 @@ interface Props {
   disabled?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  disabled: false,
-})
+const props = withDefaults(defineProps<Props>(), { disabled: false })
 
-const df = new DateFormatter('en-US', {
-  dateStyle: 'medium',
-})
+const df = new DateFormatter('en-US', { dateStyle: 'medium' })
 
 const value = ref({
   start: new CalendarDate(2022, 1, 20),
@@ -43,12 +39,16 @@ const disabledTemplate = computed(() => {
 
 <template>
   <Popover>
-    <component :is="disabledTemplate" as-child>
+    <component
+      :is="disabledTemplate"
+      as-child
+    >
       <Button
         prepend-icon="tabler:calendar-event"
         variant="outline"
         :disabled="disabled"
-        class="w-[280px] justify-start text-left font-normal" :class="[
+        class="w-[280px] justify-start text-left font-normal"
+        :class="[
           !value && 'text-muted-foreground',
         ]"
       >
@@ -64,7 +64,10 @@ const disabledTemplate = computed(() => {
         <span v-else> Pick a date </span>
       </Button>
     </component>
-    <PopoverContent disabled class="w-auto p-0">
+    <PopoverContent
+      disabled
+      class="w-auto p-0"
+    >
       <RangeCalendar
         v-model="value"
         initial-focus

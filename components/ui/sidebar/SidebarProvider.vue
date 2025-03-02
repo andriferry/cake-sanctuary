@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
 import { cn } from '@/lib/utils'
-import { useEventListener, useMediaQuery, useVModel } from '@vueuse/core'
+import {
+  useEventListener,
+  useMediaQuery,
+  useVModel,
+} from '@vueuse/core'
 import { TooltipProvider } from 'radix-vue'
 import { provideSidebarContext } from './utils'
 

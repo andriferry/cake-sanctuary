@@ -2,7 +2,10 @@
 import type { NumberFieldIncrementProps } from 'radix-vue'
 
 import { cn } from '@/lib/utils'
-import { NumberFieldIncrement, useForwardProps } from 'radix-vue'
+import {
+  NumberFieldIncrement,
+  useForwardProps,
+} from 'radix-vue'
 
 const props = defineProps<
     NumberFieldIncrementProps & { class?: VueHtmlAttributes['class'] }
@@ -11,7 +14,10 @@ const props = defineProps<
 const { icons } = useAppConfig()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })
@@ -31,8 +37,9 @@ const forwarded = useForwardProps(delegatedProps)
     "
   >
     <slot>
-      <Icon :name="icons.plus"
-            class="size-4"
+      <Icon
+        :name="icons.plus"
+        class="size-4"
       />
     </slot>
   </NumberFieldIncrement>

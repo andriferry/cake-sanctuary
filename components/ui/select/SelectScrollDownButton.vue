@@ -2,12 +2,18 @@
 import type { SelectScrollDownButtonProps } from 'radix-vue'
 
 import { cn } from '@/lib/utils'
-import { SelectScrollDownButton, useForwardProps } from 'radix-vue'
+import {
+  SelectScrollDownButton,
+  useForwardProps,
+} from 'radix-vue'
 
 const props = defineProps<SelectScrollDownButtonProps & { class?: VueHtmlAttributes['class'] }>()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })

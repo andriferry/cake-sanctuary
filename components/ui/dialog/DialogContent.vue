@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import type { DialogContentEmits, DialogContentProps } from 'radix-vue'
+import type {
+  DialogContentEmits,
+  DialogContentProps,
+} from 'radix-vue'
 
 import { cn } from '@/lib/utils'
 import {
@@ -22,7 +25,10 @@ interface Props extends DialogContentProps {
 }
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })
@@ -47,9 +53,7 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
     >
       <slot></slot>
 
-      <DialogClose
-        class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-secondary"
-      >
+      <DialogClose class="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-secondary">
         <Icon
           :name="icons.close"
           class="size-4"

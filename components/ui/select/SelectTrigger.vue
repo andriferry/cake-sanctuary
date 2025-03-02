@@ -17,7 +17,10 @@ const props = defineProps<
 const { icons } = useAppConfig()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })

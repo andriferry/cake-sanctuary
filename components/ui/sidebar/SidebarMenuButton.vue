@@ -7,9 +7,7 @@ import TooltipTrigger from '@/components/ui/tooltip/TooltipTrigger.vue'
 import SidebarMenuButtonChild from './SidebarMenuButtonChild.vue'
 import { useSidebar } from './utils'
 
-defineOptions({
-  inheritAttrs: false,
-})
+defineOptions({ inheritAttrs: false })
 
 const props = withDefaults(defineProps<SidebarMenuButtonProps & {
   tooltip?: string | Component
@@ -19,16 +17,25 @@ const props = withDefaults(defineProps<SidebarMenuButtonProps & {
   size: 'default',
 })
 
-const { isMobile, state } = useSidebar()
+const {
+  isMobile,
+  state,
+} = useSidebar()
 
 const delegatedProps = computed(() => {
-  const { tooltip, ...delegated } = props
+  const {
+    tooltip,
+    ...delegated
+  } = props
   return delegated
 })
 </script>
 
 <template>
-  <SidebarMenuButtonChild v-if="!tooltip" v-bind="{ ...delegatedProps, ...$attrs }">
+  <SidebarMenuButtonChild
+    v-if="!tooltip"
+    v-bind="{ ...delegatedProps, ...$attrs }"
+  >
     <slot></slot>
   </SidebarMenuButtonChild>
 
@@ -46,7 +53,10 @@ const delegatedProps = computed(() => {
       <template v-if="typeof tooltip === 'string'">
         {{ tooltip }}
       </template>
-      <component :is="tooltip" v-else />
+      <component
+        :is="tooltip"
+        v-else
+      />
     </TooltipContent>
   </Tooltip>
 </template>

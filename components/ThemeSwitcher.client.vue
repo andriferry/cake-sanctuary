@@ -30,7 +30,10 @@ const themes = ref<Theme[]>([
 const currentTheme = computed<Theme>(() => {
   const dataTheme = themes.value.find((data: Theme) => data.value === colorMode.value)
 
-  return dataTheme || { icon: '', value: '' }
+  return dataTheme || {
+    icon: '',
+    value: '',
+  }
 })
 </script>
 

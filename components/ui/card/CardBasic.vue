@@ -17,7 +17,11 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <Card :title="title" :variant="variant" :subtitle="subtitle">
+  <Card
+    :title="title"
+    :variant="variant"
+    :subtitle="subtitle"
+  >
     <CardContent>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis
       consequatur tempora quia repudiandae incidunt. Dolorum facere a

@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import type { DialogRootEmits, DialogRootProps } from 'radix-vue'
+import type {
+  DialogRootEmits,
+  DialogRootProps,
+} from 'radix-vue'
 import {
   DialogRoot,
 

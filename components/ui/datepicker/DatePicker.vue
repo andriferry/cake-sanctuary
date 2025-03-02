@@ -9,8 +9,14 @@ import {
 
   isEqualMonth,
 } from '@internationalized/date'
-import { RangeCalendarRoot, useDateFormatter } from 'radix-vue'
-import { createMonth, toDate } from 'radix-vue/date'
+import {
+  RangeCalendarRoot,
+  useDateFormatter,
+} from 'radix-vue'
+import {
+  createMonth,
+  toDate,
+} from 'radix-vue/date'
 
 const { icons } = useAppConfig()
 
@@ -55,9 +61,7 @@ watch(placeholder, (_placeholder) => {
     locale: locale.value,
   })
   if (isEqualMonth(secondMonthPlaceholder.value, _placeholder)) {
-    secondMonthPlaceholder.value = secondMonthPlaceholder.value.add({
-      months: 1,
-    })
+    secondMonthPlaceholder.value = secondMonthPlaceholder.value.add({ months: 1 })
   }
 })
 
@@ -77,9 +81,7 @@ function updateMonth(reference: 'first' | 'second', months: number) {
     placeholder.value = placeholder.value.add({ months })
   }
   else {
-    secondMonthPlaceholder.value = secondMonthPlaceholder.value.add({
-      months,
-    })
+    secondMonthPlaceholder.value = secondMonthPlaceholder.value.add({ months })
   }
 }
 
@@ -126,9 +128,7 @@ function formatFullMonth(date?: DateValue) {
         v-model:placeholder="placeholder"
         class="p-3"
       >
-        <div
-          class="flex flex-col gap-y-4 mt-4 sm:flex-row sm:gap-x-4 sm:gap-y-0"
-        >
+        <div class="flex flex-col gap-y-4 mt-4 sm:flex-row sm:gap-x-4 sm:gap-y-0">
           <div class="flex flex-col gap-4">
             <div class="flex items-center justify-between">
               <Button

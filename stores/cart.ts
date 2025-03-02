@@ -1,5 +1,11 @@
-import type { Cart, Menu } from '@/@fake/data'
-import { carts, menus } from '@/@fake/data'
+import type {
+  Cart,
+  Menu,
+} from '@/@fake/data'
+import {
+  carts,
+  menus,
+} from '@/@fake/data'
 
 interface Order {
   orderNumber: string

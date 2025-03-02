@@ -3,9 +3,7 @@ import { sidebar } from '@/themeconfig'
 export default defineAppConfig({
   title: 'Cake Sanctuary',
   navigations: [
-    {
-      heading: 'Dashboard',
-    },
+    { heading: 'Dashboard' },
     {
       title: 'Home',
       to: '/dashboard',
@@ -40,9 +38,7 @@ export default defineAppConfig({
     //     icon: 'tabler:settings',
     // },
   ],
-  sidebar: {
-    ...sidebar,
-  },
+  sidebar: { ...sidebar },
   icons: {
     dropdownRadioItem: 'tabler:circle-dot',
     radioItemIcon: 'tabler:circle-filled',

@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import type { SplitterResizeHandleEmits, SplitterResizeHandleProps } from 'radix-vue'
+import type {
+  SplitterResizeHandleEmits,
+  SplitterResizeHandleProps,
+} from 'radix-vue'
 
 import { cn } from '@/lib/utils'
 import {
@@ -19,7 +22,10 @@ const emits = defineEmits<SplitterResizeHandleEmits>()
 const { icons } = useAppConfig()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
   return delegated
 })
 
@@ -38,12 +44,16 @@ const handleIcon = computed(() => {
 </script>
 
 <template>
-  <SplitterResizeHandle v-bind="forwarded" :class="splitHandleClass">
+  <SplitterResizeHandle
+    v-bind="forwarded"
+    :class="splitHandleClass"
+  >
     <template v-if="props.withHandle">
-      <div
-        class="z-10 flex h-4 w-3 items-center justify-center rounded-sm border bg-border"
-      >
-        <Icon :name="handleIcon" class="size-2.5" />
+      <div class="z-10 flex h-4 w-3 items-center justify-center rounded-sm border bg-border">
+        <Icon
+          :name="handleIcon"
+          class="size-2.5"
+        />
       </div>
     </template>
   </SplitterResizeHandle>

@@ -1,5 +1,8 @@
 import type { PrivateFormContext } from 'vee-validate'
-import type { HTMLAttributes, Ref } from 'vue'
+import type {
+  HTMLAttributes,
+  Ref,
+} from 'vue'
 
 declare global {
     type UserValidation = PrivateFormContext
@@ -47,5 +50,4 @@ declare module '#auth-utils' {
   }
 }
 
-
-export { global }
+// export { global }

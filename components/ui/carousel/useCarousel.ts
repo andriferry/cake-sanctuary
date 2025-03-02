@@ -4,10 +4,20 @@ import type {
 } from './interface'
 import { createInjectionState } from '@vueuse/core'
 import emblaCarouselVue from 'embla-carousel-vue'
-import { onMounted, ref } from 'vue'
+import {
+  onMounted,
+  ref,
+} from 'vue'
 
-const [useProvideCarousel, useInjectCarousel] = createInjectionState(
-  ({ opts, orientation, plugins }: CarouselProps) => {
+const [
+  useProvideCarousel,
+  useInjectCarousel,
+] = createInjectionState(
+  ({
+    opts,
+    orientation,
+    plugins,
+  }: CarouselProps) => {
     const canScrollNext = ref(false)
     const canScrollPrev = ref(false)
     const currentPage = ref(0)
@@ -17,7 +27,10 @@ const [useProvideCarousel, useInjectCarousel] = createInjectionState(
       axis: orientation === 'horizontal' ? 'x' : 'y',
     }
 
-    const [emblaNode, emblaApi] = emblaCarouselVue(config, plugins)
+    const [
+      emblaNode,
+      emblaApi,
+    ] = emblaCarouselVue(config, plugins)
 
     const scrollPrev = (): void => {
       emblaApi.value?.scrollPrev()
@@ -64,4 +77,7 @@ const useCarousel = (): any => {
   return carouselState
 }
 
-export { useCarousel, useProvideCarousel }
+export {
+  useCarousel,
+  useProvideCarousel,
+}

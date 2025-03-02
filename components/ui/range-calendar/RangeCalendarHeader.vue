@@ -2,13 +2,19 @@
 import type { RangeCalendarHeaderProps } from 'radix-vue'
 
 import { cn } from '@/lib/utils'
-import { RangeCalendarHeader, useForwardProps } from 'radix-vue'
+import {
+  RangeCalendarHeader,
+  useForwardProps,
+} from 'radix-vue'
 import { computed } from 'vue'
 
 const props = defineProps<RangeCalendarHeaderProps & { class?: VueHtmlAttributes['class'] }>()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })
@@ -17,7 +23,10 @@ const forwardedProps = useForwardProps(delegatedProps)
 </script>
 
 <template>
-  <RangeCalendarHeader :class="cn('relative flex w-full items-center justify-between pt-1', props.class)" v-bind="forwardedProps">
+  <RangeCalendarHeader
+    :class="cn('relative flex w-full items-center justify-between pt-1', props.class)"
+    v-bind="forwardedProps"
+  >
     <slot></slot>
   </RangeCalendarHeader>
 </template>

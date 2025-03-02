@@ -7,7 +7,10 @@ import { computed } from 'vue'
 const props = defineProps<AccordionContentProps & { class?: VueHtmlAttributes['class'] }>()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })

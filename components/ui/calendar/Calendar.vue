@@ -1,8 +1,14 @@
 <script lang="ts" setup>
-import type { CalendarRootEmits, CalendarRootProps } from 'radix-vue'
+import type {
+  CalendarRootEmits,
+  CalendarRootProps,
+} from 'radix-vue'
 
 import { cn } from '@/lib/utils'
-import { CalendarRoot, useForwardPropsEmits } from 'radix-vue'
+import {
+  CalendarRoot,
+  useForwardPropsEmits,
+} from 'radix-vue'
 import { computed } from 'vue'
 import {
   CalendarCell,
@@ -23,7 +29,10 @@ const props = defineProps<CalendarRootProps & { class?: VueHtmlAttributes['class
 const emits = defineEmits<CalendarRootEmits>()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })

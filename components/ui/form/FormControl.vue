@@ -1,5 +1,8 @@
 <script lang="ts" setup>
-import { FormLabel, FormMessage } from '@/components/ui/form'
+import {
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
 interface Props {
@@ -22,9 +25,7 @@ interface Emits {
   (e: 'clickAppend'): void
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  errorMessage: '',
-})
+const props = withDefaults(defineProps<Props>(), { errorMessage: '' })
 
 const emits = defineEmits<Emits>()
 
@@ -37,15 +38,9 @@ const hitHint = ref(false)
 
 const inputClass = computed(() => {
   return [
-    {
-      'border-destructive': props.errorMessage,
-    },
-    {
-      'pr-10': props.appendIcon,
-    },
-    {
-      'pl-10': props.prependIcon,
-    },
+    { 'border-destructive': props.errorMessage },
+    { 'pr-10': props.appendIcon },
+    { 'pl-10': props.prependIcon },
   ]
 })
 </script>

@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import type { Menu } from '@/@fake/data'
-import { menuCategory, menus } from '@/@fake/data'
+import {
+  menuCategory,
+  menus,
+} from '@/@fake/data'
 import { convertCurrency } from '@@/lib/utils'
 
-definePageMeta({
-  middleware: 'auth',
-})
+definePageMeta({ middleware: 'auth' })
 
 const menuIndex = ref(0)
 
@@ -73,12 +74,8 @@ const allMenus = computed<Menu[]>(() => {
         :key="index"
       >
         <TooltipTrigger class="col-span-6 md:col-span-3 lg:col-span-2">
-          <Card
-            class="h-auto group cursor-pointer hover:border-4 transition-all duration-300 ease-in-out border-primary"
-          >
-            <figure
-              class="overflow-hidden rounded-ss-[inherit] rounded-se-[inherit] rounded-es-[unset] rounded-ee-[unset]"
-            >
+          <Card class="h-auto group cursor-pointer hover:border-4 transition-all duration-300 ease-in-out border-primary">
+            <figure class="overflow-hidden rounded-ss-[inherit] rounded-se-[inherit] rounded-es-[unset] rounded-ee-[unset]">
               <AspectRatio :ratio="16 / 14">
                 <img
                   class="object-cover w-full group-hover:scale-110 transition-all duration-300 ease-in-out h-full"

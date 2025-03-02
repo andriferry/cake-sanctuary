@@ -1,7 +1,13 @@
-import type { ComputedRef, Ref } from 'vue'
+import type {
+  ComputedRef,
+  Ref,
+} from 'vue'
 import { createContext } from 'radix-vue'
 
-export const [useSidebar, provideSidebarContext] = createContext<{
+export const [
+  useSidebar,
+  provideSidebarContext,
+] = createContext<{
   state: ComputedRef<'expanded' | 'collapsed'>
   open: Ref<boolean>
   setOpen: (value: boolean) => void

@@ -7,9 +7,7 @@ import type {
 import { cn } from '@/lib/utils'
 import { useProvideCarousel } from './useCarousel'
 
-const props = withDefaults(defineProps<CarouselProps & WithClassAsProps>(), {
-  orientation: 'horizontal',
-})
+const props = withDefaults(defineProps<CarouselProps & WithClassAsProps>(), { orientation: 'horizontal' })
 
 const emits = defineEmits<CarouselEmits>()
 

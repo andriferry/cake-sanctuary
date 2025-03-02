@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { initialName } from '~/utils'
 
-const { user, clear } = useUserSession()
+const {
+  user,
+  clear,
+} = useUserSession()
 
 const router = useRouter()
 

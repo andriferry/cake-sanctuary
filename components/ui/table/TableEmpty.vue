@@ -9,13 +9,14 @@ const props = withDefaults(
     class?: VueHtmlAttributes['class']
     colspan?: number
   }>(),
-  {
-    colspan: 1,
-  },
+  { colspan: 1 },
 )
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })

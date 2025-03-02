@@ -2,13 +2,19 @@
 import type { DialogTitleProps } from 'radix-vue'
 
 import { cn } from '@/lib/utils'
-import { DialogTitle, useForwardProps } from 'radix-vue'
+import {
+  DialogTitle,
+  useForwardProps,
+} from 'radix-vue'
 import { computed } from 'vue'
 
 const props = defineProps<DialogTitleProps & { class?: VueHtmlAttributes['class'] }>()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })

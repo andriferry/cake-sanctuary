@@ -22,9 +22,7 @@ export const cardVariant = cva(
         outline: 'border',
       },
     },
-    defaultVariants: {
-      variant: 'default',
-    },
+    defaultVariants: { variant: 'default' },
   },
 )
 

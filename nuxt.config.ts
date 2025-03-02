@@ -7,8 +7,14 @@ export default defineNuxtConfig({
     head: {
       title: 'Cake Sanctuary',
       link: [
-        { rel: 'icon', href: '/favicon.ico' },
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        {
+          rel: 'icon',
+          href: '/favicon.ico',
+        },
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.googleapis.com',
+        },
         {
           rel: 'preconnect',
           href: 'https://fonts.gstatic.com',
@@ -21,7 +27,10 @@ export default defineNuxtConfig({
       ],
     },
     // layoutTransition: { name: 'slide-fade', mode: 'out-in' },
-    pageTransition: { name: 'slide-fade', mode: 'out-in' },
+    pageTransition: {
+      name: 'slide-fade',
+      mode: 'out-in',
+    },
   },
 
   tailwindcss: {
@@ -33,9 +42,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     databasePath: process.env.NUXT_DB_FILE_NAME,
-    public: {
-      title: 'Cake Sanctuary',
-    },
+    public: { title: 'Cake Sanctuary' },
     oauth: {
       google: {
         clientId: process.env.NUXT_OAUTH_GOOGLE_CLIENT_ID,
@@ -53,9 +60,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  auth: {
-    webAuthn: true,
-  },
+  auth: { webAuthn: true },
   components: [
     {
       path: '~/components/ui',
@@ -73,16 +78,8 @@ export default defineNuxtConfig({
 
   typescript: {
     tsConfig: {
-      compilerOptions: {
-        paths: {
-          '@/lib/utils/*': ['../lib/utils/*'],
-        },
-      },
-      include: [
-        'global.d.ts',
-        'types/*.d.ts',
-        '~/components/ui/use-toast.ts',
-      ],
+      compilerOptions: { paths: { '@/lib/utils/*': ['../lib/utils/*'] } },
+      // include: ['types/*.d.ts'],
     },
   },
 
@@ -95,9 +92,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt', // '@nuxtjs/storybook', // Remove Storybook
     'vue-sonner/nuxt',
   ],
-  pinia: {
-    storesDirs: ['./stores/**'],
-  },
+  pinia: { storesDirs: ['./stores/**'] },
   icon: {
     class: 'icon', // default <Icon> class applied
     mode: 'css', //

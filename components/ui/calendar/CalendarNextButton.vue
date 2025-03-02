@@ -4,13 +4,19 @@ import type { CalendarNextProps } from 'radix-vue'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { ChevronRightIcon } from '@radix-icons/vue'
-import { CalendarNext, useForwardProps } from 'radix-vue'
+import {
+  CalendarNext,
+  useForwardProps,
+} from 'radix-vue'
 import { computed } from 'vue'
 
 const props = defineProps<CalendarNextProps & { class?: VueHtmlAttributes['class'] }>()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })

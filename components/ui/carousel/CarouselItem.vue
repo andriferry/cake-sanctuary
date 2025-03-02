@@ -5,7 +5,11 @@ import { useCarousel } from './useCarousel'
 
 const props = defineProps<WithClassAsProps>()
 
-const { orientation, carouselApi, currentPage } = useCarousel()
+const {
+  orientation,
+  carouselApi,
+  currentPage,
+} = useCarousel()
 
 const itemRef = ref()
 

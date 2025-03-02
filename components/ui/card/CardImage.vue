@@ -18,12 +18,8 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div class="w-full h-[400px]">
-    <Card
-      class="h-auto cursor-pointer transition-all duration-300 ease-in-out border-primary"
-    >
-      <figure
-        class="overflow-hidden rounded-ss-[inherit] rounded-se-[inherit] rounded-es-[unset] rounded-ee-[unset]"
-      >
+    <Card class="h-auto cursor-pointer transition-all duration-300 ease-in-out border-primary">
+      <figure class="overflow-hidden rounded-ss-[inherit] rounded-se-[inherit] rounded-es-[unset] rounded-ee-[unset]">
         <AspectRatio :ratio="16 / 14">
           <img
             class="object-cover w-full transition-all duration-300 ease-in-out h-full"

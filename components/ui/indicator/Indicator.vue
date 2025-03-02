@@ -17,11 +17,13 @@ withDefaults(defineProps<Props>(), {
     <span class="relative flex min-w-5 h-5">
       <span
         v-if="pingAnimate"
-        class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" :class="color"
+        class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+        :class="color"
       ></span>
 
       <span
-        class="relative justify-center text-white items-center inline-flex rounded-full text-[.75rem] font-medium text-center min-w-5" :class="color"
+        class="relative justify-center text-white items-center inline-flex rounded-full text-[.75rem] font-medium text-center min-w-5"
+        :class="color"
       >
         {{ content }}
       </span>

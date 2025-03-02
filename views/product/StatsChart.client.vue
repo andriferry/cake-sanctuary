@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import type { ChartData, ChartOptions } from 'chart.js'
+import type {
+  ChartData,
+  ChartOptions,
+} from 'chart.js'
 
 import { months } from '@@/lib/utils'
 import { Line } from 'vue-chartjs'
@@ -35,7 +38,10 @@ const chartData = computed<ChartData<'line'>>(() => {
   }
 
   return {
-    labels: months({ count: 12, section: 3 }),
+    labels: months({
+      count: 12,
+      section: 3,
+    }),
     datasets: [{
       data: [
         1000,
@@ -82,9 +88,7 @@ const chartOptions = computed<ChartOptions<'line'>>(() => {
     animation: { duration: 500 },
     responsive: true,
     plugins: {
-      legend: {
-        display: false,
-      },
+      legend: { display: false },
       tooltip: {
         callbacks: {
           label: (context: any) => {
@@ -105,12 +109,8 @@ const chartOptions = computed<ChartOptions<'line'>>(() => {
     },
     scales: {
       x: {
-        grid: {
-          display: false,
-        },
-        border: {
-          display: false,
-        },
+        grid: { display: false },
+        border: { display: false },
       },
       y: {
         beginAtZero: true,
@@ -119,9 +119,7 @@ const chartOptions = computed<ChartOptions<'line'>>(() => {
             return `$${val}`
           },
         },
-        border: {
-          display: false,
-        },
+        border: { display: false },
       },
     },
 

@@ -3,9 +3,7 @@ import SheetContent from '@/components/ui/sheet/SheetContent.vue'
 import { cn } from '@/lib/utils'
 import { useSidebar } from './utils'
 
-defineOptions({
-  inheritAttrs: false,
-})
+defineOptions({ inheritAttrs: false })
 
 const props = withDefaults(defineProps<Props>(), {
   side: 'left',
@@ -20,7 +18,12 @@ interface Props {
   class?: VueHtmlAttributes['class']
 }
 
-const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
+const {
+  isMobile,
+  state,
+  openMobile,
+  setOpenMobile,
+} = useSidebar()
 </script>
 
 <template>

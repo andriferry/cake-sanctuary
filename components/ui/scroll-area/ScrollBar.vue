@@ -13,12 +13,13 @@ interface Props extends ScrollAreaScrollbarProps {
   class?: VueHtmlAttributes['class']
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  orientation: 'vertical',
-})
+const props = withDefaults(defineProps<Props>(), { orientation: 'vertical' })
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })

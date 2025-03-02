@@ -21,15 +21,9 @@
           class="w-20"
         >
           <NumberFieldContent>
-            <NumberFieldDecrement
-              class="w-5 p-0 border flex justify-center items-center h-5 rounded-md"
-            />
-            <NumberFieldInput
-              class="border-none text-primary h-5 shadow-none"
-            />
-            <NumberFieldIncrement
-              class="w-5 p-0 border flex justify-center items-center h-5 rounded-md"
-            />
+            <NumberFieldDecrement class="w-5 p-0 border flex justify-center items-center h-5 rounded-md" />
+            <NumberFieldInput class="border-none text-primary h-5 shadow-none" />
+            <NumberFieldIncrement class="w-5 p-0 border flex justify-center items-center h-5 rounded-md" />
           </NumberFieldContent>
         </NumberField>
       </div>
@@ -42,8 +36,9 @@
 
     <div class="p-3 border grid grid-cols-12 text-secondary rounded-lg">
       <div class="col-span-3 flex items-center">
-        <Icon name="tabler:shopping-bag"
-              class="size-9"
+        <Icon
+          name="tabler:shopping-bag"
+          class="size-9"
         />
       </div>
 
@@ -58,15 +53,9 @@
           class="w-20"
         >
           <NumberFieldContent>
-            <NumberFieldDecrement
-              class="w-5 p-0 border flex justify-center items-center h-5 rounded-md"
-            />
-            <NumberFieldInput
-              class="border-none text-primary h-5 shadow-none"
-            />
-            <NumberFieldIncrement
-              class="w-5 p-0 border flex justify-center items-center h-5 rounded-md"
-            />
+            <NumberFieldDecrement class="w-5 p-0 border flex justify-center items-center h-5 rounded-md" />
+            <NumberFieldInput class="border-none text-primary h-5 shadow-none" />
+            <NumberFieldIncrement class="w-5 p-0 border flex justify-center items-center h-5 rounded-md" />
           </NumberFieldContent>
         </NumberField>
       </div>

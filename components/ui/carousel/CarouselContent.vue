@@ -3,13 +3,14 @@ import type { WithClassAsProps } from './interface'
 import { cn } from '@/lib/utils'
 import { useCarousel } from './useCarousel'
 
-defineOptions({
-  inheritAttrs: false,
-})
+defineOptions({ inheritAttrs: false })
 
 const props = defineProps<WithClassAsProps>()
 
-const { carouselRef, orientation } = useCarousel()
+const {
+  carouselRef,
+  orientation,
+} = useCarousel()
 
 const containerClass = computed(() => {
   return cn(
@@ -21,8 +22,14 @@ const containerClass = computed(() => {
 </script>
 
 <template>
-  <div ref="carouselRef" class="overflow-hidden">
-    <div :class="containerClass" v-bind="$attrs">
+  <div
+    ref="carouselRef"
+    class="overflow-hidden"
+  >
+    <div
+      :class="containerClass"
+      v-bind="$attrs"
+    >
       <slot></slot>
     </div>
   </div>

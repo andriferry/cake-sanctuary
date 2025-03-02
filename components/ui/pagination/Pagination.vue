@@ -1,6 +1,13 @@
 <script setup lang="ts">
-import type { Emit, PaginationFetch, PaginationProps } from './types'
-import { buttonVariants, variants } from '@/components/ui/button/index'
+import type {
+  Emit,
+  PaginationFetch,
+  PaginationProps,
+} from './types'
+import {
+  buttonVariants,
+  variants,
+} from '@/components/ui/button/index'
 import { cn } from '@/lib/utils'
 import { paginationFunc } from './index'
 
@@ -22,11 +29,24 @@ const emit = defineEmits<Emit>()
 const { icons } = useAppConfig()
 const model = defineModel<number>()
 
-const fetchData = ({ currentPage, currentPageSize }: PaginationFetch) => {
-  emit('onChange', { currentPage, currentPageSize })
+const fetchData = ({
+  currentPage,
+  currentPageSize,
+}: PaginationFetch) => {
+  emit('onChange', {
+    currentPage,
+    currentPageSize,
+  })
 }
 
-const { currentPage, pageCount, prev, next, isFirstPage, isLastPage }
+const {
+  currentPage,
+  pageCount,
+  prev,
+  next,
+  isFirstPage,
+  isLastPage,
+}
     = useOffsetPagination({
       total: props.length,
       page: props.currentPage,

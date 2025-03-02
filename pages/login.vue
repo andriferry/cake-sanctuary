@@ -5,8 +5,15 @@ definePageMeta({
 })
 
 const { $toast } = useNuxtApp()
-const { fetch: fetchUserSession, user } = useUserSession()
-const { isPasswordVisible, passWordField, passwordIcon } = useUtils()
+const {
+  fetch: fetchUserSession,
+  user,
+} = useUserSession()
+const {
+  isPasswordVisible,
+  passWordField,
+  passwordIcon,
+} = useUtils()
 
 const router = useRouter()
 
@@ -23,18 +30,14 @@ const route = useRoute()
 
 const errorHandling = (error: any) => {
   if (error.data.statusCode === 401) {
-    $toast.error('Error', {
-      description: error.data.message,
-    })
+    $toast.error('Error', { description: error.data.message })
   }
   else {
     const allError = JSON.parse(error.data.message)
 
     if (allError.issues.length > 0) {
       allError.issues.forEach((item: any) => {
-        $toast.error('Error', {
-          description: item.message,
-        })
+        $toast.error('Error', { description: item.message })
       })
     }
   }
@@ -55,9 +58,7 @@ const onSubmit = async () => {
     await fetchUserSession()
 
     router.push('/dashboard').then(() => {
-      $toast('Success', {
-        description: `Hello, ${user.value?.name} Welcome Back`,
-      })
+      $toast('Success', { description: `Hello, ${user.value?.name} Welcome Back` })
     })
   }
   catch (error) {

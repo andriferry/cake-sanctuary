@@ -14,14 +14,15 @@ const props = withDefaults(
   defineProps<HoverCardContentProps & { class?: VueHtmlAttributes['class'] }>(),
   {
     sideOffset: 5,
-    collisionPadding: {
-      left: 8,
-    },
+    collisionPadding: { left: 8 },
   },
 )
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })

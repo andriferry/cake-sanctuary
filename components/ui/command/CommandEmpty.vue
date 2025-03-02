@@ -8,14 +8,20 @@ import { computed } from 'vue'
 const props = defineProps<ComboboxEmptyProps & { class?: VueHtmlAttributes['class'] }>()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })
 </script>
 
 <template>
-  <ComboboxEmpty v-bind="delegatedProps" :class="cn('py-6 text-center text-sm', props.class)">
+  <ComboboxEmpty
+    v-bind="delegatedProps"
+    :class="cn('py-6 text-center text-sm', props.class)"
+  >
     <slot></slot>
   </ComboboxEmpty>
 </template>

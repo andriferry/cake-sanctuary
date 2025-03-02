@@ -2,7 +2,10 @@
 import type { TabsTriggerProps } from 'radix-vue'
 
 import { cn } from '@/lib/utils'
-import { TabsTrigger, useForwardProps } from 'radix-vue'
+import {
+  TabsTrigger,
+  useForwardProps,
+} from 'radix-vue'
 
 interface Props extends TabsTriggerProps {
   class?: VueHtmlAttributes['class']
@@ -14,7 +17,10 @@ interface Props extends TabsTriggerProps {
 const props = defineProps<Props>()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })
@@ -37,9 +43,20 @@ const wrapperClass = computed(() => {
 </script>
 
 <template>
-  <TabsTrigger v-bind="forwardedProps" :class="wrapperClass">
-    <Icon v-if="prependIcon" :name="prependIcon" class="size-[18px]" />
+  <TabsTrigger
+    v-bind="forwardedProps"
+    :class="wrapperClass"
+  >
+    <Icon
+      v-if="prependIcon"
+      :name="prependIcon"
+      class="size-[18px]"
+    />
     <slot></slot>
-    <Icon v-if="appendIcon" :name="appendIcon" class="size-[18px]" />
+    <Icon
+      v-if="appendIcon"
+      :name="appendIcon"
+      class="size-[18px]"
+    />
   </TabsTrigger>
 </template>

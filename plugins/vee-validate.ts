@@ -1,18 +1,24 @@
 import { localize } from '@vee-validate/i18n'
 import en from '@vee-validate/i18n/dist/locale/en.json'
 import { all } from '@vee-validate/rules'
-import { configure, defineRule, Field, Form } from 'vee-validate'
+import {
+  configure,
+  defineRule,
+  Field,
+  Form,
+} from 'vee-validate'
 
 export default defineNuxtPlugin((nuxtApp) => {
-  Object.entries(all).forEach(([name, rule]) => {
+  Object.entries(all).forEach(([
+    name,
+    rule,
+  ]) => {
     defineRule(name, rule)
   })
 
   configure({
     validateOnChange: true,
-    generateMessage: localize({
-      en,
-    }),
+    generateMessage: localize({ en }),
   })
 
   nuxtApp.vueApp.component('FormObserver', Form)

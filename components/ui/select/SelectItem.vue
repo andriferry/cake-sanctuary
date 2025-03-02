@@ -16,7 +16,10 @@ const props = defineProps<
 >()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })
@@ -34,9 +37,7 @@ const forwardedProps = useForwardProps(delegatedProps)
       )
     "
   >
-    <span
-      class="absolute right-2 flex h-3.5 w-3.5 items-center justify-center"
-    >
+    <span class="absolute right-2 flex h-3.5 w-3.5 items-center justify-center">
       <SelectItemIndicator>
         <Icon
           name="tabler:check"

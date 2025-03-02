@@ -12,7 +12,10 @@ import { computed } from 'vue'
 const props = defineProps<AccordionTriggerProps & { class?: VueHtmlAttributes['class'] }>()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })
@@ -31,9 +34,7 @@ const delegatedProps = computed(() => {
     >
       <slot></slot>
       <slot name="icon">
-        <ChevronDownIcon
-          class="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200"
-        />
+        <ChevronDownIcon class="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200" />
       </slot>
     </AccordionTrigger>
   </AccordionHeader>

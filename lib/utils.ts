@@ -1,6 +1,9 @@
 import type { Updater } from '@tanstack/vue-table'
 import type { ClassValue } from 'clsx'
-import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+import {
+  breakpointsTailwind,
+  useBreakpoints,
+} from '@vueuse/core'
 import { clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 

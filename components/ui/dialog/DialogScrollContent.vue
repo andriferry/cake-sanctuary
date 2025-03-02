@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import type { DialogContentEmits, DialogContentProps } from 'radix-vue'
+import type {
+  DialogContentEmits,
+  DialogContentProps,
+} from 'radix-vue'
 
 import { cn } from '@/lib/utils'
 import {
@@ -20,7 +23,10 @@ const emits = defineEmits<DialogContentEmits>()
 const { icons } = useAppConfig()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })
@@ -41,9 +47,7 @@ function pointerDownEvent(event: any) {
 
 <template>
   <DialogPortal>
-    <DialogOverlay
-      class="fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-black/20 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0"
-    >
+    <DialogOverlay class="fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-black/20 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0">
       <DialogContent
         :class="
           cn(
@@ -56,10 +60,11 @@ function pointerDownEvent(event: any) {
       >
         <slot></slot>
 
-        <DialogClose
-          class="absolute top-4 right-4 p-0.5 transition-colors rounded-md hover:bg-secondary"
-        >
-          <Icon :name="icons.close" class="size-4" />
+        <DialogClose class="absolute top-4 right-4 p-0.5 transition-colors rounded-md hover:bg-secondary">
+          <Icon
+            :name="icons.close"
+            class="size-4"
+          />
           <span class="sr-only">Close</span>
         </DialogClose>
       </DialogContent>

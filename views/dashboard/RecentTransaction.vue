@@ -23,7 +23,10 @@ const fetch = async (page: number, pageSize: number) => {
   })
 }
 
-const fetchData = async ({ currentPage, currentPageSize }: PaginationFetch) => {
+const fetchData = async ({
+  currentPage,
+  currentPageSize,
+}: PaginationFetch) => {
   try {
     const data = await fetch(currentPage, currentPageSize)
     if (data) {
@@ -108,9 +111,7 @@ const badgeRenderColor = (value: Invoice['paymentStatus']) => {
             </TableCell>
             <TableCell class="text-center text-secondary">
               <div class="w-full px-5">
-                <div
-                  class="bg-secondary/10 font-medium p-1 rounded-md"
-                >
+                <div class="bg-secondary/10 font-medium p-1 rounded-md">
                   {{ invoice.paymentMethod }}
                 </div>
               </div>

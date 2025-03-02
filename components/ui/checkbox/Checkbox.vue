@@ -1,13 +1,23 @@
 <script setup lang="ts">
-import type { CheckboxRootEmits, CheckboxRootProps } from 'reka-ui'
+import type {
+  CheckboxRootEmits,
+  CheckboxRootProps,
+} from 'reka-ui'
 import { cn } from '@/lib/utils'
-import { CheckboxIndicator, CheckboxRoot, useForwardPropsEmits } from 'reka-ui'
+import {
+  CheckboxIndicator,
+  CheckboxRoot,
+  useForwardPropsEmits,
+} from 'reka-ui'
 
 const props = defineProps<CheckboxRootProps & { class?: VueHtmlAttributes['class'] }>()
 const emits = defineEmits<CheckboxRootEmits>()
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const {
+    class: _,
+    ...delegated
+  } = props
 
   return delegated
 })
