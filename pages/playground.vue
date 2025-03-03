@@ -1,6 +1,32 @@
 <script lang="ts" setup>
 definePageMeta({ layout: 'blank' })
 const search = ref<string>('')
+
+const sampleDataHeaders = ref([
+  {
+    title: 'Name',
+    key: 'name',
+  },
+  {
+    title: 'Species',
+    key: 'species',
+  },
+  {
+    title: 'Diet HEader',
+    key: 'diet',
+  },
+  {
+    title: 'Habitat HEader',
+    key: 'habitat',
+  },
+])
+
+const sampleDataTable = ref([{
+  name: 'African Elephant',
+  species: 'Loxodonta africana',
+  diet: 'Herbivore',
+  habitat: 'Savanna, Forests',
+}])
 </script>
 
 <template>
@@ -36,18 +62,6 @@ const search = ref<string>('')
               >
                 <DropdownMenuLabel>Columns</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuCheckboxItem
-                  v-for="(column, index) in table.getAllColumns().filter((column: any) => column.getCanHide())"
-                  :key="index"
-                  class="capitalize"
-                  :model-value="column.getIsVisible()"
-                  @update:model-value="(value: any) => {
-                    column.toggleVisibility(!!value)
-                  }"
-                >
-                  {{ column.id }}
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuSeparator />
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>Refresh</DropdownMenuItem>
@@ -60,7 +74,10 @@ const search = ref<string>('')
       </CardHeader>
 
       <CardContent class="">
-        <DataTable />
+        <DataTableDemo
+          :headers="sampleDataHeaders"
+          :items="sampleDataTable"
+        />
       </CardContent>
     </Card>
   </div>

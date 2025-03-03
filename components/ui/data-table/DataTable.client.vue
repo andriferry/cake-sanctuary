@@ -22,9 +22,7 @@ import { Button } from '~/components/ui/button/index'
 
 import { SortIcon } from '~/components/ui/global/index'
 
-definePageMeta({ layout: 'blank' })
-
-export interface Payment {
+interface Payment {
   id: string
   amount: number
   status: 'pending' | 'processing' | 'success' | 'failed'
@@ -105,7 +103,6 @@ const columnFilters = ref<ColumnFiltersState>([])
 const columnVisibility = ref<VisibilityState>({})
 const rowSelection = ref({})
 const expanded = ref<ExpandedState>({})
-const search = ref<string>('')
 
 const table = useVueTable({
   data,
@@ -132,112 +129,55 @@ const table = useVueTable({
 </script>
 
 <template>
-  <div class="flex h-screen p-10 justify-center items-center">
-    <Card class="w-full">
-      <CardHeader>
-        <CardTitle class="flex md:items-center flex-col md:flex-row justify-between">
-          Product List
-
-          <div class="flex justify-between md:justify-center gap-3 items-center">
-            <FormControl
-              v-model="search"
-              placeholder="Search..."
-              prepend-icon="tabler:search"
+  <div class="flex justify-center items-center">
+    <Table>
+      <TableHeader>
+        <TableRow
+          v-for="(headerGroup, index) in table.getHeaderGroups()"
+          :key="index"
+        >
+          <TableHead
+            v-for="(header, headerIndex) in headerGroup.headers"
+            :key="headerIndex"
+          >
+            <FlexRender
+              v-if="!header.isPlaceholder"
+              :render="header.column.columnDef.header"
+              :props="header.getContext()"
             />
+          </TableHead>
+        </TableRow>
+      </TableHeader>
 
-            <DropdownMenu>
-              <DropdownMenuTrigger as-child>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  rounded="lg"
-                >
-                  <Icon
-                    name="tabler:adjustments-horizontal"
-                    class="size-5"
-                  />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align="end"
-                :align-offset="10"
-              >
-                <DropdownMenuLabel>Columns</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuCheckboxItem
-                  v-for="(column, index) in table.getAllColumns().filter((column: any) => column.getCanHide())"
-                  :key="index"
-                  class="capitalize"
-                  :model-value="column.getIsVisible()"
-                  @update:model-value="(value: any) => {
-                    column.toggleVisibility(!!value)
-                  }"
-                >
-                  {{ column.id }}
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Refresh</DropdownMenuItem>
-                <DropdownMenuItem>Add Product</DropdownMenuItem>
-                <DropdownMenuItem>Download</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-        </CardTitle>
-      </CardHeader>
-
-      <CardContent class="">
-        <Table>
-          <TableHeader>
-            <TableRow
-              v-for="(headerGroup, index) in table.getHeaderGroups()"
-              :key="index"
-            >
-              <TableHead
-                v-for="(header, headerIndex) in headerGroup.headers"
-                :key="headerIndex"
+      <TableBody>
+        <template v-if="table.getRowModel().rows?.length">
+          <template
+            v-for="row in table.getRowModel().rows"
+            :key="row.id"
+          >
+            <TableRow :data-state="row.getIsSelected() && 'selected'">
+              <TableCell
+                v-for="cell in row.getVisibleCells()"
+                :key="cell.id"
               >
                 <FlexRender
-                  v-if="!header.isPlaceholder"
-                  :render="header.column.columnDef.header"
-                  :props="header.getContext()"
+                  :render="cell.column.columnDef.cell"
+                  :props="cell.getContext()"
                 />
-              </TableHead>
-            </TableRow>
-          </TableHeader>
-
-          <TableBody>
-            <template v-if="table.getRowModel().rows?.length">
-              <template
-                v-for="row in table.getRowModel().rows"
-                :key="row.id"
-              >
-                <TableRow :data-state="row.getIsSelected() && 'selected'">
-                  <TableCell
-                    v-for="cell in row.getVisibleCells()"
-                    :key="cell.id"
-                  >
-                    <FlexRender
-                      :render="cell.column.columnDef.cell"
-                      :props="cell.getContext()"
-                    />
-                  </TableCell>
-                </TableRow>
-              </template>
-            </template>
-
-            <TableRow v-else>
-              <TableCell
-                :colspan="columns.length"
-                class="h-24 text-center"
-              >
-                No results.
               </TableCell>
             </TableRow>
-          </TableBody>
-        </Table>
-      </CardContent>
-    </Card>
+          </template>
+        </template>
+
+        <TableRow v-else>
+          <TableCell
+            :colspan="columns.length"
+            class="h-24 text-center"
+          >
+            No results.
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
   </div>
 </template>

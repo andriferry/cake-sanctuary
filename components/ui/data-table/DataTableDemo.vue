@@ -1,0 +1,170 @@
+<script lang="ts" setup>
+import type {
+  ColumnDef,
+  ColumnFiltersState,
+  ExpandedState,
+  SortingState,
+  VisibilityState,
+} from '@tanstack/vue-table'
+import { valueUpdater } from '@@/lib/utils'
+
+import {
+  FlexRender,
+  getCoreRowModel,
+  getExpandedRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useVueTable,
+} from '@tanstack/vue-table'
+
+interface Headers {
+  title: string
+  align?: string
+  sortable?: boolean
+  key: string
+}
+
+interface Props {
+  pagination?: boolean
+  items: any[]
+  headers?: Headers[]
+  selectedItemKey?: any
+  itemsLength?: 5 | 10 | 25 | 50 | 100 | 'All'
+  height?: number // Suport Virtual Scroll
+  density?: string // Optionals
+  hideDefaultHeader?: boolean
+  hideDefaultFooter?: boolean
+  showSelect?: boolean
+  showExpanded?: boolean // Experimental
+  fixedHeader?: boolean
+  fixedFooter?: boolean
+  headerClass?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  pagination: true,
+  height: 300,
+  hideDefaultHeader: false,
+  hideDefaultFooter: false,
+  showSelect: false,
+  itemsLength: 10,
+  fixedHeader: false,
+  fixedFooter: false,
+  headerClass: 'capitalize',
+})
+
+const sorting = ref<SortingState>([])
+const columnFilters = ref<ColumnFiltersState>([])
+const columnVisibility = ref<VisibilityState>({})
+const rowSelection = ref({})
+const expanded = ref<ExpandedState>({})
+
+const columns: ColumnDef<Headers>[] = []
+
+const table = useVueTable({
+  data: props.items,
+  columns,
+  getCoreRowModel: getCoreRowModel(),
+  getPaginationRowModel: getPaginationRowModel(),
+  getSortedRowModel: getSortedRowModel(),
+  getFilteredRowModel: getFilteredRowModel(),
+  getExpandedRowModel: getExpandedRowModel(),
+  onSortingChange: updaterOrValue => valueUpdater(updaterOrValue, sorting),
+  onColumnFiltersChange: updaterOrValue => valueUpdater(updaterOrValue, columnFilters),
+  onColumnVisibilityChange: updaterOrValue => valueUpdater(updaterOrValue, columnVisibility),
+  onRowSelectionChange: updaterOrValue => valueUpdater(updaterOrValue, rowSelection),
+  onExpandedChange: updaterOrValue => valueUpdater(updaterOrValue, expanded),
+  state: {
+    get sorting() { return sorting.value },
+    get columnFilters() { return columnFilters.value },
+    get columnVisibility() { return columnVisibility.value },
+    get rowSelection() { return rowSelection.value },
+    get expanded() { return expanded.value },
+  },
+
+})
+
+watchEffect(() => {
+  // Rendering Columns
+  if (props.headers?.length) {
+    props.headers.forEach((item: Headers) => {
+      columns.push({
+        accessorKey: item.key,
+        header: item.title,
+        id: props.selectedItemKey || item.key,
+        cell: ({ row }) => h('div', { class: props.headerClass }, row.getValue(item.key)),
+      })
+    })
+  }
+  else if (props.items.length) {
+    for (const header in props.items[0]) {
+      columns.push({
+        accessorKey: header,
+        header,
+        id: header,
+        cell: ({ row }) => h('div', { class: props.headerClass }, row.getValue(header)),
+      })
+    }
+  }
+})
+</script>
+
+<template>
+  <div class="grid grid-cols-1">
+    <div class="col-span-1">
+      <ClientOnly>
+        <Table>
+          <TableHeader>
+            <TableRow
+              v-for="(headerGroup, index) in table.getHeaderGroups()"
+              :key="index"
+            >
+              <TableHead
+                v-for="(header, headerIndex) in headerGroup.headers"
+                :key="headerIndex"
+                :class="headerClass"
+              >
+                <FlexRender
+                  v-if="!header.isPlaceholder"
+                  :render="header.column.columnDef.header"
+                  :props="header.getContext()"
+                />
+              </TableHead>
+            </TableRow>
+          </TableHeader>
+
+          <TableBody>
+            <template v-if="table.getRowModel().rows?.length">
+              <template
+                v-for="row in table.getRowModel().rows"
+                :key="row.id"
+              >
+                <TableRow :data-state="row.getIsSelected() && 'selected'">
+                  <TableCell
+                    v-for="cell in row.getVisibleCells()"
+                    :key="cell.id"
+                  >
+                    <FlexRender
+                      :render="cell.column.columnDef.cell"
+                      :props="cell.getContext()"
+                    />
+                  </TableCell>
+                </TableRow>
+              </template>
+            </template>
+
+            <TableRow v-else>
+              <TableCell
+                :colspan="columns.length"
+                class="h-24 text-center"
+              >
+                No results.
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </ClientOnly>
+    </div>
+  </div>
+</template>
