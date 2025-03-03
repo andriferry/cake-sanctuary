@@ -104,7 +104,6 @@ export default defineNuxtConfig({
         'icon-park-outline',
         'mdi',
       ],
-      externalizeIconsJson: true,
     },
   },
   // nitro: {
