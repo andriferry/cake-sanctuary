@@ -14,14 +14,14 @@ interface Props {
   hint?: string
   placeholder?: string
   type?: string
-  defaultValue?: string | number
-  modelValue?: string | number
+  defaultValue?: any
+  modelValue?: any
   appendIcon?: string
   prependIcon?: string
 }
 
 interface Emits {
-  (e: 'update:modelValue', payload: string | number): void
+  (e: 'update:modelValue', payload: any): void
   (e: 'clickAppend'): void
 }
 

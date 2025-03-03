@@ -106,7 +106,7 @@ const columnFilters = ref<ColumnFiltersState>([])
 const columnVisibility = ref<VisibilityState>({})
 const rowSelection = ref({})
 const expanded = ref<ExpandedState>({})
-const search = ref('')
+const search = ref<string>('')
 
 const table = useVueTable({
   data,
