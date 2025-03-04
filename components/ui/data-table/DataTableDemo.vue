@@ -93,6 +93,7 @@ watchEffect(() => {
         accessorKey: item.key,
         header: item.title,
         id: props.selectedItemKey || item.key,
+        meta: { ...item },
         cell: ({ row }) => h('div', { class: props.headerClass }, row.getValue(item.key)),
       })
     })
@@ -103,6 +104,7 @@ watchEffect(() => {
         accessorKey: header,
         header,
         id: header,
+        meta: { title: header },
         cell: ({ row }) => h('div', { class: props.headerClass }, row.getValue(header)),
       })
     }
@@ -123,13 +125,33 @@ watchEffect(() => {
               <TableHead
                 v-for="(header, headerIndex) in headerGroup.headers"
                 :key="headerIndex"
-                :class="headerClass"
+                class="group"
+                :class="[headerClass, { 'cursor-pointer': header.column.columnDef.meta?.sortable }]"
+                @click="header.column.getToggleSortingHandler()?.($event)"
               >
-                <FlexRender
-                  v-if="!header.isPlaceholder"
-                  :render="header.column.columnDef.header"
-                  :props="header.getContext()"
-                />
+                <template v-if="!header.isPlaceholder">
+                  <FlexRender
+                    :render="header.column.columnDef.header"
+                    :props="header.getContext()"
+                  />
+
+                  <template v-if="header.column.columnDef.meta?.sortable">
+                    <Transition
+                      name="fade"
+                      mode="out-in"
+                    >
+                      <ArrowUpIcon
+                        v-if="!header.column.getIsSorted() || header.column.getIsSorted() === 'asc'"
+                        class="group-hover:block hidden"
+                      />
+
+                      <ArrowDownIcon
+                        v-else
+                        class="group-hover:block hidden"
+                      />
+                    </Transition>
+                  </template>
+                </template>
               </TableHead>
             </TableRow>
           </TableHeader>

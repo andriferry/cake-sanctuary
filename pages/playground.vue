@@ -6,6 +6,7 @@ const sampleDataHeaders = ref([
   {
     title: 'Name',
     key: 'name',
+    sortable: true,
   },
   {
     title: 'Species',

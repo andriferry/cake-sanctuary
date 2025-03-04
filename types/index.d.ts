@@ -4,6 +4,8 @@ import type {
   Ref,
 } from 'vue'
 
+import '@tanstack/vue-table'
+
 declare global {
     type UserValidation = PrivateFormContext
 
@@ -49,5 +51,11 @@ declare module '#auth-utils' {
     picture: string
   }
 }
-
-// export { global }
+declare module '@tanstack/vue-table' {
+  interface ColumnMeta<TData extends RowData, TValue> {
+    title?: string
+    align?: string
+    sortable?: boolean
+    key?: string
+  }
+}

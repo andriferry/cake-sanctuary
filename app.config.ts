@@ -61,5 +61,7 @@ export default defineAppConfig({
     alertTriangle: 'tabler:alert-triangle',
     sort: 'tabler:arrows-sort',
     check: 'tabler:check',
+    arrowUp: 'tabler:arrow-narrow-up',
+    arrowDown: 'tabler:arrow-narrow-down',
   },
 })

@@ -33,7 +33,7 @@ const btnClass = computed(() => {
     @click="scrollPrev"
   >
     <slot>
-      <ArrowLeftIcon />
+      <ChevronLeftIcon />
       <span class="sr-only">Previous Slide</span>
     </slot>
   </Button>

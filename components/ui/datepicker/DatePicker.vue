@@ -137,7 +137,7 @@ function formatFullMonth(date?: DateValue) {
                 class="p-0 opacity-50 hover:opacity-100"
                 @click="updateMonth('first', -1)"
               >
-                <ArrowLeftIcon />
+                <ChevronLeftIcon />
               </Button>
 
               <div class="text-sm font-medium">
@@ -150,7 +150,7 @@ function formatFullMonth(date?: DateValue) {
                 class="p-0 opacity-50 hover:opacity-100"
                 @click="updateMonth('first', 1)"
               >
-                <ArrowRightIcon />
+                <ChevronRightIcon />
               </Button>
             </div>
             <RangeCalendarGrid>
@@ -197,7 +197,7 @@ function formatFullMonth(date?: DateValue) {
                 class="p-0 opacity-50 hover:opacity-100"
                 @click="updateMonth('second', -1)"
               >
-                <ArrowLeftIcon />
+                <ChevronLeftIcon />
               </Button>
 
               <div class="text-sm font-medium">
@@ -210,7 +210,7 @@ function formatFullMonth(date?: DateValue) {
                 class="p-0 opacity-50 hover:opacity-100"
                 @click="updateMonth('second', 1)"
               >
-                <ArrowRightIcon />
+                <ChevronRightIcon />
               </Button>
             </div>
             <RangeCalendarGrid>
