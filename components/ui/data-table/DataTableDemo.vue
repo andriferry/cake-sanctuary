@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { Align } from '@/components/ui/table'
+
 import type {
   ColumnDef,
   ColumnFiltersState,
@@ -6,8 +8,8 @@ import type {
   SortingState,
   VisibilityState,
 } from '@tanstack/vue-table'
-import { valueUpdater } from '@@/lib/utils'
 
+import { valueUpdater } from '@@/lib/utils'
 import {
   FlexRender,
   getCoreRowModel,
@@ -20,7 +22,7 @@ import {
 
 interface Headers {
   title: string
-  align?: string
+  align?: Align
   sortable?: boolean
   key: string
 }
@@ -104,7 +106,12 @@ watchEffect(() => {
         accessorKey: header,
         header,
         id: header,
-        meta: { title: header },
+        meta: {
+          title: header,
+          sortable: false,
+          align: 'items-start',
+          key: header,
+        },
         cell: ({ row }) => h('div', { class: props.headerClass }, row.getValue(header)),
       })
     }
@@ -127,30 +134,35 @@ watchEffect(() => {
                 :key="headerIndex"
                 class="group"
                 :class="[headerClass, { 'cursor-pointer': header.column.columnDef.meta?.sortable }]"
+                :align="header.column.columnDef.meta?.align || 'items-start'"
                 @click="header.column.getToggleSortingHandler()?.($event)"
               >
                 <template v-if="!header.isPlaceholder">
-                  <FlexRender
-                    :render="header.column.columnDef.header"
-                    :props="header.getContext()"
-                  />
+                  <slot
+                    :column="header.column.columnDef.meta"
+                    :name="`header:${header.column.columnDef.id}`"
+                  >
+                    <FlexRender
+                      :render="header.column.columnDef.header"
+                      :props="header.getContext()"
+                    />
+                    <template v-if="header.column.columnDef.meta?.sortable">
+                      <Transition
+                        name="fade"
+                        mode="out-in"
+                      >
+                        <ArrowUpIcon
+                          v-if="!header.column.getIsSorted() || header.column.getIsSorted() === 'asc'"
+                          class="group-hover:block hidden"
+                        />
 
-                  <template v-if="header.column.columnDef.meta?.sortable">
-                    <Transition
-                      name="fade"
-                      mode="out-in"
-                    >
-                      <ArrowUpIcon
-                        v-if="!header.column.getIsSorted() || header.column.getIsSorted() === 'asc'"
-                        class="group-hover:block hidden"
-                      />
-
-                      <ArrowDownIcon
-                        v-else
-                        class="group-hover:block hidden"
-                      />
-                    </Transition>
-                  </template>
+                        <ArrowDownIcon
+                          v-else
+                          class="group-hover:block hidden"
+                        />
+                      </Transition>
+                    </template>
+                  </slot>
                 </template>
               </TableHead>
             </TableRow>

@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import type { Thead } from './index'
+
 import { cn } from '@/lib/utils'
 
 const props = defineProps<{
   class?: VueHtmlAttributes['class']
+  align?: Thead['align']
 }>()
 </script>
 
@@ -16,7 +19,10 @@ const props = defineProps<{
       )
     "
   >
-    <div class="w-full flex items-center">
+    <div
+      :class="align"
+      class="w-full flex items-center"
+    >
       <slot></slot>
     </div>
   </th>

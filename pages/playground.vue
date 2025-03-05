@@ -78,7 +78,11 @@ const sampleDataTable = ref([{
         <DataTableDemo
           :headers="sampleDataHeaders"
           :items="sampleDataTable"
-        />
+        >
+          <template #header:name="{ column }">
+            {{ column?.title }}
+          </template>
+        </DataTableDemo>
       </CardContent>
     </Card>
   </div>

@@ -1,3 +1,4 @@
+import type { Align } from '@/components/ui/table'
 import type { PrivateFormContext } from 'vee-validate'
 import type {
   HTMLAttributes,
@@ -54,7 +55,7 @@ declare module '#auth-utils' {
 declare module '@tanstack/vue-table' {
   interface ColumnMeta<TData extends RowData, TValue> {
     title?: string
-    align?: string
+    align?: Align
     sortable?: boolean
     key?: string
   }
