@@ -144,7 +144,7 @@ const toggleSort = (header: CoreHeader<any, unknown>) => {
               <TableHead
                 v-for="(header, headerIndex) in headerGroup.headers"
                 :key="headerIndex"
-                class="group"
+                class="group truncate"
                 :class="[headerClass, { 'cursor-pointer': header.column.columnDef.meta?.sortable }]"
                 :align="header.column.columnDef.meta?.align || 'items-start'"
                 @click="toggleSort(header)"
