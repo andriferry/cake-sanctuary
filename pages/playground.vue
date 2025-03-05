@@ -22,12 +22,20 @@ const sampleDataHeaders = ref([
   },
 ])
 
-const sampleDataTable = ref([{
-  name: 'African Elephant',
-  species: 'Loxodonta africana',
-  diet: 'Herbivore',
-  habitat: 'Savanna, Forests',
-}])
+const sampleDataTable = ref([
+  {
+    name: 'African Elephant',
+    species: 'Loxodonta africana',
+    diet: 'Herbivore',
+    habitat: 'Savanna, Forests',
+  },
+  {
+    name: 'Indonesian Comodo',
+    species: 'Indonsian Dragon africana',
+    diet: 'Herbivore',
+    habitat: 'Savanna, Forests',
+  },
+])
 </script>
 
 <template>
@@ -79,9 +87,15 @@ const sampleDataTable = ref([{
           :headers="sampleDataHeaders"
           :items="sampleDataTable"
         >
-          <template #header:name="{ column }">
-            {{ column?.title }}
-          </template>
+          <!-- <template #header:name="{ header, column, sort }">
+            <div class="flex justify-center items-center gap-3">
+              <span>{{ column?.title }}</span>
+
+              <Button @click="sort(header)">
+                Sorting
+              </Button>
+            </div>
+          </template> -->
         </DataTableDemo>
       </CardContent>
     </Card>

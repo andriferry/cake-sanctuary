@@ -4,6 +4,7 @@ import type { Align } from '@/components/ui/table'
 import type {
   ColumnDef,
   ColumnFiltersState,
+  CoreHeader,
   ExpandedState,
   SortingState,
   VisibilityState,
@@ -67,6 +68,9 @@ const columns: ColumnDef<Headers>[] = []
 const table = useVueTable({
   data: props.items,
   columns,
+  enableSorting: true,
+  enableSortingRemoval: false,
+  sortDescFirst: true,
   getCoreRowModel: getCoreRowModel(),
   getPaginationRowModel: getPaginationRowModel(),
   getSortedRowModel: getSortedRowModel(),
@@ -91,13 +95,15 @@ watchEffect(() => {
   // Rendering Columns
   if (props.headers?.length) {
     props.headers.forEach((item: Headers) => {
-      columns.push({
+      const obj: ColumnDef<Headers> = {
         accessorKey: item.key,
         header: item.title,
         id: props.selectedItemKey || item.key,
         meta: { ...item },
         cell: ({ row }) => h('div', { class: props.headerClass }, row.getValue(item.key)),
-      })
+      }
+
+      columns.push(obj)
     })
   }
   else if (props.items.length) {
@@ -117,6 +123,12 @@ watchEffect(() => {
     }
   }
 })
+
+// Method
+
+const toggleSort = (header: CoreHeader<any, unknown>) => {
+  header.column.toggleSorting()
+}
 </script>
 
 <template>
@@ -135,12 +147,14 @@ watchEffect(() => {
                 class="group"
                 :class="[headerClass, { 'cursor-pointer': header.column.columnDef.meta?.sortable }]"
                 :align="header.column.columnDef.meta?.align || 'items-start'"
-                @click="header.column.getToggleSortingHandler()?.($event)"
+                @click="toggleSort(header)"
               >
                 <template v-if="!header.isPlaceholder">
                   <slot
+                    :header="header"
                     :column="header.column.columnDef.meta"
                     :name="`header:${header.column.columnDef.id}`"
+                    :sort="toggleSort"
                   >
                     <FlexRender
                       :render="header.column.columnDef.header"
