@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 definePageMeta({ layout: 'blank' })
 const search = ref<string>('')
+const selection = ref([])
 
 const sampleDataHeaders = ref<THead[]>([
   {
@@ -36,6 +37,10 @@ const sampleDataTable = ref([
     habitat: 'Savanna, Forests',
   },
 ])
+
+const checkSelection = (value: any) => {
+  console.log(value)
+}
 </script>
 
 <template>
@@ -83,10 +88,13 @@ const sampleDataTable = ref([
       </CardHeader>
 
       <CardContent class="">
+        {{ selection }}
         <DataTableDemo
+          v-model="selection"
           :headers="sampleDataHeaders"
           :items="sampleDataTable"
           show-select
+          @update:selection="checkSelection"
         >
           <!-- <template #header:name="{ header, column, sort }">
             <div class="flex justify-center items-center gap-3">

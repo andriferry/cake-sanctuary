@@ -8,6 +8,7 @@ import type {
   VisibilityState,
 } from '@tanstack/vue-table'
 
+import { Checkbox } from '@/components/ui/checkbox'
 import { valueUpdater } from '@@/lib/utils'
 import {
   FlexRender,
@@ -36,6 +37,10 @@ interface Props {
   headerClass?: string
 }
 
+interface Emits {
+  (e: 'update:selection', payload: any): void
+}
+
 const props = withDefaults(defineProps<Props>(), {
   pagination: true,
   height: 300,
@@ -48,12 +53,14 @@ const props = withDefaults(defineProps<Props>(), {
   headerClass: 'capitalize',
 })
 
+const emit = defineEmits<Emits>()
+
 const sorting = ref<SortingState>([])
 const columnFilters = ref<ColumnFiltersState>([])
 const columnVisibility = ref<VisibilityState>({})
 const rowSelection = ref({})
 const expanded = ref<ExpandedState>({})
-
+const model = defineModel<any[]>()
 const columns: ColumnDef<THead>[] = []
 
 const table = useVueTable({
@@ -62,6 +69,7 @@ const table = useVueTable({
   enableSorting: true,
   enableSortingRemoval: false,
   sortDescFirst: true,
+  enableRowSelection: true,
   getCoreRowModel: getCoreRowModel(),
   getPaginationRowModel: getPaginationRowModel(),
   getSortedRowModel: getSortedRowModel(),
@@ -82,8 +90,50 @@ const table = useVueTable({
 
 })
 
+// Method
+
+const toggleSort = (header: CoreHeader<any, unknown>) => {
+  header.column.toggleSorting()
+}
+
+const onSelection = (value: object) => {
+  const dataValue = props.items.filter((item, index) => {
+    let data: any
+    const checkData = Object.keys(value).find(key => Number(key) === index)
+
+    if (checkData) {
+      data = item
+    }
+
+    return data
+  })
+
+  model.value = dataValue
+  emit('update:selection', dataValue)
+}
+
+// Watching
 watchEffect(() => {
   // Rendering Columns
+  if (props.showSelect) {
+    const data: ColumnDef<THead> = {
+      id: 'select',
+      header: ({ table }) => h(Checkbox, {
+        'modelValue': table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && 'indeterminate'),
+        'onUpdate:modelValue': value => table.toggleAllPageRowsSelected(!!value),
+        'ariaLabel': 'Select all',
+      }),
+      cell: ({ row }) => h(Checkbox, {
+        'modelValue': row.getIsSelected(),
+        'onUpdate:modelValue': value => row.toggleSelected(!!value),
+        'ariaLabel': 'Select row',
+      }),
+
+    }
+
+    columns.push(data)
+  }
+
   if (props.headers?.length) {
     props.headers.forEach((item: THead) => {
       const obj: ColumnDef<THead> = {
@@ -115,11 +165,9 @@ watchEffect(() => {
   }
 })
 
-// Method
-
-const toggleSort = (header: CoreHeader<any, unknown>) => {
-  header.column.toggleSorting()
-}
+watch(rowSelection, (value: object) => {
+  onSelection(value)
+})
 </script>
 
 <template>
