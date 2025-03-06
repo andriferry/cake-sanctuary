@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { Thead } from './index'
+import type { Align } from './index'
 
 import { cn } from '@/lib/utils'
 
 const props = defineProps<{
   class?: VueHtmlAttributes['class']
-  align?: Thead['align']
+  align?: Align
 }>()
 </script>
 

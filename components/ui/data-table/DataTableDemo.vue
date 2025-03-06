@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { Align } from '@/components/ui/table'
-
 import type {
   ColumnDef,
   ColumnFiltersState,
@@ -21,17 +19,10 @@ import {
   useVueTable,
 } from '@tanstack/vue-table'
 
-interface Headers {
-  title: string
-  align?: Align
-  sortable?: boolean
-  key: string
-}
-
 interface Props {
   pagination?: boolean
   items: any[]
-  headers?: Headers[]
+  headers?: THead[]
   selectedItemKey?: any
   itemsLength?: 5 | 10 | 25 | 50 | 100 | 'All'
   height?: number // Suport Virtual Scroll
@@ -63,7 +54,7 @@ const columnVisibility = ref<VisibilityState>({})
 const rowSelection = ref({})
 const expanded = ref<ExpandedState>({})
 
-const columns: ColumnDef<Headers>[] = []
+const columns: ColumnDef<THead>[] = []
 
 const table = useVueTable({
   data: props.items,
@@ -94,8 +85,8 @@ const table = useVueTable({
 watchEffect(() => {
   // Rendering Columns
   if (props.headers?.length) {
-    props.headers.forEach((item: Headers) => {
-      const obj: ColumnDef<Headers> = {
+    props.headers.forEach((item: THead) => {
+      const obj: ColumnDef<THead> = {
         accessorKey: item.key,
         header: item.title,
         id: props.selectedItemKey || item.key,
@@ -115,7 +106,7 @@ watchEffect(() => {
         meta: {
           title: header,
           sortable: false,
-          align: 'items-start',
+          align: 'justify-start',
           key: header,
         },
         cell: ({ row }) => h('div', { class: props.headerClass }, row.getValue(header)),
@@ -146,7 +137,7 @@ const toggleSort = (header: CoreHeader<any, unknown>) => {
                 :key="headerIndex"
                 class="group truncate"
                 :class="[headerClass, { 'cursor-pointer': header.column.columnDef.meta?.sortable }]"
-                :align="header.column.columnDef.meta?.align || 'items-start'"
+                :align="header.column.columnDef.meta?.align || 'justify-start'"
                 @click="toggleSort(header)"
               >
                 <template v-if="!header.isPlaceholder">
@@ -156,7 +147,32 @@ const toggleSort = (header: CoreHeader<any, unknown>) => {
                     :name="`header:${header.column.columnDef.id}`"
                     :sort="toggleSort"
                   >
-                    <FlexRender
+                    <div
+                      :class="{ 'flex-row-reverse': header.column.columnDef.meta?.align === 'justify-end' }"
+                      class="flex items-center"
+                    >
+                      <FlexRender
+                        :render="header.column.columnDef.header"
+                        :props="header.getContext()"
+                      />
+                      <template v-if="header.column.columnDef.meta?.sortable">
+                        <Transition
+                          name="fade"
+                          mode="out-in"
+                        >
+                          <ArrowUpIcon
+                            v-if="!header.column.getIsSorted() || header.column.getIsSorted() === 'asc'"
+                            class="group-hover:block hidden"
+                          />
+
+                          <ArrowDownIcon
+                            v-else
+                            class="group-hover:block hidden"
+                          />
+                        </Transition>
+                      </template>
+                    </div>
+                    <!-- <FlexRender
                       :render="header.column.columnDef.header"
                       :props="header.getContext()"
                     />
@@ -175,7 +191,7 @@ const toggleSort = (header: CoreHeader<any, unknown>) => {
                           class="group-hover:block hidden"
                         />
                       </Transition>
-                    </template>
+                    </template> -->
                   </slot>
                 </template>
               </TableHead>

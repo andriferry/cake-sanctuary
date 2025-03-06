@@ -24,6 +24,16 @@ declare global {
       picture: string
     }
 
+    /**
+     * Support items-align tailwindcss
+     */
+    interface THead {
+      title: string
+      align?: Align
+      sortable?: boolean
+      key: string
+    }
+
     interface UseUtils {
       passWordField: Ref<string>
       passwordIcon: Ref<string>

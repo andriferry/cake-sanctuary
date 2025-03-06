@@ -2,7 +2,7 @@
 definePageMeta({ layout: 'blank' })
 const search = ref<string>('')
 
-const sampleDataHeaders = ref([
+const sampleDataHeaders = ref<THead[]>([
   {
     title: 'Name',
     key: 'name',
@@ -86,6 +86,7 @@ const sampleDataTable = ref([
         <DataTableDemo
           :headers="sampleDataHeaders"
           :items="sampleDataTable"
+          show-select
         >
           <!-- <template #header:name="{ header, column, sort }">
             <div class="flex justify-center items-center gap-3">
